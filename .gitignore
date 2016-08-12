@@ -1,0 +1,11 @@
+/vendor
+/node_modules
+/public/css
+/public/js
+/public/fonts
+/public/storage
+/nukacode
+/.idea
+Homestead.yaml
+Homestead.json
+.env
