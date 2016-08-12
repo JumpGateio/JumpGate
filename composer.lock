@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "05d33a6094bcddbaa4095446ea27dfa6",
-    "content-hash": "904d9a7e0755026ca13c4dc6b0c8cda0",
+    "hash": "9f6fc675684b524089fa3bbbcebe926e",
+    "content-hash": "40b84b8816e8778e617775b33cf17d75",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -852,12 +852,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "5e06cf840a1ead0e06c81646589887a2230c9f4f"
+                "reference": "c3a62c83f9a100710badad9d7081d5f6dd46abd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/5e06cf840a1ead0e06c81646589887a2230c9f4f",
-                "reference": "5e06cf840a1ead0e06c81646589887a2230c9f4f",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c3a62c83f9a100710badad9d7081d5f6dd46abd6",
+                "reference": "c3a62c83f9a100710badad9d7081d5f6dd46abd6",
                 "shasum": ""
             },
             "require": {
@@ -971,7 +971,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-08-11 20:28:59"
+            "time": "2016-08-12 14:41:31"
         },
         {
             "name": "laravelcollective/html",
@@ -1403,18 +1403,24 @@
         },
         {
             "name": "nukacode/core",
-            "version": "dev-master",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NukaCode/core.git",
+                "reference": "4c7b9f486f16de81d4ea62deb70384066465a6bc"
+            },
             "dist": {
-                "type": "path",
-                "url": "./nukacode/core",
-                "reference": "0e8439d56a50117679d04b25f15adc5b8b91f1ad",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/NukaCode/core/zipball/4c7b9f486f16de81d4ea62deb70384066465a6bc",
+                "reference": "4c7b9f486f16de81d4ea62deb70384066465a6bc",
+                "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "2.4.2",
                 "laracasts/presenter": "0.2.0",
                 "laracasts/utilities": "~2.0",
-                "laravel/framework": "~5.1|~5.2"
+                "laravel/framework": "^5.1",
+                "nukacode/database": "1.0.0"
             },
             "require-dev": {
                 "benconstable/phpspec-laravel": "~2.0",
@@ -1437,6 +1443,7 @@
                     "NukaCode\\Core\\": "src/NukaCode/Core"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1450,7 +1457,56 @@
                     "email": "riddles@dev-toolbox.com"
                 }
             ],
-            "description": "A core set of features for laravel sites."
+            "description": "A core set of features for laravel sites.",
+            "time": "2016-08-12 14:56:13"
+        },
+        {
+            "name": "nukacode/database",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NukaCode/database.git",
+                "reference": "9451df2147e296010fbfd56bce2e9070e1f37c4f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/NukaCode/database/zipball/9451df2147e296010fbfd56bce2e9070e1f37c4f",
+                "reference": "9451df2147e296010fbfd56bce2e9070e1f37c4f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.2.0"
+            },
+            "require-dev": {
+                "benconstable/phpspec-laravel": "~2.0",
+                "fzaninotto/faker": "~1.4",
+                "henrikbjorn/phpspec-code-coverage": "~0.2",
+                "mockery/mockery": "0.9.*",
+                "phpspec/phpspec": "~2.1",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NukaCode\\Database\\": "src/NukaCode/Database"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stygian",
+                    "email": "stygian.warlock.v2@gmail.com"
+                },
+                {
+                    "name": "Riddles",
+                    "email": "riddles@dev-toolbox.com"
+                }
+            ],
+            "description": "Database helpers for Laravel sites.",
+            "time": "2016-08-12 14:12:30"
         },
         {
             "name": "nukacode/menu",
@@ -2798,12 +2854,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "35c600da5abb5a6183ae1f594aea2d865974514c"
+                "reference": "a1dd85c38f033c895f120e4b346cd737098e7c4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/35c600da5abb5a6183ae1f594aea2d865974514c",
-                "reference": "35c600da5abb5a6183ae1f594aea2d865974514c",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/a1dd85c38f033c895f120e4b346cd737098e7c4a",
+                "reference": "a1dd85c38f033c895f120e4b346cd737098e7c4a",
                 "shasum": ""
             },
             "require": {
@@ -2840,7 +2896,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2016-08-09 14:51:36"
+            "time": "2016-08-12 07:13:09"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -4376,7 +4432,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "nukacode/core": 20,
         "barryvdh/laravel-ide-helper": 20
     },
     "prefer-stable": false,
