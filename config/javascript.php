@@ -25,5 +25,5 @@ return [
     |
     */
 
-    'js_namespace' => env('JS_NAMESPACE', 'window'),
+    'js_namespace' => env('JS_NAMESPACE', 'app'),
 ];
