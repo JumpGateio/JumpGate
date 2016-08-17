@@ -1,6 +1,6 @@
 <?php
 
-use NukaCode\Core\Database\Collection;
+use NukaCode\Database\Collection;
 
 if (! function_exists('start_Debug')) {
     /**
