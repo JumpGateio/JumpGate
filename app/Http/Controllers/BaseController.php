@@ -11,13 +11,6 @@ abstract class BaseController extends CoreBaseController
 {
     use DispatchesJobs, ValidatesRequests, AuthorizesRequests;
 
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->setUpJavascript();
-    }
-
     protected function setPageTitle($pageTitle)
     {
         $this->setViewData(compact('pageTitle'));
