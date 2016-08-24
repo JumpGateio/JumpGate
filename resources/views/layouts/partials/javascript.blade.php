@@ -11,8 +11,14 @@
 <script>
   $(document).ready(function ()
   {
+    @if (session()->has('errors'))
+    var errors = "There was a problem with your request.<br />"+{!! is_string(session()->get('errors')) ? '"'. session()->get('errors') .'"' : json_encode(implode('<br />', is_array(session()->get('errors')) ? session()->get('errors') : session()->get('errors')->all())) !!};
+    @else
+    var errors = 0;
+    @endif
+
     var mainError   = {!! (session()->has('error') ? json_encode(session()->get('error')) : 0) !!};
-    var mainErrors  = {!! (session()->has('errors') ? '"There was a problem with your request.<br />"+'. json_encode(implode('<br />', session()->get('errors')->all())) : 0) !!};
+    var mainErrors  = errors;
     var mainMessage = {!! (session()->has('message') ? json_encode(session()->get('message')) : 0) !!};
     var mainWarning = {!! (session()->has('warning') ? json_encode(session()->get('warning')) : 0) !!};
 
@@ -39,15 +45,12 @@
     }
 
     if (mainErrors != 0) {
-      $.each(mainErrors, function ()
-      {
-        $.notify({
-          message: this,
-          icon:    'fa fa-exclamation-triangle'
-        }, {
-          // settings
-          type: 'danger'
-        });
+      $.notify({
+        message: mainErrors,
+        icon:    'fa fa-exclamation-triangle'
+      }, {
+        // settings
+        type: 'danger'
       });
     }
 
