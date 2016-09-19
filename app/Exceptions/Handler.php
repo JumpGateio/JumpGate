@@ -43,6 +43,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof AuthenticationException) {
+            if ($request->ajax() || $request->wantsJson()) {
+                return response('Unauthorized.', 401);
+            } else {
+                return redirect()->guest(route('auth.login'));
+            }
+        }
+        
         // Send the response in json for ajax requests.
         if ($request->ajax()) {
             $error = $exception->getMessage() . ' on ' . $exception->getLine() . ' of ' . $exception->getFile();
