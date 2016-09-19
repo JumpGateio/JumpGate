@@ -1,4 +1,5 @@
 // Bootbox
+let bootbox = require('bootbox')
 bootbox.setDefaults({backdrop: false});
 
 $("a.confirm-remove").click(function (e) {
