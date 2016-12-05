@@ -164,12 +164,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * NukaCode Service Providers...
-         */
-        NukaCode\Core\Providers\ViewServiceProvider::class,
-        NukaCode\Menu\MenuServiceProvider::class,
-
-        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -178,6 +172,12 @@ return [
         App\Providers\ComposerServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /*
+         * NukaCode Service Providers...
+         */
+        NukaCode\Core\Providers\ViewServiceProvider::class,
+        NukaCode\Menu\MenuServiceProvider::class,
 
         /*
          * Package Service Providers...
