@@ -2,19 +2,26 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\File;
 
 class RouteServiceProvider extends ServiceProvider
 {
     /**
-     * This namespace is applied to your controller routes.
+     * Route providers that contain the configuration of a route group.
      *
-     * In addition, it is set as the URL generator's root namespace.
-     *
-     * @var string
+     * @var array
      */
-    protected $namespace = 'App\Http\Controllers';
+    protected $providers = [];
+
+    public function __construct($app)
+    {
+        parent::__construct($app);
+
+        if (empty($this->providers)) {
+            $this->getProvidersFromServicesConfig();
+        }
+    }
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -23,7 +30,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $router = $this->app['router'];
+
+        foreach ($this->providers as $provider) {
+            $provider = new $provider;
+
+            $router->patterns($provider->patterns());
+        }
 
         parent::boot();
     }
@@ -35,44 +48,38 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapWebRoutes();
+        $router = $this->app['router'];
 
-        $this->mapApiRoutes();
-        //
+        foreach ($this->providers as $provider) {
+            $provider = new $provider;
+
+            $router->group([
+                'prefix'     => $provider->prefix(),
+                'namespace'  => $provider->namespacing(),
+                'middleware' => $provider->middleware(),
+            ], function ($router) use ($provider) {
+                $provider->routes($router);
+            });
+        }
     }
 
     /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
+     * Get an array of providers from the services.json.
      */
-    protected function mapWebRoutes()
+    private function getProvidersFromServicesConfig()
     {
-        Route::group([
-            'middleware' => 'web',
-            'namespace'  => $this->namespace,
-        ], function ($router) {
-            require base_path('routes/web.php');
-        });
-    }
+        if (file_exists(base_path('bootstrap/services.json'))) {
+            $services = collect(
+                json_decode(
+                    file_get_contents(base_path('bootstrap/services.json'))
+                )
+            );
 
-    /**
-     * Define the "api" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
-     */
-    protected function mapApiRoutes()
-    {
-        Route::group([
-            'middleware' => ['api', 'auth:api'],
-            'namespace'  => $this->namespace,
-            'prefix'     => 'api',
-        ], function ($router) {
-            require base_path('routes/api.php');
-        });
+            $this->providers = $services->flatMap(function ($service) {
+                if (isset($service->routes)) {
+                    return $service->routes;
+                }
+            })->toArray();
+        }
     }
 }

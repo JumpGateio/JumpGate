@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use NukaCode\Core\Models\BaseModel as CoreBaseModel;
+use JumpGate\Database\Models\BaseModel as CoreBaseModel;
 
 abstract class BaseModel extends CoreBaseModel
 {
@@ -39,7 +39,7 @@ abstract class BaseModel extends CoreBaseModel
     protected function getDate($key)
     {
         if (isset($this->attributes[$key]) && $this->attributes[$key] != null) {
-            return carbonParse($this->attributes[$key] . ' UTC');
+            return getTime($this->attributes[$key]);
         }
 
         return null;
@@ -48,7 +48,7 @@ abstract class BaseModel extends CoreBaseModel
     protected function setDate($key, $value)
     {
         if ($value != null) {
-            $this->attributes[$key] = carbonParse($value)->setTimezone('UTC');
+            $this->attributes[$key] = setTime($value);
         } else {
             $this->attributes[$key] = null;
         }

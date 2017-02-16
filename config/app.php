@@ -164,6 +164,12 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+         * JumpGate Service Providers...
+         */
+        JumpGate\ViewResolution\Providers\ViewServiceProvider::class,
+        NukaCode\Menu\MenuServiceProvider::class,
+
+        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -174,16 +180,11 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*
-         * NukaCode Service Providers...
-         */
-        NukaCode\Core\Providers\ViewServiceProvider::class,
-        NukaCode\Menu\MenuServiceProvider::class,
-
-        /*
          * Package Service Providers...
          */
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        // Camroncade\Timezone\TimezoneServiceProvider::class,
     ],
 
     /*
