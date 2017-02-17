@@ -54,6 +54,11 @@
     .m-b-md {
       margin-bottom: 30px;
     }
+
+    .numbers {
+      position: relative;
+      bottom:   11px;
+    }
   </style>
 @endsection
 <div class="flex-center position-ref full-height">
@@ -61,13 +66,14 @@
     <div class="top-right links">
       <a href="{{ route('auth.login') }}">Login</a>
       @if (Route::has('auth.register'))
-      <a href="{{ route('auth.register') }}">Register</a>
+        <a href="{{ route('auth.register') }}">Register</a>
+      @endif
     </div>
   @endif
 
   <div class="content">
     <div class="title m-b-md">
-      Laravel <i class="fa fa-fw fa-html5"></i>
+      Laravel <span class="numbers">5.4</span>
       <div class="sub-title">
         with JumpGate
       </div>

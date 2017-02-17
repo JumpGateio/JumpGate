@@ -1,21 +1,21 @@
-<nav class="navbar navbar-dark bg-inverse navbar-fixed-top" role="navigation">
-  <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    &#9776;
+<nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse fixed-top" role="navigation">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-toggleable-xs" id="navbarResponsive">
-    @if (app()->environment() == 'stage')
-      <a class="navbar-brand" href="{!! route('home') !!}">Development Site</a>
-    @else
-      <a class="navbar-brand" href="{!! route('home') !!}">{{ env('APP_NAME') }}</a>
-    @endif
+  @if (app()->environment() == 'stage')
+    <a class="navbar-brand" href="{!! route('home') !!}">Development Site</a>
+  @else
+    <a class="navbar-brand" href="{!! route('home') !!}">{{ env('APP_NAME') }}</a>
+  @endif
+  <div class="collapse navbar-collapse" id="navbarResponsive">
     @if (Menu::exists('leftMenu') && Menu::hasLinks('leftMenu'))
-      <ul class="nav navbar-nav">
+      <ul class="navbar-nav">
         @each('layouts.menus.twitter.menu', Menu::render('leftMenu')->links, 'item')
       </ul>
     @endif
     <div class="hidden-md hidden-lg">
       @if (Menu::exists('rightMenu') && Menu::hasLinks('rightMenu'))
-        <ul class="nav navbar-nav pull-xs-right">
+        <ul class="navbar-nav pull-xs-right">
           @each('layouts.menus.twitter.right-menu', Menu::render('rightMenu')->links, 'item')
         </ul>
       @endif
