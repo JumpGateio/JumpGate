@@ -1,6 +1,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $pageTitle or null }} | {{ env('APP_NAME') }}!</title>
+<title>
+  {{ ! isset($customPageTitle) || $customPageTitle === '' ? $pageTitle === '' ? null : $pageTitle : $customPageTitle }}
+  {{ ! is_null(env('APP_NAME')) ? '| ' . env('APP_NAME') : null }}
+</title>
 
 <link rel="shortcut icon" href="{{ URL::to('/favicon.ico') }}" />
 

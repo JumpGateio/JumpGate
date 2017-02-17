@@ -9,12 +9,13 @@
 @import "components/variables";
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap";
 
 @import "components/overrides";
 
 @import
 
+"components/flex",
 "components/grid",
 "components/navbar",
 "components/navs",

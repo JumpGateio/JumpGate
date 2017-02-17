@@ -1,6 +1,6 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "jumpgate/jumpgate",
+    "description": "A SiteRocket Labs web solution.",
     "keywords": [
         "framework",
         "laravel"

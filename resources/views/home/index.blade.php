@@ -57,10 +57,11 @@
   </style>
 @endsection
 <div class="flex-center position-ref full-height">
-  @if (Route::has('login'))
+  @if (Route::has('auth.login'))
     <div class="top-right links">
-      <a href="{{ url('/login') }}">Login</a>
-      <a href="{{ url('/register') }}">Register</a>
+      <a href="{{ route('auth.login') }}">Login</a>
+      @if (Route::has('auth.register'))
+      <a href="{{ route('auth.register') }}">Register</a>
     </div>
   @endif
 
@@ -68,7 +69,7 @@
     <div class="title m-b-md">
       Laravel <i class="fa fa-fw fa-html5"></i>
       <div class="sub-title">
-        with NukaCode
+        with JumpGate
       </div>
     </div>
 

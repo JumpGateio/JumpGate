@@ -12,7 +12,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $providers = [];
+    protected $providers = [
+        \App\Http\Routes\Home::class,
+    ];
 
     public function __construct($app)
     {
