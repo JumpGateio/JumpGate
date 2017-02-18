@@ -80,11 +80,19 @@
     </div>
 
     <div class="links">
-      <a href="https://laravel.com/docs">Documentation</a>
-      <a href="https://laravel-news.com">News</a>
-      <a href="https://laracasts.com">Laracasts</a>
-      <a href="https://forge.laravel.com">Forge</a>
-      <a href="https://github.com/laravel/laravel">GitHub</a>
+      <a target="_blank" href="https://laravel.com/docs">Documentation</a>
+      <a target="_blank" href="https://laravel-news.com">News</a>
+      <a target="_blank" href="https://laracasts.com">Laracasts</a>
+      <a target="_blank" href="https://forge.laravel.com">Forge</a>
+      <a target="_blank" href="https://github.com/laravel/laravel">GitHub</a>
+    </div>
+
+    <br/>
+
+    <div class="links">
+      <a target="_blank" href="https://github.com/JumpGateio">JumpGate</a>
+      <a target="_blank" href="https://v4-alpha.getbootstrap.com/getting-started/introduction/">Bootstrap 4</a>
+      <a target="_blank" href="http://vuejs.org/v2/guide/">VueJs 2</a>
     </div>
   </div>
 </div>

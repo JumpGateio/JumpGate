@@ -120,7 +120,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
+    'log' => env('APP_LOG', 'daily'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
@@ -164,6 +164,11 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+         * Extra Laravel Providers
+         */
+        Laravel\Tinker\TinkerServiceProvider::class,
+
+        /*
          * JumpGate Service Providers...
          */
         JumpGate\ViewResolution\Providers\ViewServiceProvider::class,
@@ -173,8 +178,8 @@ return [
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
@@ -204,6 +209,8 @@ return [
         'Artisan'      => Illuminate\Support\Facades\Artisan::class,
         'Auth'         => Illuminate\Support\Facades\Auth::class,
         'Blade'        => Illuminate\Support\Facades\Blade::class,
+        'Broadcast'    => Illuminate\Support\Facades\Broadcast::class,
+        'Bus'          => Illuminate\Support\Facades\Bus::class,
         'Cache'        => Illuminate\Support\Facades\Cache::class,
         'Config'       => Illuminate\Support\Facades\Config::class,
         'Cookie'       => Illuminate\Support\Facades\Cookie::class,
@@ -233,9 +240,9 @@ return [
         'View'         => Illuminate\Support\Facades\View::class,
 
         // Extras
-        'HTML'      => Collective\Html\HtmlFacade::class,
-        'Form'      => Collective\Html\FormFacade::class,
-        'Str'       => Illuminate\Support\Str::class,
+        'HTML'         => Collective\Html\HtmlFacade::class,
+        'Form'         => Collective\Html\FormFacade::class,
+        'Str'          => Illuminate\Support\Str::class,
     ],
 
 ];
