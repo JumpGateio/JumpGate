@@ -9,13 +9,13 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "barryvdh/laravel-debugbar": "^2.2",
+        "jumpgate/core": "*@dev",
+        "jumpgate/menu": "~1.0",
+        "jumpgate/view-resolution": "*@dev",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "jumpgate/core": "*@dev",
-        "jumpgate/view-resolution": "*@dev",
-        "nukacode/menu": "^1.0",
-        "laravelcollective/html": "^5.2",
-        "barryvdh/laravel-debugbar": "^2.2"
+        "laravelcollective/html": "^5.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

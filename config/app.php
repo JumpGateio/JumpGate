@@ -172,7 +172,7 @@ return [
          * JumpGate Service Providers...
          */
         JumpGate\ViewResolution\Providers\ViewServiceProvider::class,
-        NukaCode\Menu\MenuServiceProvider::class,
+        JumpGate\Menu\MenuServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -189,7 +189,7 @@ return [
          */
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        // Camroncade\Timezone\TimezoneServiceProvider::class,
+        Camroncade\Timezone\TimezoneServiceProvider::class,
     ],
 
     /*
