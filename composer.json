@@ -12,7 +12,7 @@
         "barryvdh/laravel-debugbar": "^2.2",
         "jumpgate/core": "*@dev",
         "jumpgate/menu": "~1.0",
-        "jumpgate/view-resolution": "*@dev",
+        "jumpgate/view-resolution": "~1.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.2"
@@ -70,10 +70,6 @@
         {
             "type": "path",
             "url": "../Core"
-        },
-        {
-            "type": "path",
-            "url": "../ViewResolution"
         },
         {
             "type": "path",

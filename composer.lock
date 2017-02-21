@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "560859d88667dd60b304878811bd6a5c",
-    "content-hash": "2c9e198346745a753c8299f11ae8ed9a",
+    "hash": "ac3e65082a688c1b066d7193eeebdf61",
+    "content-hash": "a9073af3bddf0583d0d634504e2568ca",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -471,15 +471,19 @@
         },
         {
             "name": "jumpgate/view-resolution",
-            "version": "dev-master",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JumpGateio/ViewResolution.git",
+                "reference": "08254e6a45c322def83e1c9d312bd52a26fc65f7"
+            },
             "dist": {
-                "type": "path",
-                "url": "../ViewResolution",
-                "reference": "6c6574549c29cbffec9b90549f5f327386a42391",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/JumpGateio/ViewResolution/zipball/08254e6a45c322def83e1c9d312bd52a26fc65f7",
+                "reference": "08254e6a45c322def83e1c9d312bd52a26fc65f7",
+                "shasum": ""
             },
             "require": {
-                "jumpgate/database": "*@dev",
                 "laravel/framework": "^5.0"
             },
             "require-dev": {
@@ -498,6 +502,7 @@
                     "JumpGate\\ViewResolution\\": "src/JumpGate/ViewResolution"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -507,7 +512,8 @@
                     "email": "stygian.warlock.v2@gmail.com"
                 }
             ],
-            "description": "A core set of features for laravel sites."
+            "description": "A core set of features for laravel sites.",
+            "time": "2017-02-21 20:01:45"
         },
         {
             "name": "laracasts/utilities",
@@ -4012,7 +4018,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "jumpgate/core": 20,
-        "jumpgate/view-resolution": 20,
         "barryvdh/laravel-ide-helper": 20
     },
     "prefer-stable": false,
