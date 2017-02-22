@@ -3,8 +3,8 @@
 namespace App\Http\Composers;
 
 use Illuminate\Contracts\View\View;
-use NukaCode\Menu\DropDown;
-use NukaCode\Menu\Link;
+use JumpGate\Menu\DropDown;
+use JumpGate\Menu\Link;
 
 class MenuComposer
 {

@@ -3,30 +3,14 @@
 namespace App\Http\Routes;
 
 use JumpGate\Core\Contracts\Routes;
-use JumpGate\Core\Providers\Routes as BaseRoutes;
+use JumpGate\Core\Http\Routes\BaseRoute;
 use Illuminate\Routing\Router;
 
-class Home extends BaseRoutes implements Routes
+class Home extends BaseRoute implements Routes
 {
-    public function namespacing()
-    {
-        return 'App\Http\Controllers';
-    }
+    public $namespace = 'App\Http\Controllers';
 
-    public function prefix()
-    {
-        return null;
-    }
-
-    public function middleware()
-    {
-        return ['web'];
-    }
-
-    public function patterns()
-    {
-        return [];
-    }
+    public $middleware = ['web'];
 
     public function routes(Router $router)
     {

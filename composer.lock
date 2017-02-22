@@ -337,7 +337,7 @@
             "dist": {
                 "type": "path",
                 "url": "../Core",
-                "reference": "fbbe649f537a7169b258f2b9d5be6316a7953232",
+                "reference": "c2f23526228b00fcc3656d5bf285192336bf0df2",
                 "shasum": null
             },
             "require": {
