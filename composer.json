@@ -61,19 +61,5 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "minimum-stability": "dev",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../Users"
-        },
-        {
-            "type": "path",
-            "url": "../Core"
-        },
-        {
-            "type": "path",
-            "url": "../Database"
-        }
-    ]
+    "minimum-stability": "dev"
 }
