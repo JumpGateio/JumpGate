@@ -40,6 +40,8 @@ install:
   - touch database/database.sqlite
   - composer config github-oauth.github.com $TRAVIS_ACCESS_TOKEN
   - composer install
+  - cp .env.example .env
+  - php artisan key:generate
   - npm install
 # - node_modules/.bin/gulp build --production
   - zip -rq $TRAVIS_BUILD_ID-slim ./ -x tmp
