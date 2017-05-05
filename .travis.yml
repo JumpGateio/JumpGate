@@ -43,7 +43,7 @@ install:
   - npm install
 # - node_modules/.bin/gulp build --production
   - zip -rq $TRAVIS_BUILD_ID-slim ./ -x tmp
-  - mv $TRAVIS_BUILD_ID-slim.zip tmp/slim/$TRAVIS_BUILD_ID.zip
+  - mv $TRAVIS_BUILD_ID-slim.zip tmp/slim.zip
 
 # run the tests
 script:
