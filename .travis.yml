@@ -1,0 +1,75 @@
+# opt-in to new Travis CI containers
+sudo: false
+
+# see http://about.travis-ci.org/docs/user/languages/php/ for more hints
+language: php
+
+# list any PHP version you want to test against
+php:
+  - 5.6
+
+# optionally specify a list of environment variables
+env:
+  - TRAVIS_NODE_VERSION: 6.1.0
+
+# build only on specific branches
+branches:
+  only:
+    - riddles8888-patch-1
+
+# cache the dependencies for faster builds
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - $HOME/.php-cs-fixer
+    - build
+    - node_modules
+    - vendor
+
+# before running the install make sure NVM works
+# disable xdebug to increase speed of the builds
+before_install:
+  - export PATH=$HOME/.local/bin:$PATH
+  - rm -rf $HOME/.nvm && git clone https://github.com/creationix/nvm.git $HOME/.nvm && (cd $HOME/.nvm && git checkout `git describe --abbrev=0 --tags`) && source $HOME/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
+  - pip install awscli --user
+  - phpenv config-rm xdebug.ini
+
+# install dependencies and build
+install:
+  - mkdir -p tmp
+  - touch database/database.sqlite
+  - composer config github-oauth.github.com $TRAVIS_ACCESS_TOKEN
+  - composer install
+  - npm install
+# - node_modules/.bin/gulp build --production
+  - zip -rq $TRAVIS_BUILD_ID-slim ./ -x tmp
+  - mv $TRAVIS_BUILD_ID-slim.zip tmp/slim/$TRAVIS_BUILD_ID.zip
+
+# run the tests
+script:
+# - vendor/bin/phpunit --colors=always
+# - composer test
+
+# prepare the build for deployment
+#before_deploy:
+#  - zip -rq $TRAVIS_BUILD_ID ./
+#  - mkdir -p tmp
+#  - mv $TRAVIS_BUILD_ID.zip tmp/$TRAVIS_BRANCH-$TRAVIS_BUILD_ID.zip
+
+# deploy the built project to S3
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: jumpgate-builds
+    region: $AWS_REGION
+    local_dir: tmp
+    skip_cleanup: true
+    on:
+      branch:
+        - "riddles8888-patch-1"
+
+# configure notifications (email, IRC, campfire etc)
+# http://docs.travis-ci.com/user/notifications/
+notifications:
+#  slack: siterocket:jOi1HGJY2Xchmda89pjiuq0S
