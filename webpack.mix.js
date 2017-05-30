@@ -16,6 +16,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
    // Fonts
    .copy(node_dir + 'font-awesome/fonts', 'public/fonts')
    .copy(node_dir + 'ionicons/dist/fonts', 'public/fonts')
-   .copy(node_dir + 'octicons/build/font', 'public/fonts')
+   // .copy(node_dir + 'octicons/build/font', 'public/fonts')
 
    .sass('resources/assets/sass/app.scss', 'public/css');

@@ -1,0 +1,39 @@
+@each $label, $color in $pallet-colors {
+  .uk-text-#{$label} {
+    color: $color !important;
+  }
+  .uk-background-#{$label} {
+    background-color: $color !important;
+  }
+  .uk-button-#{$label} {
+    background-color: $color !important;
+  }
+  .uk-tile-#{$label} {
+    background-color: $color !important;
+  }
+  thead.uk-text-#{$label} {
+    th {
+      color: $color !important;
+    }
+  }
+}
+
+@each $label, $color in $grays {
+  .uk-text-#{$label} {
+    color: $color !important;
+  }
+  .uk-background-#{$label} {
+    background-color: $color !important;
+  }
+  .uk-button-#{$label} {
+    background-color: $color !important;
+  }
+  .uk-tile-#{$label} {
+    background-color: $color !important;
+  }
+  thead.uk-text-#{$label} {
+    th {
+      color: $color !important;
+    }
+  }
+}
