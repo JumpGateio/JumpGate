@@ -31,6 +31,7 @@
     var mainMessage = {!! (session()->has('message') ? json_encode(session()->get('message')) : 0) !!};
     var mainWarning = {!! (session()->has('warning') ? json_encode(session()->get('warning')) : 0) !!};
 
+    // Uncomment the template to use UiKit styles
     $.notifyDefaults({
       placement:     {
         from:  'bottom',
@@ -40,7 +41,19 @@
         enter: 'animated fadeInUp',
         exit:  'animated fadeOutDown'
       },
-      allow_dismiss: true
+      allow_dismiss: true,
+//      template:      '<article data-notify="container" class="col-xs-11 col-sm-3 message uk-alert-{0}" role="alert" uk-alert>' +
+//                     '<div class="message-body">' +
+//                     '<span data-notify="title">{1}</span> ' +
+//                     '<button type="button" aria-hidden="true" uk-close class="uk-alert-close delete" data-notify="dismiss"></button>' +
+//                     '<span data-notify="icon"></span> ' +
+//                     '<span data-notify="message" class="m-r-2">{2}</span>' +
+//                     '<div class="progress" data-notify="progressbar">' +
+//                     '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+//                     '</div>' +
+//                     '<a href="{3}" target="{4}" data-notify="url"></a>' +
+//                     '</div>' +
+//                     '</article>',
     });
 
     if (mainError != 0) {
