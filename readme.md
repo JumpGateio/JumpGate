@@ -1,4 +1,4 @@
-# Base Install
+# Jumpgate App
 
 - [Commands](#commands)
 - [Users](#users)
