@@ -82,7 +82,7 @@
 
     <div class="links">
       <a target="_blank" href="https://github.com/JumpGateio">JumpGate</a>
-      <a target="_blank" href="https://getbootstrap.com/docs/3.3/css/">Bootstrap 3</a>
+      <a target="_blank" href="https://getuikit.com/docs">UI Kit</a>
       <a target="_blank" href="http://vuejs.org/v2/guide/">VueJs 2</a>
     </div>
   </div>

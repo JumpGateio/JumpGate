@@ -4,6 +4,7 @@
         'userId'     => auth()->id(),
         'host'       => env('APP_URL'),
         'socketPort' => env('NODE_PORT'),
+        'routes'     => $laravelRouteList,
     ]); ?>
 </script>
 
@@ -18,13 +19,12 @@
 @show
 
 <script>
-  $(document).ready(function ()
-  {
-    @if (session()->has('errors'))
-    var errors = "There was a problem with your request.<br />"+{!! is_string(session()->get('errors')) ? '"'. session()->get('errors') .'"' : json_encode(implode('<br />', is_array(session()->get('errors')) ? session()->get('errors') : session()->get('errors')->all())) !!};
-    @else
-    var errors = 0;
-    @endif
+  $(document).ready(function () {
+            @if (session()->has('errors'))
+    var errors      = "There was a problem with your request.<br />" +{!! is_string(session()->get('errors')) ? '"'. session()->get('errors') .'"' : json_encode(implode('<br />', is_array(session()->get('errors')) ? session()->get('errors') : session()->get('errors')->all())) !!};
+            @else
+    var errors      = 0;
+            @endif
 
     var mainError   = {!! (session()->has('error') ? json_encode(session()->get('error')) : 0) !!};
     var mainErrors  = errors;

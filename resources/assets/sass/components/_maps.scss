@@ -1,8 +1,4 @@
-// Extra Colors
-$white: #ffffff;
-$black: #000000;
-$gray-darker: darken($gray-dark, 15%);
-$gray-darkest: darken($gray-dark, 30%);
+
 
 // Color maps
 $pallet-colors: (
@@ -15,12 +11,10 @@ $pallet-colors: (
 
 $grays: (
                 white: $white,
-                gray-lightest: $gray-lightest,
                 gray-lighter: $gray-lighter,
                 gray-light: $gray-light,
                 gray: $gray,
                 gray-dark: $gray-dark,
                 gray-darker: $gray-darker,
-                gray-darkest: $gray-darkest,
                 black: $black,
         );

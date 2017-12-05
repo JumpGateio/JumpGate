@@ -16,24 +16,6 @@
   hyphens:         auto;
 }
 
-@each $label, $color in $pallet-colors {
-  .text-#{$label} {
-    color: $color !important;
-  }
-  .#{$label} {
-    background-color: $color !important;
-  }
-}
-
-@each $label, $color in $grays {
-  .text-#{$label} {
-    color: $color !important;
-  }
-  .#{$label} {
-    background-color: $color !important;
-  }
-}
-
 .text-muted {
   color: $text-muted !important;
 }

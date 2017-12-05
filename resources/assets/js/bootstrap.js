@@ -8,8 +8,11 @@ window._ = require('lodash')
 
 window.$ = window.jQuery = require('jquery')
 window.Tether = require('tether')
+window.collect = require('collect.js')
 
-require('bootstrap')
+window.routes = collect(Laravel.routes)
+
+require('bootstrap-sass')
 require('bootbox')
 require('bootstrap-notify')
 
