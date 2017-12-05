@@ -4,29 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "95f0f4ce6fed719cc0c75af0a68e599b",
+    "content-hash": "24b63ed317a1c317f12af01adf246e2a",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "2.4.x-dev",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "b45cee906d15a798ae60db8edf71b31355dba929"
+                "reference": "01a859752094e00aa8548832312366753272f8af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/b45cee906d15a798ae60db8edf71b31355dba929",
-                "reference": "b45cee906d15a798ae60db8edf71b31355dba929",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/01a859752094e00aa8548832312366753272f8af",
+                "reference": "01a859752094e00aa8548832312366753272f8af",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
+                "illuminate/routing": "5.5.x",
+                "illuminate/session": "5.5.x",
+                "illuminate/support": "5.5.x",
                 "maximebf/debugbar": "~1.14.0",
-                "php": ">=5.5.9",
-                "symfony/finder": "~2.7|~3.0"
+                "php": ">=7.0",
+                "symfony/debug": "^3",
+                "symfony/finder": "^3"
+            },
+            "require-dev": {
+                "illuminate/framework": "5.5.x"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Barryvdh\\Debugbar\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Debugbar": "Barryvdh\\Debugbar\\Facade"
+                    }
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Barryvdh\\Debugbar\\": "src/"
@@ -53,7 +72,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2017-09-06T08:02:33+00:00"
+            "time": "2017-09-18T13:32:46+00:00"
         },
         {
             "name": "camroncade/timezone",
@@ -4610,8 +4629,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "jumpgate/core": 20,
-        "barryvdh/laravel-ide-helper": 20
+        "jumpgate/core": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

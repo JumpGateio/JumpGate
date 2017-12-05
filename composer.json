@@ -10,7 +10,7 @@
     "require": {
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
-        "barryvdh/laravel-debugbar": "^2.2",
+        "barryvdh/laravel-debugbar": "3.1.0",
         "jumpgate/core": "dev-master",
         "jumpgate/menu": "~1.0",
         "jumpgate/view-resolution": "~1.0",
@@ -25,7 +25,7 @@
         "phpunit/phpunit": "~6.0",
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*",
-        "barryvdh/laravel-ide-helper": "^2.1@dev"
+        "barryvdh/laravel-ide-helper": "2.4.1"
     },
     "autoload": {
         "classmap": [
