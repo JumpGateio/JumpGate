@@ -23,12 +23,6 @@
       position: relative;
     }
 
-    .top-right {
-      position: absolute;
-      right:    10px;
-      top:      18px;
-    }
-
     .content {
       text-align: center;
     }
@@ -48,7 +42,6 @@
       font-weight:     600;
       letter-spacing:  .1rem;
       text-decoration: none;
-      /*text-transform: uppercase;*/
     }
 
     .m-b-md {
@@ -64,7 +57,7 @@
 <div class="flex-center position-ref full-height">
   <div class="content">
     <div class="title m-b-md">
-      Laravel <span class="numbers">5.4</span>
+      Laravel <span class="numbers">5.5</span>
       <div class="sub-title">
         with JumpGate
       </div>

@@ -6,15 +6,17 @@ window._ = require('lodash')
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = require('jquery')
-window.Tether = require('tether')
-window.collect = require('collect.js')
+try {
+  window.$ = window.jQuery = require('jquery')
+  window.Tether = require('tether')
+  window.collect = require('collect.js')
 
-window.routes = collect(Laravel.routes)
+  window.routes = collect(Laravel.routes)
 
-require('bootstrap-sass')
-require('bootbox')
-require('bootstrap-notify')
+  require('bootstrap-sass')
+  require('bootbox')
+  require('bootstrap-notify')
+} catch (e) {}
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -33,11 +35,21 @@ require('vue-resource')
 
 window.axios = require('axios');
 
-window.axios.defaults.headers.common = {
-  'X-CSRF-TOKEN': window.Laravel.csrfToken,
-  'X-Requested-With': 'XMLHttpRequest'
-};
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+/**
+ * Next we will register the CSRF Token as a common header with Axios so that
+ * all outgoing HTTP requests automatically have it attached. This is just
+ * a simple convenience so we don't have to attach every token manually.
+ */
+
+let token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -46,6 +58,8 @@ window.axios.defaults.headers.common = {
  */
 
 // import Echo from "laravel-echo"
+
+// window.Pusher = require('pusher-js');
 
 // Pusher Config
 // window.Echo = new Echo({
