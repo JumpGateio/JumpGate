@@ -183,12 +183,6 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
-         * JumpGate Service Providers...
-         */
-        JumpGate\ViewResolution\Providers\ViewServiceProvider::class,
-        JumpGate\Menu\MenuServiceProvider::class,
-
-        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -197,6 +191,12 @@ return [
         App\Providers\ComposerServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /*
+         * JumpGate Service Providers...
+         */
+        JumpGate\ViewResolution\Providers\ViewServiceProvider::class,
+        JumpGate\Menu\MenuServiceProvider::class,
 
         /*
          * Package Service Providers...
