@@ -76,6 +76,7 @@ class SetCssFramework extends Command
         $this->moveFiles();
         $this->removeDependencies();
         $this->runWebpack();
+        $this->clearViews();
 
         $this->info('Finished!');
     }
@@ -207,6 +208,17 @@ class SetCssFramework extends Command
         $this->comment('Running webpack...');
 
         $process = new Process('npm run dev');
+        $process->run();
+    }
+
+    /**
+     * Run webpack to update the assets.
+     */
+    private function clearViews()
+    {
+        $this->comment('Clearing view cache...');
+
+        $process = new Process('php artisan view:clear');
         $process->run();
     }
 
