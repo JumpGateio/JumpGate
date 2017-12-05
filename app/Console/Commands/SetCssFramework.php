@@ -212,7 +212,7 @@ class SetCssFramework extends Command
     }
 
     /**
-     * Run webpack to update the assets.
+     * Clear the view cache so the new view resolves.
      */
     private function clearViews()
     {

@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\SetCssFramework::class,
+        \App\Console\Commands\SetUp::class,
     ];
 
     /**

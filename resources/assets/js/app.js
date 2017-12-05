@@ -6,7 +6,7 @@
 
 require('./bootstrap')
 require('./global')
-require('./delete-link')
+// require('./delete-link')
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

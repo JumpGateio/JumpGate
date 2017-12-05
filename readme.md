@@ -10,10 +10,7 @@
 cd <project dir>
 git clone git@github.com:JumpGateio/JumpGate.git ./
 composer install
-cp .env.example .env
-php artisan key:generate
-yarn
-npm run dev
+php artisan jumpgate:setup
 ```
 At this point, your site will display the JumpGate home page using bootstrap 3.  From here on out, you will customize as you normally would.
 

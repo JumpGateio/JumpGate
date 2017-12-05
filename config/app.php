@@ -104,7 +104,7 @@ return [
     |
     */
 
-    'css_framework' => env('CSS_FRAMEWORK', 'bootstrap4'),
+    'css_framework' => env('CSS_FRAMEWORK', 'bootstrap3'),
 
     /*
     |--------------------------------------------------------------------------
