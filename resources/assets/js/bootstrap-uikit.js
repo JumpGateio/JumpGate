@@ -8,6 +8,9 @@ window._ = require('lodash')
 
 window.$ = window.jQuery = require('jquery')
 window.Tether = require('tether')
+window.collect = require('collect.js')
+
+window.routes = collect(Laravel.routes)
 
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';

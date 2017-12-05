@@ -10,7 +10,7 @@
     "require": {
         "php": ">=5.6.4",
         "barryvdh/laravel-debugbar": "^2.2",
-        "jumpgate/core": "*@dev",
+        "jumpgate/core": "dev-master",
         "jumpgate/menu": "~1.0",
         "jumpgate/view-resolution": "~1.0",
         "laravel/framework": "5.4.*",
