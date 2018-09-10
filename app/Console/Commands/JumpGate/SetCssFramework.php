@@ -64,10 +64,10 @@ class SetCssFramework extends Command
         $this->setActiveFramework($framework);
 
         $this->moveFiles();
-        //$this->removeDependencies();
-        //$this->addDependencies();
-        //$this->runWebpack();
-        //$this->clearViews();
+        $this->removeDependencies();
+        $this->addDependencies();
+        $this->runWebpack();
+        $this->clearViews();
 
         $this->info('Finished!');
     }
@@ -139,11 +139,7 @@ class SetCssFramework extends Command
     {
         $this->comment('Copying files...');
 
-        dd(resource_path('js'));
-
-        $this->files->copyDirectory(__DIR__ . 'resources/' . $this->framework . '/js', resource_path('js'));
-        $this->files->copyDirectory(__DIR__ . 'resources/' . $this->framework . '/sass', resource_path('sass'));
-        $this->files->copyDirectory(__DIR__ . 'resources/' . $this->framework . '/views', resource_path('views'));
+        $this->files->copyDirectory(__DIR__ . '/resources/' . $this->framework, resource_path());
     }
 
     /**

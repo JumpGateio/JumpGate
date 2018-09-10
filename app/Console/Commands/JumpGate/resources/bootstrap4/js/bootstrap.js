@@ -11,7 +11,7 @@ try {
   window.$ = window.jQuery = require('jquery')
   window.Tether = require('tether')
 
-  require('Console/Commands/JumpGate/resources/bootstrap4/js/bootstrap')
+  require('bootstrap')
   require('bootbox')
   require('bootstrap-notify')
 } catch (e) {}
