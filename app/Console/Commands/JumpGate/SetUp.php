@@ -13,7 +13,8 @@ class SetUp extends Command
      *
      * @var string
      */
-    protected $signature = 'jumpgate:setup';
+    protected $signature = 'jumpgate:setup
+                            {--users : Whether the user package should be included.}';
 
     /**
      * The console command description.
@@ -50,6 +51,8 @@ class SetUp extends Command
         $this->generateAppKey();
         $this->handleAssets();
 
+        $this->addUsers();
+
         $this->info('Finished!');
     }
 
@@ -58,7 +61,7 @@ class SetUp extends Command
      */
     private function generateEnv()
     {
-        if (! $this->files->exists(base_path('.env'))) {
+        if (!$this->files->exists(base_path('.env'))) {
             $this->comment('Generating .env...');
 
             $process = new Process('cp .env.example .env');
@@ -100,5 +103,50 @@ class SetUp extends Command
         $process->run(function ($type, $buffer) {
             echo $buffer;
         });
+    }
+
+    /**
+     * Add the user package and files if requested.
+     */
+    private function addUsers()
+    {
+        $addUsers = $this->option('users');
+
+        if (!$addUsers) {
+            return true;
+        }
+
+        $this->addUserPackage();
+        $this->publishUserFiles();
+
+        $this->comment('Users have been added.'
+            . "\n"
+            . 'If you want to add social capability, update configs/jumpgate/users then run'
+            . "\n"
+            . '`php artisan vendor:publish --provider=\"JumpGate\Users\Providers\UsersServiceProvider\"`` '
+            . 'to generate the extra migrations.');
+    }
+
+    /**
+     * Add the user package to composer.
+     */
+    private function addUserPackage()
+    {
+        $this->info('Adding users to composer...');
+
+        $process = new Process('composer require jumpgate/users');
+        $process->run(function ($type, $buffer) {
+            echo $buffer;
+        });
+    }
+
+    /**
+     * Publish all files that come with users.
+     */
+    private function publishUserFiles()
+    {
+        $this->info('Publishing users files...');
+
+        $this->call('vendor:publish', ['--provider' => 'JumpGate\Users\Providers\UsersServiceProvider']);
     }
 }
