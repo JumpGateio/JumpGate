@@ -161,11 +161,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Extra Laravel Providers
-         */
-        Laravel\Tinker\TinkerServiceProvider::class,
-
-        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -185,9 +180,7 @@ return [
          * Package Service Providers...
          */
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
         Camroncade\Timezone\TimezoneServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
