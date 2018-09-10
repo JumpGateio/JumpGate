@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
 const node_dir = 'node_modules/';
 
 /*
@@ -14,12 +14,10 @@ const node_dir = 'node_modules/';
 
 mix
   // Fonts
-  .copy(node_dir + 'font-awesome/fonts', 'public/fonts')
-  .copy(node_dir + 'ionicons/dist/fonts', 'public/fonts')
-  // .copy(node_dir + 'octicons/build/font', 'public/fonts')
+  .copy(node_dir + '@fortawesome/fontawesome-free/webfonts', 'public/fonts')
 
   // JS
-  .js('resources/assets/js/app.js', 'public/js')
+  .js('resources/js/app.js', 'public/js')
 
   // CSS
-  .sass('resources/assets/sass/app.scss', 'public/css');
+  .sass('resources/sass/app.scss', 'public/css');

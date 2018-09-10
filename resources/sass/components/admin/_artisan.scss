@@ -1,0 +1,129 @@
+@import "../mixins";
+
+.admin {
+  .artisan {
+    padding-left: .25rem;
+    padding-top:  .25rem;
+
+    .command-list {
+      display:        flex;
+      flex-direction: row;
+      flex-wrap:      wrap;
+      max-height:     189px;
+      overflow-y:     scroll;
+      border-bottom:  1px solid $gray;
+
+      .command {
+        border:        1px solid $gray;
+        padding:       .25rem;
+        border-radius: .25rem;
+        margin-right:  .75rem;
+        margin-bottom: .75rem;
+        width:         19%;
+
+        &.active {
+          border-color: $primary;
+
+          .name {
+            background-color: $primary;
+          }
+        }
+
+        .name {
+          font-weight:      bold;
+          color:            $white;
+          background-color: $gray;
+          margin:           -4px -4px 0;
+          padding:          .15rem;
+        }
+
+        .description {
+          font-size: .8rem;
+        }
+      }
+    }
+
+    .details {
+      margin-bottom: .5rem;
+      border-bottom: 1px solid $gray;
+
+      .name {
+        font-size: 1.2rem;
+        display:   inline-block;
+      }
+
+      .description {
+        color:     $gray;
+        font-size: .8rem;
+        display:   inline-block;
+      }
+    }
+
+    .passables {
+      display:        flex;
+      flex-direction: row;
+      flex-wrap:      wrap;
+      margin-top:     1rem;
+      margin-bottom:  1rem;
+
+      .argument, .option {
+        border:        1px solid $gray;
+        border-radius: .25rem;
+        padding:       .25rem;
+        margin-right:  1rem;
+        margin-bottom: 1rem;
+        width:         20%;
+        min-width:     20%;
+        max-width:     20%;
+
+        .name {
+          font-weight:      bold;
+          color:            $white;
+          background-color: $gray;
+          margin:           -4px -4px 0;
+          padding:          .15rem;
+
+          .badge {
+            float: right;
+            color: $gray-light;
+          }
+        }
+
+        .description {
+          font-size: .8rem;
+        }
+
+        &.required {
+          border-color: $danger;
+
+          .name {
+            background-color: $danger;
+
+            .badge {
+              float: right;
+              color: $black;
+            }
+          }
+        }
+      }
+    }
+
+    .results {
+      width:         calc(100vw - 320px);
+      height:        30vh;
+      background:    $gray-900;
+      color:         $gray-600;
+      overflow-x:    scroll;
+      padding:       .25rem;
+      border-radius: .25rem;
+
+      &.success {
+        border: 1px solid transparentize(darken($success, 5%), .35);
+      }
+
+      &.danger {
+        border: 1px solid transparentize(darken($danger, 5%), .35);
+      }
+    }
+  }
+}
