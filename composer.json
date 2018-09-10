@@ -11,7 +11,7 @@
     "php": ">=7.1.3",
     "fideloper/proxy": "~4.0",
     "barryvdh/laravel-debugbar": "3.2.0",
-    "jumpgate/core": "dev-master",
+    "jumpgate/core": "~1.0",
     "jumpgate/menu": "~1.0",
     "jumpgate/view-resolution": "~1.0",
     "laravel/framework": "5.7.*",

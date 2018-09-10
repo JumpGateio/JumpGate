@@ -17,13 +17,13 @@ class ComposerServiceProvider extends ServiceProvider
             [
                 'layouts.default',
             ],
-            'App\Http\Composers\MenuComposer'
+            'App\Http\Composers\Menu'
         );
         view()->composer(
             [
                 'layouts.partials.javascript',
             ],
-            'App\Http\Composers\RouteComposer'
+            'App\Http\Composers\Route'
         );
     }
 

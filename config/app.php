@@ -179,7 +179,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
         Camroncade\Timezone\TimezoneServiceProvider::class,
     ],
 

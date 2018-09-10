@@ -3,9 +3,9 @@
 namespace App\Http\Composers;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Routing\Route;
+use Illuminate\Routing\Route as Router;
 
-class RouteComposer
+class Route
 {
     /**
      * Bind data to the view.
@@ -19,7 +19,7 @@ class RouteComposer
         $router = app('router');
 
         $laravelRouteList = supportCollector($router->getRoutes())
-            ->flatMap(function (Route $route) {
+            ->flatMap(function (Router $route) {
                 return [$route->getName() => '/' . $route->uri()];
             });
 

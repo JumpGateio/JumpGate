@@ -13,8 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Commands\JumpGate\SetCssFramework::class,
-        \App\Console\Commands\JumpGate\SetUp::class,
+        //
     ];
 
     /**

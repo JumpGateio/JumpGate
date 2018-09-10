@@ -6,7 +6,7 @@ use Illuminate\Contracts\View\View;
 use JumpGate\Menu\DropDown;
 use JumpGate\Menu\Link;
 
-class MenuComposer
+class Menu
 {
     /**
      * Bind data to the view.
