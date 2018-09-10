@@ -1,10 +1,10 @@
 # Jumpgate App
 
-- [Commands](#commands)
+- [Basic Installation](#basic-installation)
 - [Users](#users)
 
-<a name="commands"></a>
-## Installation
+<a name="basic-installation"></a>
+## Basic Installation
 
 ```
 cd <project dir>
@@ -14,16 +14,27 @@ php artisan jumpgate:setup
 ```
 At this point, your site will display the JumpGate home page using bootstrap 4.  From here on out, you will customize as you normally would.
 
-> You can run `php artisan jupmgate:css uikit` to switch the front end to uikit.
+> You can run `php artisan jupmgate:css` to switch the front end to bootstrap 3 or uikit.
 
 1. Set up your database in the `.env` file
+1. Update your `config/jumpgate/users.php` if you added users.
+    - If you enable social, remember to re-run `vendor:publish`.
 1. Run `php artisan migrate`.
+1. Or, if you added users, run `php artisan jumpgate:user-database`
 
 <a name="users"></a>
 ## Users
 
-If your site will need users you have 3 choices here.  
+If your site will need users you should modify the steps listed above.
 
-1. Install the [JumpGate-Users repository](/1-Getting%20Started/2-Users%20Install.md) instead.
-1. Run through [adding users](/1-Getting%20Started/3-Add%20Users%20to%20Base%20Install.md) to a base JumpGate installation.
-1. Create your own users system.
+```
+cd <project dir>
+git clone git@github.com:JumpGateio/JumpGate.git ./
+composer install
+php artisan jumpgate:setup --users
+```
+
+1. Set up your database in the `.env` file
+1. Update your `config/jumpgate/users.php`.
+    - If you enable social, remember to re-run `vendor:publish`.
+1. Or, if you added users, run `php artisan jumpgate:user-database`
