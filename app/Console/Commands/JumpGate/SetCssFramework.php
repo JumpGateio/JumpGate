@@ -28,21 +28,29 @@ class SetCssFramework extends Command
      */
     protected $framework;
 
+    protected $packageFiles = [
+        'bootstrap' => 'resources/js/bootstrap.js',
+        'sass'      => 'resources/sass',
+        'views'     => 'resources/views',
+    ];
+
     protected $validFrameworks = [
+        'bootstrap3' => [
+            'package' => 'bootstrap-sass',
+            'extraFiles'   => [
+                //
+            ],
+        ],
         'bootstrap4' => [
             'package' => 'bootstrap',
-            'files'   => [
-                'bootstrap' => 'resources/js/bootstrap.js',
-                'sass'      => 'resources/sass',
-                'views'     => 'resources/views',
+            'extraFiles'   => [
+                //
             ],
         ],
         'uikit'      => [
             'package' => 'uikit',
-            'files'   => [
-                'bootstrap' => 'resources/js/bootstrap-uikit.js',
-                'sass'      => 'resources/sass-uikit',
-                'views'     => 'resources/views-uikit',
+            'extraFiles'   => [
+                //
             ],
         ],
     ];
@@ -66,8 +74,6 @@ class SetCssFramework extends Command
      */
     public function handle()
     {
-        $this->validateCommandCanRun();
-
         $framework = $this->getFrameworkName();
 
         $this->setActiveFramework($framework);
@@ -79,18 +85,6 @@ class SetCssFramework extends Command
         $this->clearViews();
 
         $this->info('Finished!');
-    }
-
-    /**
-     * Make sure this command hasn't been run before.
-     */
-    private function validateCommandCanRun()
-    {
-        if (! $this->files->exists(resource_path('js/bootstrap-uikit.js'))) {
-            $this->comment('This command has already been run.  Nothing else to do.');
-
-            die;
-        }
     }
 
     /**

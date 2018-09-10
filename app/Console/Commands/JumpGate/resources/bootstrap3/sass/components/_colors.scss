@@ -1,0 +1,17 @@
+@each $label, $color in $pallet-colors {
+  .text-#{$label} {
+    color: $color !important;
+  }
+  .background-#{$label} {
+    background-color: $color !important;
+  }
+}
+
+@each $label, $color in $grays {
+  .text-#{$label} {
+    color: $color !important;
+  }
+  .background-#{$label} {
+    background-color: $color !important;
+  }
+}
