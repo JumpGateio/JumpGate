@@ -57,14 +57,14 @@
 <div class="flex-center position-ref full-height">
   <div class="content">
     <div class="title m-b-md">
-      Laravel <span class="numbers">5.5</span>
+      Laravel <span class="numbers">5.7</span>
       <div class="sub-title">
         with JumpGate
       </div>
     </div>
 
     <div class="links">
-      <a target="_blank" href="https://laravel.com/docs">Documentation</a>
+      <a target="_blank" href="https://laravel.com/docs/5.7">Documentation</a>
       <a target="_blank" href="https://laravel-news.com">News</a>
       <a target="_blank" href="https://laracasts.com">Laracasts</a>
       <a target="_blank" href="https://forge.laravel.com">Forge</a>
