@@ -28,30 +28,15 @@ class SetCssFramework extends Command
      */
     protected $framework;
 
-    protected $packageFiles = [
-        'bootstrap' => 'resources/js/bootstrap.js',
-        'sass'      => 'resources/sass',
-        'views'     => 'resources/views',
-    ];
-
     protected $validFrameworks = [
         'bootstrap3' => [
             'package' => 'bootstrap-sass',
-            'extraFiles'   => [
-                //
-            ],
         ],
         'bootstrap4' => [
             'package' => 'bootstrap',
-            'extraFiles'   => [
-                //
-            ],
         ],
         'uikit'      => [
             'package' => 'uikit',
-            'extraFiles'   => [
-                //
-            ],
         ],
     ];
 
@@ -78,9 +63,9 @@ class SetCssFramework extends Command
 
         $this->setActiveFramework($framework);
 
-        $this->removeFiles();
         $this->moveFiles();
         $this->removeDependencies();
+        $this->addDependencies();
         $this->runWebpack();
         $this->clearViews();
 
@@ -100,7 +85,7 @@ class SetCssFramework extends Command
             $framework = $this->listOptions();
         }
 
-        while (! in_array($framework, array_keys($this->validFrameworks))) {
+        while (!in_array($framework, array_keys($this->validFrameworks))) {
             $this->error($framework . ' is not a valid framework.');
             $framework = $this->listOptions();
         }
@@ -128,9 +113,13 @@ class SetCssFramework extends Command
     private function setActiveFramework($framework)
     {
         switch (strtolower($framework)) {
+            case 'bs3':
+            case 'bootstrap3':
+                $this->info('Framework set to bootstrap3...');
+
+                return $this->framework = 'bootstrap3';
             case 'bs4':
             case 'bootstrap4':
-            case 'bootstrap':
                 $this->info('Framework set to bootstrap4...');
 
                 return $this->framework = 'bootstrap4';
@@ -146,53 +135,39 @@ class SetCssFramework extends Command
     /**
      * Delete non-bootstrap files.  (Views, includes, etc).
      */
-    private function removeFiles()
-    {
-        $this->comment('Deleting files...');
-
-        $this->getOtherFrameworkDetails('files')
-             ->each(function ($file) {
-                 if ($this->files->isDirectory(base_path($file))) {
-                     return $this->files->deleteDirectory(base_path($file));
-                 }
-
-                 return $this->files->delete(base_path($file));
-             });
-    }
-
-    /**
-     * Delete non-bootstrap files.  (Views, includes, etc).
-     */
     private function moveFiles()
     {
         $this->comment('Copying files...');
 
-        $this->getFrameworkDetails('files')
-             ->each(function ($file, $key) {
-                 if ($key === 'bootstrap') {
-                     return $this->files->move(base_path($file), base_path('resources/js/bootstrap.js'));
-                 }
-                 if ($key === 'sass') {
-                     return $this->files->moveDirectory(base_path($file), base_path('resources/sass'));
-                 }
-                 if ($key === 'views') {
-                     return $this->files->moveDirectory(base_path($file), base_path('resources/views'));
-                 }
-             });
+        $this->files->copyDirectory(__DIR__ . 'resources/' . $this->framework, resource_path());
     }
 
     /**
-     * Remove any non-bootstrap dependencies.
+     * Remove any dependencies.
      */
     private function removeDependencies()
     {
         $this->comment('Removing JS dependencies...');
 
         $this->getOtherFrameworkDetails('package')
-             ->each(function ($package) {
-                 $process = new Process('yarn remove ' . $package);
-                 $process->run();
-             });
+            ->each(function ($package) {
+                $process = new Process('yarn remove ' . $package);
+                $process->run();
+            });
+    }
+
+    /**
+     * Add any dependencies.
+     */
+    private function addDependencies()
+    {
+        $this->comment('Removing JS dependencies...');
+
+        $this->getFrameworkDetails('package')
+            ->each(function ($package) {
+                $process = new Process('yarn add ' . $package);
+                $process->run();
+            });
     }
 
     /**

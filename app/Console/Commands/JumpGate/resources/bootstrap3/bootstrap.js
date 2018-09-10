@@ -9,23 +9,11 @@ window._ = require('lodash')
 try {
   window.$ = window.jQuery = require('jquery')
   window.Tether = require('tether')
-  window.collect = require('collect.js')
-
-  window.routes = collect(Laravel.routes)
 
   require('bootstrap-sass')
   require('bootbox')
   require('bootstrap-notify')
 } catch (e) {}
-
-/**
- * Vue is a modern JavaScript library for building interactive web interfaces
- * using reactive data binding and reusable components. Vue's API is clean
- * and simple, leaving you to focus on building your next great project.
- */
-
-window.Vue = require('vue')
-require('vue-resource')
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -64,7 +52,9 @@ if (token) {
 // Pusher Config
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
-//     key: 'your-pusher-key'
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     encrypted: true
 // });
 
 // Redis/Socket.io Config
