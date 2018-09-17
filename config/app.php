@@ -171,12 +171,6 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*
-         * JumpGate Service Providers...
-         */
-        JumpGate\ViewResolution\Providers\ViewServiceProvider::class,
-        JumpGate\Menu\MenuServiceProvider::class,
-
-        /*
          * Package Service Providers...
          */
         Camroncade\Timezone\TimezoneServiceProvider::class,

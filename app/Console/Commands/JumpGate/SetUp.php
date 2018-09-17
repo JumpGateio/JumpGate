@@ -50,6 +50,7 @@ class SetUp extends Command
         $this->generateEnv();
         $this->generateAppKey();
         $this->handleAssets();
+        $this->discover();
 
         $this->addUsers();
 
@@ -103,6 +104,20 @@ class SetUp extends Command
         $process->run(function ($type, $buffer) {
             echo $buffer;
         });
+
+        $this->comment('Running laravel docs...');
+
+        $this->call('larecipe:install');
+    }
+
+    /**
+     * Discover any packages we will be needing.
+     */
+    private function discover()
+    {
+        $this->comment('Running laravel discover...');
+
+        $this->call('package:discover');
     }
 
     /**
@@ -116,37 +131,6 @@ class SetUp extends Command
             return true;
         }
 
-        $this->addUserPackage();
-        $this->publishUserFiles();
-
-        $this->comment('Users have been added.'
-            . "\n"
-            . 'If you want to add social capability, update configs/jumpgate/users then run'
-            . "\n"
-            . '`php artisan vendor:publish --provider=\"JumpGate\Users\Providers\UsersServiceProvider\"`` '
-            . 'to generate the extra migrations.');
-    }
-
-    /**
-     * Add the user package to composer.
-     */
-    private function addUserPackage()
-    {
-        $this->info('Adding users to composer...');
-
-        $process = new Process('composer require jumpgate/users');
-        $process->run(function ($type, $buffer) {
-            echo $buffer;
-        });
-    }
-
-    /**
-     * Publish all files that come with users.
-     */
-    private function publishUserFiles()
-    {
-        $this->info('Publishing users files...');
-
-        $this->call('vendor:publish', ['--provider' => 'JumpGate\Users\Providers\UsersServiceProvider']);
+        $this->call('jumpgate:setup-users');
     }
 }
