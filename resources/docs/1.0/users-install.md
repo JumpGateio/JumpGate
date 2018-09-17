@@ -19,13 +19,17 @@ php artisan jumpgate:setup
 
 Run:
 ```bash
-php artisan jumpgate:setup --users
+php artisan jumpgate:setup --users --force
 ```
+
+> {info} The `--force` flag allows users to publish over existing files.
 
 <a name="install-using-command"></a>
 ## Install Using Command
 
-To do this, you can run the `php artisan jumpgate:setup-users` command from your terminal.
+To do this, you can run the `php artisan jumpgate:setup-users` command from your terminal.  You can add the `--force` flag. 
+but be warned, this will overwrite some of your files.  To see a full list of what files will be written you can look on 
+the [JumpGate Users GitHub](https://github.com/JumpGateio/Users/tree/master/src/publish).
 
 <a name="install-manually"></a>
 ## Install Manually

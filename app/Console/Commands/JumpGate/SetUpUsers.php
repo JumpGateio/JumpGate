@@ -13,7 +13,8 @@ class SetUpUsers extends Command
      *
      * @var string
      */
-    protected $signature = 'jumpgate:setup-users';
+    protected $signature = 'jumpgate:setup-users
+                            {--f|force : Whether to overwrite existing files.}';
 
     /**
      * The console command description.
@@ -21,23 +22,6 @@ class SetUpUsers extends Command
      * @var string
      */
     protected $description = 'Add jumpgate users to your app.';
-
-    /**
-     * @var \Illuminate\Filesystem\Filesystem
-     */
-    private $files;
-
-    /**
-     * @var bool
-     */
-    private $generatedEnv = true;
-
-    public function __construct(Filesystem $files)
-    {
-        parent::__construct();
-
-        $this->files = $files;
-    }
 
     /**
      * Execute the console command.
@@ -56,12 +40,6 @@ class SetUpUsers extends Command
      */
     private function addUsers()
     {
-        $addUsers = $this->option('users');
-
-        if (!$addUsers) {
-            return true;
-        }
-
         $this->addUserPackage();
         $this->discover();
         $this->publishUserFiles();
@@ -103,10 +81,11 @@ class SetUpUsers extends Command
     private function publishUserFiles()
     {
         $this->info('Publishing users files...');
+        $forced = $this->option('force');
 
         $this->call('vendor:publish', [
             '--provider' => 'JumpGate\Users\Providers\UsersServiceProvider',
-            '--force'    => true,
+            '--force'    => $forced,
         ]);
     }
 }

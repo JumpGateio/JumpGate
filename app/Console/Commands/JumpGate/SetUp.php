@@ -14,7 +14,8 @@ class SetUp extends Command
      * @var string
      */
     protected $signature = 'jumpgate:setup
-                            {--users : Whether the user package should be included.}';
+                            {--users : Whether the user package should be included.}
+                            {--f|force : Whether to overwrite existing files.}';
 
     /**
      * The console command description.
@@ -126,11 +127,12 @@ class SetUp extends Command
     private function addUsers()
     {
         $addUsers = $this->option('users');
+        $forced   = $this->option('force');
 
         if (!$addUsers) {
             return true;
         }
 
-        $this->call('jumpgate:setup-users');
+        $this->call('jumpgate:setup-users', ['--force' => $forced]);
     }
 }

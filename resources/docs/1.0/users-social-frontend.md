@@ -7,7 +7,7 @@
 <a name="linking"></a>
 ## Linking
 
-> {info} This section assumes you have set up your providers as detailed in [providers](/docs/{version}/users-social-providers).
+> {info} This section assumes you have set up your providers as detailed in [providers](/docs/{{version}}/users-social-providers).
 
 In order to have a user authenticate against one of your drivers, all you need to do is a link similar to the example below.
 
