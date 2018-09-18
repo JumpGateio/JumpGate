@@ -15,6 +15,7 @@ window.Vue = require('vue')
  * the application, or feel free to tweak this setup for your needs.
  */
 
+Vue.component('artisan', require('./components/Admin/Artisan/Index'))
 Vue.component('example-component', require('./components/Example.vue'))
 
 var app = new Vue({

@@ -6,7 +6,7 @@
     background-color: $color !important;
   }
   .btn-#{$label} {
-    @include button-variant($white, $color, $color);
+    @include button-variant($color, $color);
   }
   .btn-outline-#{$label} {
     @include button-outline-variant($color);
@@ -38,7 +38,7 @@
     background-color: $color !important;
   }
   .btn-#{$label} {
-    @include button-variant($white, $color, $color);
+    @include button-variant($color, $color);
   }
   .btn-outline-#{$label} {
     @include button-outline-variant($color);

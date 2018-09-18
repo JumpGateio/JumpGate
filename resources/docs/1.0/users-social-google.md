@@ -26,7 +26,7 @@ To set up the google API (which we use for authentication), just follow these st
     1. Web application
     1. Name: anything
     1. Authorized JavaScript origins: empty
-    1. Authorized redirect URIs: <your local site>/callback/google
+    1. Authorized redirect URIs: [your local site]/callback/google
         1. For example, mine was: http://[PROJECT].dev/callback/google
 1. Add the client ID and client secret you are given to your `.env`.
     1. `GOOGLE_KEY=` is where you put your client ID.
