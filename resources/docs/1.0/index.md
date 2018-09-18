@@ -3,13 +3,13 @@
     
 - ## JumpGate Packages
     - [Overview](/docs/{{version}}/overview)
+    - [Helper Methods](/docs/{{version}}/core-helper-methods)
     - [Helper Classes](/docs/{{version}}/core-helper-classes)
-    - [Controller Methods](/docs/{{version}}/core-controller-methods)
     - [Class Based Routing](/docs/{{version}}/core-class-based-routing)
     - [Collections](/docs/{{version}}/database-collections)
     - [Model Traits](/docs/{{version}}/database-traits)
     - [Auto View Resolution](/docs/{{version}}/views-usage)
-    - [Debugging Auto Views](/docs/{{version}}/views-debugging)
+    - [Debug Auto Views](/docs/{{version}}/views-debugging)
     - [Menu Quick Start](/docs/{{version}}/menu-quickstart)
     - [User Installation](/docs/{{version}}/users-install)
 
