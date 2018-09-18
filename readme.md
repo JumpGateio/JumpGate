@@ -31,7 +31,7 @@ If your site will need users you should modify the steps listed above.
 cd <project dir>
 git clone git@github.com:JumpGateio/JumpGate.git ./
 composer install
-php artisan jumpgate:setup --users
+php artisan jumpgate:setup --users --force
 ```
 
 1. Set up your database in the `.env` file
