@@ -19,12 +19,6 @@ class ComposerServiceProvider extends ServiceProvider
             ],
             'App\Http\Composers\Menu'
         );
-        view()->composer(
-            [
-                'layouts.partials.javascript',
-            ],
-            'App\Http\Composers\Route'
-        );
     }
 
     /**
