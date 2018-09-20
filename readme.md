@@ -31,8 +31,10 @@ If your site will need users you should modify the steps listed above.
 cd <project dir>
 git clone git@github.com:JumpGateio/JumpGate.git ./
 composer install
-php artisan jumpgate:setup --users
+php artisan jumpgate:setup --users --force
 ```
+
+> `--force` is used to verify users can overwrite existing files.
 
 1. Set up your database in the `.env` file
 1. Update your `config/jumpgate/users.php`.
