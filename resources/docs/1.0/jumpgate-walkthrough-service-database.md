@@ -22,7 +22,7 @@ micro-service.  You can learn more about how we view this in our [micro services
 <a name="directories"></a>
 ## Directories
 
-To begin, we need our folders.  Create a folder called `ToDo` in your `app/Services` folder.  This is where all of our code 
+To start off, we need our folders.  Create a folder called `ToDo` in your `app/Services` folder.  This is where all of our code 
 for the todo system will live.  We will need a few folders in here by default.
 
 ```bash
@@ -40,8 +40,8 @@ This should look somewhat familiar to you.  This is basically a miniature versio
 <a name="planning-the-tables"></a>
 ## Planning the Tables
 
-To begin, let's start with the data.  We need somewhere to store our lists and tasks.  To do this we will need database tables 
-and models to interact with them.  I know the basic data structure I want.
+Let's start with the data.  We need somewhere to store our lists and tasks.  To do this we will need database tables 
+and models to interact with them.  I know the basic data structure I want, and detailed the basic structure below..
 
 ```php
 # todo_lists
@@ -62,7 +62,7 @@ complete_flag: boolean default(0)
 timestamps
 ```
 
-To begin, I think these are the only tables I will need.  I normally use this set up for database columns.
+For now I think these are the only tables I will need.  I normally use this set up for database columns.
 
 1. IDs
     1. These will be the ID of the table and any foreign key IDs.
