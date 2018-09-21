@@ -322,4 +322,4 @@ If you ran it again, you would see the following rows.
 You can see the sluggable package working because it added the `-1` to the second task list.  Perfect!  Feel free to delete 
 these rows from your table and continue on to set up your HTTP details.
 
-> {info} The walkthrough continues in [Setting up HTTP](/docs/{{version}}/jumpgate-walkthrough-service-http).
+> {info} The walkthrough continues in [Setting up HTTP](/docs/{{version}}/jumpgate-walkthrough-http).
