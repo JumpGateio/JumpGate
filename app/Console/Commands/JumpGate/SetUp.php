@@ -94,6 +94,7 @@ class SetUp extends Command
         $this->comment('Running yarn...');
 
         $process = new Process('yarn');
+        $process->setTimeout(150);
         $process->run(function ($type, $buffer) {
             echo $buffer;
         });
