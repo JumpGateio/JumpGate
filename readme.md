@@ -38,5 +38,4 @@ php artisan jumpgate:setup --users --force
 
 1. Set up your database in the `.env` file
 1. Update your `config/jumpgate/users.php`.
-    - If you enable social, remember to re-run `vendor:publish`.
 1. Or, if you added users, run `php artisan jumpgate:user-database`

@@ -12,7 +12,7 @@ To set up the google API (which we use for authentication), just follow these st
 1. Give the project a name you will easily recognize.  I used `[PROJECT] - Local`.
     1. By this example I mean that I set the name to `<My Project>` and then the environment the key will be for.
 1. Wait a bit for google to finish generating your project.
-    1. You will know it is done by clicking on the drop down again.  If it is a spinning icon, it's still being created.
+    1. You will know it is done by clicking on the drop down again.  If it is not there, it's still being created.
 1. Once it is done click on it.
 1. Click "`Credentials`" on the left hand side.
 1. Click on "`OAuth consent screen`".
@@ -39,3 +39,10 @@ To set up the google API (which we use for authentication), just follow these st
 1. Type "`Google+`" into the search and select "`Google+ API`".
 1. Click "`ENABLE`"
 1. That's it!
+
+**For easy copying into your `.env`**
+```php
+GOOGLE_KEY=
+GOOGLE_SECRET=
+GOOGLE_REDIRECT_URI=
+```

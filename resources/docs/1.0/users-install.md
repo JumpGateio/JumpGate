@@ -46,8 +46,6 @@ At this point you will want to update your new `config/jumpgate/users.php` file.
 as whether or not you want social auth and if you want that to be the only auth.  Once you are done editing this file, can 
 finish up.
 
-> {primary} If you enabled social auth, re-run `php artisan vendor:publish --provider="JumpGate\Users\Providers\UsersServiceProvider"`
-
 <a name="finishing-set-up"></a>
 ## Finishing Set Up
 

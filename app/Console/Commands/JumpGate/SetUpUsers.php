@@ -60,6 +60,7 @@ class SetUpUsers extends Command
         $this->info('Adding users to composer...');
 
         $process = new Process('composer require jumpgate/users');
+        $process->setTimeout(150);
         $process->run(function ($type, $buffer) {
             echo $buffer;
         });

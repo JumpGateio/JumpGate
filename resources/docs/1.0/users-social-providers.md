@@ -62,7 +62,6 @@ GOOGLE_REDIRECT_URI="http://mysite.lol/callback/google"
             'driver' => 'google',
             'scopes' => [
                 'https://www.googleapis.com/auth/userinfo.email',
-                'https://www.googleapis.com/auth/calendar',
             ],
             'extras' => [
                 'approval_prompt' => 'auto',
@@ -74,5 +73,5 @@ GOOGLE_REDIRECT_URI="http://mysite.lol/callback/google"
             'scopes' => [],
             'extras' => [],
         ],
-    ]
+    ],
 ```

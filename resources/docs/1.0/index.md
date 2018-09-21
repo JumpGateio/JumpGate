@@ -13,9 +13,13 @@
     - [Menu Quick Start](/docs/{{version}}/menu-quickstart)
     - [User Installation](/docs/{{version}}/users-install)
 
+- ## Full Walkthrough
+    - [Set Up](/docs/{{version}}/jumpgate-walkthrough-set-up)
+    - [Database](/docs/{{version}}/jumpgate-walkthrough-service-database)
+    - [HTTP](/docs/{{version}}/jumpgate-walkthrough-service-http)
+
 - ## Extra Guides
     - [Micro Services](/docs/{{version}}/jumpgate-micro-services)
-    - [Usage Walkthrough](/docs/{{version}}/jumpgate-walkthrough)
     - [Code Style Guide](/docs/{{version}}/jumpgate-code-style)
 
 - ## Social Authentication
