@@ -28,9 +28,9 @@ class Menu
     {
         $leftMenu = \Menu::getMenu('leftMenu');
 
-        $leftMenu->link('home', function (Link $link) {
-            $link->name = 'Home';
-            $link->url  = route('home');
+        $leftMenu->link('docs', function (Link $link) {
+            $link->name = 'Documentation';
+            $link->url  = route('larecipe.index');
         });
     }
 
