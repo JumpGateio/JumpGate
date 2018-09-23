@@ -111,7 +111,7 @@ class RouteServiceProvider extends ServiceProvider
         foreach ($this->providers as $provider) {
             $provider = new $provider;
 
-            if (! $provider instanceof RoutesContract) {
+            if (! $provider instanceof Routes) {
                 continue;
             }
 
