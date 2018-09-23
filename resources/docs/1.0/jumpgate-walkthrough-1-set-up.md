@@ -294,4 +294,4 @@ The menu views already handle this for you.  So just refresh your app and you wi
 
 Next up, let's start writing code!
 
-> {info} The walkthrough continues in [Setting up your database](/docs/{{version}}/jumpgate-walkthrough-database).
+> {info} The walkthrough continues in [Setting up your database](/docs/{{version}}/jumpgate-walkthrough-2-database).

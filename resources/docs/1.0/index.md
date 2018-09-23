@@ -16,7 +16,7 @@
 - ## Full Walkthrough
     - [Set Up](/docs/{{version}}/jumpgate-walkthrough-1-set-up)
     - [Database](/docs/{{version}}/jumpgate-walkthrough-2-database)
-    - [HTTP](/docs/{{version}}/jumpgate-walkthrough-3-http)
+    - [Routes & Links](/docs/{{version}}/jumpgate-walkthrough-3-routes-links)
 
 - ## Extra Guides
     - [Micro Services](/docs/{{version}}/jumpgate-micro-services)
