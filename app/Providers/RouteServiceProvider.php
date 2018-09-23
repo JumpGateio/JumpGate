@@ -111,11 +111,25 @@ class RouteServiceProvider extends ServiceProvider
         foreach ($this->providers as $provider) {
             $provider = new $provider;
 
-            $router->group([
+            if (! $provider instanceof RoutesContract) {
+                continue;
+            }
+
+            $attributes = [
                 'prefix'     => $provider->getPrefix(),
                 'namespace'  => $provider->getNamespace(),
                 'middleware' => $provider->getMiddleware(),
-            ], function ($router) use ($provider) {
+            ];
+
+            if (! is_null($provider->getRole())) {
+                $attributes['is'] = $provider->getRole();
+            }
+
+            if (! is_null($provider->getPermissions())) {
+                $attributes['can'] = $provider->getPermissions();
+            }
+
+            $router->group($attributes, function ($router) use ($provider) {
                 $provider->routes($router);
             });
         }
