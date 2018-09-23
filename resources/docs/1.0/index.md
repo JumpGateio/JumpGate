@@ -14,9 +14,9 @@
     - [User Installation](/docs/{{version}}/users-install)
 
 - ## Full Walkthrough
-    - [Set Up](/docs/{{version}}/jumpgate-walkthrough-set-up)
-    - [Database](/docs/{{version}}/jumpgate-walkthrough-database)
-    - [HTTP](/docs/{{version}}/jumpgate-walkthrough-http)
+    - [Set Up](/docs/{{version}}/jumpgate-walkthrough-1-set-up)
+    - [Database](/docs/{{version}}/jumpgate-walkthrough-2-database)
+    - [HTTP](/docs/{{version}}/jumpgate-walkthrough-3-http)
 
 - ## Extra Guides
     - [Micro Services](/docs/{{version}}/jumpgate-micro-services)
