@@ -15,7 +15,7 @@ setting up our controllers and routes.  These all live in the `app/Services/ToDo
 
 > {info} You can see the source code at [GitHub](https://github.com/JumpGateio/ToDo-Walkthrough).
 
-> This step is stored as a branch called [http](https://github.com/JumpGateio/ToDo-Walkthrough/tree/3-route-links).
+> This step is stored as a branch called [route-links](https://github.com/JumpGateio/ToDo-Walkthrough/tree/3-route-links).
 
 <a name="routes"></a>
 # Routes
