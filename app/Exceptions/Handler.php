@@ -105,6 +105,8 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
-        return redirect()->guest('auth.login');
+        $routeDetails = config('jumpgate.users.default_route');
+
+        return redirect()->guest(route($routeDetails['name'], $routeDetails['options']));
     }
 }
