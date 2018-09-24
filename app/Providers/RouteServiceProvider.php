@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use JumpGate\Core\Contracts\Routes;
 
@@ -138,7 +139,7 @@ class RouteServiceProvider extends ServiceProvider
      * Take a route class and add the routes to Laravel's router.
      *
      * @param \JumpGate\Core\Contracts\Routes $provider
-     * @param \App\Providers\Router           $router
+     * @param \Illuminate\Routing\Router      $router
      */
     protected function convertProviderToRoutes(Routes $provider, Router $router)
     {
