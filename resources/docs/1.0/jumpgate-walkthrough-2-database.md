@@ -272,7 +272,7 @@ class TaskList extends BaseModel
 {
     use Sluggable;
 
-    ...Table Properties...
+    // Table Properties...
 
     /**
      * Return the sluggable configuration array for this model.
@@ -288,7 +288,7 @@ class TaskList extends BaseModel
         ];
     }
 
-    ...Relationship Methods...
+    // Relationship Methods...
 }
 ```
 

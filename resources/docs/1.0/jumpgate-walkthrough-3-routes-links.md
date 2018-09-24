@@ -88,15 +88,15 @@ class TaskList extends BaseRoute implements Routes
             ->name('task-list.create')
             ->uses('TaskList@store');
 
-        $router->get('edit')
+        $router->get('edit/{id}')
             ->name('task-list.edit')
             ->uses('TaskList@edit')
             ->middleware('active:task-list.edit');
-        $router->post('edit')
+        $router->post('edit/{id}')
             ->name('task-list.edit')
             ->uses('TaskList@update');
 
-        $router->get('delete')
+        $router->get('delete/{id}')
             ->name('task-list.delete')
             ->uses('TaskList@delete');
 
@@ -118,10 +118,14 @@ one thing that may be new is the `active:task-list` middleware.  This is part of
 active class to your links when a user is on that route.  The view part is already handled by our menu views so you don't 
 need to do any extra work to make it happen.
 
+You should notice that any route that will be dealing directly with an individual task list has `{id}` on it.  This is 
+how we define a wildcard URL parameter in Laravel.
+
 <a name="route-provider"></a>
 # Route Provider
 
-You may have noticed that laravel has no 
+You may have noticed that laravel has no way of knowing our routes exist since they are not in the `routes` folder.  Using 
+class routes we have to add them in manually for now.
 
 
 <a name="links"></a>
@@ -131,5 +135,41 @@ Let's add the links.  To do this open `app/Http/Composers/Menu.php` and go to th
 to add our new links here.
 
 ```php
+/**
+ * Adds items to the menu that appears on the left side of the main menu.
+ */
+private function generateLeftMenu()
+{
+    $leftMenu = \Menu::getMenu('leftMenu');
 
+    $leftMenu->link('docs', function (Link $link) {
+        $link->name = 'Documentation';
+        $link->url  = route('larecipe.index');
+    });
+
+    $leftMenu->dropDown('task-list', 'Lists', function (DropDown $dropDown) {
+        $dropDown->link('task-list.index', function (Link $link) {
+            $link->name = 'All Lists';
+            $link->url  = route('task-list.index');
+        });
+        $dropDown->link('task-list.create', function (Link $link) {
+            $link->name = 'Create List';
+            $link->url  = route('task-list.create');
+        });
+    });
+}
 ```
+
+> {success} Learn more about the [Menu package](/docs/{{version}}/menu-quickstart)
+
+This is how we add links to the menu in JumpGate.  You can see at the start we set up the menu object.  Calling `getMenu()` 
+will either create a new menu with that name or find an existing one.  Next is the `docs` link that comes by default with 
+JumpGate.  To make a single link in the menu you call the `link()` method on your menu object.  It requires a `name` and 
+a `url` to work.  The `name` is used as the text for the link when displaying it and the `url` is used for where to send 
+the user when they click on it.  Moving on, you will see our drop down for task lists.  The method `dropDown()` will create 
+a drop down on a menu object.  This behaves almost like a miniature menu object since it can have links applied to it.  There 
+is one main difference though.  When you use the `active` middleware, as we said earlier, is used to turn a link 
+active in the view.  However, if that link is part of a drop down, the drop down itself is active as well.  This is the 
+behavior we want as it allows the user to know where they are in the navigation without much effort or confusion.  Inside 
+the drop down we created links to 2 of our 7 routes: index and create.  The other 5 are not really linkable since they 
+require the `id` of a task list to do anything with.
