@@ -92,7 +92,7 @@ class RouteServiceProvider extends ServiceProvider
         $router = $this->app['router'];
 
         $paths
-            ->flatMap(function ($path) use (&$routeDirectories) {
+            ->flatMap(function ($path) {
                 return $this->files->glob($path);
             })
             ->flatMap(function ($path) {
