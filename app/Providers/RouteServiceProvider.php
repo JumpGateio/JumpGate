@@ -157,6 +157,8 @@ class RouteServiceProvider extends ServiceProvider
             $attributes['can'] = $provider->getPermissions();
         }
 
+        $router->patterns($provider->getPatterns());
+
         $router->group($attributes, function ($router) use ($provider) {
             $provider->routes($router);
         });

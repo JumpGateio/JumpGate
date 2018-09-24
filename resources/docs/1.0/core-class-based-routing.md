@@ -24,11 +24,17 @@ done for you.  To set it up manually, you would need something like the followin
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use JumpGate\Core\Contracts\Routes;
 
 class RouteServiceProvider extends ServiceProvider
 {
+    /**
+     * @var \Illuminate\Filesystem\Filesystem
+     */
+    public $files;
+
     /**
      * This namespace is applied to your controller routes.
      *
@@ -38,22 +44,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
 
-    /**
-     * Route providers that contain the configuration of a route group.
-     *
-     * @var array
-     */
-    protected $providers = [
-        \App\Http\Routes\Home::class,
-    ];
-
     public function __construct($app)
     {
         parent::__construct($app);
 
-        if (empty($this->providers)) {
-            $this->getProvidersFromServicesConfig();
-        }
+        $this->files = app('files');
     }
 
     /**
@@ -63,18 +58,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $router = $this->app['router'];
-
-        foreach ($this->providers as $key => $provider) {
-            $provider = new $provider;
-
-            if (! $provider instanceof Routes) {
-                unset($this->providers[$key]);
-                continue;
-            }
-
-            $router->patterns($provider->getPatterns());
-        }
+        $this->load();
 
         parent::boot();
     }
@@ -89,8 +73,6 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
-
-        $this->mapRouteClasses();
     }
 
     /**
@@ -103,8 +85,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
     }
 
     /**
@@ -117,65 +99,99 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
     }
 
     /**
-     * Convert class route files into valid routes.
+     * Register all of the routes in the selected directories.
      */
-    private function mapRouteClasses()
+    protected function load()
     {
+        $paths  = supportCollector(config('route.paths'));
         $router = $this->app['router'];
 
-        foreach ($this->providers as $provider) {
-            $provider = new $provider;
-
-            $router->group([
-                'prefix'     => $provider->getPrefix(),
-                'namespace'  => $provider->getNamespace(),
-                'middleware' => $provider->getMiddleware(),
-            ], function ($router) use ($provider) {
-                $provider->routes($router);
+        $paths
+            ->flatMap(function ($path) use (&$routeDirectories) {
+                return $this->files->glob($path);
+            })
+            ->flatMap(function ($path) {
+                return $this->files->files($path);
+            })
+            ->filter()
+            ->map(function ($file) {
+                return $this->getClassFromFilePath($file);
+            })
+            ->filter()
+            ->each(function ($provider) use ($router) {
+                $this->convertProviderToRoutes($provider, $router);
             });
-        }
     }
 
     /**
-     * Get an array of providers from the services.json.
+     * Using a file path, determine the fully qualified class name.
+     *
+     * @param \SplFileInfo $file
+     *
+     * @return null|string
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    private function getProvidersFromServicesConfig()
+    protected function getClassFromFilePath(\SplFileInfo $file)
     {
-        if (file_exists(base_path('bootstrap/services.json'))) {
-            $services = collect(
-                json_decode(
-                    file_get_contents(base_path('bootstrap/services.json'))
-                )
-            );
+        $contents = $this->files->get($file->getPathName());
 
-            $this->providers = $services->flatMap(function ($service) {
-                if (isset($service->routes)) {
-                    return $service->routes;
-                }
-            })->toArray();
+        preg_match('/^namespace (.+);/m', $contents, $matches);
+        $namespace = '\\' . last($matches) . '\\';
+
+        preg_match('/^class (\w+)[\s\r\n\w]+/m', $contents, $matches);
+        $class = $namespace . last($matches);
+
+        $class = new $class;
+
+        if ($class instanceof Routes) {
+            return $class;
         }
+
+        return null;
+    }
+
+    /**
+     * Take a route class and add the routes to Laravel's router.
+     *
+     * @param \JumpGate\Core\Contracts\Routes $provider
+     * @param \Illuminate\Routing\Router      $router
+     */
+    protected function convertProviderToRoutes(Routes $provider, Router $router)
+    {
+        $attributes = [
+            'prefix'     => $provider->getPrefix(),
+            'namespace'  => $provider->getNamespace(),
+            'middleware' => $provider->getMiddleware(),
+        ];
+
+        if (! is_null($provider->getRole())) {
+            $attributes['is'] = $provider->getRole();
+        }
+
+        if (! is_null($provider->getPermissions())) {
+            $attributes['can'] = $provider->getPermissions();
+        }
+
+        $router->group($attributes, function ($router) use ($provider) {
+            $provider->routes($router);
+        });
     }
 }
 ```
 
 This example does a lot, so lets break it down.
 
-- The `$providers` array is used to list out your route classes.  Each route class you make will need to be listed here.
-- In the constructor, you check to see if that array is empty.  If so, it checks the local `services.json` for any possible 
-route files.
-- The `boot()` method is handling the patterns from the route files.  These will be things like `['id' => '[0-9]+']`.  These are 
-patterns that routes should know exist to behave properly.
-- Now in the `map()` method we handle three things.  
-    1. The default laravel API route implementations.
-    1. The default laravel web route implementations.
-    1. The third one is handling our route classes.
-- `mapRouteClasses()` loops through each class in the providers array and assigns the routes within as a route group.
+- The `boot()` method is where we call to load the class route directories.
+- `load()` loops through each directory in the `config/route.php` `paths` array and finds any route classes you have in those 
+directories.  It then loops through each and assigns the routes within as a route group.
+- `convertProviderToRoutes()` is where we actually use the data in the class route to make an actual Laravel route.  We also 
+assign any patterns here.
 
 <a name="usage"></a>
 ## Usage

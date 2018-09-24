@@ -15,7 +15,7 @@ setting up our controllers and routes.  These all live in the `app/Services/ToDo
 
 > {info} You can see the source code at [GitHub](https://github.com/JumpGateio/ToDo-Walkthrough).
 
-> This step is stored as a branch called [http](https://github.com/JumpGateio/ToDo-Walkthrough/tree/3-http).
+> This step is stored as a branch called [http](https://github.com/JumpGateio/ToDo-Walkthrough/tree/3-route-links).
 
 <a name="routes"></a>
 # Routes
@@ -121,11 +121,8 @@ need to do any extra work to make it happen.
 You should notice that any route that will be dealing directly with an individual task list has `{id}` on it.  This is 
 how we define a wildcard URL parameter in Laravel.
 
-<a name="route-provider"></a>
-# Route Provider
-
-You may have noticed that laravel has no way of knowing our routes exist since they are not in the `routes` folder.  Using 
-class routes we have to add them in manually for now.
+> {primary} A bit of magic happens here.  You don't have to define your route classes anywhere.  The `app/Providers/RouteServiceProvider.php` 
+class uses it's load method to automatically find your route classes.
 
 
 <a name="links"></a>
@@ -173,3 +170,63 @@ active in the view.  However, if that link is part of a drop down, the drop down
 behavior we want as it allows the user to know where they are in the navigation without much effort or confusion.  Inside 
 the drop down we created links to 2 of our 7 routes: index and create.  The other 5 are not really linkable since they 
 require the `id` of a task list to do anything with.
+
+Now do the same thing for our Tasks.  Create a `Task.php` in `app/Services/ToDo/Http/Routes`.
+
+```php
+<?php
+
+namespace App\Services\ToDo\Http\Routes;
+
+use Illuminate\Routing\Router;
+use JumpGate\Core\Contracts\Routes;
+use JumpGate\Core\Http\Routes\BaseRoute;
+
+class Task extends BaseRoute implements Routes
+{
+    public $namespace = 'App\Services\Http\Controllers';
+
+    public $middleware = [
+        'web',
+        'auth',
+    ];
+
+    public function routes(Router $router)
+    {
+        $router->get('create')
+            ->name('task.create')
+            ->uses('Task@create')
+            ->middleware('active:task.create');
+        $router->post('create')
+            ->name('task.create')
+            ->uses('Task@store');
+
+        $router->get('edit/{id}')
+            ->name('task.edit')
+            ->uses('Task@edit')
+            ->middleware('active:task.edit');
+        $router->post('edit/{id}')
+            ->name('task.edit')
+            ->uses('Task@update');
+
+        $router->get('delete/{id}')
+            ->name('task.delete')
+            ->uses('Task@delete');
+
+        $router->get('{id}')
+            ->name('task.show')
+            ->uses('Task@show')
+            ->middleware('active:task');
+
+        $router->get('/')
+            ->name('task.index')
+            ->uses('Task@index')
+            ->middleware('active:task.index');
+    }
+}
+```
+
+This file is nearly identical but we replaced `task-list` with `task for our route names and active middleware.  We also 
+changed the controller from `TaskList` to `Task`.
+
+> {info} The walkthrough continues in [Setting up controllers](/docs/{{version}}/jumpgate-walkthrough-4-controllers).
