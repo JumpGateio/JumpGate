@@ -11,7 +11,7 @@
 ## Introduction
 
 In this step of creating our todo app, we are going to continue building out the todo service.  In this step we will be 
-setting up our controllers and routes.  These all live in the `app/Services/ToDo/Http` directory.
+setting up our routes and navigation links.  The routes all live in the `app/Services/ToDo/Http/Routes` directory.
 
 > {info} You can see the source code at [GitHub](https://github.com/JumpGateio/ToDo-Walkthrough).
 
@@ -184,7 +184,9 @@ use JumpGate\Core\Http\Routes\BaseRoute;
 
 class Task extends BaseRoute implements Routes
 {
-    public $namespace = 'App\Services\Http\Controllers';
+    public $namespace = 'App\Services\ToDo\Http\Controllers';
+
+    public $prefix = 'task';
 
     public $middleware = [
         'web',
@@ -193,11 +195,11 @@ class Task extends BaseRoute implements Routes
 
     public function routes(Router $router)
     {
-        $router->get('create')
+        $router->get('create/{listId}')
             ->name('task.create')
             ->uses('Task@create')
             ->middleware('active:task.create');
-        $router->post('create')
+        $router->post('create/{listId}')
             ->name('task.create')
             ->uses('Task@store');
 
@@ -217,16 +219,12 @@ class Task extends BaseRoute implements Routes
             ->name('task.show')
             ->uses('Task@show')
             ->middleware('active:task');
-
-        $router->get('/')
-            ->name('task.index')
-            ->uses('Task@index')
-            ->middleware('active:task.index');
     }
 }
 ```
 
-This file is nearly identical but we replaced `task-list` with `task for our route names and active middleware.  We also 
-changed the controller from `TaskList` to `Task`.
+This file is nearly identical but we replaced `task-list` with `task` for our route names and active middleware.  We also 
+changed the controller from `TaskList` to `Task`.  Lastly, we removed the `index` route since you can view all tasks in a 
+list using `task-list.show`.
 
 > {info} The walkthrough continues in [Setting up controllers](/docs/{{version}}/jumpgate-walkthrough-4-controllers).

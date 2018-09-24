@@ -17,6 +17,7 @@
     - [Set Up](/docs/{{version}}/jumpgate-walkthrough-1-set-up)
     - [Database](/docs/{{version}}/jumpgate-walkthrough-2-database)
     - [Routes & Links](/docs/{{version}}/jumpgate-walkthrough-3-routes-links)
+    - [Controllers](/docs/{{version}}/jumpgate-walkthrough-4-controllers)
 
 - ## Extra Guides
     - [Micro Services](/docs/{{version}}/jumpgate-micro-services)

@@ -71,7 +71,7 @@ private function handleSuccessfulLogin()
 In this method, we fire an event that the user has logged in and update the timestamp for the user's last login.  Then we 
 use the response class to handle the message.  We initialize the response as a passing/successful response and give it the 
 message to flash to screen.  We then tell it where it should redirect to.  When a controller returns a response object it 
-will handle the redirection for you.
+can then call `redirect()` to send the user to the specified route or `redirectIntended()`.
 
 > {info} You can also use `redirectIntended()` to use the route a user was trying to access first.
 
