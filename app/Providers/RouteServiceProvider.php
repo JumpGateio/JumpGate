@@ -26,8 +26,6 @@ class RouteServiceProvider extends ServiceProvider
     public function __construct($app)
     {
         parent::__construct($app);
-
-        $this->files = app('files');
     }
 
     /**
@@ -37,6 +35,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->files = app('files');
         $this->load();
 
         parent::boot();
