@@ -14,7 +14,6 @@
         "freshbitsweb/laratables": "^1.0",
         "jumpgate/core": "~1.0",
         "jumpgate/menu": "~2.0",
-        "jumpgate/users": "^2.0",
         "jumpgate/view-resolution": "~2.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "~1.0",
