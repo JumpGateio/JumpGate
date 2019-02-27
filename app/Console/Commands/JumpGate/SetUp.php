@@ -93,6 +93,10 @@ class SetUp extends Command
      */
     private function handleAssets()
     {
+        $this->comment('Publishing docs...');
+
+        $this->call('vendor:publish', ['--tag' => 'larecipe_assets', '--force' => true]);
+
         $this->comment('Running yarn...');
 
         $process = new Process('yarn');

@@ -47,11 +47,20 @@ return [
     | where you can limit the access to only authenticated users in your
     | system. It is false initially so that guests can view your docs.
     |
+    | You may also specify links to show under the auth dropdown menu.
+    | Logout link will show by default.
+    |
     |
     */
 
     'settings' => [
         'auth'  => false,
+        'auth_links' => [
+            [
+                'name' => '',
+                'url' => '',
+            ],
+        ],
         'ga_id' => ''
     ],
 
@@ -71,6 +80,33 @@ return [
     'cache'       => [
         'enabled' => false,
         'period'  => 5
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Search
+    |--------------------------------------------------------------------------
+    |
+    | Here you can add configure the search functionality of your docs.
+    | You can choose the default engine of your search from the list
+    | However, you can also enable/disable the search's visibility
+    |
+    | Supported Search Engines: 'algolia', 'internal'
+    |
+    */
+
+    'search'            => [
+        'enabled'       => false,
+        'default'       => 'algolia',
+        'engines'       => [
+            'internal'  => [
+                'index' => ['h2', 'h3']
+            ],
+            'algolia'   => [
+                'key'   => '',
+                'index' => ''
+            ]
+        ]
     ],
 
     /*
@@ -108,7 +144,14 @@ return [
         'logo'           => '', // e.g.: /images/logo.svg
         'fav'            => '', // e.g.: /fav.png
         'theme'          => 'light',
+        'code'           => 'dark',
         'back_to_top'    => true,
+        'show_side_bar'  => true,
+        'colors'         => [
+            'primary'    => '#787AF6',
+            'secondary'  => '#2b9cf2',
+            'selection'  => '#f4f5f7'
+        ],
         'additional_css' => [
             //'css/custom.css',
         ],
@@ -129,9 +172,39 @@ return [
     |
     */
 
-    'seo'             => [
-        'author'      => '',
-        'description' => '',
-        'keywords'    => ''
+    'seo'                 => [
+        'author'          => '',
+        'description'     => '',
+        'keywords'        => '',
+        'og'              => [
+            'title'       => '',
+            'type'        => 'article',
+            'url'         => '',
+            'image'       => '',
+            'description' => '',
+        ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Forum
+    |--------------------------------------------------------------------------
+    |
+    | Giving a chance to your users to post their questions or feedback
+    | directly on your docs, is pretty nice way to engage them more.
+    | However, you can also enable/disable the forum's visibility.
+    |
+    | Supported Services: 'disqus'
+    |
+    */
+
+    'forum'                 => [
+        'enabled'           => false,
+        'default'           => 'disqus',
+        'services'          => [
+            'disqus'        => [
+                'site_name' => '', // yoursite.disqus.com
+            ]
+        ]
     ]
 ];
