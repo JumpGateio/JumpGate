@@ -30,8 +30,16 @@ If your site will need users you should modify the steps listed above.
 cd <project dir>
 git clone git@github.com:JumpGateio/JumpGate.git ./
 composer install
-php artisan jumpgate:setup --users --force
 ```
+
+Now you get to chose.  If you know you want social auth, you can use `--social-users` otherwise you can just use `--users`.
+
+```
+php artisan jumpgate:setup --users --force
+php artisan jumpgate:setup --social-users --force
+```
+
+> Pick the one you want.  You do not need to run both commands.
 
 > `--force` is used to verify the users package can overwrite existing files that it published.
 

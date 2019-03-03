@@ -71,14 +71,15 @@ To begin, we need to pull it in and get the basic files set up.
 ```bash
 git clone git@github.com:JumpGateio/JumpGate.git ./
 composer install
-php artisan jumpgate:setup --users --force
+php artisan jumpgate:setup --social-users --force
 ```
 
 This is doing a few simple things.  We grab the web app from github and install all of it's dependencies.  Next, we let 
 jumpgate do the tasks we need.  This will create our `.env` file, generate a site key, run `yarn` and `npm run dev`.
 
-Since we want users in our to-do app, we tell jumpgate to set up with users using the `--users` flag.  Also, since this is 
-a fresh app, we use `--force` to allow the users package to overwrite some of our existing files.
+Since we want users in our to-do app, we tell jumpgate to set up with users using the `--social-users` flag.  Using 
+`--social-users` gets the `jumpgate/users` package and also the `laravel/socialite` package for us.  Also, 
+since this is a fresh app, we use `--force` to allow the users package to overwrite some of our existing files.
 
 Once this is done, we need to set up our database before continuing.
 
@@ -180,7 +181,8 @@ site and database are ready to get started.  You should be able to see your site
 <a name="social-auth"></a>
 ## Social Auth
 
-First, lets add some dependencies we will need to make social auth work.
+Thanks to using `--social-users` we already have laravel socialite, so we don't need to require/discover any new 
+packages.  However, if you only used `--users` and now want social users, run the following commands.
 
 ```bash
 composer require laravel/socialite

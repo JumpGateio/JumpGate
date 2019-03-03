@@ -15,7 +15,7 @@ class SetUp extends Command
      */
     protected $signature = 'jumpgate:setup
                             {--users : Whether the user package should be included.}
-                            {--socialite : Will get the socialite package from composer during install.}
+                            {--social-users : Will install users and get the socialite package during install.}
                             {--f|force : Whether to overwrite existing files.}';
 
     /**
@@ -64,7 +64,7 @@ class SetUp extends Command
      */
     private function generateEnv()
     {
-        if (!$this->files->exists(base_path('.env'))) {
+        if (! $this->files->exists(base_path('.env'))) {
             $this->comment('Generating .env...');
 
             $process = new Process('cp .env.example .env');
@@ -132,13 +132,14 @@ class SetUp extends Command
      */
     private function addUsers()
     {
-        $addUsers = $this->option('users');
-        $forced   = $this->option('force');
+        $addUsers    = $this->option('users');
+        $socialUsers = $this->option('social-users');
+        $forced      = $this->option('force');
 
-        if (!$addUsers) {
+        if (! $addUsers && ! $socialUsers) {
             return true;
         }
 
-        $this->call('jumpgate:setup-users', ['--force' => $forced]);
+        $this->call('jumpgate:setup-users', ['--force' => $forced, '--socialite' => $socialUsers]);
     }
 }

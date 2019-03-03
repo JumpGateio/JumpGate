@@ -14,7 +14,7 @@ class SetUpUsers extends Command
      * @var string
      */
     protected $signature = 'jumpgate:setup-users
-                            {--socialite: Adds socialite to users.}
+                            {--socialite : Adds socialite to users.}
                             {--f|force : Whether to overwrite existing files.}';
 
     /**
