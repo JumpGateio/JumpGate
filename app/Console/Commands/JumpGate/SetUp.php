@@ -54,7 +54,6 @@ class SetUp extends Command
         $this->handleAssets();
         $this->discover();
 
-        $this->setupTelescope();
         $this->addUsers();
 
         $this->info('Finished!');
@@ -126,23 +125,6 @@ class SetUp extends Command
         $this->comment('Running laravel discover...');
 
         $this->call('package:discover');
-    }
-
-    /**
-     * Sets up Laravel Telescope in your app.
-     *
-     * @see https://laravel.com/docs/5.7/telescope
-     */
-    private function setupTelescope()
-    {
-        $addTelescope = $this->option('telescope');
-
-        if (!$addTelescope) {
-            return true;
-        }
-
-        $this->call('telescope:install');
-        $this->call('migrate');
     }
 
     /**
