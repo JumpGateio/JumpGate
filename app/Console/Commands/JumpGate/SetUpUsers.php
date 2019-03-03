@@ -14,6 +14,7 @@ class SetUpUsers extends Command
      * @var string
      */
     protected $signature = 'jumpgate:setup-users
+                            {--socialite: Adds socialite to users.}
                             {--f|force : Whether to overwrite existing files.}';
 
     /**
@@ -59,11 +60,32 @@ class SetUpUsers extends Command
     {
         $this->info('Adding users to composer...');
 
-        $process = new Process('composer require jumpgate/users');
+        $packages = $this->getPackagesToInstall();
+
+        $process = new Process('composer require ' . $packages);
         $process->setTimeout(150);
         $process->run(function ($type, $buffer) {
             echo $buffer;
         });
+    }
+
+    /**
+     * Based on the options set, determine which packages
+     * to get from composer during installation.
+     *
+     * @return string
+     */
+    private function getPackagesToInstall()
+    {
+        $packages = 'jumpgate/users';
+
+        $socialite = $this->option('socialite');
+
+        if ($socialite) {
+            $packages .= ' laravel/socialite';
+        }
+
+        return $packages;
     }
 
     /**

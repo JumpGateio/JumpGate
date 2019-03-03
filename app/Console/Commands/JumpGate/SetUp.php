@@ -15,7 +15,7 @@ class SetUp extends Command
      */
     protected $signature = 'jumpgate:setup
                             {--users : Whether the user package should be included.}
-                            {--telescope : Sets up telescope in your app.  (Make sure your database is setup)}
+                            {--socialite : Will get the socialite package from composer during install.}
                             {--f|force : Whether to overwrite existing files.}';
 
     /**
