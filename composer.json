@@ -8,24 +8,29 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=7.0.0",
-        "fideloper/proxy": "~3.3",
-        "barryvdh/laravel-debugbar": "3.1.0",
-        "jumpgate/core": "dev-master",
-        "jumpgate/menu": "~1.0",
-        "jumpgate/view-resolution": "~1.0",
-        "laravel/framework": "5.5.*",
+        "php": ">=7.1.3",
+        "barryvdh/laravel-debugbar": "3.2.0",
+        "binarytorch/larecipe": "^1.3",
+        "fideloper/proxy": "~4.0",
+        "freshbitsweb/laratables": "^1.0",
+        "jumpgate/core": "~1.0",
+        "jumpgate/menu": "~2.0",
+        "jumpgate/view-resolution": "~2.0",
+        "laravel/framework": "5.7.*",
         "laravel/tinker": "~1.0",
-        "laravelcollective/html": "^5.2"
+        "laravelcollective/html": "^5.7"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "2.5.1",
+        "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
+        "laravel/telescope": "^0.1.2",
         "mockery/mockery": "~1.0",
-        "phpunit/phpunit": "~6.0",
+        "nunomaduro/collision": "^2.0",
+        "phpunit/phpunit": "~7.0",
         "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*",
-        "barryvdh/laravel-ide-helper": "2.4.1"
+        "symfony/dom-crawler": "4.1.*"
     },
     "autoload": {
         "classmap": [
@@ -67,5 +72,6 @@
         "sort-packages": true,
         "optimize-autoloader": true
     },
+    "prefer-stable": true,
     "minimum-stability": "dev"
 }

@@ -1,10 +1,10 @@
 # Jumpgate App
 
-- [Commands](#commands)
+- [Basic Installation](#basic-installation)
 - [Users](#users)
 
-<a name="commands"></a>
-## Installation
+<a name="basic-installation"></a>
+## Basic Installation
 
 ```
 cd <project dir>
@@ -12,18 +12,39 @@ git clone git@github.com:JumpGateio/JumpGate.git ./
 composer install
 php artisan jumpgate:setup
 ```
-At this point, your site will display the JumpGate home page using bootstrap 3.  From here on out, you will customize as you normally would.
+At this point, your site will display the JumpGate home page using bootstrap 4.  From here on out, you will customize as 
+you normally would.
 
-> You can run `php artisan css:set uikit` to switch the front end to uikit.
+> You can run `php artisan jupmgate:css` to switch the front end to bootstrap 3 or uikit.
 
 1. Set up your database in the `.env` file
+1. Run `php artisan jumpgate:telescope`.
 1. Run `php artisan migrate`.
 
 <a name="users"></a>
 ## Users
 
-If your site will need users you have 3 choices here.  
+If your site will need users you should modify the steps listed above.
 
-1. Install the [JumpGate-Users repository](/1-Getting%20Started/2-Users%20Install.md) instead.
-1. Run through [adding users](/1-Getting%20Started/3-Add%20Users%20to%20Base%20Install.md) to a base JumpGate installation.
-1. Create your own users system.
+```
+cd <project dir>
+git clone git@github.com:JumpGateio/JumpGate.git ./
+composer install
+```
+
+Now you get to chose.  If you know you want social auth, you can use `--social-users` otherwise you can just use `--users`.
+
+```
+php artisan jumpgate:setup --users --force
+php artisan jumpgate:setup --social-users --force
+```
+
+> Pick the one you want.  You do not need to run both commands.
+
+> `--force` is used to verify the users package can overwrite existing files that it published.
+
+1. Set up your database in the `.env` file
+1. Update your `config/jumpgate/users.php`.
+    - If you enable social, remember to re-run `vendor:publish`.
+1. Run `php artisan jumpgate:telescope`.
+1. Run `php artisan jumpgate:user-database`

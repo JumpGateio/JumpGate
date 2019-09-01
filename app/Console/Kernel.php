@@ -13,8 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Commands\SetCssFramework::class,
-        \App\Console\Commands\SetUp::class,
+        //
     ];
 
     /**
@@ -37,10 +36,6 @@ class Kernel extends ConsoleKernel
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');
-
-        // $this->command('build {project}', function ($project) {
-        //     $this->info('Building project...');
-        // });
 
         require base_path('routes/console.php');
     }

@@ -3,11 +3,17 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use JumpGate\Core\Contracts\Routes;
 
 class RouteServiceProvider extends ServiceProvider
 {
+    /**
+     * @var \Illuminate\Filesystem\Filesystem
+     */
+    public $files;
+
     /**
      * This namespace is applied to your controller routes.
      *
@@ -17,22 +23,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
 
-    /**
-     * Route providers that contain the configuration of a route group.
-     *
-     * @var array
-     */
-    protected $providers = [
-        \App\Http\Routes\Home::class,
-    ];
-
     public function __construct($app)
     {
         parent::__construct($app);
-
-        if (empty($this->providers)) {
-            $this->getProvidersFromServicesConfig();
-        }
     }
 
     /**
@@ -42,18 +35,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $router = $this->app['router'];
-
-        foreach ($this->providers as $key => $provider) {
-            $provider = new $provider;
-
-            if (! $provider instanceof Routes) {
-                unset($this->providers[$key]);
-                continue;
-            }
-
-            $router->patterns($provider->getPatterns());
-        }
+        $this->files = app('files');
+        $this->load();
 
         parent::boot();
     }
@@ -68,8 +51,6 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
-
-        $this->mapRouteClasses();
     }
 
     /**
@@ -82,8 +63,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
     }
 
     /**
@@ -96,48 +77,89 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
     }
 
     /**
-     * Convert class route files into valid routes.
+     * Register all of the routes in the selected directories.
      */
-    private function mapRouteClasses()
+    protected function load()
     {
+        $paths  = supportCollector(config('route.paths'));
         $router = $this->app['router'];
 
-        foreach ($this->providers as $provider) {
-            $provider = new $provider;
-
-            $router->group([
-                'prefix'     => $provider->getPrefix(),
-                'namespace'  => $provider->getNamespace(),
-                'middleware' => $provider->getMiddleware(),
-            ], function ($router) use ($provider) {
-                $provider->routes($router);
+        $paths
+            ->flatMap(function ($path) {
+                return $this->files->glob($path);
+            })
+            ->flatMap(function ($path) {
+                return $this->files->files($path);
+            })
+            ->filter()
+            ->map(function ($file) {
+                return $this->getClassFromFilePath($file);
+            })
+            ->filter()
+            ->each(function ($provider) use ($router) {
+                $this->convertProviderToRoutes($provider, $router);
             });
-        }
     }
 
     /**
-     * Get an array of providers from the services.json.
+     * Using a file path, determine the fully qualified class name.
+     *
+     * @param \SplFileInfo $file
+     *
+     * @return null|string
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    private function getProvidersFromServicesConfig()
+    protected function getClassFromFilePath(\SplFileInfo $file)
     {
-        if (file_exists(base_path('bootstrap/services.json'))) {
-            $services = collect(
-                json_decode(
-                    file_get_contents(base_path('bootstrap/services.json'))
-                )
-            );
+        $contents = $this->files->get($file->getPathName());
 
-            $this->providers = $services->flatMap(function ($service) {
-                if (isset($service->routes)) {
-                    return $service->routes;
-                }
-            })->toArray();
+        preg_match('/^namespace (.+);/m', $contents, $matches);
+        $namespace = '\\' . last($matches) . '\\';
+
+        preg_match('/^class (\w+)[\s\r\n\w]+/m', $contents, $matches);
+        $class = $namespace . last($matches);
+
+        $class = new $class;
+
+        if ($class instanceof Routes) {
+            return $class;
         }
+
+        return null;
+    }
+
+    /**
+     * Take a route class and add the routes to Laravel's router.
+     *
+     * @param \JumpGate\Core\Contracts\Routes $provider
+     * @param \Illuminate\Routing\Router      $router
+     */
+    protected function convertProviderToRoutes(Routes $provider, Router $router)
+    {
+        $attributes = [
+            'prefix'     => $provider->getPrefix(),
+            'namespace'  => $provider->getNamespace(),
+            'middleware' => $provider->getMiddleware(),
+        ];
+
+        if (! is_null($provider->getRole())) {
+            $attributes['is'] = $provider->getRole();
+        }
+
+        if (! is_null($provider->getPermissions())) {
+            $attributes['can'] = $provider->getPermissions();
+        }
+
+        $router->patterns($provider->getPatterns());
+
+        $router->group($attributes, function ($router) use ($provider) {
+            $provider->routes($router);
+        });
     }
 }

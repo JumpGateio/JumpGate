@@ -1,0 +1,61 @@
+@each $label, $color in $pallet-colors {
+  .text-#{$label} {
+    color: $color !important;
+  }
+  .background-#{$label} {
+    background-color: $color !important;
+  }
+  .btn-#{$label} {
+    @include button-variant($white, $color, $color);
+  }
+  .btn-outline-#{$label} {
+    @include button-outline-variant($color);
+  }
+  .shadowfilter-#{$label} {
+    -webkit-filter: drop-shadow(0px 0px 8px rgba($color, 0.80)) !important;
+  }
+  .bt-#{$label} {
+    border-top: 1px solid $color;
+  }
+  .br-#{$label} {
+    border-right: 1px solid $color;
+  }
+  .bb-#{$label} {
+    border-bottom: 1px solid $color;
+  }
+  .bl-#{$label} {
+    border-left: 1px solid $color;
+  }
+
+  @include table-row-variant($label, transparentize($color, .5))
+}
+
+@each $label, $color in $grays {
+  .text-#{$label} {
+    color: $color !important;
+  }
+  .background-#{$label} {
+    background-color: $color !important;
+  }
+  .btn-#{$label} {
+    @include button-variant($white, $color, $color);
+  }
+  .btn-outline-#{$label} {
+    @include button-outline-variant($color);
+  }
+  .shadowfilter-#{$label} {
+    -webkit-filter: drop-shadow(0px 0px 8px rgba($color, 0.80)) !important;
+  }
+  .bt-#{$label} {
+    border-top: 1px solid $color;
+  }
+  .br-#{$label} {
+    border-right: 1px solid $color;
+  }
+  .bb-#{$label} {
+    border-bottom: 1px solid $color;
+  }
+  .bl-#{$label} {
+    border-left: 1px solid $color;
+  }
+}

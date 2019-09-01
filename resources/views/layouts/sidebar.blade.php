@@ -5,24 +5,25 @@
   </head>
 
   <body>
-    <div id="app">
-      <div class="container-fluid" id="container" style="margin: 0; padding: 0;">
-        <div class="row">
-          @include('layouts.partials.menu')
-        </div>
-
+  <div id="app" class="admin">
+      <div class="container-fluid" id="container" style="margin-top: -40px; padding: 0;">
         <div id="content">
-          <div class="section background-gray-darker">
+          <div class="section background-gray-darker text-white">
             @yield('title')
+            <a href="{{ route('home') }}" class="btn btn-outline-primary btn-sm float-right" style="margin-top: -3px;">
+              Back to site
+            </a>
           </div>
           <div class="nav-side-menu">
-            @yield('sidebar')
+            @include('layouts.partials.sidebar-menu')
           </div>
-          @if (isset($content))
-            {!! $content !!}
-          @else
-            @yield('content')
-          @endif
+          <div style="margin-left: 300px;">
+            @if (isset($content))
+              {!! $content !!}
+            @else
+              @yield('content')
+            @endif
+          </div>
         </div>
 
         @section('footer')

@@ -1,0 +1,26 @@
+@mixin text-stroke($color) {
+  text-shadow: -1px -1px 0 $color,
+               1px -1px 0 $color,
+               -1px 1px 0 $color,
+               1px 1px 0 $color;
+}
+
+@mixin shadow-filter($color) {
+  -webkit-filter: drop-shadow(0px 0px 8px rgba($color, 0.80)) !important;
+}
+
+@mixin scrollbar($track, $thumb) {
+  ::-webkit-scrollbar {
+    width:  10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: $track;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background:    $thumb;
+    border-radius: .25rem;
+  }
+}
