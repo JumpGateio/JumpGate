@@ -84,18 +84,26 @@
     </div>
 
     <div class="links">
+      <a class="lead text-black">Laravel: </a>
       <a target="_blank" href="https://laravel.com/docs/6.0">Documentation</a>
       <a target="_blank" href="https://laravel-news.com">News</a>
       <a target="_blank" href="https://laracasts.com">Laracasts</a>
-      <a target="_blank" href="https://github.com/jumpgateio/jumpgate">JumpGate</a>
-      <a target="_blank" href="https://docs.nukacode.com/docs/1.0/overview">JumpGate Docs</a>
       <a target="_blank" href="https://github.com/laravel/laravel">GitHub</a>
     </div>
 
     <br/>
 
     <div class="links">
-      <a target="_blank" href="https://github.com/JumpGateio">JumpGate</a>
+      <a class="lead text-black">JumpGate: </a>
+      <a target="_blank" href="https://github.com/JumpGateio">Organization</a>
+      <a target="_blank" href="https://github.com/jumpgateio/jumpgate">WebApp</a>
+      <a target="_blank" href="https://docs.nukacode.com/docs/1.0/overview">Documentation</a>
+    </div>
+
+    <br/>
+
+    <div class="links">
+      <a class="lead text-black">FrontEnd: </a>
       <a target="_blank" href="https://getbootstrap.com/docs/4.1/getting-started/introduction/">Bootstrap 4</a>
       <a target="_blank" href="http://vuejs.org/v2/guide/">VueJs 2</a>
     </div>

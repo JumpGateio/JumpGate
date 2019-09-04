@@ -11,7 +11,7 @@ class Menu
     /**
      * Bind data to the view.
      *
-     * @param  View $view
+     * @param View $view
      *
      * @return void
      */
@@ -28,10 +28,15 @@ class Menu
     {
         $leftMenu = \Menu::getMenu('leftMenu');
 
-        $leftMenu->link('docs', function (Link $link) {
-            $link->name = 'Documentation';
-            $link->url  = route('larecipe.index');
-        });
+        /**
+         * TODO: Larecipe is not updated to 6.0
+         *
+         * @link https://github.com/saleem-hadad/larecipe/pull/157
+         */
+        //$leftMenu->link('docs', function (Link $link) {
+        //    $link->name = 'Documentation';
+        //    $link->url  = route('larecipe.index');
+        //});
     }
 
     /**
