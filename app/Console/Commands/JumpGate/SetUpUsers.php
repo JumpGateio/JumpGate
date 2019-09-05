@@ -62,6 +62,10 @@ class SetUpUsers extends Command
 
         $packages = $this->getPackagesToInstall();
 
+        if ($packages->count() === 0) {
+            return $this->comment('Nothing to add');
+        }
+
         $process = new Process('composer require ' . $packages);
         $process->setTimeout(150);
         $process->run(function ($type, $buffer) {
@@ -73,19 +77,24 @@ class SetUpUsers extends Command
      * Based on the options set, determine which packages
      * to get from composer during installation.
      *
-     * @return string
+     * @return \JumpGate\Database\Collections\SupportCollection
      */
     private function getPackagesToInstall()
     {
-        $packages = 'jumpgate/users';
+        $packages = supportCollector('jumpgate/users');
 
         $socialite = $this->option('socialite');
 
         if ($socialite) {
-            $packages .= ' laravel/socialite';
+            $packages->push('laravel/socialite');
         }
 
-        return $packages;
+        return $packages->filter(function ($package) {
+            $process = new Process('composer show ' . $package);
+            $process->run();
+
+            return ! $process->isSuccessful();
+        });
     }
 
     /**
