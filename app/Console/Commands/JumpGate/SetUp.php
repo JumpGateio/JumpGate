@@ -67,8 +67,7 @@ class SetUp extends Command
         if (! $this->files->exists(base_path('.env'))) {
             $this->comment('Generating .env...');
 
-            $process = new Process('cp .env.example .env');
-            $process->run();
+            $this->files->copy('.env.example', '.env');
 
             return true;
         }
