@@ -54,16 +54,10 @@ class Telescope extends Command
     /**
      * Sets up Laravel Telescope in your app.
      *
-     * @see https://laravel.com/docs/5.7/telescope
+     * @see https://laravel.com/docs/6.0/telescope
      */
     private function setupTelescope()
     {
-        $addTelescope = $this->option('telescope');
-
-        if (!$addTelescope) {
-            return true;
-        }
-
         $this->call('telescope:install');
         $this->call('package:discover');
         $this->call('migrate');
