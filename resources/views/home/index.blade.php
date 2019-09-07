@@ -62,19 +62,6 @@
   </style>
 @endsection
 <div class="flex-center position-ref full-height">
-  @if (Route::has('auth.login') || Route::has('auth.social.login'))
-    <div class="top-right links">
-      @auth
-        <a href="{{ route('home') }}">Home</a>
-      @else
-        <a href="{{ Route::has('auth.login') ? route('auth.login') : route('auth.social.login') }}">Login</a>
-
-        @if (Route::has('auth.register'))
-          <a href="{{ route('auth.register') }}">Register</a>
-        @endif
-      @endauth
-    </div>
-  @endif
   <div class="content">
     <div class="title m-b-md">
       Laravel <span class="numbers">6.0</span>
