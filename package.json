@@ -18,7 +18,7 @@
         "cross-env": "^5.1",
         "graceful-fs": "^4.1.11",
         "ioredis": "^2.3.0",
-        "jquery": "^3.2",
+        "jquery": "^3.4",
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.13",
         "popper.js": "^1.12",
