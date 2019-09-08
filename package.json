@@ -13,7 +13,7 @@
         "@fortawesome/fontawesome-free": "^5.3.1",
         "axios": "^0.19",
         "bootbox": "^4.4.0",
-        "bootstrap": "^4.1.3",
+        "bootstrap": "^4.3.1",
         "bootstrap-notify": "^3.1.3",
         "cross-env": "^5.1",
         "graceful-fs": "^4.1.11",
