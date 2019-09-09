@@ -32,7 +32,7 @@
   }
 
   // Tables
-  @include table-row-variant($label, transparentize($color, .5))
+  @include table-row-variant($label, transparentize($color, .5));
 
   // Misc
   .shadowfilter-#{$label} {
