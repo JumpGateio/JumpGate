@@ -42,7 +42,6 @@ class SetUpUsers extends Command
     private function addUsers()
     {
         $this->addUserPackage();
-        $this->discover();
         $this->publishUserFiles();
 
         $this->comment('Users have been added.'
@@ -66,10 +65,13 @@ class SetUpUsers extends Command
             return $this->comment('Nothing to add');
         }
 
-        $process = new Process('composer require ' . $packages);
-        $process->setTimeout(150);
-        $process->run(function ($type, $buffer) {
-            echo $buffer;
+        $packages->each(function ($package) {
+            $this->comment('Installing ' . $package);
+            $process = new Process('composer require ' . $package);
+            $process->setTimeout(150);
+            $process->run(function ($type, $buffer) {
+                echo $buffer;
+            });
         });
     }
 
@@ -98,22 +100,16 @@ class SetUpUsers extends Command
     }
 
     /**
-     * Discover any packages we will be needing.
-     */
-    private function discover()
-    {
-        $this->comment('Running laravel discover...');
-
-        $this->call('package:discover');
-    }
-
-    /**
      * Publish all files that come with users.
      */
     private function publishUserFiles()
     {
         $this->info('Publishing users files...');
         $forced = $this->option('force');
+
+        // On initial run, it may not find the user provider without this.
+        $process = new Process('composer dump-autoload');
+        $process->run();
 
         $this->call('vendor:publish', [
             '--provider' => 'JumpGate\Users\Providers\UsersServiceProvider',
