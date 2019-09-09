@@ -8,7 +8,7 @@
 </script>
 
 <!-- javascript-->
-{!! HTML::script('js/app.js') !!}
+{!! HTML::script(mix('js/app.js')) !!}
 
 <!-- JS Include -->
 @section('jsInclude')
