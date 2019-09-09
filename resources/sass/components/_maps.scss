@@ -8,7 +8,7 @@ $pallet-colors: map-merge((
   "orange": $orange,
   "yellow": $yellow,
   "green": $green,
-  "pale"-green: $paleGreen,
+  "pale-green": $paleGreen,
   "teal": $teal,
   "cyan": $cyan,
   "primary": $primary,
@@ -42,3 +42,5 @@ $grays: map-merge((
   "gray-darker": $gray-darker,
   "black": $black,
 ), $grays);
+
+$all-colors: map-merge($pallet-colors, $grays);
