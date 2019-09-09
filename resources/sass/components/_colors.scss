@@ -30,6 +30,17 @@
   .bl-#{$label} {
     border-left: 1px solid $color;
   }
+  .bx-#{$label} {
+    border-left:  1px solid $color;
+    border-right: 1px solid $color;
+  }
+  .by-#{$label} {
+    border-top:    1px solid $color;
+    border-bottom: 1px solid $color;
+  }
+  .b-#{$label} {
+    border: 1px solid $color;
+  }
 
   // Tables
   @include table-row-variant($label, transparentize($color, .5));
