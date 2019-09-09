@@ -9,7 +9,7 @@
 <link rel="shortcut icon" href="{{ URL::to('/favicon.ico') }}" />
 
 <!-- Local styles -->
-{!! HTML::style('css/app.css') !!}
+{!! HTML::style(mix('css/app.css')) !!}
 
 <!-- Css -->
 @section('css')
