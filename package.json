@@ -20,7 +20,7 @@
         "ioredis": "^2.3.0",
         "jquery": "^3.4",
         "laravel-mix": "^4.0.7",
-        "lodash": "^4.17.13",
+        "lodash": "^4.17.19",
         "popper.js": "^1.12",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
