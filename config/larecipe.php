@@ -16,7 +16,7 @@ return [
     'docs' => [
         'route'      => '/docs',
         'path'       => '/resources/docs',
-        'landing'    => 'overview',
+        'landing'    => 'site-example',
         'middleware' => ['web'],
         // 'middleware' => ['web', 'role:admin|developer'],
     ],
@@ -37,6 +37,7 @@ return [
         'default'   => '1.0',
         'published' => [
             '1.0',
+            'dev',
         ],
     ],
 
