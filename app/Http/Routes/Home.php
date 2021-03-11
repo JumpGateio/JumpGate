@@ -18,5 +18,10 @@ class Home extends BaseRoute implements Routes
                ->name('home')
                ->uses('HomeController@index')
                ->middleware('active:home');
+
+        $router->get('/api/ziggy')
+               ->name('ziggy')
+               ->uses('HomeController@ziggy')
+               ->middleware('active:home, auth');
     }
 }

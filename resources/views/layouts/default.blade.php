@@ -1,32 +1,14 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
   <head>
+    {{-- Uncomment this if you plan to use analytics --}}
+    {{--@include('layouts.partials.googleAnalytics')--}}
     @include('layouts.partials.header')
   </head>
 
   <body class="{{ $bodyClass ?? null }}">
-    <div id="app">
-      <div class="container-fluid" id="container">
-        <div class="row">
-          @include('layouts.partials.menu')
-        </div>
+    @inertia
 
-        <div id="content">
-          @if (isset($content))
-            {!! $content !!}
-          @else
-            @yield('content')
-          @endif
-        </div>
-
-        @section('footer')
-          @include('layouts.partials.footer')
-        @show
-      </div>
-
-      @include('layouts.partials.modals')
-
-    </div>
     @include('layouts.partials.javascript')
   </body>
 </html>

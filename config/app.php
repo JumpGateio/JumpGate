@@ -179,6 +179,7 @@ return [
          * Package Service Providers...
          */
         Camroncade\Timezone\TimezoneServiceProvider::class,
+        BinaryTorch\LaRecipe\LaRecipeServiceProvider::class,
 
         /*
          * Application Service Providers...

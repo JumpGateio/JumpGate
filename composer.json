@@ -11,16 +11,19 @@
     "require": {
         "php": "^7.3|^8.0",
         "barryvdh/laravel-debugbar": "^3.2",
+        "binarytorch/larecipe": "^2.4",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "inertiajs/inertia-laravel": "^0.4.0",
         "jumpgate/core": "~3.0",
         "jumpgate/menu": "~2.0",
         "jumpgate/view-resolution": "~4.0",
         "laravel/framework": "^8.30",
         "laravel/helpers": "^1.4",
         "laravel/tinker": "^2.5",
-        "laravelcollective/html": "^6.2"
+        "laravelcollective/html": "^6.2",
+        "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",

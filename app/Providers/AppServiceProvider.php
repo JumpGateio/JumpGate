@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        view()->share('pageTitle', 'JumpGate');
+
         if (app()->environment('local') && app()->bound('debugbar')) {
             $this->app->register(DebugbarServiceProvider::class);
             $this->app->register(IdeHelperServiceProvider::class);

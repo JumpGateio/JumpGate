@@ -1,4 +1,5 @@
 window._ = require('lodash')
+_.mixin(require('lodash-inflection'))
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -59,7 +60,11 @@ if (token) {
 // });
 
 // Redis/Socket.io Config
+//
+// window.io = require('socket.io-client')
+//
 // window.Echo = new Echo({
 //   broadcaster: 'socket.io',
-//   host:        Laravel.host + ':' + Laravel.socketPort
+//   host:        Laravel.host + ':' + Laravel.socketPort,
+//   namespace:   'App.Services.Broadcasting.Events'
 // });

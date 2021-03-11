@@ -1,7 +1,14 @@
 # Jumpgate App
 
+- [Requirements](#requirements)
 - [Basic Installation](#basic-installation)
 - [Users](#users)
+
+<a name="requirements"></a>
+## Requirements
+
+- PHP 7.3+
+- Node 12.14+
 
 <a name="basic-installation"></a>
 ## Basic Installation

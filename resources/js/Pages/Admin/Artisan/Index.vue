@@ -3,7 +3,7 @@
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="Search..." v-model="search" @keyup="toggleCommands(true)">
       <div class="input-group-append">
-        <button class="btn btn-primary" type="button"
+        <button class="btn btn-site-medium-blue" type="button"
                 v-text="searchButtonText + ' commands'" @click="toggleCommands()"
         ></button>
       </div>
@@ -28,52 +28,39 @@
           <div class="description text-muted" v-if="argument.description != null" v-text="argument.description"></div>
           <input type="text" v-if="argument.type != 'flag'" v-model="selectedCommand.passables[index].value"
                  class="form-control form-control-sm">
-          <button type="button" class="btn btn-block btn-xs btn-outline-primary" data-toggle="button"
+          <button type="button" class="btn btn-block btn-xs btn-outline-site-medium-blue" data-toggle="button"
                   v-if="argument.type == 'flag'" :class="argument.value ? 'active' : null"
                   v-model="selectedCommand.passables[index].value" @click="toggleFlag(index)">
             Add Flag
           </button>
         </div>
       </div>
-      <button class="btn btn-primary btn-sm" @click="runCommand()">Run command</button>
+      <button class="btn btn-site-medium-blue btn-sm" @click="runCommand()">Run command</button>
     </div>
-    <div v-if="results != null || running == true">
+    <div class="h-scroll" v-if="results != null || running == true">
       <h4 class="mt-5">Results</h4>
       <pre class="results" :class="resultClass" v-html="results"></pre>
     </div>
   </div>
 </template>
 
-<style scoped>
-  ::-webkit-scrollbar {
-    width:  10px;
-    height: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #252830;
-  }
-
-  ::-webkit-scrollbar-corner {
-    background: #252830;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background:    #51586a;
-    border-radius: .25rem;
-  }
-</style>
-
 <script>
+  import Admin from '@/Shared/Admin'
+
   export default {
-    name: "artisan",
+    name: 'Admin-Artisan',
+
+    layout: (h, page) => h(Admin, {props: {title: 'Artisan'}}, [page]),
+
+    props: {
+      commands: Object,
+    },
 
     data()
     {
       return {
         defaultCommand:  'Select a command',
         selectedCommand: null,
-        commands:        app.commands,
         running:         false,
         search:          null,
         results:         null,
@@ -147,8 +134,8 @@
         }
 
         return _.join(
-                _.concat(classes, activeClasses),
-                ' '
+          _.concat(classes, activeClasses),
+          ' '
         )
       },
 
@@ -166,30 +153,30 @@
         this.resultSuccess = null
 
         axios.post('/admin/artisan/run', {command: this.selectedCommand})
-                .then((response) => {
-                  this.results       = response.data
-                  this.resultSuccess = true
-                })
-                .catch((error) => {
-                  console.log('error')
-                  if (error.response) {
-                    // The request was made and the server responded with a status code
-                    // that falls out of the range of 2xx
-                    this.results = error.response.data
-                  } else if (error.request) {
-                    // The request was made but no response was received
-                    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                    // http.ClientRequest in node.js
-                    this.results = error.request
-                  } else {
-                    // Something happened in setting up the request that triggered an Error
-                    this.results = error.message
-                  }
-                  this.resultSuccess = false
-                })
-                .then(() => {
-                  this.running = false
-                })
+             .then((response) => {
+               this.results       = response.data
+               this.resultSuccess = true
+             })
+             .catch((error) => {
+               console.log('error')
+               if (error.response) {
+                 // The request was made and the server responded with a status code
+                 // that falls out of the range of 2xx
+                 this.results = error.response.data
+               } else if (error.request) {
+                 // The request was made but no response was received
+                 // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                 // http.ClientRequest in node.js
+                 this.results = error.request
+               } else {
+                 // Something happened in setting up the request that triggered an Error
+                 this.results = error.message
+               }
+               this.resultSuccess = false
+             })
+             .then(() => {
+               this.running = false
+             })
       }
     }
   }
