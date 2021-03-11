@@ -32,15 +32,15 @@ class AuthServiceProvider extends ServiceProvider
     }
 
     /**
-     * @todo Need to test this once users are added in.s
+     * Handle restricting certain site documentation to specific roles.
      */
     protected function handleLaRecipe()
     {
         Gate::define('viewLarecipe', function ($user, DocumentationRepository $documentation) {
-            $section     = $documentation->getCurrentSectionAttribute();
+            $version     = $documentation->getVersionAttribute();
             $lockedAreas = ['admin', 'dev', 'mod'];
 
-            if (! Str::startsWith($section, $lockedAreas)) {
+            if (! Str::startsWith($version, $lockedAreas)) {
                 return true;
             }
 
@@ -54,7 +54,7 @@ class AuthServiceProvider extends ServiceProvider
                     })
                     ->first();
 
-                if (Str::startsWith($section, $lockedArea) && ! auth()->user()->hasRole($role->name)) {
+                if (Str::startsWith($version, $lockedArea) && ! auth()->user()->hasRole($role->name)) {
                     return false;
                 }
             }
