@@ -40,4 +40,5 @@ Here are some extra packages that are in use that you may need to dive deeper in
 | Laravel Telescope | 4         | [Docs](https://laravel.com/docs/8.x/telescope)
 | Laravel Horizon   | 5         | [Docs](https://laravel.com/docs/8.x/horizon)
 | LaRecipie         | 2         | [Docs](https://larecipe.binarytorch.com.my/docs/2.2/overview)
-| Ziggy             | 1         | [Docs](https://github.com/tighten/ziggy)
+| Debugbar          | 3         | [Github](https://github.com/barryvdh/laravel-debugbar)
+| Ziggy             | 1         | [Github](https://github.com/tighten/ziggy)

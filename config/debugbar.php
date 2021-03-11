@@ -112,10 +112,11 @@ return [
         'log'             => true,  // Logs from Monolog (merged in messages if enabled)
         'db'              => true,  // Show database (PDO) queries and bindings
         'views'           => true,  // Views with their data
-        'auto_views'      => true,  // Auto resolved view data
+        'auto_views'      => false,  // Auto resolved view data
+        'inertia'         => true,  // Inertia details
         'route'           => true,  // Current route information
         'auth'            => false, // Display Laravel authentication status
-        'gate'            => false, // Display Laravel Gate checks
+        'gate'            => true, // Display Laravel Gate checks
         'session'         => true,  // Display session data
         'symfony_request' => true,  // Only one can be enabled..
         'mail'            => true,  // Catch mail messages

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Collectors\InertiaCollector;
 use App\Http\Composers\Menu;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -15,6 +16,18 @@ class HandleInertiaRequests extends Middleware
      * @var string
      */
     protected $rootView = 'layouts.inertia';
+
+    public function __construct()
+    {
+        if (checkDebugbar()) {
+            $debugbar = app('debugbar');
+
+            if ($debugbar->shouldCollect('inertia')) {
+                $debugbar->addCollector(new InertiaCollector());
+            }
+        }
+    }
+
 
     /**
      * Determines the current asset version.

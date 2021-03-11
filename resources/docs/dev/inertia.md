@@ -41,6 +41,9 @@ returning `view()` it triggers JumpGate's auto view resolution and will use blad
 
 Any POST methods you have will need to switch away from the inertia helpers and use standard ways of handling them.
 
+> {warning} By default, the inertia collector is turned on in `configs/debugbar.php` and `auto_views` is turned off.  Swap 
+them in the config to get debugbar details back.
+
 <a name="helper-methods"></a>
 ## Helper Methods
 In order to handle the boilerplate that is needed for the server side of inertia, we have created helper methods in the 
