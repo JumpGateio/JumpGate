@@ -30,6 +30,7 @@ you should place any of the following folders you may need.
     - Routes
 - Jobs
 - Listeners
+- Managers
 - Models
 - Repositories
 - Transformers

@@ -3,7 +3,7 @@
 ---
 
 - [Introduction](#introduction)
-- [PSR-1 and PSR-2](#psr)
+- [PSR-1 and PSR-12](#psr)
 - [Additions to PSR](#additions-to-psr)
 - [Naming Convention](#naming-convention)
 - [Controllers](#controllers)
@@ -16,20 +16,20 @@ The goal of this guide is to create a unified set of code style rules that all J
 these for your app as well feel free.  If you have different guidelines modify this document to suit your needs.
 
 <a name="psr"></a>
-## PSR-1 and PSR-2
+## PSR-1 and PSR-12
 
-To begin with, we MUST follow PHP's PSR-1 and PSR-2.  These two PHP-FIG standards are always in effect and followed.  At 
+To begin with, we MUST follow PHP's PSR-1 and PSR-12.  These two PHP-FIG standards are always in effect and followed.  At 
 times we may add extra details to something that is avoided by these, but if it's mentioned in them, we will follow.  You 
 can add PSR-2 code sniffing to your IDE to make sure you are always consistent.
 
 - [PSR-1](https://www.php-fig.org/psr/psr-1/)
-- [PSR-2](https://www.php-fig.org/psr/psr-2/)
+- [PSR-12](https://www.php-fig.org/psr/psr-12/)
 - [Setting it up in your editor](/docs/{{version}}/extra-enforcing-psr-2)
 
 <a name="additions-to-psr"></a>
 ## Additions to PSR
 
-Now, we will specify some things that we consider import that are not covered by PSR standards.
+Now, we will specify some things that we consider important that are not covered by PSR standards.
 
 <a name="naming-conventions"></a>
 ## Naming Convention

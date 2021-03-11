@@ -16,7 +16,7 @@ return [
     'docs' => [
         'route'      => '/docs',
         'path'       => '/resources/docs',
-        'landing'    => 'site-example',
+        'landing'    => env('DOC_LANDING', 'site-example'),
         'middleware' => ['web'],
         // 'middleware' => ['web', 'role:admin|developer'],
     ],
@@ -34,7 +34,7 @@ return [
     */
 
     'versions' => [
-        'default'   => '1.0',
+        'default'   => env('DOC_VERSION', '1.0'),
         'published' => [
             '1.0',
             'dev',

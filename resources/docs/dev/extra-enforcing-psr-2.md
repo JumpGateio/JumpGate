@@ -1,4 +1,4 @@
-# Enforcing PSR-2 in your Editor
+# Enforcing PSR-12 in your Editor
 
 ---
 
@@ -8,7 +8,7 @@
 <a name="phpstorm"></a>
 ## PHPStorm
 
-To get notifications about violations to PSR-1 and PSR-2 is a built in feature of PHPStorm, you just have to en.
+To get notifications about violations to PSR-1 and PSR-12 is a built in feature of PHPStorm, you just have to en.
 
 1. Open PHPStorm
 1. Open to `Preferences` (`super` + `,`)
