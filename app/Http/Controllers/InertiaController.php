@@ -39,12 +39,6 @@ abstract class InertiaController extends BaseController
      */
     public function render($vue, $data = [])
     {
-        $debugbar = app('debugbar');
-
-        if ($debugbar->shouldCollect('inertia')) {
-            $debugbar['inertia']->addDetails($vue, $data);
-        }
-
         return Inertia::render($vue, $data);
     }
 

@@ -108,7 +108,7 @@ class SetUpUsers extends Command
         $forced = $this->option('force');
 
         // On initial run, it may not find the user provider without this.
-        $process = Process::fromShellCommandline('COMPOSER_MEMORY_LIMIT=-1 composer dump-autoload');
+        $process = Process::fromShellCommandline('COMPOSER_MEMORY_LIMIT=-1 composer dumpauto');
         $process->run();
 
         $this->call('vendor:publish', [
