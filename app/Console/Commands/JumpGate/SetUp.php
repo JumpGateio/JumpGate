@@ -91,14 +91,12 @@ class SetUp extends Command
      */
     private function handleAssets()
     {
-        $this->warn('Skipping docs until larecipe is updated...');
-        //$this->comment('Publishing docs...');
-
-        //$this->call('vendor:publish', ['--tag' => 'larecipe_assets', '--force' => true]);
+        $this->comment('Publishing docs...');
+        $this->call('vendor:publish', ['--tag' => 'larecipe_assets', '--force' => true]);
 
         $this->comment('Running yarn...');
 
-        $process = new Process('yarn');
+        $process = Process::fromShellCommandline('yarn');
         $process->setTimeout(150);
         $process->run(function ($type, $buffer) {
             echo $buffer;
@@ -107,15 +105,13 @@ class SetUp extends Command
 
         $this->comment('Running laravel mix...');
 
-        $process = new Process('npm run dev');
+        $process = Process::fromShellCommandline('npm run dev');
         $process->run(function ($type, $buffer) {
             echo $buffer;
         });
 
-        $this->warn('Skipping docs until larecipe is updated...');
-        //$this->comment('Running laravel docs...');
-        //
-        //$this->call('larecipe:install');
+        $this->comment('Running laravel docs...');
+        $this->call('larecipe:install');
     }
 
     /**

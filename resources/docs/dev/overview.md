@@ -29,7 +29,7 @@ And the following JumpGate packages.
 | Database         | 3         | [Github](https://github.com/JumpGateio/Database)&nbsp;[Docs](https://github.com/JumpGateio/Database/tree/master/docs)
 | Menu             | 2         | [Github](https://github.com/JumpGateio/Menu)&nbsp;[Docs](https://github.com/JumpGateio/Menu/tree/master/docs)
 | View Resolution  | 4         | [Github](https://github.com/JumpGateio/ViewResolution)&nbsp;[Docs](https://github.com/JumpGateio/ViewResolution/tree/master/docs)
-| Users (Optional) | 3         | [Github](https://github.com/JumpGateio/Users)&nbsp;[Docs](https://github.com/JumpGateio/Users/tree/master/docs)
+| Users (Optional) | 5         | [Github](https://github.com/JumpGateio/Users)&nbsp;[Docs](https://github.com/JumpGateio/Users/tree/master/docs)
     
 <a name="extra-packages"></a>
 Here are some extra packages that are in use that you may need to dive deeper into from time to time.
