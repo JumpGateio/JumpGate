@@ -5,6 +5,7 @@
 - [Basics](#basics)
 - [Turning It Off](#turning-it-off)
 - [Helper Methods](#helper-methods)
+    - [inertia()](#inertia)
     - [render()](#render)
     - [ajaxResponse()](#ajax-response)
     - [error()](#error)
@@ -28,26 +29,56 @@ methods.
 
 *From:*
 ```php
-return $this->render('Pages/<PAGE>', $data);
+return $this->inertia($data);
 ```
 
 *To:*
 ```php
-return $this->view($data);
+$this->setViewData($data);
+return $this->view();
 ```
 
-These helper methods handle everything.  The `render()` helper is just a wrapper for inertia's render method.  When 
-returning `view()` it triggers JumpGate's auto view resolution and will use blade files like normal laravel apps.
+These helper methods handle everything.  The `inertia()` helper is just a wrapper for inertia's render method coupled with 
+Jumpgate view resolution's auto discovery.  When returning `view()` it triggers JumpGate's auto view resolution to use blade 
+files like normal laravel apps.
 
 Any POST methods you have will need to switch away from the inertia helpers and use standard ways of handling them.
-
-> {warning} By default, the inertia collector is turned on in `configs/debugbar.php` and `auto_views` is turned off.  Swap 
-them in the config to get debugbar details back.
 
 <a name="helper-methods"></a>
 ## Helper Methods
 In order to handle the boilerplate that is needed for the server side of inertia, we have created helper methods in the 
 BaseController.  These are designed to help you with common GET and POST requests.
+
+<a name="inertia"></a>
+### `inertia($data = [], $page = null)`
+This helper method is unique.  It is stored in the `AutoResolvesViews` trait pulled into the `BaseController` class.  It 
+uses the [auto view resolution package](/docs/{{version}}/views-usage) to determine where your component should be.
+
+Instead of the inertia built in style of:
+
+```php
+Inertia::render('Home/Index', compact('loggedIn'));
+```
+
+You can simply do:
+
+```php
+return $this->inertia(compact('loggedIn'));
+```
+
+The view resolution will determine the most likely location for your component based on the route.  It takes prefixes into 
+consideration and keeps hunting till it finds an existing file.  You can see what files it looked for in the "attempted views" 
+section in the debugbar's "Auto resolved view" tab.
+
+If you need to specify a unique location for the component you can use the second parameter.
+
+```php
+return $this->inertia(compact('loggedIn'), 'Home/Welcome');
+```
+
+The resolution will always check for capitalized names in the `resources/js/Pages/` directory.
+
+> {info} You can read more on this in the [auto view resolution docs](/docs/{{version}}/views-usage).
 
 <a name="render"></a>
 ### `render($page, $data = [])`

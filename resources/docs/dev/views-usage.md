@@ -15,6 +15,11 @@ The view resolver package aims to add logic that finds a view location automatic
 that was called. We use prefixes, the controller and the action to do this but allow other ways to override this at any 
 time.
 
+This also works for inertia by default.  The way you tell the controller blade vs vue components is to switch between the 
+`view()`(blade) and `inertia()`(vue) methods in your controller.
+
+> {info} It expects blade files to be in `/resources/views/` and inertia files to be in `/resources/js/Pages/`.
+
 <a name="set-up"></a>
 ## Set Up
 
@@ -38,7 +43,7 @@ class Controller extends BaseController
 }
 ```
 
-Next, in any method on the controller call `return $this->view()` to start the auto resolver.
+Next, in any method on the controller call `return $this->view()` or `return $this->inertia()` to start the auto resolver.
 
 ```php
 <?php
@@ -62,13 +67,15 @@ class Controller extends BaseController
 }
 ```
 
-> {primary} You do not actually have to use `return`.  This method will work without it, but we prefer all controller methods 
-to actually return something.  It removes some of the 'magic'.
+> {primary} You do not actually have to use `return` for `view()`.  This method will work without it, but we prefer all 
+controller methods to actually return something.  It removes some of the 'magic'.  Also, the `inertia()` method requires 
+the return.
 
 <a name="how-it-works"></a>
 ## How It Works
 
-When the controller loads, it calls `ViewResolution()` and begins the process of figuring out what layout and view to use.
+When the controller loads, it calls `ViewResolution()` or `inertiaResolution()` and begins the process of figuring out 
+what layout and view or vue component to use.
 
 <a name="layouts"></a>
 ## Layouts
@@ -91,6 +98,8 @@ protected $layoutOptions = [
     'ajax'    => 'layouts.ajax',
 ];
 ```
+
+> {info} Layouts are only used for blade files and the `view()` method.
 
 <a name="views"></a>
 ## Views
@@ -130,3 +139,6 @@ looking in `views/admin/home/home/index.blade.php`.
 
 If no view was found there, it would have looked for one last view in `views/home/index.blade.php`.  If none is found 
 there, it will throw a ViewNotFound exception.
+
+Alternately, for the inertia version, it will capitalize the path parts.  So in the above example it would check for a file 
+at `resources/js/Pages/Admin/Home/Dashboard/Index.vue` then `resources/js/Pages/Admin/Home/Index.vue`.

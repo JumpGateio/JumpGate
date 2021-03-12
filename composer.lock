@@ -1283,16 +1283,16 @@
         },
         {
             "name": "jumpgate/view-resolution",
-            "version": "4.0.1",
+            "version": "4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JumpGateio/ViewResolution.git",
-                "reference": "c6b31dd09710b2b868687009645413e5616a7fef"
+                "reference": "0990aa8f7de0905eda1e5c6b914fb9c82ef11b20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JumpGateio/ViewResolution/zipball/c6b31dd09710b2b868687009645413e5616a7fef",
-                "reference": "c6b31dd09710b2b868687009645413e5616a7fef",
+                "url": "https://api.github.com/repos/JumpGateio/ViewResolution/zipball/0990aa8f7de0905eda1e5c6b914fb9c82ef11b20",
+                "reference": "0990aa8f7de0905eda1e5c6b914fb9c82ef11b20",
                 "shasum": ""
             },
             "require": {
@@ -1331,7 +1331,7 @@
                 }
             ],
             "description": "A core set of features for laravel sites.",
-            "time": "2021-03-11T20:50:54+00:00"
+            "time": "2021-03-12T06:25:16+00:00"
         },
         {
             "name": "laracasts/utilities",

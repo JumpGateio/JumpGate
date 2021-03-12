@@ -112,8 +112,7 @@ return [
         'log'             => true,  // Logs from Monolog (merged in messages if enabled)
         'db'              => true,  // Show database (PDO) queries and bindings
         'views'           => true,  // Views with their data
-        'auto_views'      => false,  // Auto resolved view data
-        'inertia'         => true,  // Inertia details
+        'auto_views'      => true,  // Auto resolved view data
         'route'           => true,  // Current route information
         'auth'            => false, // Display Laravel authentication status
         'gate'            => true, // Display Laravel Gate checks
