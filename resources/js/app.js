@@ -5,7 +5,6 @@
  */
 
 require('./bootstrap')
-require('./global')
 
 import { App, plugin } from '@inertiajs/inertia-vue'
 import {bootbox} from '@/mixins/bootbox'
