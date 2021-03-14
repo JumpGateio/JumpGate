@@ -10,7 +10,7 @@ class HomeController extends InertiaController
     {
         $loggedIn = auth()->check();
 
-        return $this->inertia(
+        return $this->response(
             compact('loggedIn')
         );
     }

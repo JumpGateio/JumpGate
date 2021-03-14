@@ -59,6 +59,10 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'leftMenu'  => \Menu::render('leftMenu')->links,
             'rightMenu' => \Menu::render('rightMenu')->links,
+            'flash'     => [
+                'success' => session()->get('success'),
+                'error'   => session()->get('error'),
+            ],
         ]);
     }
 }

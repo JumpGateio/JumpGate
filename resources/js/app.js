@@ -1,101 +1,70 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * include Vue and Vue Resource. This gives a great starting point for
- * building robust, powerful web applications using Vue and Laravel.
- */
-
+// Required packages
 require('./bootstrap')
 
-import { App, plugin } from '@inertiajs/inertia-vue'
-import {bootbox} from '@/mixins/bootbox'
-import {inertiaHelpers} from '@/mixins/inertia'
 import Vue from 'vue'
+import VueMeta from 'vue-meta'
+import PortalVue from 'portal-vue'
+import {App, plugin} from '@inertiajs/inertia-vue'
+import {InertiaProgress} from '@inertiajs/progress/src'
+import route from 'ziggy-js'
 
-window.Vue = Vue
+import {closable} from '@/directives/closable'
+import Pluralize from '@/filters/pluralize'
+import Capitalize from '@/filters/capitalize'
+import Offset from '@/filters/offset'
+import Limit from '@/filters/limit'
+import {bootbox} from '@/mixins/bootbox'
+import Layout from '@/Shared/Layout'
 
+Vue.config.productionTip = false
+// Plugins
+Vue.use(plugin)
+Vue.use(PortalVue)
+Vue.use(VueMeta)
+
+// Mixins
 Vue.mixin(bootbox)
-// Vue.mixin(inertiaHelpers)
 
-// This variable will hold the reference to
-// document's click handler
-let handleOutsideClick
+// Directives
+Vue.directive('closable', closable)
 
-Vue.directive('closable', {
-  bind(el, binding, vnode)
-  {
-    // Here's the click/touchstart handler
-    // (it is registered below)
-    handleOutsideClick = (e) => {
-      e.stopPropagation()
-      // Get the handler method name and the exclude array
-      // from the object used in v-closable
-      const {handler, exclude} = binding.value
-      // This variable indicates if the clicked element is excluded
-      let clickedOnExcludedEl  = false
-      exclude.forEach(refName => {
-        // We only run this code if we haven't detected
-        // any excluded element yet
-        if (!clickedOnExcludedEl) {
-          // Get the element using the reference name
-          const excludedEl = vnode.context.$refs[refName]
-          // See if this excluded element
-          // is the same element the user just clicked on
-          clickedOnExcludedEl = excludedEl.contains(e.target)
-        }
-      })
-      // We check to see if the clicked element is not
-      // the dialog element and not excluded
-      if (!el.contains(e.target) && !clickedOnExcludedEl) {
-        // If the clicked element is outside the dialog
-        // and not the button, then call the outside-click handler
-        // from the same component this directive is used in
-        vnode.context[handler]()
-      }
-    }
-    // Register click/touchstart event listeners on the whole page
-    document.addEventListener('click', handleOutsideClick)
-    document.addEventListener('touchstart', handleOutsideClick)
-  },
-  unbind()
-  {
-    // If the element that has v-closable is removed, then
-    // unbind click/touchstart listeners from the whole page
-    document.removeEventListener('click', handleOutsideClick)
-    document.removeEventListener('touchstart', handleOutsideClick)
-  }
-})
+// Filters
+Vue.filter('pluralize', Pluralize)
+Vue.filter('capitalize', Capitalize)
+Vue.filter('limit', Limit)
+Vue.filter('offset', Offset)
 
-import Pluralize from './filters/pluralize'
-import Capitalize from './filters/capitalize'
-import Offset from './filters/offset'
-import Limit from './filters/limit'
+InertiaProgress.init()
 
 // Handle routes
-import route from 'ziggy-js'
-const response = await fetch('/api/ziggy')
-const Ziggy = await response.json()
+const response = await
+fetch('/api/ziggy')
+const Ziggy = await
+response.json()
 
 Vue.mixin({
   methods: {
     route: (name, params, absolute) => route(name, params, absolute, Ziggy),
   },
 });
-Vue.use(plugin)
 
-Vue.filter('pluralize', Pluralize)
-Vue.filter('capitalize', Capitalize)
-Vue.filter('limit', Limit)
-Vue.filter('offset', Offset)
+// Initialize Vue
+const el = document.getElementById('app')
 
-const app = document.getElementById('app')
-
-if (!$(app).hasClass('no-inertia')) {
-  new Vue({
-    render: h => h(App, {
-      props: {
-        initialPage:      JSON.parse(app.dataset.page),
-        resolveComponent: name => import(`@/Pages/${name}`).then(module => module.default),
-      },
-    }),
-  }).$mount(app)
-}
+new Vue({
+  metaInfo: {
+    titleTemplate: title => (title ? `${title} - JumpGate` : 'JumpGate'),
+  },
+  render:   h => h(App, {
+    props: {
+      initialPage:      JSON.parse(el.dataset.page),
+      resolveComponent: name => import(`@/Pages/${name}`)
+        .then(({default: page}) => {
+          if (page.layout === undefined) {
+            page.layout = Layout
+          }
+          return page
+        }),
+    },
+  })
+}).$mount(el)

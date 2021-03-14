@@ -31,6 +31,20 @@
       },
     },
 
+    watch: {
+      '$page.props.flash':       {
+        handler(val, oldVal)
+        {
+          if (val.success !== null) {
+            this.bootbox('success', val.success)
+          } else if (val.error !== null) {
+            this.bootbox('danger', val.error)
+          }
+        },
+        deep: true,
+      }
+    },
+
     computed: {
       fullTitle()
       {

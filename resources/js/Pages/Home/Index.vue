@@ -38,15 +38,13 @@
 </template>
 
 <script>
-  import Layout from '@/Shared/Layout'
-
   export default {
-    name:  'Home-Index',
+    name:     'Home-Index',
+    metaInfo: {title: 'Home'},
+
     props: {
       loggedIn: Boolean,
     },
-
-    layout: (h, page) => h(Layout, {props: {title: 'Home'}}, [page]),
 
     data()
     {

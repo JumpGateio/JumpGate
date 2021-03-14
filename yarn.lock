@@ -889,6 +889,11 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.2.tgz#8f03a22a04de437254e8ce8cc84ba39689288752"
   integrity sha512-HyYEUDeIj5rRQU2Hk5HTB2uHsbRQpF70nvMhVzi+VJR0X+xNEhjPui4/kBf3VeH/wqD28PT4sVOm8qqLjBrSZg==
 
+"@fortawesome/fontawesome-pro@^5.15.2":
+  version "5.15.2"
+  resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-pro/-/5.15.2/fontawesome-pro-5.15.2.tgz#188d7d199f381c9fcf7b2fc0fd7d9e148e80b27a"
+  integrity sha512-Eohj5nc09eqyAtPXDrnlxiLNLr9L9vo2bUiHJ4uSc/qzt5yfoW3XQt+l2PeevX7dn3gtqNkQA8Et1MhymlsKsA==
+
 "@inertiajs/inertia-vue@^0.5.5":
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/@inertiajs/inertia-vue/-/inertia-vue-0.5.5.tgz#e12683b91d2affe2442b50a1ee26c45fd2d7f34f"
@@ -902,6 +907,13 @@
     axios "^0.21.1"
     deepmerge "^4.0.0"
     qs "^6.9.0"
+
+"@inertiajs/progress@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@inertiajs/progress/-/progress-0.2.4.tgz#1193c7d8e788dc6cab8bbc00383ed9ed8339df72"
+  integrity sha512-FVlxQjA3qxXoSljbhDWpXKdDth0IxovmI9lNJLbvxzpVir7iL5n9MCX7Sx9X+JcKdTKezCbGnc3CXQ92B38wbA==
+  dependencies:
+    nprogress "^0.2.0"
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
@@ -2578,7 +2590,7 @@ deepmerge@^2.2.1:
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-2.2.1.tgz#5d3ff22a01c00f645405a2fbc17d0778a1801170"
   integrity sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==
 
-deepmerge@^4.0.0:
+deepmerge@^4.0.0, deepmerge@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.2.2.tgz#44d2ea3679b8f4d4ffba33f03d865fc1e7bf4955"
   integrity sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==
@@ -4916,6 +4928,11 @@ npmlog@^4.0.2:
     gauge "~2.7.3"
     set-blocking "~2.0.0"
 
+nprogress@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/nprogress/-/nprogress-0.2.0.tgz#cb8f34c53213d895723fcbab907e9422adbcafb1"
+  integrity sha1-y480xTIT2JVyP8urkH6UIq28r7E=
+
 nth-check@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/nth-check/-/nth-check-1.0.2.tgz#b2bd295c37e3dd58a3bf0700376663ba4d9cf05c"
@@ -5269,6 +5286,11 @@ pkg-dir@^4.1.0, pkg-dir@^4.2.0:
 popper.js@^1.12:
   version "1.14.4"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.4.tgz#8eec1d8ff02a5a3a152dd43414a15c7b79fd69b6"
+
+portal-vue@^2.1.7:
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/portal-vue/-/portal-vue-2.1.7.tgz#ea08069b25b640ca08a5b86f67c612f15f4e4ad4"
+  integrity sha512-+yCno2oB3xA7irTt0EU5Ezw22L2J51uKAacE/6hMPMoO/mx3h4rXFkkBkT4GFsMDv/vEe8TNKC3ujJJ0PTwb6g==
 
 portfinder@^1.0.28:
   version "1.0.28"
@@ -6906,6 +6928,13 @@ vue-loader@^15.9.5:
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
+
+vue-meta@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/vue-meta/-/vue-meta-2.4.0.tgz#a419fb4b4135ce965dab32ec641d1989c2ee4845"
+  integrity sha512-XEeZUmlVeODclAjCNpWDnjgw+t3WA6gdzs6ENoIAgwO1J1d5p1tezDhtteLUFwcaQaTtayRrsx7GL6oXp/m2Jw==
+  dependencies:
+    deepmerge "^4.2.2"
 
 vue-style-loader@^4.1.0:
   version "4.1.3"

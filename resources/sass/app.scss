@@ -4,11 +4,11 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 //$fa-font-path: '../fonts';
-//@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-//@import "~@fortawesome/fontawesome-free/scss/brands";
-//@import "~@fortawesome/fontawesome-free/scss/regular";
-//@import "~@fortawesome/fontawesome-free/scss/solid";
-//@import "~@fortawesome/fontawesome-free/scss/v4-shims";
+@import "~@fortawesome/fontawesome-pro/scss/fontawesome";
+@import "~@fortawesome/fontawesome-pro/scss/brands";
+@import "~@fortawesome/fontawesome-pro/scss/regular";
+@import "~@fortawesome/fontawesome-pro/scss/solid";
+@import "~@fortawesome/fontawesome-pro/scss/v4-shims";
 
 // Variables
 @import "components/variables";
@@ -16,21 +16,9 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-@import "components/mixins";
-@import "components/maps";
-@import "components/colors";
-@import "components/cards";
-@import "components/grid";
-@import "components/image";
-@import "components/navbar";
-@import "components/navs";
-@import "components/panels";
-@import "components/scaffolding";
-@import "components/section";
-@import "components/sidebar";
-@import "components/tiles";
-@import "components/typography";
+// Components
+@import "components/components";
 
 // Site Pages
 @import "components/admin/admin";
-@import "components/pages/pages";
+@import "pages/pages";
