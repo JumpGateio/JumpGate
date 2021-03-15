@@ -1,0 +1,21 @@
+td.image-bar {
+  position: relative;
+  width:    165px;
+
+  img {
+    max-width: 145px;
+    position:  absolute;
+    top:       -14px;
+    clip:      rect(20px, 145px, 61px, 0px);
+  }
+}
+
+tr.invalid {
+  background: repeating-linear-gradient(
+                  45deg,
+                  rgba(0, 0, 0, .2),
+                  rgba(0, 0, 0, .2) 10px,
+                  rgba(188, 171, 42, .2) 10px,
+                  rgba(188, 171, 42, .2) 20px
+              );
+}

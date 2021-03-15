@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Traits;
 
 use Inertia\Inertia;
 
-abstract class InertiaController extends BaseController
+trait UsesInertia
 {
     /**
      * Set the page title for use in the header.

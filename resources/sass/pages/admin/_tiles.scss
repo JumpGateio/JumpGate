@@ -1,0 +1,54 @@
+.tiles {
+  display: grid;
+  grid-template-columns: 33% 33% auto;
+  grid-gap: 1rem;
+
+  .tile-group {
+    display: flex;
+    flex-direction: column;
+
+    .loading-bars {
+      margin: 0px auto;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    .tile {
+      @extend .mb-2;
+    }
+
+    .table-responsive {
+      thead {
+        background-color: $gray-400;
+      }
+
+      tbody {
+        max-height: 266px;
+        overflow-y: auto;
+        display: block;
+      }
+
+      thead, tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+
+        th, td {
+          &:first-of-type {
+            width: 50px;
+          }
+
+          &:nth-of-type(2) {
+            width: 50%;
+          }
+
+          &:last-of-type {
+            width: 132px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,8 @@
 <template>
   <div>
     <slot></slot>
-    <pagination class="ml-2" :data="$page.searchResults" :show-disabled="true" @pagination-change-page="getResults"></pagination>
+    <pagination class="ml-2" :data="$page.props.searchResults" :show-disabled="true"
+                @pagination-change-page="getResults"></pagination>
   </div>
 </template>
 
@@ -20,7 +21,7 @@
     },
 
     watch: {
-      '$page.search': {
+      '$page.props.search': {
         handler:   _.throttle(function () {
           this.getResults()
         }, 500),
@@ -34,13 +35,13 @@
       {
         let query = {}
 
-        if (this.$page.search != null) {
-          query = {term: this.$page.search}
+        if (this.$page.props.search != null) {
+          query = {term: this.$page.props.search}
         }
 
         axios.get(this.route(this.url, query) + '?page=' + page)
              .then((response) => {
-               this.$page.searchResults = response.data
+               this.$page.props.searchResults = response.data.data
              })
       }
     }

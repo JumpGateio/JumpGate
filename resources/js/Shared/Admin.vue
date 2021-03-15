@@ -44,11 +44,12 @@
     computed: {
       fullTitle()
       {
-        if (this.$page.title != null) {
-          return this.title + ' ' + this.$page.title
-        }
+        let title = [
+          this.title,
+          this.$page.props.title
+        ]
 
-        return this.title
+        return _.filter(title).join(' ')
       }
     },
 

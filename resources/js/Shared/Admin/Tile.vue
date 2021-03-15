@@ -1,7 +1,7 @@
 <template>
   <div :class="divClasses" style="min-height: 130px;">
     <span v-html="iconHtml"></span>
-    <h4 class="tile-icon-title" v-html="content"></h4>
+    <h4 class="tile-icon-title" :class="textColor" v-html="content"></h4>
     <span v-html="subHtml"></span>
   </div>
 </template>
@@ -24,7 +24,7 @@
     computed: {
       iconHtml()
       {
-        let html = '<span class="' + this.icon + '"></span>'
+        let html = '<i class="' + this.icon + '"></i>'
 
         if (!_.startsWith(this.icon, 'fa')) {
           html = '<img src="' + this.icon + '" />'

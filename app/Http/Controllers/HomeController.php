@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Tightenco\Ziggy\Ziggy;
 
-class HomeController extends InertiaController
+class HomeController extends BaseController
 {
     public function index()
     {
