@@ -17,5 +17,7 @@ return [
     'paths' => [
         app_path('Http/Routes'),
         app_path('Services/*/Http/Routes'),
+        app_path('Services/*/Http/Routes/*/'),
+        app_path('Services/*/Http/Routes/*/*/'),
     ],
 ];

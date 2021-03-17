@@ -4,10 +4,7 @@
       <div id="content">
         <div class="admin-header">
           <div class="admin-title" v-text="fullTitle"></div>
-          <div class="search" v-if="useSearch == true">
-            <input type="text" class="form-control" v-model="$page.search" placeholder="Search...">
-            <span class="fa fa-fw fa-times-circle-o search-clear" @click="clearSearch()"></span>
-          </div>
+          <portal-target name="admin-header-buttons" />
           <inertia-link :href="route('home')" class="btn btn-outline-primary btn-sm">
             Back to site
           </inertia-link>
@@ -25,31 +22,38 @@
 
 <script>
   import Admin from '@/Shared/Admin/Main'
+  import Search from '@/Shared/Partials/Search'
 
   export default {
     name: 'Admin',
 
-    props: {
-      title:     String,
-      useSearch: {
-        type:    Boolean,
-        default: false,
-      }
-    },
-
     components: {
       'admin-menu': Admin,
+      'search':     Search,
     },
 
     computed: {
       fullTitle()
       {
         let title = [
-          this.title,
           this.$page.props.title
         ]
 
         return _.filter(title).join(' ')
+      }
+    },
+
+    watch: {
+      '$page.props.flash':       {
+        handler(val, oldVal)
+        {
+          if (val.success !== null) {
+            this.bootbox('success', val.success)
+          } else if (val.error !== null) {
+            this.bootbox('danger', val.error)
+          }
+        },
+        deep: true,
       }
     },
 

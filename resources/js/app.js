@@ -4,6 +4,7 @@ require('./bootstrap')
 import Vue from 'vue'
 import VueMeta from 'vue-meta'
 import PortalVue from 'portal-vue'
+import MomentVue from 'vue-moment'
 import {App, plugin} from '@inertiajs/inertia-vue'
 import {InertiaProgress} from '@inertiajs/progress/src'
 import route from 'ziggy-js'
@@ -20,6 +21,7 @@ Vue.config.productionTip = false
 // Plugins
 Vue.use(plugin)
 Vue.use(PortalVue)
+Vue.use(MomentVue)
 Vue.use(VueMeta)
 
 // Mixins
@@ -37,10 +39,8 @@ Vue.filter('offset', Offset)
 InertiaProgress.init()
 
 // Handle routes
-const response = await
-fetch('/api/ziggy')
-const Ziggy = await
-response.json()
+const response = await fetch('/api/ziggy')
+const Ziggy = await response.json()
 
 Vue.mixin({
   methods: {

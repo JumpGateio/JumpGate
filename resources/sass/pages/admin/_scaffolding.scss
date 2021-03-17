@@ -30,6 +30,9 @@
         display:          flex;
         flex-direction:   row;
         height:           58px;
+        width:            100%;
+        position:         fixed;
+        z-index:          9999;
         @extend .section;
 
         .admin-title {
@@ -64,7 +67,7 @@
         grid-column: 2;
         overflow-x:  scroll;
         position:    relative;
-        height:      calc(100vh - 58px);
+        //height:      calc(100vh - 58px);
       }
     }
   }
