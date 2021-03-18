@@ -9,7 +9,8 @@
 ## Debugbar
 
 If you are using debugbar then things get even easier.  When this package sees that debugbar is registered in the container 
-then it starts collecting data about the view resolution for use in the debugbar.
+then it starts collecting data about the view resolution for use in the debugbar.  Registered is considered true when the 
+app is on the local environment and debugbar is bound to the app container.
 
 To make it start collecting, just add the collector to the debugbar config (`configs/debugbar.php`).
 
@@ -21,7 +22,8 @@ To make it start collecting, just add the collector to the debugbar config (`con
 ],
 ```
 
-Once this is set up you will see a new tab on the debugbar for "Auto Resolved View".
+Once this is set up you will see a new tab on the debugbar for "Auto Resolved View".  This will work for both inertia and 
+blade auto resolution.  It handles switching the found file between the two syntaxes.
 
 ![DebugBar Tab](https://raw.githubusercontent.com/JumpGateio/ViewResolution/master/docs/assets/images/debugbar_tab.png)
 

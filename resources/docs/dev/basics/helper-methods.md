@@ -2,19 +2,26 @@
 
 ---
 
-- [General](#general)
-- [API](#api)
-- [Math](#math)
-- [Numbers](#numbers)
-- [Strings](#strings)
-- [Time](#time)
-- [Collections](#collections)
+- [Core](#core)
+    - [Base](#base)
+    - [API](#api)
+    - [Math](#math)
+    - [Numbers](#numbers)
+    - [Strings](#strings)
+    - [Time](#time)
+- [Database](#database)
 - [Menu](#menu)
+- [Auto View Resolution](#viewss)
 
-<a name="general"></a>
-## General
+## Available Methods
 
-These are methods that have no other logical groupings.
+<a name="core"></a>
+## Core
+
+<a name="base"></a>
+## Base
+
+> {info} These are methods that are found in `helpers/base.php`.
 
 ### start_debug($name, $label)
 
@@ -42,7 +49,8 @@ of the property name.
 <a name="api"></a>
 ## API
 
-These helper methods are aimed at making guzzle calls easier to perform by handling the basic things for you.
+> {info} These helper methods are aimed at making guzzle calls easier to perform by handling the basic things for you.  They are 
+found in `helpers/api.php`.
 
 ### apiCall($call, $tap = null)
 
@@ -57,6 +65,8 @@ from the previous call apply.
 
 <a name="math"></a>
 ## Math
+
+> {info} These are all methods that will help you with common math needs.  They are found in `helpers/math.php`.
 
 ### percent($num_amount, $num_total)
 
@@ -73,12 +83,16 @@ This method will give you the number and it's ordinal suffix.  For example, pass
 <a name="numbers"></a>
 ## Numbers
 
+> {info} These are all methods that will help you with common number tasks.  They are found in `helpers/numbers.php`.
+
 ### toRomanNumeral($number)
 
 As the name suggests, this will convert your number into string roman numerals.
 
 <a name="strings"></a>
 ## Strings
+
+> {info} These are all methods that will help you with common string tasks.  They are found in `helpers/strings.php`.
 
 ### classify($value)
 
@@ -107,6 +121,8 @@ any error in a much more human readable way.
 
 <a name="time"></a>
 ## Time
+
+> {info} These are all methods that will help you with time conversions and ranges.  They are found in `helpers/time.php`.
 
 ### setTime($time)
 
@@ -143,8 +159,10 @@ it equates to.
 This is similar to the above, but it is more readable.  The output would be something like `2 days 10 hours 43 minutes 
 and 2 seconds`.
 
-<a name="collections"></a>
-## Collections
+<a name="database"></a>
+## Database
+
+> {info} All database helper methods are found in `helpers.php`.
 
 ### collector($value = null)
 
@@ -157,6 +175,26 @@ This is a helper method to create a new `\JumpGate\Database\Collections\SupportC
 <a name="menu"></a>
 ## Menu
 
+> {info} All menu helper methods are found in `helpers.php`.
+
 ### menu($menuName = null)
 
 This is a helper method for creating a new menu container or finding one that already exists with the `$menuName`.
+
+<a name="views"></a>
+## Auto View Resolution
+
+> {info} All view resolution helper methods are found in `helpers.php`.
+
+### viewResolver()
+
+This is a quick helper to get the ViewResolver out of the app container.
+
+### inertiaResolver()
+
+This is a quick helper to get the InertiaResolver out of the app container.
+
+### checkDebugbar()
+
+All this method does is check is the app is in local env and has the debugbar bound.  This is used throughout the package 
+to only take actions with the debug bar when it is necessary.

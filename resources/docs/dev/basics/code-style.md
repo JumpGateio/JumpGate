@@ -24,7 +24,7 @@ can add PSR-2 code sniffing to your IDE to make sure you are always consistent.
 
 - [PSR-1](https://www.php-fig.org/psr/psr-1/)
 - [PSR-12](https://www.php-fig.org/psr/psr-12/)
-- [Setting it up in your editor](/docs/{{version}}/extra-enforcing-psr-2)
+- [Setting it up in your editor](/docs/{{version}}/basics/enforcing-psr-2)
 
 <a name="additions-to-psr"></a>
 ## Additions to PSR

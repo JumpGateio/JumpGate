@@ -18,3 +18,6 @@ In order to have a user authenticate against one of your drivers, all you need t
 
 The route name will never change, just replace the string in the array with your provider as detailed in 
 `config/jumpgate/users.php`.  This will automatically send them off to be authenticated.
+
+> {info} If you only have 1 provider you can leave the provider out of the route.  The package will assign the only one 
+available by default.

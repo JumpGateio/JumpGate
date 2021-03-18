@@ -16,7 +16,7 @@ return [
     'docs' => [
         'route'      => '/docs',
         'path'       => '/resources/docs',
-        'landing'    => env('DOC_LANDING', 'site-example'),
+        'landing'    => env('DOC_LANDING', 'overview'),
         'middleware' => ['web'],
         // 'middleware' => ['web', 'role:admin|developer'],
     ],

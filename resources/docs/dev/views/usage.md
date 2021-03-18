@@ -6,17 +6,18 @@
 - [Set Up](#set-up)
 - [How It Works](#how-it-works)
 - [Layouts](#layouts)
-- [Views](#views)
+- [File Discovery](#file-discovery)
 
 <a name="introduction"></a>
 ## Introduction
 
-The view resolver package aims to add logic that finds a view location automatically for you based on the controller action 
-that was called. We use prefixes, the controller and the action to do this but allow other ways to override this at any 
-time.
+The view resolver package aims to add logic that finds a blade or Vue component location automatically for you based on 
+the controller action that was called. We use prefixes, the controller and the action to do this but allow other ways to 
+override this at any time.
 
-This also works for inertia by default.  The way you tell the controller blade vs vue components is to switch between the 
-`view()`(blade) and `inertia()`(vue) methods in your controller.
+This also works for inertia by default.  All GET methods should use the `response($data, $page)` method.  This method is 
+found in the BaseController.  If you want to switch, look at the 
+[switching between blade and vue doc](/docs/{{version}}/views/switching).
 
 > {info} It expects blade files to be in `/resources/views/` and inertia files to be in `/resources/js/Pages/`.
 
@@ -43,7 +44,8 @@ class Controller extends BaseController
 }
 ```
 
-Next, in any method on the controller call `return $this->view()` or `return $this->inertia()` to start the auto resolver.
+Next, in any method on the controller call `return $this->response()` to start the auto resolver.  By default this uses the 
+`$this->inertia()` method to load up inertia pages.
 
 ```php
 <?php
@@ -62,14 +64,14 @@ class Controller extends BaseController
 
     public function welcome()
     {
-        return $this->view();
+        return $this->response();
     }
 }
 ```
 
-> {primary} You do not actually have to use `return` for `view()`.  This method will work without it, but we prefer all 
-controller methods to actually return something.  It removes some of the 'magic'.  Also, the `inertia()` method requires 
-the return.
+> {primary} If you use the specific `view()` method you do not actually have to use `return`.  This method will work 
+without it, but we prefer all controller methods to actually return something.  It removes some of the 'magic'.  Also, 
+the `inertia()` and `response()` methods requires the return.
 
 <a name="how-it-works"></a>
 ## How It Works
@@ -101,8 +103,8 @@ protected $layoutOptions = [
 
 > {info} Layouts are only used for blade files and the `view()` method.
 
-<a name="views"></a>
-## Views
+<a name="file-discovery"></a>
+## File Discovery
 
 The view is determined by a number of factors.  The controller, the action and the prefix.  Assuming that no prefixes are
 used, the view will be controller.action.  (ex: `HomeController@index` would become `home.index`).
