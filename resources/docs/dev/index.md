@@ -19,6 +19,7 @@
         - [Debug Auto Views](/docs/{{version}}/views/debugging)
     - [Menu](/docs/{{version}}/menu)
         - [Quick Start](/docs/{{version}}/menu/quickstart)
+        - [Class Reference](/docs/{{version}}/menu/class-reference)
     - [Users](/docs/{{version}}/users)
         - [Installation](/docs/{{version}}/users/install)
         - [Social Set Up](/docs/{{version}}/users/social-setup)
