@@ -2,9 +2,23 @@
 
 ---
 
+- [With JumpGate](#with-jumpgate)
 - [Socialite](#socialite)
 - [Database](#database)
 - [Models](#models)
+
+<a name="with-jumpgate"></a>
+## With JumpGate
+
+If you are using the JumpGate repo, setting up social users is super easy.  When you run the setup command, just change 
+it to the following.
+
+```bash
+php artisan jumpgate:setup --social-users --force
+```
+
+The `--social-users` flag will install the JumpGate/Users package and socialite for you.  You will still need to set up the 
+`enable_social` key in `config/jumpgate/users.php` to true in order to turn it on.
 
 <a name="socialite"></a>
 ## Socialite
