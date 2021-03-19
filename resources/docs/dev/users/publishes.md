@@ -6,6 +6,7 @@
 - [Commands](#commands)
 - [Http](#http)
 - [Models](#models)
+- [Providers](#providers)
 - [Services](#services)
 - [Configs](#configs)
 - [Factories](#factories)
@@ -52,6 +53,13 @@ We automatically publish a `User.php` model to `app/Models` for you.  This exten
 the `Illuminate\Notifications\Notifiable` and `JumpGate\Users\Traits\HasSocials` traits.  Notifiable works along side the 
 notification classes we add for you and the ones you add.  The HasSocials trait adds the ability to interact with the 
 `user_socials` table easily.
+
+<a name="providers"></a>
+## Providers
+
+The only provider we publish is a copy of the EventServiceProvider.  Our version of this only adds the authentication events 
+to the `$listen` array and we also include the 1 listener we use.  These allow you to tap into the autnentication process 
+and modify it for your needs.
 
 <a name="services"></a>
 ## Services

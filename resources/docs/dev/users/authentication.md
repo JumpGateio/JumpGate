@@ -6,6 +6,7 @@
 - [Controllers and Services](#controllers-services)
 - [Events](#events)
 - [Token Management](#token-management)
+- [Social Security](#social-security)
 
 <a name="introduction"></a>
 ## Introduction
