@@ -3,8 +3,8 @@
 ---
 
 - [Basics](#basics)
-- [Turning It Off](#turning-it-off)
 - [Helper Methods](#helper-methods)
+    - [response()](#response)
     - [inertia()](#inertia)
     - [render()](#render)
     - [ajaxResponse()](#ajax-response)
@@ -21,33 +21,31 @@ and you can create a page that loads and operates with shocking speed.
 - [Inertia Javascript Repo](https://github.com/inertiajs/inertia)
 - [Inertia Laravel Repo](https://github.com/inertiajs/inertia-laravel)
 
-<a name="turning-it-off"></a>
-## Turning It Off
-By default, this site will use inertia by making use of the render helper methods shown below.  To not use inertia you 
-need to extend `BaseController` instead of `InertiaController` and then simply change the return of your controller 
-methods.
-
-*From:*
-```php
-return $this->inertia($data);
-```
-
-*To:*
-```php
-$this->setViewData($data);
-return $this->view();
-```
-
-These helper methods handle everything.  The `inertia()` helper is just a wrapper for inertia's render method coupled with 
-Jumpgate view resolution's auto discovery.  When returning `view()` it triggers JumpGate's auto view resolution to use blade 
-files like normal laravel apps.
-
-Any POST methods you have will need to switch away from the inertia helpers and use standard ways of handling them.
-
 <a name="helper-methods"></a>
 ## Helper Methods
 In order to handle the boilerplate that is needed for the server side of inertia, we have created helper methods in the 
 BaseController.  These are designed to help you with common GET and POST requests.
+
+<a name="response"></a>
+### `response($data = [], $page = null, $layout = null)`
+This helper method is unique.  It is stored in the `BaseController` in the jumpgate app.  It is basically the method you 
+should use for all of your GET responses.  The reason is that this one method can be easily switched to using blade if 
+you want or need to switch.
+
+For most needs you can just do:
+
+```php
+return $this->response(compact('loggedIn'));
+```
+
+If your vue component is not at the expect [auto resolved locations](/docs/{{version}}/views/usage) you can tell it exactly 
+where the page is:
+
+```php
+return $this->response(compact('loggedIn'), 'Custom/Page);
+```
+
+The last property for layout is only used for the blade versions.
 
 <a name="inertia"></a>
 ### `inertia($data = [], $page = null)`

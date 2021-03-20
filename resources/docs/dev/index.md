@@ -6,6 +6,7 @@
     - [Helper Methods](/docs/{{version}}/basics/helper-methods)
 - ## Inertia
     - [InertiaJs](/docs/{{version}}/inertia/inertia)
+    - [Built-Ins](/docs/{{version}}/inertia/built-ins)
     - [Blade/Inertia](/docs/{{version}}/inertia/switching)
 - ## JumpGate Packages
     - [Core](/docs/{{version}}/core/overview)
