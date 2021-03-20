@@ -5,7 +5,7 @@
     - [Site Services](/docs/{{version}}/basics/site-services)
     - [Helper Methods](/docs/{{version}}/basics/helper-methods)
 - ## Inertia
-    - [InertiaJs](/docs/{{version}}/inertia/inertia)
+    - [Basics](/docs/{{version}}/inertia/basics)
     - [Built-Ins](/docs/{{version}}/inertia/built-ins)
     - [Blade/Inertia](/docs/{{version}}/inertia/switching)
 - ## JumpGate Packages

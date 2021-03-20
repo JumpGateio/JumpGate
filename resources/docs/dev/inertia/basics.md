@@ -1,4 +1,4 @@
-# InertiaJs
+# InertiaJs Basics
 
 ---
 
