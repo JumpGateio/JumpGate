@@ -1,0 +1,57 @@
+.admin-body {
+  .user-profile {
+    display:               grid;
+    grid-template-columns: minmax(50px, auto) minmax(50px, auto);
+    grid-template-rows:    minmax(50px, auto) minmax(50px, auto);
+    grid-column-gap:       1rem;
+    grid-row-gap:          1rem;
+
+    > div {
+      .title {
+        background-color: $gray-700;
+        color:            $gray-200;
+        padding:          .5rem;
+        border-bottom:    1px solid $black;
+      }
+
+      .user-data {
+        padding: 1rem;
+      }
+    }
+
+    .details {
+      grid-row:         1;
+      grid-column:      1;
+      background-color: $gray-400;
+    }
+
+    .tokens {
+      grid-row:         1;
+      grid-column:      2;
+      background-color: $gray-200;
+
+      .user-data {
+        padding: 0;
+
+        .table {
+          .token {
+            max-width: 200px;
+            width:     200px;
+          }
+        }
+      }
+    }
+
+    .timestamps {
+      grid-row:         2;
+      grid-column:      2;
+      background-color: $gray-200;
+    }
+
+    .socials {
+      grid-row:         2;
+      grid-column:      1;
+      background-color: $gray-400;
+    }
+  }
+}

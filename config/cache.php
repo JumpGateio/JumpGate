@@ -37,13 +37,15 @@ return [
         ],
 
         'array' => [
-            'driver' => 'array',
+            'driver'    => 'array',
+            'serialize' => false,
         ],
 
         'database' => [
-            'driver'     => 'database',
-            'table'      => 'cache',
-            'connection' => null,
+            'driver'          => 'database',
+            'table'           => 'cache',
+            'connection'      => null,
+            'lock_connection' => null,
         ],
 
         'file' => [
@@ -71,8 +73,9 @@ return [
         ],
 
         'redis' => [
-            'driver'     => 'redis',
-            'connection' => 'cache',
+            'driver'          => 'redis',
+            'connection'      => 'cache',
+            'lock_connection' => 'default',
         ],
 
         'dynamodb' => [
@@ -99,7 +102,7 @@ return [
 
     'prefix' => env(
         'CACHE_PREFIX',
-        Str::slug(env('APP_NAME', 'laravel'), '_').'_cache'
+        Str::slug(env('APP_NAME', 'laravel'), '_') . '_cache'
     ),
 
 ];

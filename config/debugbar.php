@@ -16,7 +16,8 @@ return [
 
     'enabled' => env('DEBUGBAR_ENABLED', null),
     'except'  => [
-        //
+        'telescope*',
+        'horizon*',
     ],
 
     /*
@@ -36,7 +37,9 @@ return [
         'driver'     => 'file', // redis, file, pdo, custom
         'path'       => storage_path('debugbar'), // For file driver
         'connection' => null,   // Leave null for default connection (Redis/PDO)
-        'provider'   => '' // Instance of StorageInterface for custom driver
+        'provider'   => '', // Instance of StorageInterface for custom driver
+        'hostname'   => '127.0.0.1', // Hostname to use with the "socket" driver
+        'port'       => 2304, // Port to use with the "socket" driver
     ],
 
     /*
@@ -112,7 +115,7 @@ return [
         'auto_views'      => true,  // Auto resolved view data
         'route'           => true,  // Current route information
         'auth'            => false, // Display Laravel authentication status
-        'gate'            => false, // Display Laravel Gate checks
+        'gate'            => true, // Display Laravel Gate checks
         'session'         => true,  // Display session data
         'symfony_request' => true,  // Only one can be enabled..
         'mail'            => true,  // Catch mail messages
@@ -123,6 +126,8 @@ return [
         'files'           => false, // Show the included files
         'config'          => false, // Display config settings
         'cache'           => false, // Display cache events
+        'models'          => true,  // Display models
+        'livewire'        => true,  // Display Livewire (when available)
     ],
 
     /*
@@ -139,17 +144,16 @@ return [
             'show_name' => true,   // Also show the users name/email in the debugbar
         ],
         'db'    => [
-            'with_params' => true,   // Render SQL with the parameters substituted
-            'backtrace'   => true,   // Use a backtrace to find the origin of the query in your files.
-            'timeline'    => false,  // Add the queries to the timeline
-            'explain'     => [
-                // Show EXPLAIN output on queries
-                'explain' => [
-                    'enabled' => false,
-                    'types'   => ['SELECT'],     // ['SELECT', 'INSERT', 'UPDATE', 'DELETE']; for MySQL 5.6.3+
-                ],
-                'hints'   => true,    // Show hints for common mistakes
+            'with_params'             => true,   // Render SQL with the parameters substituted
+            'backtrace'               => true,   // Use a backtrace to find the origin of the query in your files.
+            'backtrace_exclude_paths' => [],   // Paths to exclude from backtrace. (in addition to defaults)
+            'timeline'                => false,  // Add the queries to the timeline
+            'explain'                 => [
+                'enabled' => false,
+                'types'   => ['SELECT'],     // Deprecated setting, is always only SELECT
             ],
+            'hints'                   => false,    // Show hints for common mistakes
+            'show_copy'               => false,    // Show copy button next to the query
         ],
         'mail'  => [
             'full_log' => false,
@@ -203,4 +207,13 @@ return [
      */
     'route_domain' => null,
 
+    /*
+     |--------------------------------------------------------------------------
+     | DebugBar theme
+     |--------------------------------------------------------------------------
+     |
+     | Switches between light and dark theme. If set to auto it will respect system preferences
+     | Possible values: auto, light, dark
+     */
+    'theme' => 'dark',
 ];

@@ -13,12 +13,8 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(
-            [
-                'layouts.default',
-            ],
-            'App\Http\Composers\Menu'
-        );
+        view()->composer(['layouts.default'], 'App\Http\Composers\Menu');
+        view()->composer(['layouts.partials.sidebar-menu'], 'App\Http\Composers\AdminSidebar');
     }
 
     /**

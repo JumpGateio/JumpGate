@@ -1,0 +1,68 @@
+.admin-search {
+  padding: 1rem;
+  width:   100%;
+  display: inline-flex;
+
+  > div {
+    flex: 1;
+  }
+
+  .input-group {
+    .input-group-prepend {
+      .dropdown {
+        border-top-right-radius:    0px;
+        border-bottom-right-radius: 0px;
+
+        .btn {
+          border-top-right-radius:    0px;
+          border-bottom-right-radius: 0px;
+        }
+      }
+
+      .screen {
+        position:   fixed;
+        inset:      0px;
+        z-index:    99998;
+        background: $black;
+        opacity:    0.2;
+        top:        0;
+        right:      0;
+        left:       0;
+        bottom:     0;
+      }
+
+      .dropdown-menu {
+        z-index:     99999;
+        margin-left: -2px;
+        padding:     .5rem;
+        max-width:   300px;
+
+        > div {
+          max-width: 300px;
+        }
+
+        label {
+          display: block;
+          color:   $gray-700;
+        }
+
+        input, select {
+          @extend .form-control;
+        }
+      }
+    }
+  }
+
+  .search-clear {
+    position: relative;
+    top:      5px;
+    right:    55px;
+    height:   28px;
+    z-index:  9998;
+  }
+
+  .btn-create {
+    flex-shrink: 1;
+    line-height: 2;
+  }
+}

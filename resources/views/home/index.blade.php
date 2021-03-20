@@ -64,7 +64,7 @@
 <div class="flex-center position-ref full-height">
   <div class="content">
     <div class="title m-b-md">
-      Laravel <span class="numbers">6.0</span>
+      Laravel <span class="numbers">8.0</span>
       <div class="sub-title">
         with JumpGate
       </div>
@@ -93,6 +93,7 @@
       <a class="lead text-black">FrontEnd: </a>
       <a target="_blank" href="https://getbootstrap.com/docs/4.1/getting-started/introduction/">Bootstrap 4</a>
       <a target="_blank" href="http://vuejs.org/v2/guide/">VueJs 2</a>
+      <a target="_blank" href="https://inertiajs.com/">InertiaJs</a>
     </div>
   </div>
 </div>

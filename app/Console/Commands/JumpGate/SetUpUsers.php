@@ -67,7 +67,7 @@ class SetUpUsers extends Command
 
         $packages->each(function ($package) {
             $this->comment('Installing ' . $package);
-            $process = new Process('composer require ' . $package);
+            $process = Process::fromShellCommandline('COMPOSER_MEMORY_LIMIT=-1 composer require ' . $package);
             $process->setTimeout(150);
             $process->run(function ($type, $buffer) {
                 echo $buffer;
@@ -92,7 +92,7 @@ class SetUpUsers extends Command
         }
 
         return $packages->filter(function ($package) {
-            $process = new Process('composer show ' . $package);
+            $process = Process::fromShellCommandline('COMPOSER_MEMORY_LIMIT=-1 composer show ' . $package);
             $process->run();
 
             return ! $process->isSuccessful();
@@ -108,7 +108,7 @@ class SetUpUsers extends Command
         $forced = $this->option('force');
 
         // On initial run, it may not find the user provider without this.
-        $process = new Process('composer dump-autoload');
+        $process = Process::fromShellCommandline('COMPOSER_MEMORY_LIMIT=-1 composer dumpauto');
         $process->run();
 
         $this->call('vendor:publish', [

@@ -1,0 +1,60 @@
+td.image-bar {
+  position: relative;
+  width:    165px;
+
+  img {
+    max-width: 145px;
+    position:  absolute;
+    top:       -14px;
+    clip:      rect(20px, 145px, 61px, 0px);
+  }
+}
+
+tr.invalid {
+  background: repeating-linear-gradient(
+                  45deg,
+                  rgba(0, 0, 0, .2),
+                  rgba(0, 0, 0, .2) 10px,
+                  rgba(188, 171, 42, .2) 10px,
+                  rgba(188, 171, 42, .2) 20px
+              );
+}
+
+.admin-page {
+  .table-admin {
+    margin:        1rem;
+    min-height:    calc(100vh - 239px);
+    width:         calc(100vw - calc(300px + 3rem));
+    border-radius: .25rem;
+    border:        1px solid $gray-300;
+
+    .table {
+      border-spacing: 0;
+      margin-bottom:  0;
+
+      thead, thead tr {
+        border-top-left-radius:  .25rem;
+        border-top-right-radius: .25rem;
+
+        th:first-child {
+          border-top-left-radius: .25rem;
+        }
+        th:last-child {
+          border-top-right-radius: .25rem;
+        }
+      }
+
+      tbody, tbody tr:last-child {
+        border-bottom-left-radius:  .25rem;
+        border-bottom-right-radius: .25rem;
+
+        td:first-child {
+          border-bottom-left-radius: .25rem;
+        }
+        td:last-child {
+          border-bottom-right-radius: .25rem;
+        }
+      }
+    }
+  }
+}

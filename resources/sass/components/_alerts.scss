@@ -1,0 +1,79 @@
+$primaryBg: lighten($primary, 25%);
+$primaryBorder: darken($primary, 10%);
+$primaryColor: darken($primary, 20%);
+
+$secondaryBg: lighten($secondary, 25%);
+$secondaryBorder: darken($secondary, 10%);
+$secondaryColor: darken($secondary, 20%);
+
+$successBg: lighten($success, 25%);
+$successBorder: darken($success, 10%);
+$successColor: darken($success, 20%);
+
+$dangerBg: lighten($danger, 25%);
+$dangerBorder: darken($danger, 10%);
+$dangerColor: darken($danger, 20%);
+
+$warningBg: lighten($warning, 25%);
+$warningBorder: darken($warning, 10%);
+$warningColor: darken($warning, 20%);
+
+$infoBg: lighten($info, 25%);
+$infoBorder: darken($info, 10%);
+$infoColor: darken($info, 10%);
+
+$lightBg: $white;
+$lightBorder: $gray-600;
+$lightColor: $gray-700;
+
+$darkBg: $gray-700;
+$darkBorder: $black;
+$darkColor: $white;
+
+.alert {
+  font-size:      1rem;
+  letter-spacing: 1px;
+  border-width:   2px;
+
+  a {
+    color:          $white !important;
+    font-size:      1rem;
+    letter-spacing: 4px;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &.alert-primary {
+    @include alert-variant($primaryBg, $primaryBorder, $primaryColor);
+  }
+
+  &.alert-secondary {
+    @include alert-variant($secondaryBg, $secondaryBorder, $secondaryColor);
+  }
+
+  &.alert-success {
+    @include alert-variant($successBg, $successBorder, $successColor);
+  }
+
+  &.alert-danger {
+    @include alert-variant($dangerBg, $dangerBorder, $dangerColor);
+  }
+
+  &.alert-warning {
+    @include alert-variant($warningBg, $warningBorder, $warningColor);
+  }
+
+  &.alert-info {
+    @include alert-variant($infoBg, $infoBorder, $infoColor);
+  }
+
+  &.alert-light {
+    @include alert-variant($lightBg, $lightBorder, $lightColor);
+  }
+
+  &.alert-dark {
+    @include alert-variant($darkBg, $darkBorder, $darkColor);
+  }
+}

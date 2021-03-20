@@ -1,0 +1,74 @@
+.admin-page {
+  background-color: $body-bg;
+  color:            $gray-700;
+
+  .container-fluid {
+    padding: 0;
+
+    .form-control {
+      color:            $input-color;
+      background-color: $input-bg;
+      border:           $input-border-width solid $input-border-color;
+      @include form-control-focus();
+    }
+
+    #content {
+      display:               grid;
+      grid-template-columns: 300px auto;
+      grid-template-rows:    58px auto;
+      overflow-x:            hidden;
+
+      .lead, label, h1, h2, h3, h4, h5, h6 {
+        color: $gray-700;
+      }
+
+      .admin-header {
+        grid-row:         1;
+        grid-column:      1 / span 2;
+        color:            $white;
+        background-color: $gray-darker;
+        display:          flex;
+        flex-direction:   row;
+        height:           58px;
+        width:            100%;
+        position:         fixed;
+        z-index:          9999;
+        @extend .section;
+
+        .admin-title {
+          flex: 1;
+        }
+
+        .search {
+          text-align:   right;
+          width:        300px;
+          margin-right: 2rem;
+          margin-top:   -.25rem;
+          position:     relative;
+
+          .search-clear {
+            color:    $gray-600;
+            position: absolute;
+            top:      6px;
+            right:    6px;
+          }
+        }
+      }
+
+      .nav-side-menu {
+        grid-row:       2;
+        grid-column:    1;
+        margin-top:     58px;
+        padding-bottom: 78px;
+      }
+
+      .admin-body {
+        grid-row:    2;
+        grid-column: 2;
+        overflow-x:  scroll;
+        position:    relative;
+        //height:      calc(100vh - 58px);
+      }
+    }
+  }
+}
