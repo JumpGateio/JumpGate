@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Http\Collectors\InertiaCollector;
+use App\Http\Composers\AdminSidebar;
+use App\Http\Composers\Menu;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -53,6 +55,9 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
+        Menu::getMenus();
+        AdminSideBar::getMenus();
+
         return array_merge(parent::share($request), [
             'flash'     => [
                 'success' => session()->get('success'),
