@@ -32,6 +32,14 @@ abstract class BaseController extends CoreBaseController
      */
     public function response($data = [], $page = null, $layout = null)
     {
+        $menus = [
+            'leftMenu'  => \Menu::render('leftMenu')->links,
+            'rightMenu' => \Menu::render('rightMenu')->links,
+            'adminMenu' => \Menu::render('adminMenu')->links,
+        ];
+
+        Inertia::share($menus);
+
         return $this->inertia($data, $page);
     }
 }
