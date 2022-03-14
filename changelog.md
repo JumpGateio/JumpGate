@@ -13,6 +13,8 @@
   - When it comes back:
     - Add back to `composer.json`.
     - Uncomment its entry in `app/Http/Composer/Menu.php`.
+    - Uncomment the setup code in `app/Console/Commands/JumpGate/SetUp.php` in the `handleAssets()` method.
 - Upgraded npm to 16.14.0
   - `nvm install 16.14.0`
   - `nvm use`
+  - Run `npx browserslist@latest --update-db` to remove warnings during `npm` commands.

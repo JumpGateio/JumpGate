@@ -91,8 +91,8 @@ class SetUp extends Command
      */
     private function handleAssets()
     {
-        $this->comment('Publishing docs...');
-        $this->call('vendor:publish', ['--tag' => 'larecipe_assets', '--force' => true]);
+        // $this->comment('Publishing docs...');
+        // $this->call('vendor:publish', ['--tag' => 'larecipe_assets', '--force' => true]);
 
         $this->comment('Running yarn...');
 
@@ -110,8 +110,8 @@ class SetUp extends Command
             echo $buffer;
         });
 
-        $this->comment('Running laravel docs...');
-        $this->call('larecipe:install');
+        // $this->comment('Running laravel docs...');
+        // $this->call('larecipe:install');
     }
 
     /**
