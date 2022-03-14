@@ -33,11 +33,11 @@ class Menu
     {
         $leftMenu = \Menu::getMenu('leftMenu');
 
-        $leftMenu->link('docs', function (Link $link) {
-            $link->name    = 'Documentation';
-            $link->url     = route('larecipe.index');
-            $link->inertia = false;
-        });
+        // $leftMenu->link('docs', function (Link $link) {
+        //     $link->name    = 'Documentation';
+        //     $link->url     = route('larecipe.index');
+        //     $link->inertia = false;
+        // });
 
         return $leftMenu;
     }

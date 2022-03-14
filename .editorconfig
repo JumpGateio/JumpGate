@@ -14,11 +14,11 @@ insert_final_newline = true
 spaces_around_operators = true
 
 # 4-spaced files
-[**.{js,json,php,xml,yml,md}]
+[**.{js,json,php,xml,md}]
 indent_size = 4
 
 # 2-spaced files
-[**.{css,less,sass,html,htm,xhtml,blade.php,scss}]
+[**.{css,less,sass,html,htm,xhtml,blade.php,scss,yml,yaml}]
 indent_size = 2
 
 [{node_modules,vendor,bower_components,public/assets}/**]

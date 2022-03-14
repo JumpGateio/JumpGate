@@ -10,6 +10,7 @@
 /vendor
 /.idea
 /.vagrant
+/.vscode
 .env
 .env.backup
 .phpunit.result.cache

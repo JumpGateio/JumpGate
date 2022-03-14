@@ -22,16 +22,14 @@ php artisan jumpgate:setup
 At this point, your site will display the JumpGate home page using bootstrap 4.  From here on out, you will customize as 
 you normally would.
 
-> You can run `php artisan jupmgate:css` to switch the front end to bootstrap 3 or uikit.
-
 1. Set up your database in the `.env` file
-1. Run `php artisan jumpgate:telescope`.
+1. Run `php artisan jumpgate:telescope`. (Run this if you want telescope monitoring on the site)
 1. Run `php artisan migrate`.
 
 <a name="users"></a>
 ## Users
 
-If your site will need users you should modify the steps listed above.
+If your site needs users you should modify the steps listed above.
 
 ```
 cd <project dir>
@@ -39,7 +37,8 @@ git clone git@github.com:JumpGateio/JumpGate.git ./
 composer install
 ```
 
-Now you get to chose.  If you know you want social auth, you can use `--social-users` otherwise you can just use `--users`.
+Now you get to choose.  If you know you want social auth, you can use `--social-users` otherwise you can just use
+`--users`.
 
 ```
 php artisan jumpgate:setup --users --force

@@ -2,7 +2,7 @@
   <div class="flex-center position-ref full-height" id="home">
     <div class="content">
       <div class="title m-b-md">
-        Laravel <span class="numbers">8.0</span>
+        Laravel <span class="numbers">9.0</span>
         <div class="sub-title">
           with JumpGate
         </div>
@@ -10,7 +10,7 @@
 
       <div class="links">
         <a class="lead text-black">Laravel: </a>
-        <a target="_blank" href="https://laravel.com/docs/6.0">Documentation</a>
+        <a target="_blank" href="https://laravel.com/docs/9.x">Documentation</a>
         <a target="_blank" href="https://laravel-news.com">News</a>
         <a target="_blank" href="https://laracasts.com">Laracasts</a>
         <a target="_blank" href="https://github.com/laravel/laravel">GitHub</a>
