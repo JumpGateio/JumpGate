@@ -14,9 +14,11 @@
         "inertiajs/inertia-laravel": "^0.5.4",
         "jumpgate/core": "~4.0",
         "jumpgate/menu": "~2.0",
+        "jumpgate/users": "dev-master",
         "jumpgate/view-resolution": "~5.0",
         "laravel/framework": "^9.2",
         "laravel/helpers": "^1.4",
+        "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",
         "laravelcollective/html": "^6.3",
         "tightenco/ziggy": "^1.4.3"

@@ -29,6 +29,25 @@ class AdminSidebar
     {
         $menu = \Menu::getMenu('adminMenu');
 
+        $menu->link('admin.dashboard', function (Link $link) {
+            $link->name = 'Admin Dashboard';
+            $link->url  = route('admin.index');
+        });
+        $menu->link('admin.artisan', function (Link $link) {
+            $link->name = 'Artisan';
+            $link->url  = route('admin.artisan.index');
+        });
+        $menu->dropDown('admin.users', 'Users', function (DropDown $dropDown) {
+            $dropDown->link('admin.users.index', function (Link $link) {
+                $link->name = 'List Users';
+                $link->url  = route('admin.users.index');
+            });
+            $dropDown->link('admin.users.status.index', function (Link $link) {
+                $link->name = 'List Statuses';
+                $link->url  = route('admin.users.status.index');
+            });
+        });
+
         return $menu;
     }
 }

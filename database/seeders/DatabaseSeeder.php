@@ -7,6 +7,10 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    protected array $seeders = [
+        //
+    ];
+
     /**
      * Run the database seeds.
      *
@@ -14,6 +18,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->runSeeders();
     }
 }

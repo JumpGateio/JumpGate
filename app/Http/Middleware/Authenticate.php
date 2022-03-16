@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
-use Illuminate\Support\Facades\Route;
 
 class Authenticate extends Middleware
 {
@@ -11,13 +10,14 @@ class Authenticate extends Middleware
      * Get the path the user should be redirected to when they are not authenticated.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return string|null
+     * @return string
      */
     protected function redirectTo($request)
     {
+        $route = config('jumpgate.users.default_route');
+
         if (! $request->expectsJson()) {
-            $route = Route::has('auth.login') ? 'auth.login' : 'auth.social.login';
-            return route($route);
+            return route($route['name'], $route['options']);
         }
     }
 }
