@@ -2,7 +2,7 @@
 
 namespace App\Services\Admin\Http\Controllers;
 
-use App\Models\User;
+use App\Services\Users\Models\User;
 use Illuminate\Support\Str;
 
 class Index extends Base

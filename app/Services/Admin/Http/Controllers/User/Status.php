@@ -4,12 +4,12 @@ namespace App\Services\Admin\Http\Controllers\User;
 
 use App\Services\Admin\Http\Controllers\Base;
 use Illuminate\Support\Facades\Validator;
-use JumpGate\Users\Models\User\Status as StatusModel;
+use App\Services\Users\Models\User\Status as StatusModel;
 
 class Status extends Base
 {
     /**
-     * @var \JumpGate\Users\Models\User\Status
+     * @var \App\Services\Users\Models\User\Status
      */
     public $statuses;
 

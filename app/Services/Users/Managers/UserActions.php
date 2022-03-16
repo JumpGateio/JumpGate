@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Users\Services;
+namespace App\Services\Users\Managers;
 
 use App\Services\Users\Models\User;
 use JumpGate\Core\Services\Response;

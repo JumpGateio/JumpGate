@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Users\Services;
+namespace App\Services\Users\Managers;
 
 use App\Services\Users\Events\UserLoggedIn;
 use App\Services\Users\Events\UserLoggingIn;

@@ -2,11 +2,11 @@
 
 namespace App\Services\Admin\Http\Routes\User;
 
-use App\Models\User;
+use App\Services\Users\Models\User;
 use JumpGate\Core\Contracts\Routes;
 use JumpGate\Core\Http\Routes\BaseRoute;
 use Illuminate\Routing\Router;
-use JumpGate\Users\Models\User\Status as StatusModel;
+use App\Services\Users\Models\User\Status as StatusModel;
 
 class Status extends BaseRoute implements Routes
 {

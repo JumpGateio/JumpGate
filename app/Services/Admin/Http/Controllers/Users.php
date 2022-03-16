@@ -4,17 +4,14 @@ namespace App\Services\Admin\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use JumpGate\Users\Services\UserActions;
-use App\Models\User;
-use JumpGate\Users\Models\Role;
-use JumpGate\Users\Models\User\Status;
+use App\Services\Users\Managers\UserActions;
+use App\Services\Users\Models\Role;
+use App\Services\Users\Models\User;
+use App\Services\Users\Models\User\Status;
 
 class Users extends Base
 {
-    /**
-     * @var \App\Models\User
-     */
-    public $users;
+    public User $users;
 
     public function __construct(User $users)
     {
@@ -23,7 +20,7 @@ class Users extends Base
         $this->users = $users;
     }
 
-    public function index()
+    public function index(): \Inertia\Response
     {
         $title   = 'User List';
         $filters = request()->all('search', 'trashed');
@@ -47,7 +44,7 @@ class Users extends Base
         return $this->response(compact('title', 'filters', 'users'));
     }
 
-    public function show(User $user)
+    public function show(User $user): \Inertia\Response
     {
         $title = $user->details->display_name ?? 'User Details';
         $user->load('tokens');
@@ -61,7 +58,7 @@ class Users extends Base
         return $this->response(compact('title', 'user'), 'Admin/Users/Show');
     }
 
-    public function create()
+    public function create(): \Inertia\Response
     {
         $title       = 'Create a new user';
         $roleOptions = Role::orderBy('name', 'asc')->get()->pluck('name', 'id');
@@ -89,7 +86,7 @@ class Users extends Base
         );
     }
 
-    public function store()
+    public function store(): \Illuminate\Http\RedirectResponse
     {
         $email        = request('email');
         $roles        = request('roles');
@@ -117,7 +114,7 @@ class Users extends Base
             ->with('success', 'User added!');
     }
 
-    public function edit(User $user)
+    public function edit(User $user): \Inertia\Response
     {
         $statusOptions = Status::orderByNameAsc()->get()->pluck('label', 'id');
         $roleOptions   = Role::orderBy('name', 'asc')->get()->pluck('name', 'id');
@@ -130,7 +127,7 @@ class Users extends Base
         );
     }
 
-    public function update(User $user)
+    public function update(User $user): \Illuminate\Http\RedirectResponse
     {
         $user->update(request('user'));
         $user->setStatus(request('status_id'));
@@ -143,24 +140,16 @@ class Users extends Base
             ->with('message', 'User updated!');
     }
 
-    public function confirm($id, $status, $action = null)
+    public function confirm($id, $status, $action = null): \Inertia\Response
     {
         $user = $this->users->withTrashed()->find($id);
 
-        switch ($status) {
-            case 'resendInvite':
-                $event = 'resend an invite to';
-                break;
-            case 'revokeInvite':
-                $event = 'revoke the invite to';
-                break;
-            case 'resetPassword':
-                $event = 'reset the password of ';
-                break;
-            default:
-                $event = $status;
-                break;
-        }
+        $event = match ($status) {
+            'resendInvite'  => 'resend an invite to',
+            'revokeInvite'  => 'revoke the invite to',
+            'resetPassword' => 'reset the password of ',
+            default         => $status,
+        };
 
         if (! is_null($action) && (int)$action === 0) {
             $event = 'un-' . $event;
@@ -173,7 +162,7 @@ class Users extends Base
         return $this->response(compact('message', 'proceed', 'cancel'), 'Admin/Confirm');
     }
 
-    public function confirmed($id, $status, $action = null)
+    public function confirmed($id, $status, $action = null): \Illuminate\Http\RedirectResponse
     {
         $user = $this->users->withTrashed()->find($id);
 

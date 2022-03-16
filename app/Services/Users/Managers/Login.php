@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Users\Services;
+namespace App\Services\Users\Managers;
 
 use JumpGate\Core\Services\Response;
 use App\Services\Users\Events\UserFailedLogin;

@@ -44,7 +44,7 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
 
-            $roles = \JumpGate\Users\Models\Role::all();
+            $roles = \App\Services\Users\Models\Role::all();
 
             foreach ($lockedAreas as $lockedArea) {
                 // Make sure we get the full role for validation.

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Users\Services;
+namespace App\Services\Users\Managers;
 
 use Illuminate\Support\Str;
 use App\Services\Users\Events\UserCreated;

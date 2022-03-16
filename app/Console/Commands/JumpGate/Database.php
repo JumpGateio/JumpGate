@@ -117,6 +117,7 @@ class Database extends Command
         $process = Process::fromShellCommandline('COMPOSER_MEMORY_LIMIT=-1 composer dumpauto');
         $process->run();
 
+        // TODO: Provider has been removed.
         $this->call('vendor:publish', [
             '--provider' => 'JumpGate\Users\Providers\UsersServiceProvider',
             '--force'    => $forced,
@@ -145,6 +146,7 @@ class Database extends Command
         $this->info('Re-publishing users files without force...');
 
         // Run publish in case social features were turned on.
+        // TODO: Provider has been removed.
         $this->call('vendor:publish', [
             '--provider' => 'JumpGate\Users\Providers\UsersServiceProvider',
         ]);

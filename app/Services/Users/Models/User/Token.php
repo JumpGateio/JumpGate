@@ -15,13 +15,13 @@ use Illuminate\Database\Query\Builder;
  *
  * @package App\Services\Users\Models\User
  *
- * @property int              $user_id
- * @property string           $type
- * @property string           $token
- * @property \Carbon\Carbon   $created_at
- * @property \Carbon\Carbon   $updated_at
- * @property \Carbon\Carbon   $expires_at
- * @property \App\Models\User $user
+ * @property int            $user_id
+ * @property string         $type
+ * @property string         $token
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $expires_at
+ * @property User           $user
  */
 class Token extends BaseModel
 {

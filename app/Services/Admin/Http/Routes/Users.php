@@ -2,7 +2,7 @@
 
 namespace App\Services\Admin\Http\Routes;
 
-use App\Models\User;
+use App\Services\Users\Models\User;
 use JumpGate\Core\Contracts\Routes;
 use JumpGate\Core\Http\Routes\BaseRoute;
 use Illuminate\Routing\Router;
