@@ -30,7 +30,7 @@
                  class="form-control form-control-sm">
           <button type="button" class="btn btn-block btn-xs btn-outline-blue" data-toggle="button"
                   v-if="argument.type == 'flag'" :class="argument.value ? 'active' : null"
-                  v-model="selectedCommand.passables[index].value" @click="toggleFlag(index)">
+                  @click="toggleFlag(index)">
             Add Flag
           </button>
         </div>

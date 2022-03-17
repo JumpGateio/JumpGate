@@ -73,7 +73,7 @@
     data()
     {
       return {
-        form: this.$inertia.form({
+        form:  this.$inertia.form({
           user:                  {
             email: this.user.email,
           },
@@ -85,8 +85,8 @@
           },
           status_id:             this.user.status_id,
           failed_login_attempts: this.user.failed_login_attempts,
-          roles:                 _.map(this.user.roles, 'id'),
-        })
+          roles:                 this.user.role_ids,
+        }),
       }
     },
 

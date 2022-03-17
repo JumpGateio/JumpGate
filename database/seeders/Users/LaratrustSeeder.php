@@ -2,6 +2,8 @@
 
 namespace Database\Seeders\Users;
 
+use App\Services\Users\Models\Permission;
+use App\Services\Users\Models\Role;
 use Database\Seeders\Base;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +26,7 @@ class LaratrustSeeder extends Base
         foreach ($config as $key => $modules) {
 
             // Create a new role
-            $role        = \JumpGate\Users\Models\Role::create([
+            $role        = Role::create([
                 'name'         => $key,
                 'display_name' => ucwords(str_replace('_', ' ', $key)),
                 'description'  => ucwords(str_replace('_', ' ', $key)),
@@ -40,7 +42,7 @@ class LaratrustSeeder extends Base
 
                     $permissionValue = $mapPermission->get($perm);
 
-                    $permissions[] = \JumpGate\Users\Models\Permission::firstOrCreate([
+                    $permissions[] = Permission::firstOrCreate([
                         'name'         => $permissionValue . '-' . $module,
                         'display_name' => ucfirst($permissionValue) . ' ' . ucfirst($module),
                         'description'  => ucfirst($permissionValue) . ' ' . ucfirst($module),
@@ -68,8 +70,8 @@ class LaratrustSeeder extends Base
         DB::table('rbac_permission_role')->truncate();
         DB::table('rbac_permission_user')->truncate();
         DB::table('rbac_role_user')->truncate();
-        \JumpGate\Users\Models\Role::truncate();
-        \JumpGate\Users\Models\Permission::truncate();
+        Role::truncate();
+        Permission::truncate();
         Schema::enableForeignKeyConstraints();
     }
 }

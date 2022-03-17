@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\Users;
 
-use App\Models\User;
+use App\Services\Users\Models\User;
+use App\Services\Users\Models\Role;
 use Database\Seeders\Base;
-use JumpGate\Users\Models\Role;
 
 class DefaultUsers extends Base
 {

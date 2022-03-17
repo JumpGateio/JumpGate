@@ -12,7 +12,7 @@ class UserLoggedIn
 
     public User $user;
 
-    public User|null $socialUser;
+    public AbstractUser|null $socialUser;
 
     /**
      * Create a new event instance.

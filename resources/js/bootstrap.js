@@ -1,3 +1,5 @@
+import route from 'ziggy-js'
+
 window._ = require('lodash')
 _.mixin(require('lodash-inflection'))
 
@@ -8,8 +10,9 @@ _.mixin(require('lodash-inflection'))
  */
 
 try {
-  window.$ = window.jQuery = require('jquery')
+  window.$      = window.jQuery = require('jquery')
   window.Tether = require('tether')
+  window.route  = route
 
   require('bootstrap')
   require('bootbox')
@@ -25,6 +28,7 @@ try {
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.withCredentials                    = true;
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that

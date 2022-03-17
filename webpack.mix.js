@@ -1,6 +1,6 @@
-const mix      = require('laravel-mix');
+const mix      = require('laravel-mix')
 const path     = require('path')
-const node_dir = 'node_modules/';
+const node_dir = 'node_modules/'
 
 /*
  |--------------------------------------------------------------------------
@@ -14,10 +14,10 @@ const node_dir = 'node_modules/';
  */
 
 mix
-// Fonts
-// .copy(node_dir + '@fortawesome/fontawesome-free/webfonts', 'public/fonts')
+  // Fonts
+  // .copy(node_dir + '@fortawesome/fontawesome-free/webfonts', 'public/fonts')
 
-// JS
+  // JS
   .js('resources/js/app.js', 'public/js').vue()
 
   // CSS
@@ -28,12 +28,22 @@ mix
     output:      {chunkFilename: 'js/[name].js?id=[chunkhash]'},
     resolve:     {
       alias: {
-        vue$: 'vue/dist/vue.runtime.esm.js',
-        '@':  path.resolve('resources/js'),
+        '@': path.resolve('resources/js'),
       },
     },
     experiments: {
       topLevelAwait: true,
+    },
+  })
+
+  .webpackConfig(webpack => {
+    return {
+      plugins: [
+        new webpack.DefinePlugin({
+          __VUE_OPTIONS_API__:   true,
+          __VUE_PROD_DEVTOOLS__: false,
+        }),
+      ]
     }
   })
 

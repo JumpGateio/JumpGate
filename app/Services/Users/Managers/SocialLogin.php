@@ -6,12 +6,13 @@ use App\Services\Users\Events\UserLoggedIn;
 use App\Services\Users\Events\UserLoggingIn;
 use App\Services\Users\Models\User;
 use App\Services\Users\Models\Social\Provider;
+use JumpGate\Database\Collections\SupportCollection;
 use Laravel\Socialite\AbstractUser;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialLogin
 {
-    protected array $providers;
+    protected array|SupportCollection $providers;
 
     public ?Provider $provider = null;
 
@@ -23,19 +24,19 @@ class SocialLogin
     public function __construct(User $users)
     {
         $this->users     = $users;
-        $this->providers = collect(config('jumpgate.users.providers'))
+        $this->providers = supportCollector(config('jumpgate.users.providers'))
             ->keyBy('driver');
     }
 
     /**
      * Redirect the user based on the social provider being used.
      *
-     * @param string $provider The provider being logged in through.
+     * @param string|null $provider The provider being logged in through.
      *
      * @return mixed
      * @throws \Exception
      */
-    public function redirect(string $provider): mixed
+    public function redirect(?string $provider): mixed
     {
         $this->getProviderDetails($provider);
 
@@ -156,13 +157,13 @@ class SocialLogin
     /**
      * Find the provider's driver, scopes and extras based on a given provider name.
      *
-     * @param string $provider The name of the provider.
+     * @param string|null $provider The name of the provider.
      *
      * @return Provider|null
      * @throws \Exception
      * @throws \InvalidArgumentException
      */
-    public function getProviderDetails(string $provider): ?Provider
+    public function getProviderDetails(?string $provider): ?Provider
     {
         $this->checkProviders();
 
@@ -188,11 +189,11 @@ class SocialLogin
     /**
      * Get the provider from the supplied name.
      *
-     * @param string $providerName The name of the provider.
+     * @param string|null $providerName The name of the provider.
      *
      * @return Provider
      */
-    private function getProvider(string $providerName): Provider
+    private function getProvider(?string $providerName): Provider
     {
         $provider = is_null($providerName)
             ? $this->providers->first()

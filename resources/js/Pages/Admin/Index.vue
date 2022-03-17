@@ -48,7 +48,7 @@
       {
         axios.get(route)
              .then((response) => {
-               this.$set(this.tiles, title, response.data.message)
+               this.tiles[title] = response.data.message
              })
       },
 

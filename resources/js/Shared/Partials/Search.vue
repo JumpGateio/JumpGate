@@ -4,9 +4,9 @@
       <div class="input-group-prepend" v-if="hasFilters">
         <dropdown :auto-close="false" placement="bottom-start" btnClass="btn-info">
           Filters
-          <div slot="dropdown" name="dropdown">
+          <template v-slot:dropdown name="dropdown">
             <slot />
-          </div>
+          </template>
         </dropdown>
       </div>
       <input class="form-control" autocomplete="off" type="text" name="search" placeholder="Search…"

@@ -21,7 +21,7 @@ class Status extends BaseRoute implements Routes
     public $middleware = [
         'web',
         'auth',
-        'role:admin',
+        'role:admin|developer',
     ];
 
     public function routes(Router $router)

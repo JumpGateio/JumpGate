@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "37110b87dc2385ec4642c01c3778384d",
+    "content-hash": "eb115c03320bf0022701320d0aa8861c",
     "packages": [
         {
             "name": "brick/math",
@@ -1084,16 +1084,16 @@
         },
         {
             "name": "jumpgate/database",
-            "version": "4.0.0",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JumpGateio/Database.git",
-                "reference": "b5b03e4d0ba7efc3930de6c0329d9bc6091a641a"
+                "reference": "cf52b3d7815f876a2a30839f4d807b37f97fd005"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JumpGateio/Database/zipball/b5b03e4d0ba7efc3930de6c0329d9bc6091a641a",
-                "reference": "b5b03e4d0ba7efc3930de6c0329d9bc6091a641a",
+                "url": "https://api.github.com/repos/JumpGateio/Database/zipball/cf52b3d7815f876a2a30839f4d807b37f97fd005",
+                "reference": "cf52b3d7815f876a2a30839f4d807b37f97fd005",
                 "shasum": ""
             },
             "require": {
@@ -1132,9 +1132,9 @@
             "description": "Database helpers for Laravel sites.",
             "support": {
                 "issues": "https://github.com/JumpGateio/Database/issues",
-                "source": "https://github.com/JumpGateio/Database/tree/4.0.0"
+                "source": "https://github.com/JumpGateio/Database/tree/4.0.2"
             },
-            "time": "2022-03-13T11:55:19+00:00"
+            "time": "2022-03-17T15:46:53+00:00"
         },
         {
             "name": "jumpgate/menu",
@@ -1190,72 +1190,6 @@
                 "source": "https://github.com/JumpGateio/Menu/tree/master"
             },
             "time": "2020-01-03T18:05:22+00:00"
-        },
-        {
-            "name": "jumpgate/users",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/JumpGateio/Users.git",
-                "reference": "7c2115b807cede3a27b313f38c03bdd3e13bbaac"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/JumpGateio/Users/zipball/7c2115b807cede3a27b313f38c03bdd3e13bbaac",
-                "reference": "7c2115b807cede3a27b313f38c03bdd3e13bbaac",
-                "shasum": ""
-            },
-            "require": {
-                "jumpgate/core": "~4.0",
-                "jumpgate/view-resolution": "^5.0",
-                "laravel/framework": "~9.0",
-                "laravelcollective/html": "^6.3",
-                "santigarcor/laratrust": "^7.1.0"
-            },
-            "require-dev": {
-                "fakerphp/faker": "^1.9.1",
-                "mockery/mockery": "^1.4.4",
-                "orchestra/testbench": "^7.0.2",
-                "phpunit/phpunit": "^9.5.10"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "JumpGate\\Users\\Providers\\UsersServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "JumpGate\\Users\\": "src/JumpGate/Users"
-                },
-                "classmap": [
-                    "src/database/migrations",
-                    "src/database/social_migrations"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Travis Blasingame",
-                    "email": "tpblasingame@gmail.com"
-                },
-                {
-                    "name": "Brandon Hyde",
-                    "email": "hyde.brandon@gmail.com"
-                }
-            ],
-            "description": "Adds basic user functionality to a JumpGate site.",
-            "support": {
-                "issues": "https://github.com/JumpGateio/Users/issues",
-                "source": "https://github.com/JumpGateio/Users/tree/master"
-            },
-            "time": "2022-03-15T18:18:14+00:00"
         },
         {
             "name": "jumpgate/view-resolution",
@@ -9578,9 +9512,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "jumpgate/users": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

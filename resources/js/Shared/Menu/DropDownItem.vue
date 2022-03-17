@@ -1,5 +1,5 @@
 <template>
-  <inertia-link :href="item.url" class="dropdown-item" :class="{ active:  item.active }" v-else>
+  <inertia-link :href="item.url" class="dropdown-item" :class="{ active:  item.active }">
     {{ item.name }}
   </inertia-link>
 </template>

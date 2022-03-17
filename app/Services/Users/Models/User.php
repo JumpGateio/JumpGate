@@ -4,12 +4,13 @@ namespace App\Services\Users\Models;
 
 use App\Models\BaseModel;
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use App\Services\Users\Managers\GetActions;
 use App\Services\Users\Models\User\Detail;
 use App\Services\Users\Models\User\Status;
 use App\Services\Users\Models\User\Timestamp;
-use App\Services\Users\Services\GetActions;
 use App\Services\Users\Traits\CanActivate;
 use App\Services\Users\Traits\CanAuthenticate;
 use App\Services\Users\Traits\CanBlock;
@@ -159,7 +160,9 @@ class User extends BaseModel implements \Illuminate\Contracts\Auth\Authenticatab
             'id'            => $this->id,
             'email'         => $this->email,
             'status'        => $this->status->label,
+            'status_id'     => $this->status_id,
             'roles'         => $this->roles->display_name->implode(', '),
+            'role_ids'      => $this->roles->id,
             'admin_actions' => $this->admin_actions,
             'deleted_at'    => $this->deleted_at,
             'details'       => $this->details ? [
@@ -282,9 +285,9 @@ class User extends BaseModel implements \Illuminate\Contracts\Auth\Authenticatab
     /**
      * Set the user's status.
      *
-     * @param int $status The ID of the status being set.
+     * @param int|null $status The ID of the status being set.
      */
-    public function setStatus(int $status)
+    public function setStatus(?int $status)
     {
         $this->status_id = $status;
         $this->save();
@@ -293,11 +296,11 @@ class User extends BaseModel implements \Illuminate\Contracts\Auth\Authenticatab
     /**
      * Set the user's failed login attempts.
      *
-     * @param int $attempts The number of attempts to set it to.
+     * @param int|null $attempts The number of attempts to set it to.
      */
-    public function setFailedLoginAttempts(int $attempts)
+    public function setFailedLoginAttempts(?int $attempts)
     {
-        $this->failed_login_attempts = $attempts;
+        $this->failed_login_attempts = $attempts ?? 0;
         $this->save();
     }
 

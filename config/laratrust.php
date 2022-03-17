@@ -88,7 +88,7 @@ return [
     */
 
     'user_models' => [
-        'users' => \App\Models\User::class,
+        'users' => \App\Services\Users\Models\User::class,
     ],
 
     /*
@@ -103,8 +103,8 @@ return [
     */
 
     'models' => [
-        'role'       => 'JumpGate\Users\Models\Role',
-        'permission' => 'JumpGate\Users\Models\Permission',
+        'role'       => 'App\Services\Users\Models\Role',
+        'permission' => 'App\Services\Users\Models\Permission',
         'team'       => 'App\Team',
     ],
 

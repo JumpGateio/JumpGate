@@ -11,6 +11,7 @@ class Index extends Base
 {
     public function __invoke()
     {
+        $title = 'Artisan Commands';
         $commands = supportCollector(ArtisanFacade::all())
             ->map(function ($command) {
                 $details = [
@@ -60,7 +61,7 @@ class Index extends Base
             ->sortBy('name');
 
         return $this->response(
-            compact('commands'),
+            compact('title', 'commands'),
             'Admin/Artisan/Index'
         );
     }

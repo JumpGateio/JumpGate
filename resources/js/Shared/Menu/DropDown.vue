@@ -6,7 +6,7 @@
     </a>
     <div class="dropdown-menu" :class="{ 'dropdown-menu-right': item.hasOwnProperty('right') }"
          :aria-labelledby="item.name">
-      <drop-down-item v-for="link in item.links" :item="link" :key="item.name +'.dropdown'"></drop-down-item>
+      <drop-down-item v-for="link in item.links" :item="link" :key="link.name +'.dropdown'"></drop-down-item>
     </div>
   </li>
 </template>

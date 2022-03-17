@@ -51,11 +51,12 @@ class Menu
 
         if (auth()->guest()) {
             $rightMenu->link('login', function (Link $link) {
-                $link->name = 'Login';
-                $link->url  = route(
+                $link->name    = 'Login';
+                $link->url     = route(
                     config('jumpgate.users.default_route.name'),
                     config('jumpgate.users.default_route.options')
                 );
+                $link->inertia = false;
             });
 
             // Don't show a link if we don't allow registration.
@@ -69,6 +70,12 @@ class Menu
 
         if (auth()->check()) {
             $rightMenu->dropdown('user', auth()->user()->display_name, function (DropDown $dropDown) {
+                if (auth()->user()->hasRole(['developer', 'admin'])) {
+                    $dropDown->link('user_admin', function (Link $link) {
+                        $link->name = 'Admin';
+                        $link->url  = route('admin.index');
+                    });
+                }
                 $dropDown->link('user_logout', function (Link $link) {
                     $link->name = 'Logout';
                     $link->url  = route('auth.logout');

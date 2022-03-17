@@ -30,6 +30,9 @@ $teal: #4dc0b5;
 $cyan: #6cb2eb;
 $paleGreen: #98FB98;
 
+// Bootstrap Overrides
+$enable-deprecation-messages: false;
+
 // Gray scale
 $gray-base: #252830;
 $gray-darker: lighten($gray-base, 13.5%);

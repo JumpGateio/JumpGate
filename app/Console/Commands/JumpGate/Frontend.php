@@ -7,6 +7,9 @@ use App\Console\Commands\JumpGate\Models\Js;
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 
+/**
+ * @deprecated Pending removal.
+ */
 class Frontend extends Command
 {
     /**
