@@ -83,8 +83,8 @@ class Events extends Command
         $this->comment('Running migrations...');
         $this->call('migrate');
 
-        $this->info(
-            'Remember: uncomment the websocket entry in app/Http/Composers/Menu.php'
+        $this->comment(
+            'Remember:'
         );
         $this->info(
             'Uncomment the websocket entry in app/Http/Composers/Menu.php'
