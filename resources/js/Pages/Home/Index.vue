@@ -39,6 +39,7 @@
       <div class="links">
         <a class="lead text-black">Extras: </a>
         <a target="_blank" href="https://console.developers.google.com/apis/credentials?pli">Google Api Console</a>
+        <a target="_blank" href="https://beyondco.de/docs/laravel-websockets/getting-started/introduction">Laravel Websockets</a>
       </div>
     </div>
   </div>

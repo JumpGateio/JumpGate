@@ -75,6 +75,15 @@ class Menu
                         $link->name = 'Admin';
                         $link->url  = route('admin.index');
                     });
+                    $dropDown->link('user_websockets', function (Link $link) {
+                        $link->name = 'Websockets Dashboard';
+                        $link->url  = route('home') . '/laravel-websockets';
+                    });
+                    $dropDown->link('user_telescope', function (Link $link) {
+                        $link->name    = 'Telescope';
+                        $link->url     = route('telescope');
+                        $link->inertia = false;
+                    });
                 }
                 $dropDown->link('user_logout', function (Link $link) {
                     $link->name = 'Logout';

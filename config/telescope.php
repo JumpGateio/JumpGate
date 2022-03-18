@@ -54,6 +54,7 @@ return [
 
     'middleware' => [
         'web',
+        'role:admin|developer',
         Authorize::class,
     ],
 
