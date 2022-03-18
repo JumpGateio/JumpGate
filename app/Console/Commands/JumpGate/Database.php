@@ -84,7 +84,7 @@ class Database extends Command
         $this->call('db:seed');
 
         if ($usersFlag) {
-            $this->call('db:seed', ['--file' => 'Database\Seeders\UserDatabaseSeeder']);
+            $this->call('db:seed', ['--class' => '\Database\Seeders\UserDatabaseSeeder']);
         }
     }
 }
