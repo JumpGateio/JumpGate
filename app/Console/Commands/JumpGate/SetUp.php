@@ -13,10 +13,7 @@ class SetUp extends Command
      *
      * @var string
      */
-    protected $signature = 'jumpgate:setup
-                            {--users : Whether the user package should be included.}
-                            {--social-users : Will install users and get the socialite package during install.}
-                            {--f|force : Whether to overwrite existing files.}';
+    protected $signature = 'jumpgate:setup';
 
     /**
      * The console command description.
@@ -25,15 +22,9 @@ class SetUp extends Command
      */
     protected $description = 'Do all the initial steps to set up your jumpgate app.';
 
-    /**
-     * @var \Illuminate\Filesystem\Filesystem
-     */
-    private $files;
+    private Filesystem $files;
 
-    /**
-     * @var bool
-     */
-    private $generatedEnv = true;
+    private bool $generatedEnv = true;
 
     public function __construct(Filesystem $files)
     {
@@ -54,22 +45,20 @@ class SetUp extends Command
         $this->handleAssets();
         $this->discover();
 
-        $this->addUsers();
-
         $this->info('Finished!');
     }
 
     /**
      * Make sure a .env file exists.
      */
-    private function generateEnv()
+    private function generateEnv(): void
     {
         if (! $this->files->exists(base_path('.env'))) {
             $this->comment('Generating .env...');
 
             $this->files->copy('.env.example', '.env');
 
-            return true;
+            return;
         }
 
         $this->generatedEnv = false;
@@ -122,21 +111,5 @@ class SetUp extends Command
         $this->comment('Running laravel discover...');
 
         $this->call('package:discover');
-    }
-
-    /**
-     * Add the user package and files if requested.
-     */
-    private function addUsers()
-    {
-        $addUsers    = $this->option('users');
-        $socialUsers = $this->option('social-users');
-        $forced      = $this->option('force');
-
-        if (! $addUsers && ! $socialUsers) {
-            return true;
-        }
-
-        $this->call('jumpgate:setup-users', ['--force' => $forced, '--socialite' => $socialUsers]);
     }
 }

@@ -8,38 +8,34 @@
         </div>
       </div>
 
-      <div class="links">
-        <a class="lead text-black">Laravel: </a>
-        <a target="_blank" href="https://laravel.com/docs/9.x">Documentation</a>
-        <a target="_blank" href="https://laravel-news.com">News</a>
-        <a target="_blank" href="https://laracasts.com">Laracasts</a>
-        <a target="_blank" href="https://github.com/laravel/laravel">GitHub</a>
-      </div>
+      <div class="columns">
+        <div class="links column">
+          <a class="lead text-black">Laravel: </a>
+          <a target="_blank" href="https://laravel.com/docs/9.x">Documentation</a>
+          <a target="_blank" href="https://laravel-news.com">News</a>
+          <a target="_blank" href="https://laracasts.com">Laracasts</a>
+          <a target="_blank" href="https://github.com/laravel/laravel">GitHub</a>
+        </div>
 
-      <br />
+        <div class="links column">
+          <a class="lead text-black">JumpGate: </a>
+          <a target="_blank" href="https://github.com/JumpGateio">Organization</a>
+          <a target="_blank" href="https://github.com/jumpgateio/jumpgate">WebApp</a>
+          <a target="_blank" href="https://docs.nukacode.com/docs/1.0/overview">Documentation</a>
+        </div>
 
-      <div class="links">
-        <a class="lead text-black">JumpGate: </a>
-        <a target="_blank" href="https://github.com/JumpGateio">Organization</a>
-        <a target="_blank" href="https://github.com/jumpgateio/jumpgate">WebApp</a>
-        <a target="_blank" href="https://docs.nukacode.com/docs/1.0/overview">Documentation</a>
-      </div>
+        <div class="links column">
+          <a class="lead text-black">FrontEnd: </a>
+          <a target="_blank" href="https://getbootstrap.com/docs/4.6/getting-started/introduction/">Bootstrap 4</a>
+          <a target="_blank" href="http://vuejs.org/guide/">VueJs 3</a>
+          <a target="_blank" href="https://inertiajs.com/">InertiaJs</a>
+        </div>
 
-      <br />
-
-      <div class="links">
-        <a class="lead text-black">FrontEnd: </a>
-        <a target="_blank" href="https://getbootstrap.com/docs/4.1/getting-started/introduction/">Bootstrap 4</a>
-        <a target="_blank" href="http://vuejs.org/v2/guide/">VueJs 2</a>
-        <a target="_blank" href="https://inertiajs.com/">InertiaJs</a>
-      </div>
-
-      <br />
-
-      <div class="links">
-        <a class="lead text-black">Extras: </a>
-        <a target="_blank" href="https://console.developers.google.com/apis/credentials?pli">Google Api Console</a>
-        <a target="_blank" href="https://beyondco.de/docs/laravel-websockets/getting-started/introduction">Laravel Websockets</a>
+        <div class="links column">
+          <a class="lead text-black">Extras: </a>
+          <a target="_blank" href="https://laratrust.santigarcor.me/docs/7.x/">Laratrust</a>
+          <a target="_blank" href="https://console.developers.google.com/apis/credentials?pli">Google Api Console</a>
+        </div>
       </div>
     </div>
   </div>

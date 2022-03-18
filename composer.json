@@ -10,7 +10,6 @@
     "type": "project",
     "require": {
         "php": "^8.0.2",
-        "beyondcode/laravel-websockets": "^1.13",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.5.4",
         "jumpgate/core": "~4.0",
@@ -30,7 +29,6 @@
         "beyondcode/laravel-dump-server": "^1.8.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
-        "laravel/telescope": "^4.4",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5.10",

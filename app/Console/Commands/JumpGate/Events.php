@@ -6,14 +6,14 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
 
-class Telescope extends Command
+class Events extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'jumpgate:telescope
+    protected $signature = 'jumpgate:events
                             {--remove : Uninstall telescope.  Auto generated files only.}
                             {--f|--force : Remove the config file as well.  Only used with remove.}';
 
@@ -22,7 +22,7 @@ class Telescope extends Command
      *
      * @var string
      */
-    protected $description = 'Install and set up telescope';
+    protected $description = 'Install and set up laravel websockets';
 
     private Filesystem $files;
 
@@ -35,8 +35,10 @@ class Telescope extends Command
 
     /**
      * Execute the console command.
+     *
+     * @return mixed
      */
-    public function handle(): void
+    public function handle()
     {
         $remove = $this->option('remove');
 
@@ -50,16 +52,16 @@ class Telescope extends Command
     }
 
     /**
-     * Sets up Laravel Telescope in your app.
+     * Sets up Laravel Websockets in your app.
      *
-     * @see https://laravel.com/docs/6.0/telescope
+     * @see https://beyondco.de/docs/laravel-websockets/getting-started/introduction
      */
     private function setup()
     {
-        $this->comment('Adding telescope to composer...');
+        $this->comment('Adding websockets to composer...');
 
         $process = Process::fromShellCommandline(
-            'COMPOSER_MEMORY_LIMIT=-1 composer require laravel/telescope'
+            'COMPOSER_MEMORY_LIMIT=-1 composer require beyondcode/laravel-websockets'
         );
         $process->setTimeout(150);
         $process->run(function ($type, $buffer) {
@@ -67,9 +69,10 @@ class Telescope extends Command
         });
         $process->wait();
 
-        $this->comment('Adding telescope files...');
+        $this->comment('Adding websockets migration...');
+
         $process = Process::fromShellCommandline(
-            'php artisan telescope:install'
+            'php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="migrations"'
         );
         $process->setTimeout(150);
         $process->run(function ($type, $buffer) {
@@ -81,34 +84,40 @@ class Telescope extends Command
         $this->call('migrate');
 
         $this->info(
-            'Remember, uncomment the telescope entry in app/Http/Composers/Menu.php'
+            'Remember: uncomment the websocket entry in app/Http/Composers/Menu.php'
+        );
+        $this->info(
+            'Uncomment the websocket entry in app/Http/Composers/Menu.php'
+        );
+        $this->info(
+            'Uncomment the BroadcastServiceProvider in config/app.php'
         );
     }
 
     private function remove()
     {
-        $this->comment('Removing service provider...');
-        $this->files->delete(app_path('Providers/TelescopeServiceProvider.php'));
-
         $this->comment('Removing vendor assets...');
         $this->files->deleteDirectory(public_path('vendor/telescope/'));
 
         $this->comment('Removing database tables...');
+        $migrationFile = 'database/migrations/0000_00_00_000000_create_websockets_statistics_entries_table.php';
+
         $this->call('migrate:rollback', [
-            '--path' => 'vendor/laravel/telescope/database/migrations/2018_08_08_100000_create_telescope_entries_table.php',
+            '--path' => $migrationFile,
         ]);
+        $this->files->delete(base_path($migrationFile));
 
         $removeConfig = $this->option('force');
 
         if ($removeConfig) {
             $this->comment('Removing config...');
-            $this->files->delete(config_path('telescope.php'));
+            $this->files->delete(config_path('websockets.php'));
         }
 
         $this->comment('Removing from composer...');
 
         $process = Process::fromShellCommandline(
-            'COMPOSER_MEMORY_LIMIT=-1 composer remove laravel/telescope; php artisan optimize'
+            'COMPOSER_MEMORY_LIMIT=-1 composer remove beyondcode/laravel-websockets; php artisan optimize'
         );
         $process->setTimeout(150);
         $process->run(function ($type, $buffer) {
@@ -117,7 +126,7 @@ class Telescope extends Command
         $process->wait();
 
         $this->info(
-            'Remember, you can safely remove any telescope entries from config/app.php and app/Http/Composers/Menu.php'
+            'Remember, you can safely remove any websocket entries from app/Http/Composers/Menu.php'
         );
 
         $this->warn('The error that may display next can be ignored.');

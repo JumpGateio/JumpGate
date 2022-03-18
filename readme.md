@@ -2,13 +2,15 @@
 
 - [Requirements](#requirements)
 - [Basic Installation](#basic-installation)
+  - [Telescope & Websockets](#telescope--websockets)
 - [Users](#users)
 
 <a name="requirements"></a>
 ## Requirements
 
-- PHP 7.3+
-- Node 12.14+
+- PHP 8+
+- Node 15+
+- npm 15+
 
 <a name="basic-installation"></a>
 ## Basic Installation
@@ -19,38 +21,26 @@ git clone git@github.com:JumpGateio/JumpGate.git ./
 composer install
 php artisan jumpgate:setup
 ```
-At this point, your site will display the JumpGate home page using bootstrap 4.  From here on out, you will customize as 
-you normally would.
+At this point, your site will display the JumpGate home page using bootstrap 4.
 
 1. Set up your database in the `.env` file
-1. Run `php artisan jumpgate:telescope`. (Run this if you want telescope monitoring on the site)
-1. Run `php artisan migrate`.
+2. Set up your preferences in `config/jumpgate/users.php`.
+3. Run `php artisan jumpgate:database --users`.
+4. Run `php artisan jumpgate:telescope` if you want telescope monitoring on the site.
+   1. [Telescope Docs](https://laravel.com/docs/9.x/telescope)
+5. Run `php artisan jumpgate:events` if you want to broadcast events using echo.
+   1. [Laravel Websockets Docs](https://beyondco.de/docs/laravel-websockets/getting-started/introduction)
 
-<a name="users"></a>
-## Users
+<a name="telescope-websockets"></a>
+### Telescope & Websockets
 
-If your site needs users you should modify the steps listed above.
+Telescope and laravel websockets are not assumed to be installed, but there are pieces of it be default for ease of use.
 
-```
-cd <project dir>
-git clone git@github.com:JumpGateio/JumpGate.git ./
-composer install
-```
-
-Now you get to choose.  If you know you want social auth, you can use `--social-users` otherwise you can just use
-`--users`.
-
-```
-php artisan jumpgate:setup --users --force
-php artisan jumpgate:setup --social-users --force
-```
-
-> Pick the one you want.  You do not need to run both commands.
-
-> `--force` is used to verify the users package can overwrite existing files that it published.
-
-1. Set up your database in the `.env` file
-1. Update your `config/jumpgate/users.php`.
-    - If you enable social, remember to re-run `vendor:publish`.
-1. Run `php artisan jumpgate:telescope`.
-1. Run `php artisan jumpgate:user-database`
+- `config/telescope.php` & `config/websockets.php`
+  - These files are included with jumpgate by default.
+  - They have sensible settings for a normal jumpgate app.
+  - Delete them freely if you don't want either package.
+- `app/Http/Composers/Menu.php`
+  - In the `generateRightMenu()` method, there is a commented out link for telescope and websockets.
+  - If you install one of the packages, uncomment its entry there..
+  - If you chose not to use one, you can freely remove that block.

@@ -37,6 +37,19 @@
     font-size: 24px;
   }
 
+  .columns {
+    display:         flex;
+    flex-direction:  row;
+    justify-content: center;
+
+    .column {
+      flex:           1;
+      display:        flex;
+      flex-direction: column;
+      max-width:      300px;
+    }
+  }
+
   .links > a {
     color:           #636b6f;
     padding:         0 25px;
