@@ -10,7 +10,7 @@
         </dropdown>
       </div>
       <input class="form-control" autocomplete="off" type="text" name="search" placeholder="Search…"
-             :value="value" @input="$emit('input', $event.target.value)" />
+             :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" id="admin_search" />
       <button class="btn btn-sm btn-dark search-clear" type="button" @click="$emit('reset')">Reset</button>
     </div>
   </div>
@@ -27,17 +27,26 @@
     },
 
     props: {
-      value:    String,
-      maxWidth: {
+      maxWidth:   {
         type:    Number,
         default: 300,
       },
+      modelValue: String,
     },
 
+    emits: [
+      'update:modelValue'
+    ],
+
     computed: {
-      hasFilters() {
+      hasFilters()
+      {
         return this.$slots.default
       }
+    },
+
+    mounted() {
+      $('#admin_search').focus()
     }
   }
 </script>
