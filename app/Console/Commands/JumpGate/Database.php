@@ -16,6 +16,7 @@ class Database extends Command
     protected $signature = 'jumpgate:database
                             {--no-fresh : Will just run migrate instead of migrate:fresh}
                             {--no-seed : Will skip the seed command.}
+                            {--users : Will run the user database seeder.}
                             {--f|--force : Will force this to run even in production mode.}';
 
     /**
@@ -69,15 +70,21 @@ class Database extends Command
      */
     private function runSeeders()
     {
-        $noSeedersFlag   = $this->option('no-seed');
+        $noSeedersFlag = $this->option('no-seed');
+        $usersFlag     = $this->option('users');
 
         if ($noSeedersFlag) {
             $this->info('No-seed flag added.  Skipping seeders.');
+
             return;
         }
 
         $this->info('Running seeders...');
 
         $this->call('db:seed');
+
+        if ($usersFlag) {
+            $this->call('db:seed', ['--file' => 'Database\Seeders\UserDatabaseSeeder']);
+        }
     }
 }

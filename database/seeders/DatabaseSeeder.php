@@ -7,7 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 class DatabaseSeeder extends Base
 {
     protected array $seeders = [
-        UserDatabaseSeeder::class,
+        //
     ];
 
     /**
