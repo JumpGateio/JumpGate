@@ -3,6 +3,7 @@
 namespace App\Services\Users\Models\User;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Builder;
 
 class Status extends BaseModel
 {
