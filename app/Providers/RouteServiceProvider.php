@@ -106,7 +106,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $paths
             ->flatMap(function ($path) {
-                return $this->files->glob($path);
+                return $this->files->glob($path, GLOB_ONLYDIR);
             })
             ->flatMap(function ($path) {
                 return $this->files->files($path);
