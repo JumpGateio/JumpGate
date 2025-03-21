@@ -9,34 +9,37 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^8.0.2",
-        "guzzlehttp/guzzle": "^7.2",
-        "inertiajs/inertia-laravel": "^0.5.4",
-        "jumpgate/core": "~4.0",
-        "jumpgate/menu": "~2.0",
-        "jumpgate/view-resolution": "~5.0",
-        "laravel/framework": "^9.2",
-        "laravel/helpers": "^1.4",
-        "laravel/socialite": "^5.5",
-        "laravel/tinker": "^2.7",
-        "laravelcollective/html": "^6.3",
-        "santigarcor/laratrust": "^7.1.0",
-        "tightenco/ziggy": "^1.4.3"
+        "php": "^8.2",
+        "inertiajs/inertia-laravel": "^2.0.1",
+        "laravel/framework": "^12.0",
+        "laravel/helpers": "^1.7.2",
+        "laravel/socialite": "^5.18.0",
+        "laravel/tinker": "^2.10.1",
+        "santigarcor/laratrust": "^8.4.0",
+        "tightenco/ziggy": "^2.5.2"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.6.7",
-        "barryvdh/laravel-ide-helper": "^2.12.3",
-        "beyondcode/laravel-dump-server": "^1.8.0",
-        "fakerphp/faker": "^1.9.1",
-        "laravel/sail": "^1.0.1",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
-        "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "barryvdh/laravel-debugbar": "^3.15.2",
+        "barryvdh/laravel-ide-helper": "^3.5.5",
+        "beyondcode/laravel-dump-server": "^2.1.0",
+        "fakerphp/faker": "^1.23",
+        "laravel/pail": "^1.2.2",
+        "laravel/pint": "^1.13",
+        "laravel/sail": "^1.41",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.6",
+        "phpunit/phpunit": "^11.5.3",
+        "spatie/laravel-ignition": "^2.9.1"
     },
     "autoload": {
         "files": [
-            "bootstrap/helpers/site.php"
+            "bootstrap/helpers/site.php",
+            "bootstrap/helpers/jumpgate/api.php",
+            "bootstrap/helpers/jumpgate/base.php",
+            "bootstrap/helpers/jumpgate/math.php",
+            "bootstrap/helpers/jumpgate/numbers.php",
+            "bootstrap/helpers/jumpgate/strings.php",
+            "bootstrap/helpers/jumpgate/time.php"
         ],
         "psr-4": {
             "App\\": "app/",
@@ -61,7 +64,13 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
         ]
     },
     "extra": {
@@ -72,8 +81,12 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

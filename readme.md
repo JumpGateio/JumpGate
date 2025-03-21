@@ -2,45 +2,52 @@
 
 - [Requirements](#requirements)
 - [Basic Installation](#basic-installation)
-  - [Telescope & Websockets](#telescope--websockets)
-- [Users](#users)
+- [Reverb, Telescope, and Pulse](#optional-packages)
 
 <a name="requirements"></a>
 ## Requirements
 
-- PHP 8+
-- Node 15+
-- npm 15+
+- [Laravel Server Requirements](https://laravel.com/docs/12.x/deployment#server-requirements)
+- PHP 8.2+
+- Node 22+
+- npm 11+
+
+<a name="used-packages"></a>
+## Used Packages
+
+| Package      | Version | Links                                                                                   |
+|--------------|---------|-----------------------------------------------------------------------------------------|
+| Laravel      | 12      | [Github](https://github.com/laravel/laravel)&nbsp;[Docs](https://laravel.com/docs/12.x) |
+| Tailwind CSS | 4       | [Docs](https://tailwindcss.com/docs/)                                                   |
+| VueJS        | 3       | [Docs](vuejs.org/guide)                                                                 |
+| InertiaJs    | 2       | [Docs](https://inertiajs.com/)                                                          |
 
 <a name="basic-installation"></a>
 ## Basic Installation
 
-```
-cd <project dir>
-git clone git@github.com:JumpGateio/JumpGate.git ./
-composer install
-php artisan jumpgate:setup
-```
-At this point, your site will display the JumpGate home page using bootstrap 4.
+1. `cd <project dir>`
+2. `git clone git@github.com:JumpGateio/JumpGate.git ./`
+3. `composer install`
+4. `php artisan jumpgate:setup`
+5. At this point you will need to modify your configs.
+   1. Update `.env`
+   2. Update `config/jumpgate/users.php`
+6. `php artisan jumpgate:database`
 
-1. Set up your database in the `.env` file
-2. Set up your preferences in `config/jumpgate/users.php`.
-3. Run `php artisan jumpgate:database --users`.
-4. Run `php artisan jumpgate:telescope` if you want telescope monitoring on the site.
-   1. [Telescope Docs](https://laravel.com/docs/9.x/telescope)
-5. Run `php artisan jumpgate:events` if you want to broadcast events using echo.
-   1. [Laravel Websockets Docs](https://beyondco.de/docs/laravel-websockets/getting-started/introduction)
+This concludes the basic set up for JumpGate.  At this point you should be able to go to your site in the browser and
+see the default JumpGate landing page.
 
-<a name="telescope-websockets"></a>
-### Telescope & Websockets
+<a name="optional-packages"></a>
+### Reverb, Telescope, and Pulse
 
-Telescope and laravel websockets are not assumed to be installed, but there are pieces of it be default for ease of use.
+| Adding the Package               | Documentation                                             | Config File            | Description                              |
+|----------------------------------|-----------------------------------------------------------|------------------------|------------------------------------------|
+| `php artisan jumpgate:reverb`    | [Reverb Docs](https://laravel.com/docs/12.x/reverb)       | `config/reverb.php`    | Broadcasting Events                      |
+| `php artisan jumpgate:telescope` | [Telescope Docs](https://laravel.com/docs/12.x/telescope) | `config/telescope.php` | Detailed insights on application actions |
+| `php artisan jumpgate:pulse`     | [Pulse Docs](https://laravel.com/docs/12.x/pulse)         | `config/pulse.php`     | Performance insights                     |
 
-- `config/telescope.php` & `config/websockets.php`
-  - These files are included with jumpgate by default.
-  - They have sensible settings for a normal jumpgate app.
-  - Delete them freely if you don't want either package.
-- `app/Http/Composers/Menu.php`
-  - In the `generateRightMenu()` method, there is a commented out link for telescope and websockets.
-  - If you install one of the packages, uncomment its entry there..
-  - If you chose not to use one, you can freely remove that block.
+We have default values in the config files that will work great with JumpGate.  You can make any changes you want or
+remove these included config files if you don't want to use some of these packages.
+
+We also have build in links for these in the menu bar.  `app/Http/Composers/Menu.php@generateRightMenu()` has these links
+included by default.  Feel free to delete them if you are not using the packages.

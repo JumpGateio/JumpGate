@@ -2,34 +2,19 @@
 
 namespace App\Actions;
 
-use JumpGate\Core\Services\Response;
+use App\Managers\Response;
 
 class Destructive
 {
-    /**
-     * @var
-     */
-    public $model;
+    public mixed $model;
 
-    /**
-     * @var string
-     */
-    public $status;
+    public string $status;
 
-    /**
-     * @var int
-     */
-    public $action;
+    public int $action;
 
-    /**
-     * @var string
-     */
-    public $method;
+    public string $method;
 
-    /**
-     * @var string
-     */
-    private $returnUrl;
+    private string $returnUrl;
 
     public function __construct($model, $status, $action, $returnUrl)
     {
@@ -42,9 +27,9 @@ class Destructive
     /**
      * Determine what to do on the user.
      *
-     * @return \JumpGate\Core\Services\Response
+     * @return Response
      */
-    public function execute()
+    public function execute(): Response
     {
         $this->determineMethod();
 
@@ -58,7 +43,7 @@ class Destructive
      * Based on the status and action, determine the method
      * to call on the user object.
      */
-    protected function determineMethod()
+    protected function determineMethod(): void
     {
         $methods = [
             'delete' => ['restore', 'delete'],
@@ -73,11 +58,10 @@ class Destructive
      *
      * @return string
      */
-    protected function getMessage()
+    protected function getMessage(): string
     {
-        switch ($this->method) {
-            default:
-                return get_class($this->model) . ' ' . $this->method . 'd.';
-        }
+        return match ($this->method) {
+            default => get_class($this->model) . ' ' . $this->method . 'd.',
+        };
     }
 }

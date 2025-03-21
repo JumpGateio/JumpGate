@@ -2,17 +2,16 @@
 
 namespace App\Http\Routes;
 
-use JumpGate\Core\Contracts\Routes;
-use JumpGate\Core\Http\Routes\BaseRoute;
+use App\Contracts\Routes;
 use Illuminate\Routing\Router;
 
-class Home extends BaseRoute implements Routes
+class Home extends Base implements Routes
 {
-    public $namespace = 'App\Http\Controllers';
+    public ?string $namespace = 'App\Http\Controllers';
 
-    public $middleware = ['web'];
+    public array $middleware = ['web'];
 
-    public function routes(Router $router)
+    public function routes(Router $router): void
     {
         $router->get('/')
                ->name('home')

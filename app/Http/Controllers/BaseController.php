@@ -6,11 +6,10 @@ use App\Traits\UsesInertia;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller;
 use Inertia\Inertia;
-use JumpGate\ViewResolution\Traits\AutoResolvesViews;
-use JumpGate\Core\Http\Controllers\BaseController as CoreBaseController;
 
-abstract class BaseController extends CoreBaseController
+abstract class BaseController extends Controller
 {
     use AuthorizesRequests,
         AutoResolvesViews,
@@ -31,7 +30,7 @@ abstract class BaseController extends CoreBaseController
      *
      * @return \Inertia\Response
      */
-    public function response($data = [], $page = null, $layout = null)
+    public function response(array $data = [], ?string $page = null, ?string $layout = null): \Inertia\Response
     {
         $menus = [
             'leftMenu'  => \Menu::render('leftMenu')->links,
