@@ -6,26 +6,23 @@ root = true
 
 # All files
 [*]
-indent_style = space
-end_of_line = lf
 charset = utf-8
-trim_trailing_whitespace = true
+end_of_line = lf
+indent_size = 4
+indent_style = space
 insert_final_newline = true
+trim_trailing_whitespace = true
 spaces_around_operators = true
 
-# 4-spaced files
-[**.{js,json,php,xml,md}]
+[*.md]
+trim_trailing_whitespace = false
+
+[*.{yml,yaml}]
+indent_size = 2
+
+[docker-compose.yml]
 indent_size = 4
 
 # 2-spaced files
-[**.{css,less,sass,html,htm,xhtml,blade.php,scss,yml,yaml}]
+[*.{css,less,sass,html,htm,xhtml,blade.php,scss,yml,yaml}]
 indent_size = 2
-
-[{node_modules,vendor,bower_components,public/assets}/**]
-indent_style = ignore
-indent_size = ignore
-end_of_line = ignore
-charset = ignore
-trim_trailing_whitespace = ignore
-insert_final_newline = ignore
-spaces_around_operators = ignore

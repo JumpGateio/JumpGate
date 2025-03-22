@@ -13,6 +13,7 @@
 /.vscode
 .env
 .env.backup
+.npmrc
 .phpunit.result.cache
 docker-compose.override.yml
 Homestead.json
