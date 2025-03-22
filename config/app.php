@@ -180,7 +180,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Camroncade\Timezone\TimezoneServiceProvider::class,
         // BinaryTorch\LaRecipe\LaRecipeServiceProvider::class,
 
         /*
@@ -188,10 +187,9 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\MacroServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
     ],
 
@@ -207,8 +205,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'HTML'         => Collective\Html\HtmlFacade::class,
-        'Form'         => Collective\Html\FormFacade::class,
+        //
     ])->toArray(),
 
 ];

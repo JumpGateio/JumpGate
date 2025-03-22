@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\AutoResolvesViews;
 use App\Traits\UsesInertia;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

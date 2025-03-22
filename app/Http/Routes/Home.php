@@ -2,10 +2,11 @@
 
 namespace App\Http\Routes;
 
+use App\Abstracts\Route;
 use App\Contracts\Routes;
 use Illuminate\Routing\Router;
 
-class Home extends Base implements Routes
+class Home extends Route implements Routes
 {
     public ?string $namespace = 'App\Http\Controllers';
 

@@ -32,7 +32,7 @@ if (!function_exists('apiCollection')) {
      * @param \GuzzleHttp\Psr7\Response $call
      * @param null|string               $tap
      *
-     * @return \JumpGate\Database\Collections\SupportCollection
+     * @return \App\Collections\SupportCollection
      */
     function apiCollection($call, $tap = null)
     {

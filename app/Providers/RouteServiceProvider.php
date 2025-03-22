@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
-use JumpGate\Core\Contracts\Routes;
+use App\Contracts\Routes;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -151,8 +151,8 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Take a route class and add the routes to Laravel's router.
      *
-     * @param \JumpGate\Core\Contracts\Routes $provider
-     * @param \Illuminate\Routing\Router      $router
+     * @param \App\Contracts\Routes      $provider
+     * @param \Illuminate\Routing\Router $router
      */
     protected function convertProviderToRoutes(Routes $provider, Router $router)
     {
@@ -162,11 +162,11 @@ class RouteServiceProvider extends ServiceProvider
             'middleware' => $provider->getMiddleware(),
         ];
 
-        if (! is_null($provider->getRole())) {
+        if (!is_null($provider->getRole())) {
             $attributes['is'] = $provider->getRole();
         }
 
-        if (! is_null($provider->getPermissions())) {
+        if (!is_null($provider->getPermissions())) {
             $attributes['can'] = $provider->getPermissions();
         }
 

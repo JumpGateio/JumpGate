@@ -19,7 +19,7 @@ use App\Services\Users\Traits\CanResetPassword;
 use App\Services\Users\Traits\HasGravatar;
 use App\Services\Users\Traits\HasSocials;
 use App\Services\Users\Traits\HasTokens;
-use JumpGate\Database\Collections\SupportCollection;
+use App\Collections\SupportCollection;
 use Laratrust\Traits\LaratrustUserTrait;
 
 /**
@@ -87,11 +87,6 @@ class User extends BaseModel implements \Illuminate\Contracts\Auth\Authenticatab
     use HasSocials;
 
     /**
-     * Allow this model to have roles and permissions.
-     */
-    use LaratrustUserTrait;
-
-    /**
      * Allow this model to generate and use tokens.
      */
     use HasTokens;
@@ -100,6 +95,11 @@ class User extends BaseModel implements \Illuminate\Contracts\Auth\Authenticatab
      * Allow this model to display a gravatar avatar.
      */
     use HasGravatar;
+
+    /**
+     * Allow this model to have roles and permissions.
+     */
+    use LaratrustUserTrait;
 
     /**
      * Allow this model to receive notifications.

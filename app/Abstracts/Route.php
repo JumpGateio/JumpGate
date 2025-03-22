@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Routes;
+namespace App\Abstracts;
 
-abstract class Base
+abstract class Route
 {
     public ?string $namespace = null;
 
@@ -29,7 +29,7 @@ abstract class Base
      * @param string $name
      * @param string $uri
      *
-     * @return Base
+     * @return Route
      */
     public function setContext(string $name, string $uri): self
     {
@@ -119,9 +119,9 @@ abstract class Base
     /**
      * Get the roles required for this route group.
      *
-     * @return ?array
+     * @return ?string
      */
-    public function getRole(): ?array
+    public function getRole(): ?string
     {
         return $this->role;
     }
@@ -129,9 +129,9 @@ abstract class Base
     /**
      * Get the roles required for this route group.
      *
-     * @return ?array
+     * @return ?string
      */
-    public function getPermissions(): ?array
+    public function getPermissions(): ?string
     {
         if (! is_array($this->permissions)) {
             return null;

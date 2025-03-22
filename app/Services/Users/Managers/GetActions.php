@@ -4,7 +4,7 @@ namespace App\Services\Users\Managers;
 
 use App\Services\Users\Models\User;
 use App\Services\Users\Models\User\Status;
-use JumpGate\Database\Collections\SupportCollection;
+use App\Collections\SupportCollection;
 
 class GetActions
 {

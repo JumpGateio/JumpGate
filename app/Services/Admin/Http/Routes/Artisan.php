@@ -2,21 +2,21 @@
 
 namespace App\Services\Admin\Http\Routes;
 
-use JumpGate\Core\Contracts\Routes;
-use JumpGate\Core\Http\Routes\BaseRoute;
+use App\Abstracts\Route;
+use App\Contracts\Routes;
 use Illuminate\Routing\Router;
 
-class Artisan extends BaseRoute implements Routes
+class Artisan extends Route implements Routes
 {
-    public $namespace = 'App\Services\Admin\Http\Controllers\Artisan';
+    public ?string $namespace = 'App\Services\Admin\Http\Controllers\Artisan';
 
-    public $context = 'default';
+    public ?string $context = 'default';
 
-    public $prefix = 'admin/artisan';
+    public ?string $prefix = 'admin/artisan';
 
     // public $role = 'admin';
 
-    public $middleware = [
+    public array $middleware = [
         'web',
         'auth',
         'role:admin|developer',

@@ -3,7 +3,7 @@
 namespace App\Services\Users\Traits;
 
 use Illuminate\Database\Eloquent\Collection;
-use JumpGate\Database\Collections\EloquentCollection;
+use App\Collections\EloquentCollection;
 
 trait ConvertsToCollection
 {

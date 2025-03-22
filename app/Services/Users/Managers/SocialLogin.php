@@ -6,7 +6,7 @@ use App\Services\Users\Events\UserLoggedIn;
 use App\Services\Users\Events\UserLoggingIn;
 use App\Services\Users\Models\User;
 use App\Services\Users\Models\Social\Provider;
-use JumpGate\Database\Collections\SupportCollection;
+use App\Collections\SupportCollection;
 use Laravel\Socialite\AbstractUser;
 use Laravel\Socialite\Facades\Socialite;
 
