@@ -2,9 +2,9 @@
 
 namespace App\Services\Users\Managers;
 
+use App\Services\JumpGate\Core\Collections\SupportCollection;
 use App\Services\Users\Models\User;
 use App\Services\Users\Models\User\Status;
-use App\Collections\SupportCollection;
 
 class GetActions
 {

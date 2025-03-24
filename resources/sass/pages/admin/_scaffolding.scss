@@ -9,7 +9,6 @@
       color:            $input-color;
       background-color: $input-bg;
       border:           $input-border-width solid $input-border-color;
-      @include form-control-focus();
     }
 
     #content {

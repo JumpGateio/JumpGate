@@ -1,20 +1,21 @@
+@use "sass:color";
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Raleway:100,300,400,600');
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 //$fa-font-path: '../fonts';
-@import "~@fortawesome/fontawesome-pro/scss/fontawesome";
-@import "~@fortawesome/fontawesome-pro/scss/brands";
-@import "~@fortawesome/fontawesome-pro/scss/regular";
-@import "~@fortawesome/fontawesome-pro/scss/solid";
-@import "~@fortawesome/fontawesome-pro/scss/v4-shims";
+@import "@fortawesome/fontawesome-pro/scss/fontawesome";
+@import "@fortawesome/fontawesome-pro/scss/brands";
+@import "@fortawesome/fontawesome-pro/scss/regular";
+@import "@fortawesome/fontawesome-pro/scss/solid";
+@import "@fortawesome/fontawesome-pro/scss/v4-shims";
 
 // Variables
 @import "components/variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 
 // Components
 @import "components/components";

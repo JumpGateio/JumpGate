@@ -7,6 +7,7 @@ use App\Http\Composers\AdminSidebar;
 use App\Http\Composers\Menu;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Tighten\Ziggy\Ziggy;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -16,11 +17,11 @@ class HandleInertiaRequests extends Middleware
      * @see https://inertiajs.com/server-side-setup#root-template
      * @var string
      */
-    protected $rootView = 'layouts.inertia';
+    protected $rootView = 'app';
 
     public function __construct()
     {
-        if (checkDebugbar()) {
+        if (app()->environment('local') && app()->bound('debugbar')) {
             $debugbar = app('debugbar');
 
             if ($debugbar->shouldCollect('inertia')) {
@@ -55,13 +56,17 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
-        Menu::getMenus();
-        AdminSideBar::getMenus();
+//        Menu::getMenus();
+//        AdminSideBar::getMenus();
 
         return array_merge(parent::share($request), [
             'flash'     => [
                 'success' => session()->get('success'),
                 'error'   => session()->get('error'),
+            ],
+            'ziggy' => [
+                ...(new Ziggy)->toArray(),
+                'location' => $request->url(),
             ],
         ]);
     }

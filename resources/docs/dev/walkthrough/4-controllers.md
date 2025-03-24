@@ -26,10 +26,10 @@ we gave the routes in the previous section.
 
 namespace App\Services\ToDo\Http\Controllers;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\Base;
 use App\Services\ToDo\Models\TaskList as TaskListModel;
 
-class TaskList extends BaseController
+class TaskList extends Base
 {
     public function index()
     {
@@ -160,11 +160,11 @@ That's it for the task list controller.  Now just do the same thing for the Task
 
 namespace App\Services\ToDo\Http\Controllers;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\Base;
 use App\Services\ToDo\Models\Task as TaskModel;
 use App\Services\ToDo\Models\TaskList;
 
-class Task extends BaseController
+class Task extends Base
 {
     public function show($id)
     {

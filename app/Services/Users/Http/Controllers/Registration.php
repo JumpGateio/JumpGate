@@ -2,12 +2,12 @@
 
 namespace App\Services\Users\Http\Controllers;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\Base;
 use Illuminate\Support\Facades\DB;
 use App\Services\Users\Http\Requests\Registration as RegistrationRequest;
 use App\Services\Users\Managers\Registration as RegistrationManager;
 
-class Registration extends BaseController
+class Registration extends Base
 {
     private RegistrationManager $registration;
 

@@ -2,7 +2,8 @@
 
 namespace App\Traits;
 
-use Inertia\ResponseFactory;
+use Inertia\Inertia;
+use Inertia\Response;
 
 trait AutoResolvesViews
 {
@@ -34,13 +35,13 @@ trait AutoResolvesViews
      * @param array       $data
      * @param null|string $page
      *
-     * @return \Inertia\Response
+     * @return Response
      */
-    public function inertia($data = [], $page = null)
+    public function inertia(array $data = [], ?string $page): Response
     {
         $viewModel = inertiaResolver()->setUp($page);
 
-        return app(ResponseFactory::class)->render($viewModel->view, $data);
+        return Inertia::render($viewModel->view, $data);
     }
 
     /**

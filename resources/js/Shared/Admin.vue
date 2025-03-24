@@ -13,7 +13,7 @@
           <admin-menu></admin-menu>
         </div>
         <div class="admin-body">
-          <slot></slot>
+          <slot />
         </div>
       </div>
     </div>

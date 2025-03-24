@@ -1,7 +1,7 @@
 <?php
 
-use App\Collections\EloquentCollection;
-use App\Collections\SupportCollection;
+use App\Services\JumpGate\Core\Collections\EloquentCollection;
+use App\Services\JumpGate\Core\Collections\SupportCollection;
 
 if (! function_exists('collector')) {
     /**

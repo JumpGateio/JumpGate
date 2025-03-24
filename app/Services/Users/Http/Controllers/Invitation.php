@@ -2,10 +2,10 @@
 
 namespace App\Services\Users\Http\Controllers;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\Base;
 use App\Services\Users\Managers\Invitation as InvitationManager;
 
-class Invitation extends BaseController
+class Invitation extends Base
 {
     private InvitationManager $invitation;
 

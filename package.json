@@ -3,7 +3,11 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "build:ssr": "vite build && vite build --ssr",
+        "dev": "vite",
+        "format": "prettier --write resources/",
+        "format:check": "prettier --check resources/",
+        "lint": "eslint . --fix"
     },
     "devDependencies": {
         "@eslint/js": "^9.19.0",
@@ -21,9 +25,11 @@
     "dependencies": {
         "@fortawesome/fontawesome-pro": "^6.7.2",
         "@inertiajs/vue3": "^2.0.0-beta.3",
+        "@popperjs/core": "^2.11.8",
         "@vitejs/plugin-vue": "^5.2.1",
         "@vueuse/core": "^12.0.0",
         "autoprefixer": "^10.4.20",
+        "bootstrap": "5.3.3",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "concurrently": "^9.0.1",
@@ -31,10 +37,9 @@
         "lucide": "^0.468.0",
         "lucide-vue-next": "^0.468.0",
         "moment": "^2.30.1",
+        "postcss": "^8.5.3",
         "radix-vue": "^1.9.11",
-        "tailwind-merge": "^2.5.5",
-        "tailwindcss": "^3.4.1",
-        "tailwindcss-animate": "^1.0.7",
+        "sass": "~1.64.2",
         "typescript": "^5.2.2",
         "vite": "^6.2.0",
         "vue": "^3.5.13",

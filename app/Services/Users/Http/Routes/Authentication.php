@@ -2,8 +2,8 @@
 
 namespace App\Services\Users\Http\Routes;
 
-use App\Abstracts\Route;
-use App\Contracts\Routes;
+use App\Services\JumpGate\Core\Abstracts\Route;
+use App\Services\JumpGate\Core\Contracts\Routes;
 use Illuminate\Routing\Router;
 
 class Authentication extends Route implements Routes

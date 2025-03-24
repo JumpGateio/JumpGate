@@ -2,11 +2,11 @@
 
 namespace App\Services\Users\Http\Controllers;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\Base;
 use App\Services\Users\Managers\Activation as ActivationManager;
 use Illuminate\Http\RedirectResponse;
 
-class Activation extends BaseController
+class Activation extends Base
 {
     private ActivationManager $activation;
 

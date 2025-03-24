@@ -2,8 +2,8 @@
 
 namespace App\Services\Admin\Http\Routes;
 
-use App\Abstracts\Route;
-use App\Contracts\Routes;
+use App\Services\JumpGate\Core\Abstracts\Route;
+use App\Services\JumpGate\Core\Contracts\Routes;
 use App\Services\Users\Models\User;
 use Illuminate\Routing\Router;
 

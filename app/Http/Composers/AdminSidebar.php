@@ -3,8 +3,8 @@
 namespace App\Http\Composers;
 
 use Illuminate\Contracts\View\View;
-use JumpGate\Menu\DropDown;
-use JumpGate\Menu\Link;
+use App\Menu\DropDown;
+use App\Menu\Link;
 
 class AdminSidebar
 {

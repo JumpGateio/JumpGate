@@ -2,7 +2,7 @@
 
 namespace App\Traits\Collection;
 
-use App\Collections\SupportCollection;
+use App\Services\JumpGate\Core\Collections\SupportCollection;
 
 trait Searching
 {
@@ -37,7 +37,7 @@ trait Searching
 
         // If an operator is found then add operators.
         if ($whereStatement->intersect($operators)) {
-            list($operator, $firstOrLast, $inverse) = $this->determineMagicWhereDetails($whereStatement);
+            [$operator, $firstOrLast, $inverse] = $this->determineMagicWhereDetails($whereStatement);
 
             $column = $args[0];
             $value  = (isset($args[1]) ? $args[1] : null);

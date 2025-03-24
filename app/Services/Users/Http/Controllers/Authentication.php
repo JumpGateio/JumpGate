@@ -2,12 +2,12 @@
 
 namespace App\Services\Users\Http\Controllers;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\Base;
 use App\Services\Users\Events\UserLoggedOut;
 use App\Services\Users\Http\Requests\Login;
 use App\Services\Users\Managers\Login as LoginManager;
 
-class Authentication extends BaseController
+class Authentication extends Base
 {
     private LoginManager $login;
 

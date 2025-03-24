@@ -2,7 +2,7 @@
 
 namespace App\Actions;
 
-use App\Managers\Response;
+use App\Services\JumpGate\Core\Managers\Response;
 
 class Destructive
 {

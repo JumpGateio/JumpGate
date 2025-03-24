@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76c0e39559adb685e11e415861cd6f73",
+    "content-hash": "84c39cffbae17a28d89be90e05d9c846",
     "packages": [
         {
             "name": "brick/math",
@@ -1190,6 +1190,61 @@
                 }
             ],
             "time": "2025-02-18T19:00:36+00:00"
+        },
+        {
+            "name": "jumpgate/menu",
+            "version": "2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JumpGateio/Menu.git",
+                "reference": "550102d34daefe951898817b460095a590f0bb68"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JumpGateio/Menu/zipball/550102d34daefe951898817b460095a590f0bb68",
+                "reference": "550102d34daefe951898817b460095a590f0bb68",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=4.0"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "~1.4",
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "~5.7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "JumpGate\\Menu\\MenuServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "JumpGate\\Menu\\": "src/JumpGate/Menu"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Riddles",
+                    "email": "riddles@dev-toolbox.com"
+                }
+            ],
+            "description": "A simple menu system.",
+            "support": {
+                "issues": "https://github.com/JumpGateio/Menu/issues",
+                "source": "https://github.com/JumpGateio/Menu/tree/master"
+            },
+            "time": "2020-01-03T18:05:22+00:00"
         },
         {
             "name": "kkszymanowski/traitor",

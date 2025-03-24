@@ -2,8 +2,8 @@
 
 namespace App\Services\Admin\Http\Routes\User;
 
-use App\Abstracts\Route;
-use App\Contracts\Routes;
+use App\Services\JumpGate\Core\Abstracts\Route;
+use App\Services\JumpGate\Core\Contracts\Routes;
 use App\Services\Users\Models\User\Status as StatusModel;
 use Illuminate\Routing\Router;
 

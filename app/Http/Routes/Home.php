@@ -2,8 +2,8 @@
 
 namespace App\Http\Routes;
 
-use App\Abstracts\Route;
-use App\Contracts\Routes;
+use App\Services\JumpGate\Core\Abstracts\Route;
+use App\Services\JumpGate\Core\Contracts\Routes;
 use Illuminate\Routing\Router;
 
 class Home extends Route implements Routes
@@ -16,12 +16,6 @@ class Home extends Route implements Routes
     {
         $router->get('/')
                ->name('home')
-               ->uses('HomeController@index')
-               ->middleware('active:home');
-
-        $router->get('/api/ziggy')
-               ->name('ziggy')
-               ->uses('HomeController@ziggy')
-               ->middleware('active:home, auth');
+               ->uses('Home@index');
     }
 }
