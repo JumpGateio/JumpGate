@@ -21,7 +21,7 @@
           <a class="lead text-black">JumpGate: </a>
           <a target="_blank" href="https://github.com/JumpGateio">Organization</a>
           <a target="_blank" href="https://github.com/jumpgateio/jumpgate">WebApp</a>
-          <a target="_blank" href="https://docs.nukacode.com/docs/1.0/overview">Documentation</a>
+          <a target="_blank" href="https://jumpgateio.github.io">Documentation</a>
         </div>
 
         <div class="links column">

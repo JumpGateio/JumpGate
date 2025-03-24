@@ -20,6 +20,10 @@ return Application::configure(basePath: dirname(__DIR__))
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
         ]);
+
+        $middleware->alias([
+            'active' => null,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
