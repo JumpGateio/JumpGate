@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use JumpGate\Core\Abstracts\Seeder;
+use App\Services\JumpGate\Core\Abstracts\Seeder;
 
 abstract class Base extends Seeder
 {

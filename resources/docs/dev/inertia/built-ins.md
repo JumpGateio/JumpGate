@@ -36,7 +36,7 @@ docs (which are very easy to follow), look directly to [their site](https://iner
 <a name="packages"></a>
 ## Packages
 
-We also include some common packages used in Vue/Inertia.  All of these packages are set up in `app.js`.
+We also include some common packages used in Vue/Inertia.  All of these packages are set up in `app.ts`.
 
 Package          | What it does                                  | Docs
 ---------------- | --------------------------------------------- | -------

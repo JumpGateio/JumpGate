@@ -2,10 +2,10 @@
 
 namespace App\Services\Users\Http\Controllers;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\Base;
 use App\Services\Users\Managers\SocialLogin;
 
-class SocialAuthentication extends BaseController
+class SocialAuthentication extends Base
 {
     private SocialLogin $login;
 

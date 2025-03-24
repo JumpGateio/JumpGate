@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\JumpGate\Models;
 
-use JumpGate\Database\Collections\SupportCollection;
+use App\Services\JumpGate\Core\Collections\SupportCollection;
 
 class Css
 {

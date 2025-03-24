@@ -25,7 +25,7 @@
 
 ### start_debug($name, $label)
 
-This method is used to start a measurement with laravel debugbar.  It will use the name and label passed to it in the 
+This method is used to start a measurement with laravel debugbar.  It will use the name and label passed to it in the
 measurement.
 
 ### stop_debug($name)
@@ -34,7 +34,7 @@ This method is used to stop a measurement with laravel debugbar.  It will use th
 
 ### pp($data, $return = false)
 
-This is a simple helper for displaying output when you need to debug code.  It behaves very similarly to laravel's `dump()` 
+This is a simple helper for displaying output when you need to debug code.  It behaves very similarly to laravel's `dump()`
 method.  If you pass return as true, it will return the output directly, otherwise it will echo it.
 
 ### ppd($data)
@@ -43,24 +43,24 @@ This is the same as `pp` but it adds a `die` at the end.  This is similar to lar
 
 ### objToArray($object)
 
-The goal of this method is to convert an object into an array.  It will set the key of each array element as a `snake_case()` 
+The goal of this method is to convert an object into an array.  It will set the key of each array element as a `snake_case()`
 of the property name.
 
 <a name="api"></a>
 ## API
 
-> {info} These helper methods are aimed at making guzzle calls easier to perform by handling the basic things for you.  They are 
+> {info} These helper methods are aimed at making guzzle calls easier to perform by handling the basic things for you.  They are
 found in `helpers/api.php`.
 
 ### apiCall($call, $tap = null)
 
-For this method, pass it the results of your call to guzzle (GET, POST, etc).  It will then wrap the results in a 
-`App\Models\Simple` model for ease of use.  If you pass the `tap` parameter, it will get that property from the results and 
+For this method, pass it the results of your call to guzzle (GET, POST, etc).  It will then wrap the results in a
+`App\Models\Simple` model for ease of use.  If you pass the `tap` parameter, it will get that property from the results and
 pass that to the model instead.
 
 ### apiCollection($call, $tap = null)
 
-Similar to the previous method, this will return the results of your call as a collection of Simple models.  All other details 
+Similar to the previous method, this will return the results of your call as a collection of Simple models.  All other details
 from the previous call apply.
 
 <a name="math"></a>
@@ -116,7 +116,7 @@ The above code would output `Tom, Bill and Sam`.
 
 ### json_validate($string)
 
-This method will run `json_deode` on your string, then use `json_last_error` to figure out what actually happened and return 
+This method will run `json_deode` on your string, then use `json_last_error` to figure out what actually happened and return
 any error in a much more human readable way.
 
 <a name="time"></a>
@@ -136,27 +136,27 @@ This method is used extensively in our default Models.  It will take the time yo
 
 ### getTime($time)
 
-This is the counterpart to `setTime()`.  This method will convert the time from UTC into either the app timezone or the 
+This is the counterpart to `setTime()`.  This method will convert the time from UTC into either the app timezone or the
 user's if they are logged in.
 
 ### carbonParse($date)
 
-This is basically a shorthand for `\Carbon\Carbon::parse($time)`.  However, if a user is logged in, it will set the carbon 
+This is basically a shorthand for `\Carbon\Carbon::parse($time)`.  However, if a user is logged in, it will set the carbon
 object to the user's timezone.
 
 ### convertToSeconds($time)
 
-This method will convert a time signature (HH:MM:SS) into seconds by splitting the string and multiplying to get the number 
+This method will convert a time signature (HH:MM:SS) into seconds by splitting the string and multiplying to get the number
 of seconds that time would be.
 
 ### convertFromSeconds($time)
 
-Alternately, this will take a number of seconds and tell you how many weeks, days, hours, minutes and remaining seconds 
+Alternately, this will take a number of seconds and tell you how many weeks, days, hours, minutes and remaining seconds
 it equates to.
 
 ### secondsToReadable($seconds)
 
-This is similar to the above, but it is more readable.  The output would be something like `2 days 10 hours 43 minutes 
+This is similar to the above, but it is more readable.  The output would be something like `2 days 10 hours 43 minutes
 and 2 seconds`.
 
 <a name="database"></a>
@@ -166,11 +166,11 @@ and 2 seconds`.
 
 ### collector($value = null)
 
-This is a helper method to create a new `\JumpGate\Database\Collections\EloquentCollection` with your value supplied.
+This is a helper method to create a new `\App\Collections\EloquentCollection` with your value supplied.
 
 ### supportCollector($value = null)
 
-This is a helper method to create a new `\JumpGate\Database\Collections\SupportCollection` with your value supplied.
+This is a helper method to create a new `\App\Collections\SupportCollection` with your value supplied.
 
 <a name="menu"></a>
 ## Menu
@@ -196,5 +196,5 @@ This is a quick helper to get the InertiaResolver out of the app container.
 
 ### checkDebugbar()
 
-All this method does is check is the app is in local env and has the debugbar bound.  This is used throughout the package 
+All this method does is check is the app is in local env and has the debugbar bound.  This is used throughout the package
 to only take actions with the debug bar when it is necessary.

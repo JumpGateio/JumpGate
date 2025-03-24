@@ -30,8 +30,6 @@ class CreateUserSocialTable extends Migration
                   ->on('users')
                   ->onDelete('cascade');
         });
-
-        DB::statement('ALTER TABLE `users` MODIFY `password` VARCHAR(64);');
     }
 
     /**
@@ -42,9 +40,5 @@ class CreateUserSocialTable extends Migration
     public function down()
     {
         Schema::drop('user_socials');
-
-        if (DB::table('users')->count() === 0) {
-            DB::statement('ALTER TABLE `users` MODIFY `password` VARCHAR(64) NOT NULL;');
-        }
     }
 }

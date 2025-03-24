@@ -2,22 +2,22 @@
 
 namespace App\Services\Admin\Http\Routes;
 
+use App\Services\JumpGate\Core\Abstracts\Route;
+use App\Services\JumpGate\Core\Contracts\Routes;
 use App\Services\Users\Models\User;
-use JumpGate\Core\Contracts\Routes;
-use JumpGate\Core\Http\Routes\BaseRoute;
 use Illuminate\Routing\Router;
 
-class Users extends BaseRoute implements Routes
+class Users extends Route implements Routes
 {
-    public $namespace = 'App\Services\Admin\Http\Controllers';
+    public ?string $namespace = 'App\Services\Admin\Http\Controllers';
 
-    public $context = 'default';
+    public ?string $context = 'default';
 
-    public $prefix = 'admin/users';
+    public ?string $prefix = 'admin/users';
 
-    public $role = 'admin';
+    public ?string $role = 'admin';
 
-    public $middleware = [
+    public array $middleware = [
         'web',
         'auth',
         'role:admin|developer',

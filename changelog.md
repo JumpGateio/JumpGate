@@ -1,4 +1,15 @@
-# Upgrade to 5.0
+# Upgrade to 10.0
+
+- Laravel updated to 12
+- PHP updated to 8.2
+- Upgraded npm to 22
+- Fixing setup command to use new features
+  - Allows different versions of font-awesome.
+- Pulled extra JumpGate packages into this app.
+  - Menu, Core, Database, ViewResolution
+- Removed bootstrap 4 and inserted tailwind
+
+# Upgrade to 9.0
 
 - Laravel updated to 9
   - [Upgrade guide](https://laravel.com/docs/9.x/upgrade)

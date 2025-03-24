@@ -4,7 +4,9 @@ namespace App\Console\Commands\JumpGate;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Symfony\Component\Process\Process;
+use Illuminate\Support\Facades\Process;
+use function Laravel\Prompts\select;
+use function Laravel\Prompts\text;
 
 class SetUp extends Command
 {
@@ -20,11 +22,13 @@ class SetUp extends Command
      *
      * @var string
      */
-    protected $description = 'Do all the initial steps to set up your jumpgate app.';
+    protected          $description  = 'Do all the initial steps to set up your jumpgate app.';
 
     private Filesystem $files;
 
-    private bool $generatedEnv = true;
+    private bool       $generatedEnv = true;
+
+    private string     $command;
 
     public function __construct(Filesystem $files)
     {
@@ -35,14 +39,21 @@ class SetUp extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
-    public function handle()
+    public function handle(): void
     {
+        $hasYarn       = (int)Process::run('yarn -v')->output() > 0;
+        $this->command = 'npm';
+
+        if ($hasYarn) {
+            $this->command = 'yarn';
+        }
+
         $this->generateEnv();
         $this->generateAppKey();
         $this->handleAssets();
+        $this->handleIcons();
+        $this->buildFiles();
         $this->discover();
 
         $this->info('Finished!');
@@ -53,7 +64,7 @@ class SetUp extends Command
      */
     private function generateEnv(): void
     {
-        if (! $this->files->exists(base_path('.env'))) {
+        if (!$this->files->exists(base_path('.env'))) {
             $this->comment('Generating .env...');
 
             $this->files->copy('.env.example', '.env');
@@ -67,7 +78,7 @@ class SetUp extends Command
     /**
      * Generate an app key if we made a fresh ,env.
      */
-    private function generateAppKey()
+    private function generateAppKey(): void
     {
         if ($this->generatedEnv) {
             $this->comment('Generating app key...');
@@ -78,35 +89,92 @@ class SetUp extends Command
     /**
      * Run the js and asset compile commands.
      */
-    private function handleAssets()
+    private function handleAssets(): void
     {
-        // $this->comment('Publishing docs...');
-        // $this->call('vendor:publish', ['--tag' => 'larecipe_assets', '--force' => true]);
+        $this->comment('Installing node modules...');
 
-        $this->comment('Running yarn...');
+        Process::path(base_path())
+            ->timeout(150)
+            ->run($this->command . ' install', function ($type, $output) {
+                echo $output;
+            });
+    }
 
-        $process = Process::fromShellCommandline('yarn');
-        $process->setTimeout(150);
-        $process->run(function ($type, $buffer) {
-            echo $buffer;
-        });
-        $process->wait();
+    private function handleIcons(): void
+    {
+        $fontAwesome = select(
+            label: 'Are you going to use font-awesome?',
+            options: ['No', 'Pro', 'Free'],
+            default: 'Pro'
+        );
 
-        $this->comment('Running laravel mix...');
+        // No need to do anything
+        if ($fontAwesome == 'No') {
+            return;
+        }
 
-        $process = Process::fromShellCommandline('npm run dev');
-        $process->run(function ($type, $buffer) {
-            echo $buffer;
-        });
+        $command = $this->command . ' install --save';
 
-        // $this->comment('Running laravel docs...');
-        // $this->call('larecipe:install');
+        if ($this->command == 'yarn') {
+            $command = $this->command . ' add';
+        }
+
+        // Add the pro version after getting the api key.
+        if ($fontAwesome == 'Pro') {
+            $this->installFontAwesomePro($command);
+            return;
+        }
+
+        $this->info('Installing font-awesome free...');
+
+        // The free version won't install if the font-awesome registry is in .npmrc.
+        $this->files->delete(base_path('.npmrc'));
+
+        Process::path(base_path())
+            ->timeout(150)
+            ->run($command . ' @fortawesome/fontawesome-free', function ($type, $output) {
+                echo $output;
+            });
+    }
+
+    private function installFontAwesomePro($command): void
+    {
+        $key = text(
+            label: 'What is your api-key?',
+            required: true,
+            hint: 'This will be added to .npmrc'
+        );
+
+        $this->info('Generating .npmrc file...');
+        $npmrc = $this->files->get(
+            dir_style([base_path(), 'app', 'Console', 'Commands', 'JumpGate', 'resources', '.npmrc'])
+        );
+        $npmrc = substr($npmrc, 0, -2) . $key;
+
+        $this->files->put(base_path('.npmrc'), $npmrc);
+
+        $this->info('Installing font-awesome pro...');
+        Process::path(base_path())
+            ->timeout(240)
+            ->run($command . ' @fortawesome/fontawesome-pro', function ($type, $output) {
+                echo $output;
+            });
+    }
+
+    private function buildFiles(): void
+    {
+        $this->comment('Compiling assets...');
+
+        Process::path(base_path())
+            ->run('npm run build', function ($type, $output) {
+                echo $output;
+            });
     }
 
     /**
      * Discover any packages we will be needing.
      */
-    private function discover()
+    private function discover(): void
     {
         $this->comment('Running laravel discover...');
 

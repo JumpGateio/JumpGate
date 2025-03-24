@@ -5,7 +5,7 @@
 /public/js
 /public/fonts
 /public/vendor
-/public/mix-manifest.json
+/public/build/*
 /storage/*.key
 /vendor
 /.idea
@@ -13,6 +13,7 @@
 /.vscode
 .env
 .env.backup
+.npmrc
 .phpunit.result.cache
 docker-compose.override.yml
 Homestead.json

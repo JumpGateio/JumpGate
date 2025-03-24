@@ -42,9 +42,6 @@
     border: 1px solid $color;
   }
 
-  // Tables
-  @include table-row-variant($label, transparentize($color, .5));
-
   // Misc
   .shadowfilter-#{$label} {
     -webkit-filter: drop-shadow(0px 0px 8px rgba($color, 0.80)) !important;

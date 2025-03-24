@@ -2,19 +2,19 @@
 
 namespace App\Services\Users\Http\Routes;
 
-use JumpGate\Core\Contracts\Routes;
-use JumpGate\Core\Http\Routes\BaseRoute;
+use App\Services\JumpGate\Core\Abstracts\Route;
+use App\Services\JumpGate\Core\Contracts\Routes;
 use Illuminate\Routing\Router;
 
-class Invitation extends BaseRoute implements Routes
+class Invitation extends Route implements Routes
 {
-    public $namespace = 'App\Services\Users\Http\Controllers';
+    public ?string $namespace = 'App\Services\Users\Http\Controllers';
 
-    public $context = 'default';
+    public ?string $context = 'default';
 
-    public $prefix = 'invitation';
+    public ?string $prefix = 'invitation';
 
-    public $middleware = [
+    public array $middleware = [
         'web',
         'auth',
     ];

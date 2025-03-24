@@ -3,10 +3,7 @@
 namespace App\Services\Users\Models;
 
 use App\Models\BaseModel;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
+use App\Services\JumpGate\Core\Collections\SupportCollection;
 use App\Services\Users\Managers\GetActions;
 use App\Services\Users\Models\User\Detail;
 use App\Services\Users\Models\User\Status;
@@ -19,8 +16,11 @@ use App\Services\Users\Traits\CanResetPassword;
 use App\Services\Users\Traits\HasGravatar;
 use App\Services\Users\Traits\HasSocials;
 use App\Services\Users\Traits\HasTokens;
-use JumpGate\Database\Collections\SupportCollection;
-use Laratrust\Traits\LaratrustUserTrait;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
+use Laratrust\Traits\HasRolesAndPermissions;
 
 /**
  * Class User
@@ -87,11 +87,6 @@ class User extends BaseModel implements \Illuminate\Contracts\Auth\Authenticatab
     use HasSocials;
 
     /**
-     * Allow this model to have roles and permissions.
-     */
-    use LaratrustUserTrait;
-
-    /**
      * Allow this model to generate and use tokens.
      */
     use HasTokens;
@@ -100,6 +95,11 @@ class User extends BaseModel implements \Illuminate\Contracts\Auth\Authenticatab
      * Allow this model to display a gravatar avatar.
      */
     use HasGravatar;
+
+    /**
+     * Allow this model to have roles and permissions.
+     */
+    use HasRolesAndPermissions;
 
     /**
      * Allow this model to receive notifications.

@@ -3,8 +3,8 @@
 namespace App\Http\Composers;
 
 use Illuminate\Contracts\View\View;
-use JumpGate\Menu\DropDown;
-use JumpGate\Menu\Link;
+use App\Menu\DropDown;
+use App\Menu\Link;
 
 class Menu
 {
@@ -31,7 +31,7 @@ class Menu
      */
     public static function generateLeftMenu()
     {
-        $leftMenu = \Menu::getMenu('leftMenu');
+        $leftMenu = menu('leftMenu');
 
         // $leftMenu->link('docs', function (Link $link) {
         //     $link->name    = 'Documentation';
@@ -47,7 +47,7 @@ class Menu
      */
     public static function generateRightMenu()
     {
-        $rightMenu = \Menu::getMenu('rightMenu');
+        $rightMenu = menu('rightMenu');
 
         if (auth()->guest()) {
             $rightMenu->link('login', function (Link $link) {

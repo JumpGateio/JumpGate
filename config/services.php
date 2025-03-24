@@ -8,22 +8,14 @@ return [
     |--------------------------------------------------------------------------
     |
     | This file is for storing the credentials for third party services such
-    | as Stripe, Mailgun, SparkPost and others. This file provides a sane
-    | default location for this type of information, allowing packages
-    | to have a conventional place to find your various credentials.
+    | as Mailgun, Postmark, AWS and more. This file provides the de facto
+    | location for this type of information, allowing packages to have
+    | a conventional file to locate the various service credentials.
     |
     */
-    'google' => [
-        'client_id'     => env('GOOGLE_KEY'),
-        'client_secret' => env('GOOGLE_SECRET'),
-        'redirect'      => env('GOOGLE_REDIRECT_URI'),
-    ],
 
-    'mailgun' => [
-        'domain'   => env('MAILGUN_DOMAIN'),
-        'secret'   => env('MAILGUN_SECRET'),
-        'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
-        'scheme'   => 'https',
+    'postmark' => [
+        'token' => env('POSTMARK_TOKEN'),
     ],
 
     'ses' => [
@@ -32,18 +24,15 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'postmark' => [
-        'token' => env('POSTMARK_TOKEN'),
+    'resend' => [
+        'key' => env('RESEND_KEY'),
     ],
 
-    'sparkpost' => [
-        'secret' => env('SPARKPOST_SECRET'),
-    ],
-
-    'stripe' => [
-        'model'  => App\Models\User::class,
-        'key'    => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
+    'slack' => [
+        'notifications' => [
+            'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
+            'channel'              => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
+        ],
     ],
 
 ];
