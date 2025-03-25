@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:100,300,400,600');
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-//$fa-font-path: '../fonts';
+$fa-font-path: "@fortawesome/fontawesome-pro/webfonts/";
 @import "@fortawesome/fontawesome-pro/scss/fontawesome";
 @import "@fortawesome/fontawesome-pro/scss/brands";
 @import "@fortawesome/fontawesome-pro/scss/regular";

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\View;
 use Inertia\Inertia;
 
 abstract class Base extends Controller
@@ -42,5 +43,10 @@ abstract class Base extends Controller
         Inertia::share($menus);
 
         return $this->inertia($data, $page);
+    }
+
+    public function setTheme($string): void
+    {
+        View::share('theme', $string);
     }
 }

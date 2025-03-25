@@ -34,8 +34,10 @@
   </div>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import {defineComponent} from "vue";
+
+  export default defineComponent({
     name:     'Auth-Login',
     metaInfo: {title: 'Login'},
 
@@ -55,5 +57,5 @@
         this.form.post(this.route('auth.login'))
       }
     }
-  }
+  })
 </script>

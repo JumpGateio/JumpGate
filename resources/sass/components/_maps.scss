@@ -31,6 +31,8 @@ $pallet-colors: map-merge((
   "info-light": desaturate(lighten($info, 10%), 15%),
   "danger-light": desaturate(lighten($danger, 10%), 15%),
   "success-light": desaturate(lighten($success, 10%), 15%),
+  "laravel": $laravel,
+  "jumpgate": $jumpgate,
 ), $theme-colors);
 
 $grays: map-merge((

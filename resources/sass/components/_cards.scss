@@ -16,6 +16,26 @@
   }
 }
 
+.card {
+  .card-body {
+    position: relative;
+    z-index:  1;
+
+    .card-icon-background {
+      z-index:   2;
+      position:  absolute;
+      font-size: 10rem;
+      overflow:  hidden;
+      top:       12px;
+      left:      -26px;
+    }
+
+    .card-title, .card-text {
+      z-index: 3;
+    }
+  }
+}
+
 .news-card {
   img {
     width: 100%;

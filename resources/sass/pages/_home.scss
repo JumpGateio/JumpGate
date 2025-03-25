@@ -1,7 +1,7 @@
 #home {
-  color:       #636b6f;
+  color:       $gray-200;
   font-family: 'Raleway';
-  font-weight: 200;
+  font-weight: 400;
   height:      100vh;
   margin:      0;
 
@@ -25,28 +25,29 @@
     top:      18px;
   }
 
-  .content {
-    text-align: center;
-  }
-
   .title {
-    font-size: 84px;
+    font-size:  84px;
+    text-align: center;
   }
 
   .sub-title {
     font-size: 24px;
   }
 
+  .card-body {
+    font-size: 1.2rem;
+  }
+
   .columns {
     display:         flex;
     flex-direction:  row;
     justify-content: center;
+    gap:             1rem;
 
-    .column {
-      flex:           1;
-      display:        flex;
-      flex-direction: column;
-      max-width:      300px;
+    .card {
+      flex:      1;
+      max-width: 300px;
+      height:    fit-content;
     }
   }
 
