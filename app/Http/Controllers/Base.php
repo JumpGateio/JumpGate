@@ -23,25 +23,18 @@ abstract class Base extends Controller
      * Use this method to quickly switch your GET responses
      * between blade and view.
      *
-     * @see AutoResolvesViews::view()
-     * @see AutoResolvesViews::inertia()
-     *
      * @param array       $data
      * @param null|string $page
      * @param null|string $layout
      *
      * @return \Inertia\Response
+     * @see AutoResolvesViews::view()
+     * @see AutoResolvesViews::inertia()
+     *
      */
     public function response(array $data = [], ?string $page = null, ?string $layout = null): \Inertia\Response
     {
-        $menus = [
-//            'leftMenu'  => menu()->render('leftMenu')->links,
-//            'rightMenu' => menu()->render('rightMenu')->links,
-//            'adminMenu' => menu()->render('adminMenu')->links,
-        ];
-
-        Inertia::share($menus);
-
+        $this->setTheme('dark');
         return $this->inertia($data, $page);
     }
 

@@ -11,10 +11,11 @@
   </li>
 </template>
 
-<script>
-  import DropDownItem from '@/Shared/Menu/DropDownItem'
+<script lang="ts">
+  import DropDownItem from '@/Shared/Menu/DropDownItem.vue'
+  import {defineComponent} from "vue";
 
-  export default {
+  export default defineComponent({
     name: 'Menu-DropDown',
 
     components: {
@@ -22,5 +23,5 @@
     },
 
     props: ['item'],
-  }
+  })
 </script>

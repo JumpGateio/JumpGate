@@ -13,10 +13,11 @@
   </div>
 </template>
 
-<script>
-  import Menu from '@/Shared/Menu/Main'
+<script lang="ts">
+  import Menu from '@/Shared/Menu/Main.vue'
+  import {defineComponent} from "vue"
 
-  export default {
+  export default defineComponent({
     name: 'Layout',
 
     components: {
@@ -57,5 +58,5 @@
         return title
       }
     },
-  }
+  })
 </script>

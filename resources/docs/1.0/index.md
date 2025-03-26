@@ -1,2 +1,0 @@
-- ## Your Site
-    - [Your Docs](/docs/{{version}}/site-example)

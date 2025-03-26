@@ -16,9 +16,18 @@
             </div>
           </div>
           <ul class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action" target="_blank" href="https://laravel.com/docs/12.x">Documentation</a>
-            <a class="list-group-item list-group-item-action" target="_blank" href="https://laracasts.com">Laracasts</a>
-            <a class="list-group-item list-group-item-action" target="_blank" href="https://github.com/laravel/laravel">GitHub</a>
+            <a class="list-group-item list-group-item-action" target="_blank" href="https://laravel.com/docs/12.x">
+              <span class="text-laravel">__</span>
+              Documentation
+            </a>
+            <a class="list-group-item list-group-item-action" target="_blank" href="https://laracasts.com">
+              <span class="text-laravel">__</span>
+              Laracasts
+            </a>
+            <a class="list-group-item list-group-item-action" target="_blank" href="https://github.com/laravel/laravel">
+              <span class="text-laravel">__</span>
+              GitHub
+            </a>
           </ul>
         </div>
 
@@ -29,9 +38,18 @@
             </div>
           </div>
           <ul class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action" target="_blank" href="https://github.com/JumpGateio">Organization</a>
-            <a class="list-group-item list-group-item-action" target="_blank" href="https://github.com/jumpgateio/jumpgate">WebApp</a>
-            <a class="list-group-item list-group-item-action" target="_blank" href="https://jumpgateio.github.io">Documentation</a>
+            <a class="list-group-item list-group-item-action" target="_blank" href="https://github.com/JumpGateio">
+              <span class="text-jumpgate">__</span>
+              Organization
+            </a>
+            <a class="list-group-item list-group-item-action" target="_blank" href="https://github.com/jumpgateio/jumpgate">
+              <span class="text-jumpgate">__</span>
+              WebApp
+            </a>
+            <a class="list-group-item list-group-item-action" target="_blank" href="https://jumpgateio.github.io">
+              <span class="text-jumpgate">__</span>
+              Documentation
+            </a>
           </ul>
         </div>
 
@@ -42,9 +60,18 @@
             </div>
           </div>
           <ul class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action" target="_blank" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Bootstrap 5</a>
-            <a class="list-group-item list-group-item-action" target="_blank" href="http://vuejs.org/guide/">VueJs 3</a>
-            <a class="list-group-item list-group-item-action" target="_blank" href="https://inertiajs.com/">InertiaJs</a>
+            <a class="list-group-item list-group-item-action" target="_blank" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">
+              <span class="text-pale-green">__</span>
+              Bootstrap 5
+            </a>
+            <a class="list-group-item list-group-item-action" target="_blank" href="http://vuejs.org/guide/">
+              <span class="text-pale-green">__</span>
+              VueJs 3
+            </a>
+            <a class="list-group-item list-group-item-action" target="_blank" href="https://inertiajs.com/">
+              <span class="text-pale-green">__</span>
+              InertiaJs
+            </a>
           </ul>
         </div>
 
@@ -55,8 +82,16 @@
             </div>
           </div>
           <ul class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action" target="_blank" href="https://laratrust.santigarcor.me/docs/8.x/">Laratrust</a>
+            <a class="list-group-item list-group-item-action" target="_blank" href="https://lodash.com/docs/4.17.15">
+              <span class="text-pink">__</span>
+              Lodash
+            </a>
+            <a class="list-group-item list-group-item-action" target="_blank" href="https://laratrust.santigarcor.me/docs/8.x/">
+              <span class="text-pink">__</span>
+              Laratrust
+            </a>
             <a class="list-group-item list-group-item-action" target="_blank" href="https://console.developers.google.com/apis/credentials?pli">
+              <span class="text-pink">__</span>
               Google Api Console
             </a>
           </ul>
@@ -67,11 +102,13 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import {defineComponent} from "vue"
+import Layout from "@/Shared/Layout.vue"
 
 export default defineComponent({
   name: 'Home-Index',
-  metaInfo: {title: 'Home'},
+
+  layout: Layout,
 
   props: {
     loggedIn: Boolean,

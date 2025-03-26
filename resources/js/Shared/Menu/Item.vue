@@ -1,21 +1,25 @@
 <template>
   <li class="nav-item" :class="{ active:  item.active }">
-    <inertia-link :href="item.url" class="nav-link" v-if="isInertia">{{ item.name }}</inertia-link>
+    <Link :href="item.url" class="nav-link" v-if="isInertia">{{ item.name }}</Link>
     <a :href="item.url" class="nav-link" v-else>{{ item.name }}</a>
   </li>
 </template>
 
-<script>
-  export default {
-    name: 'Menu-Item',
+<script lang="ts">
+import {defineComponent} from "vue"
+import {Link} from '@inertiajs/vue3'
 
-    props: ['item'],
+export default defineComponent({
+  name: 'Menu-Item',
 
-    computed: {
-      isInertia()
-      {
-        return ! this.item.hasOwnProperty('inertia') || this.item.inertia == true
-      }
+  props: ['item'],
+
+  components: [Link],
+
+  computed: {
+    isInertia() {
+      return !this.item.hasOwnProperty('inertia') || this.item.inertia == true
     }
   }
+})
 </script>

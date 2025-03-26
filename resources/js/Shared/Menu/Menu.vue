@@ -1,15 +1,16 @@
 <template>
-  <logout :item="item" :key="item.slug" v-if="item.name === 'Logout'"></logout>
-  <drop-down :item="item" :key="item.slug" v-else-if="item.hasOwnProperty('links')"></drop-down>
-  <item :item="item" :key="item.slug" v-else></item>
+  <logout :item="item" v-if="item.name === 'Logout'"></logout>
+  <drop-down :item="item" v-else-if="item.hasOwnProperty('links')"></drop-down>
+  <item :item="item" v-else></item>
 </template>
 
-<script>
-  import DropDown from '@/Shared/Menu/DropDown'
-  import Logout from '@/Shared/Menu/Logout'
-  import Item from '@/Shared/Menu/Item'
+<script lang="ts">
+  import DropDown from '@/Shared/Menu/DropDown.vue'
+  import Logout from '@/Shared/Menu/Logout.vue'
+  import Item from '@/Shared/Menu/Item.vue'
+  import {defineComponent} from "vue"
 
-  export default {
+  export default defineComponent({
     components: {
       'drop-down': DropDown,
       'logout':    Logout,
@@ -17,5 +18,5 @@
     },
 
     props: ['item'],
-  }
+  })
 </script>

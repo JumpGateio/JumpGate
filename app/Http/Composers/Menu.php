@@ -3,8 +3,8 @@
 namespace App\Http\Composers;
 
 use Illuminate\Contracts\View\View;
-use App\Menu\DropDown;
-use App\Menu\Link;
+use JumpGate\Menu\DropDown;
+use JumpGate\Menu\Link;
 
 class Menu
 {
@@ -33,11 +33,7 @@ class Menu
     {
         $leftMenu = menu('leftMenu');
 
-        // $leftMenu->link('docs', function (Link $link) {
-        //     $link->name    = 'Documentation';
-        //     $link->url     = route('larecipe.index');
-        //     $link->inertia = false;
-        // });
+        // Place any menu you want on the left side here.
 
         return $leftMenu;
     }

@@ -1,13 +1,19 @@
 <template>
-  <inertia-link :href="item.url" class="dropdown-item" :class="{ active:  item.active }">
+  <Link :href="item.url" class="dropdown-item" :class="{ active:  item.active }">
     {{ item.name }}
-  </inertia-link>
+  </Link>
 </template>
 
-<script>
-  export default {
-    name: 'Menu-DropDown-Item',
+<script lang="ts">
 
-    props: ['item'],
-  }
+import {defineComponent} from "vue";
+import {Link} from '@inertiajs/vue3'
+
+export default defineComponent({
+  name: 'Menu-DropDown-Item',
+
+  props: ['item'],
+
+  components: [Link]
+})
 </script>

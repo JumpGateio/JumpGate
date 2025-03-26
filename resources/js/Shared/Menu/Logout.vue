@@ -5,8 +5,10 @@
   </a>
 </template>
 
-<script>
-  export default {
-    props: ['item']
-  }
+<script lang="ts">
+import {defineComponent} from "vue"
+
+export default defineComponent({
+  props: ['item']
+})
 </script>

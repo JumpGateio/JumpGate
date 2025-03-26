@@ -36,7 +36,7 @@ class HandleInertiaRequests extends Middleware
      *
      * @see https://inertiajs.com/asset-versioning
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return string|null
      */
@@ -50,21 +50,21 @@ class HandleInertiaRequests extends Middleware
      *
      * @see https://inertiajs.com/shared-data
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return array
      */
     public function share(Request $request)
     {
-//        Menu::getMenus();
-//        AdminSideBar::getMenus();
-
         return array_merge(parent::share($request), [
             'flash'     => [
                 'success' => session()->get('success'),
                 'error'   => session()->get('error'),
             ],
-            'ziggy' => [
+            'leftMenu'  => Menu::generateLeftMenu()->links,
+            'rightMenu' => Menu::generateRightMenu()->links,
+            'adminMenu' => AdminSideBar::generateMenu()->links,
+            'ziggy'     => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],

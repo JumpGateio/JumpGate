@@ -9,7 +9,6 @@ class Home extends Base
     public function index()
     {
         $loggedIn = auth()->check();
-        $this->setTheme('dark');
 
         return $this->response(
             compact('loggedIn'),
