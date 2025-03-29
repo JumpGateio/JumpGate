@@ -2,7 +2,6 @@
 
 return [
     App\Providers\AppServiceProvider::class,
+    JumpGate\Menu\MenuServiceProvider::class,
     App\Providers\RouteServiceProvider::class,
-    App\Providers\ViewServiceProvider::class,
-    \JumpGate\Menu\MenuServiceProvider::class,
 ];

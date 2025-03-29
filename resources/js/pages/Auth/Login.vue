@@ -23,9 +23,9 @@
             </div>
             <div class="card-footer">
               <input type="submit" :disabled="form.processing" value="Login" class="btn btn-primary">
-              <inertia-link :href="route('auth.register')" class="btn btn-link" v-if="route().has('auth.register')">
+              <Link :href="route('auth.register')" class="btn btn-link" v-if="route().has('auth.register')">
                 Register
-              </inertia-link>
+              </Link>
             </div>
           </form>
         </div>
@@ -38,11 +38,16 @@
   import {defineComponent} from "vue";
   import {useForm} from "@inertiajs/vue3";
   import Layout from "@/Shared/Layout.vue";
+  import {Link} from "@inertiajs/vue3"
 
   export default defineComponent({
     name:     'Auth-Login',
 
     layout: Layout,
+
+    components: {
+      Link: Link,
+    },
 
     data()
     {

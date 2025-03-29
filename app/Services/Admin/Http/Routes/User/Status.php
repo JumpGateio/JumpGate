@@ -2,22 +2,22 @@
 
 namespace App\Services\Admin\Http\Routes\User;
 
-use App\Services\JumpGate\Core\Abstracts\Route;
-use App\Services\JumpGate\Core\Contracts\Routes;
+use JumpGate\Core\Http\Routes\BaseRoute;
+use JumpGate\Core\Contracts\Routes;
 use App\Services\Users\Models\User\Status as StatusModel;
 use Illuminate\Routing\Router;
 
-class Status extends Route implements Routes
+class Status extends BaseRoute implements Routes
 {
-    public ?string $namespace = 'App\Services\Admin\Http\Controllers\User';
+    public $namespace = 'App\Services\Admin\Http\Controllers\User';
 
-    public ?string $context = 'default';
+    public $context = 'default';
 
-    public ?string $prefix = 'admin/users/status';
+    public $prefix = 'admin/users/status';
 
-    public ?string $role = 'admin';
+    public $role = 'admin';
 
-    public array $middleware = [
+    public $middleware = [
         'web',
         'auth',
         'role:admin|developer',

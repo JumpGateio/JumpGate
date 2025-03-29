@@ -2,17 +2,17 @@
 
 namespace App\Services\Users\Http\Routes;
 
-use App\Services\JumpGate\Core\Abstracts\Route;
-use App\Services\JumpGate\Core\Contracts\Routes;
+use JumpGate\Core\Http\Routes\BaseRoute;
+use JumpGate\Core\Contracts\Routes;
 use Illuminate\Routing\Router;
 
-class Authentication extends Route implements Routes
+class Authentication extends BaseRoute implements Routes
 {
-    public ?string $namespace = 'App\Services\Users\Http\Controllers';
+    public $namespace  = 'App\Services\Users\Http\Controllers';
 
-    public ?string $context = 'default';
+    public $context    = 'default';
 
-    public array $middleware = [
+    public $middleware = [
         'web',
         'guest',
     ];
@@ -31,26 +31,27 @@ class Authentication extends Route implements Routes
     private function standardAuth(Router $router)
     {
         $router->get('login')
-               ->name('auth.login')
-               ->uses('Authentication@index');
+            ->name('auth.login')
+            ->uses('Authentication@index')
+            ->middleware('active:login');
         $router->post('login')
-               ->name('auth.login')
-               ->uses('Authentication@handle');
+            ->name('auth.login')
+            ->uses('Authentication@handle');
 
         $router->get('blocked')
-               ->name('auth.blocked')
-               ->uses('Authentication@blocked');
+            ->name('auth.blocked')
+            ->uses('Authentication@blocked');
     }
 
     private function socialAuth(Router $router)
     {
         // Login
         $router->get('login/{provider?}')
-               ->name('auth.social.login')
-               ->uses('SocialAuthentication@login');
+            ->name('auth.social.login')
+            ->uses('SocialAuthentication@login');
 
         $router->get('callback/{provider}')
-               ->name('auth.social.callback')
-               ->uses('SocialAuthentication@callback');
+            ->name('auth.social.callback')
+            ->uses('SocialAuthentication@callback');
     }
 }

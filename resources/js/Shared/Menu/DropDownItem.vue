@@ -14,6 +14,10 @@ export default defineComponent({
 
   props: ['item'],
 
+  components: {
+    Link: Link,
+  },
+
   components: [Link]
 })
 </script>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\AutoResolvesViews;
 use App\Traits\UsesInertia;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -10,6 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 use Inertia\Inertia;
+use JumpGate\ViewResolution\Traits\AutoResolvesViews;
 
 abstract class Base extends Controller
 {
@@ -35,6 +35,14 @@ abstract class Base extends Controller
     public function response(array $data = [], ?string $page = null, ?string $layout = null): \Inertia\Response
     {
         $this->setTheme('dark');
+        $menus = [
+            'leftMenu'  => app('menu')->render('leftMenu')->links,
+            'rightMenu' => app('menu')->render('rightMenu')->links,
+            'adminMenu' => app('menu')->render('adminMenu')->links,
+        ];
+
+        Inertia::share($menus);
+
         return $this->inertia($data, $page);
     }
 

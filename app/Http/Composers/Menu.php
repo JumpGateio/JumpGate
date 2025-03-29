@@ -31,7 +31,7 @@ class Menu
      */
     public static function generateLeftMenu()
     {
-        $leftMenu = menu('leftMenu');
+        $leftMenu = app('menu')->getMenu('leftMenu');
 
         // Place any menu you want on the left side here.
 
@@ -43,7 +43,7 @@ class Menu
      */
     public static function generateRightMenu()
     {
-        $rightMenu = menu('rightMenu');
+        $rightMenu = app('menu')->getMenu('rightMenu');
 
         if (auth()->guest()) {
             $rightMenu->link('login', function (Link $link) {

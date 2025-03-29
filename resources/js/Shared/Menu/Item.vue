@@ -14,7 +14,9 @@ export default defineComponent({
 
   props: ['item'],
 
-  components: [Link],
+  components: {
+    Link: Link,
+  },
 
   computed: {
     isInertia() {

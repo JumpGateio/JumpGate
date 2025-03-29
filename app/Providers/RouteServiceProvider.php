@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\JumpGate\Core\Contracts\Routes;
+use JumpGate\Core\Contracts\Routes;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;

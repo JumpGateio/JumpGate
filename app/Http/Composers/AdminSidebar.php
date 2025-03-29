@@ -27,7 +27,7 @@ class AdminSidebar
 
     public static function generateMenu()
     {
-        $menu = \Menu::getMenu('adminMenu');
+        $menu = app('menu')->getMenu('adminMenu');
 
         $menu->link('admin.dashboard', function (Link $link) {
             $link->name = 'Admin Dashboard';

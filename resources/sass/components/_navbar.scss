@@ -10,13 +10,22 @@
 
 .navbar {
   .nav-item {
+    a.nav-link {
+      margin-top:     -8px;
+      margin-bottom:  -8px;
+      padding-top:    16px !important;
+      padding-bottom: 16px !important;
+    }
+
+    &:hover {
+      a.nav-link {
+        background-color: rgba($white, .1);
+      }
+    }
+
     &.active {
       a.nav-link {
-        background-color: $primary;
-        margin-top:       -8px;
-        margin-bottom:    -8px;
-        padding-top:      16px !important;
-        padding-bottom:   16px !important;
+        border-bottom: 2px solid $primary;
       }
     }
   }

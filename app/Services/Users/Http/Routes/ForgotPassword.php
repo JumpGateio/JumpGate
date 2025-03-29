@@ -2,19 +2,19 @@
 
 namespace App\Services\Users\Http\Routes;
 
-use App\Services\JumpGate\Core\Abstracts\Route;
-use App\Services\JumpGate\Core\Contracts\Routes;
+use JumpGate\Core\Http\Routes\BaseRoute;
+use JumpGate\Core\Contracts\Routes;
 use Illuminate\Routing\Router;
 
-class ForgotPassword extends Route implements Routes
+class ForgotPassword extends BaseRoute implements Routes
 {
-    public ?string $namespace = 'App\Services\Users\Http\Controllers';
+    public $namespace = 'App\Services\Users\Http\Controllers';
 
-    public ?string $context = 'default';
+    public $context = 'default';
 
-    public ?string $prefix = 'password';
+    public $prefix = 'password';
 
-    public array $middleware = [
+    public $middleware = [
         'web',
         // 'guest',
     ];
