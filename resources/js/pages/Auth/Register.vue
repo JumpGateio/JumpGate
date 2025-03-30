@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid vh-100 mt-5 registration">
+  <div class="container-fluid vh-100 mt-5 registration auth">
     <div class="combo-box">
       <div class="site-image">
         <img src="https://place-hold.it/300x300" alt="Site Logo">

@@ -52,7 +52,7 @@ class Menu
                     config('jumpgate.users.default_route.name'),
                     config('jumpgate.users.default_route.options')
                 );
-                $link->inertia = false;
+                $link->inertia = config('jumpgate.users.default_route.inertia');
             });
 
             // Don't show a link if we don't allow registration.

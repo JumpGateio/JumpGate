@@ -1,11 +1,11 @@
 <template>
-  <div class="container-fluid vh-100 mt-5">
-    <div class="d-flex flex-column flex-md-row  gap-5 justify-content-center align-items-center">
+  <div class="container-fluid vh-100 mt-5 login auth">
+    <div class="combo-box">
       <div class="flex">
         <img src="https://place-hold.it/300x300" alt="Site Logo">
       </div>
-      <div class="vr d-none d-sm-block"></div>
-      <div class="flex">
+      <div class="vr"></div>
+      <div class="auth-form">
         <form @submit.prevent="submit">
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>

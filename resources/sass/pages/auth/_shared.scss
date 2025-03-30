@@ -1,4 +1,4 @@
-.registration {
+.auth {
   background-color: $body-color;
   min-width:        100vw;
   min-height:       fit-content;
@@ -29,7 +29,7 @@
 }
 
 @include media-breakpoint-down(sm) {
-  .registration {
+  .auth {
     .combo-box {
       flex-direction: column;
       margin:         0 auto 0 12px;
