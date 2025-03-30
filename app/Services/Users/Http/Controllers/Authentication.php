@@ -24,10 +24,11 @@ class Authentication extends Base
      */
     public function index(): \Inertia\Response
     {
-        $pageTitle = 'Login';
+        $this->setPageTitle('Login');
+        $socialEnabled = (bool)config('jumpgate.users.enable_social');
 
         return $this->response(
-            compact('pageTitle'),
+            compact('socialEnabled'),
             'auth.login'
         );
     }

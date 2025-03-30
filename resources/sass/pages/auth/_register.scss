@@ -1,0 +1,46 @@
+.registration {
+  background-color: $body-color;
+  min-width:        100vw;
+  min-height:       fit-content;
+  margin:           0 auto;
+
+  .combo-box {
+    background-color: $body-color;
+    display:          flex;
+    flex-direction:   row;
+    gap:              2rem;
+    justify-content:  center;
+    align-items:      center;
+    width:            fit-content;
+    margin:           0 auto;
+
+    .site-image {
+      flex: 1 1 300px;
+    }
+
+    .vr {
+      display: block;
+    }
+
+    .auth-form {
+      flex: 1 1 300px;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .registration {
+    .combo-box {
+      flex-direction: column;
+      margin:         0 auto 0 12px;
+
+      .vr {
+        display: none;
+      }
+
+      .auth-form {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -8,9 +8,9 @@ use Illuminate\Routing\Router;
 
 class Registration extends BaseRoute implements Routes
 {
-    public $namespace = 'App\Services\Users\Http\Controllers';
+    public $namespace  = 'App\Services\Users\Http\Controllers';
 
-    public $context = 'default';
+    public $context    = 'default';
 
     public $middleware = [
         'web',
@@ -20,7 +20,7 @@ class Registration extends BaseRoute implements Routes
     public function routes(Router $router)
     {
         // If the site has disabled registration, don't register these routes.
-        if (! config('jumpgate.users.settings.allow_registration')) {
+        if (!config('jumpgate.users.settings.allow_registration')) {
             return true;
         }
 
@@ -30,10 +30,11 @@ class Registration extends BaseRoute implements Routes
     private function standardAuth(Router $router)
     {
         $router->get('register')
-               ->name('auth.register')
-               ->uses('Registration@index');
+            ->name('auth.register')
+            ->uses('Registration@index')
+            ->middleware('active:register');
         $router->post('register')
-               ->name('auth.register')
-               ->uses('Registration@handle');
+            ->name('auth.register')
+            ->uses('Registration@handle');
     }
 }
