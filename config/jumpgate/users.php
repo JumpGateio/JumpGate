@@ -90,6 +90,7 @@ return [
     'default_route' => [
         'name'    => 'auth.social.login',
         'options' => [],
+        'inertia' => true,
     ],
 
     /*
