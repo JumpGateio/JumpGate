@@ -59,12 +59,9 @@ class HandleInertiaRequests extends Middleware
         Menu::getMenus();
         AdminSidebar::getMenus();
 
+
         return array_merge(parent::share($request), [
-            'flash'     => [
-                'success' => session()->get('success'),
-                'error'   => session()->get('error'),
-            ],
-            'ziggy'     => [
+            'ziggy' => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],

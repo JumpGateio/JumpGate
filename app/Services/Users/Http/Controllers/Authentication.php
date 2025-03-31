@@ -38,11 +38,10 @@ class Authentication extends Base
      */
     public function blocked(): \Inertia\Response
     {
-        $pageTitle = 'Blocked';
+        $this->setPageTitle('Blocked');
 
         return $this->response(
-            compact('pageTitle'),
-            'auth.blocked'
+            page: 'auth.blocked'
         );
     }
 

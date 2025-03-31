@@ -1,4 +1,5 @@
 <template>
+  <Head title="Register" />
   <div class="container-fluid vh-100 mt-5 registration auth">
     <div class="combo-box">
       <div class="site-image">
@@ -48,39 +49,26 @@
   </div>
 </template>
 
-<script lang="ts">
-import {defineComponent} from "vue";
-import {Link, useForm} from "@inertiajs/vue3"
+<script setup lang="ts">
+import {Head, Link, useForm} from "@inertiajs/vue3"
 import Layout from "@/Shared/Layout.vue";
 
-export default defineComponent({
-  name: 'Auth-Register',
+declare const name: 'Auth-Register';
 
-  layout: Layout,
+defineOptions({ layout: Layout })
 
-  components: {
-    Link: Link
-  },
-
-  props: {
-    socialEnabled: Boolean,
-  },
-
-  data() {
-    return {
-      form: useForm({
-        email:                 null,
-        display_name:          null,
-        password:              null,
-        password_confirmation: null,
-      })
-    }
-  },
-
-  methods: {
-    submit() {
-      this.form.post(this.route('auth.register'))
-    }
-  }
+defineProps({
+  socialEnabled: Boolean,
 })
+
+const form = useForm({
+  email:                 null,
+  display_name:          null,
+  password:              null,
+  password_confirmation: null,
+})
+
+function submit() {
+  form.post(route('auth.register'))
+}
 </script>

@@ -50,7 +50,7 @@ class Registration
         $this->userDetails->create($this->getUserDetailsFromRequest($user));
 
         // Assign the user to the default group
-        $user->attachRole(config('jumpgate.users.default_role'));
+        $user->addRole(config('jumpgate.users.default_role'));
 
         // If we do not require activation, set the user as active.
         if (! config('jumpgate.users.require_email_activation')) {

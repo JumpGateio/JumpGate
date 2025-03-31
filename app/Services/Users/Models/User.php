@@ -3,7 +3,7 @@
 namespace App\Services\Users\Models;
 
 use App\Models\BaseModel;
-use App\Services\JumpGate\Core\Collections\SupportCollection;
+use JumpGate\Database\Collections\SupportCollection;
 use App\Services\Users\Managers\GetActions;
 use App\Services\Users\Models\User\Detail;
 use App\Services\Users\Models\User\Status;

@@ -40,8 +40,16 @@ abstract class Base extends Controller
             'rightMenu' => app('menu')->render('rightMenu')->links,
             'adminMenu' => app('menu')->render('adminMenu')->links,
         ];
+        $flash = [
+            'flash' => [
+                'success' => session('success'),
+                'error'   => session('error'),
+                'errors'  => session('errors'),
+            ],
+        ];
 
         Inertia::share($menus);
+        Inertia::share($flash);
 
         return $this->inertia($data, $page);
     }

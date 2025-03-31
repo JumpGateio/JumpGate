@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Facades\View;
 use Inertia\Inertia;
 
 trait UsesInertia
@@ -13,7 +14,8 @@ trait UsesInertia
      */
     protected function setPageTitle($title)
     {
-        $this->setJavascriptData(compact('title'));
+        Inertia::share(compact('title'));
+        View::share(compact('title'));
     }
 
     /**

@@ -52,7 +52,7 @@ class Registration extends Base
             logger()->error($exception);
 
             return redirect()->route('auth.register')
-                ->with('errors', $exception->getMessage());
+                ->with('error', $exception->getMessage());
         }
 
         DB::commit();

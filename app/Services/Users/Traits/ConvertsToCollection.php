@@ -2,7 +2,7 @@
 
 namespace App\Services\Users\Traits;
 
-use App\Services\JumpGate\Core\Collections\EloquentCollection;
+use JumpGate\Database\Collections\EloquentCollection;
 use Illuminate\Database\Eloquent\Collection;
 
 trait ConvertsToCollection

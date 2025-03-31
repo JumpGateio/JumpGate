@@ -2,76 +2,102 @@
 
 namespace Database\Seeders\Users;
 
-use App\Services\Users\Models\Permission;
-use App\Services\Users\Models\Role;
-use Database\Seeders\Base;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
-class LaratrustSeeder extends Base
+class LaratrustSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      *
-     * @return  void
+     * @return void
      */
     public function run()
     {
-        $this->command->info('Truncating User, Role and Permission tables');
         $this->truncateLaratrustTables();
 
-        $config         = config('laratrust_seeder.role_structure');
-        $mapPermission  = collect(config('laratrust_seeder.permissions_map'));
+        $config = Config::get('laratrust_seeder.roles_structure');
+
+        if ($config === null) {
+            $this->command->error("The configuration has not been published. Did you run `php artisan vendor:publish --tag=\"laratrust-seeder\"`");
+            $this->command->line('');
+            return false;
+        }
+
+        $mapPermission = collect(config('laratrust_seeder.permissions_map'));
 
         foreach ($config as $key => $modules) {
 
             // Create a new role
-            $role        = Role::create([
-                'name'         => $key,
+            $role = \App\Services\Users\Models\Role::firstOrCreate([
+                'name' => $key,
                 'display_name' => ucwords(str_replace('_', ' ', $key)),
-                'description'  => ucwords(str_replace('_', ' ', $key)),
+                'description' => ucwords(str_replace('_', ' ', $key))
             ]);
             $permissions = [];
 
-            $this->command->info('Creating Role ' . strtoupper($key));
+            $this->command->info('Creating Role '. strtoupper($key));
 
             // Reading role permission modules
             foreach ($modules as $module => $value) {
 
-                foreach (explode(',', $value) as $p => $perm) {
+                foreach (explode(',', $value) as $perm) {
 
                     $permissionValue = $mapPermission->get($perm);
 
-                    $permissions[] = Permission::firstOrCreate([
-                        'name'         => $permissionValue . '-' . $module,
+                    $permissions[] = \App\Services\Users\Models\Permission::firstOrCreate([
+                        'name' => $module . '-' . $permissionValue,
                         'display_name' => ucfirst($permissionValue) . ' ' . ucfirst($module),
-                        'description'  => ucfirst($permissionValue) . ' ' . ucfirst($module),
+                        'description' => ucfirst($permissionValue) . ' ' . ucfirst($module),
                     ])->id;
 
-                    $this->command->info('Creating Permission to ' . $permissionValue . ' for ' . $module);
+                    $this->command->info('Creating Permission to '.$permissionValue.' for '. $module);
                 }
             }
 
-            // Attach all permissions to the role
+            // Add all permissions to the role
             $role->permissions()->sync($permissions);
 
-            $this->command->info("Creating '{$key}' user");
+            if (Config::get('laratrust_seeder.create_users')) {
+                $this->command->info("Creating '{$key}' user");
+                // Create default user for each role
+                $user = \App\Services\Users\Models\User::create([
+                    'name' => ucwords(str_replace('_', ' ', $key)),
+                    'email' => $key.'@app.com',
+                    'password' => bcrypt('password')
+                ]);
+                $user->addRole($role);
+            }
+
         }
     }
 
     /**
      * Truncates all the laratrust tables and the users table
      *
-     * @return    void
+     * @return  void
      */
     public function truncateLaratrustTables()
     {
+        $this->command->info('Truncating User, Role and Permission tables');
         Schema::disableForeignKeyConstraints();
+
         DB::table('rbac_permission_role')->truncate();
         DB::table('rbac_permission_user')->truncate();
         DB::table('rbac_role_user')->truncate();
-        Role::truncate();
-        Permission::truncate();
+
+        if (Config::get('laratrust_seeder.truncate_tables')) {
+            DB::table('rbac_roles')->truncate();
+            DB::table('rbac_permissions')->truncate();
+
+            if (Config::get('laratrust_seeder.create_users')) {
+                $usersTable = (new \App\Services\Users\Models\User)->getTable();
+                DB::table($usersTable)->truncate();
+            }
+        }
+
         Schema::enableForeignKeyConstraints();
     }
 }
