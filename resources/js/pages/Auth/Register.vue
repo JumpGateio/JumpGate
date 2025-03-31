@@ -1,5 +1,5 @@
 <template>
-  <Head title="Register" />
+  <Head title="Register"/>
   <div class="container-fluid vh-100 mt-5 registration auth">
     <div class="combo-box">
       <div class="site-image">
@@ -7,6 +7,19 @@
       </div>
       <div class="vr"></div>
       <div class="auth-form">
+        <h3 class="bb-600 text-center">
+          Create an Account
+        </h3>
+        <div class="social-box" v-if="socialEnabled">
+          <Link :href="route('auth.social.login', 'google')" class="btn btn-google w-100 text-white mb-3"
+                >
+            <i class="fa-brands fa-google"></i>&nbsp;Google
+          </Link>
+        </div>
+        <div class="or-line" v-if="socialEnabled">
+          <hr>
+          <div class="text-circle">OR</div>
+        </div>
         <form @submit.prevent="submit">
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
@@ -33,16 +46,7 @@
               {{ form.errors.password_confirmation }}
             </small>
           </div>
-          <div class="btn-group w-100 mb-3">
-            <input type="submit" :disabled="form.processing" value="Register" class="btn btn-primary">
-            <Link :href="route('auth.login')" class="btn btn-jumpgate" v-if="route().has('auth.login')">
-              Login
-            </Link>
-          </div>
-          <Link :href="route('auth.social.login', 'google')" class="btn btn-google w-100 text-white mb-3"
-                v-if="socialEnabled">
-            <i class="fa-brands fa-google"></i>&nbsp;Sign Up with Google
-          </Link>
+          <input type="submit" :disabled="form.processing" value="Register" class="btn btn-primary w-100">
         </form>
       </div>
     </div>
@@ -55,7 +59,7 @@ import Layout from "@/Shared/Layout.vue";
 
 declare const name: 'Auth-Register';
 
-defineOptions({ layout: Layout })
+defineOptions({layout: Layout})
 
 defineProps({
   socialEnabled: Boolean,

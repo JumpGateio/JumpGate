@@ -23,7 +23,41 @@
     }
 
     .auth-form {
-      flex: 1 1 300px;
+      flex:      1 1 300px;
+      min-width: 300px;
+
+      .social-box {
+        display:        flex;
+        flex-direction: row;
+
+        .btn {
+          flex: 1;
+        }
+      }
+
+      .or-line {
+        position: relative;
+
+        .text-circle {
+          border:           1px solid $gray-600;
+          background-color: $body-color;
+          border-radius:    50%;
+          padding:          2px;
+          max-width:        fit-content;
+          position:         absolute;
+          top:              -14px;
+          left:             44%;
+        }
+      }
+
+      .auth-btns {
+        display:        flex;
+        flex-direction: row;
+
+        .btn {
+          flex: 1;
+        }
+      }
     }
   }
 }
