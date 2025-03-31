@@ -6,6 +6,19 @@
       </div>
       <div class="vr"></div>
       <div class="auth-form">
+        <h3 class="bb-600 text-center">
+          Sign In
+        </h3>
+        <div class="social-box" v-if="socialEnabled">
+          <Link :href="route('auth.social.login', 'google')" class="btn btn-google w-100 text-white mb-3"
+          >
+            <i class="fa-brands fa-google"></i>&nbsp;Google
+          </Link>
+        </div>
+        <div class="or-line" v-if="socialEnabled">
+          <hr>
+          <div class="text-circle">OR</div>
+        </div>
         <form @submit.prevent="submit">
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
@@ -17,16 +30,7 @@
             <input type="password" id="password" class="form-control" v-model="form.password" required>
             <small class="form-text text-danger" v-if="form.errors.password">{{ form.errors.password }}</small>
           </div>
-          <div class="btn-group w-100 mb-3">
-            <input type="submit" :disabled="form.processing" value="Login" class="btn btn-primary">
-            <Link :href="route('auth.register')" class="btn btn-jumpgate" v-if="route().has('auth.register')">
-              Register
-            </Link>
-          </div>
-          <Link :href="route('auth.social.login', 'google')" class="btn btn-google w-100 text-white mb-3"
-                v-if="socialEnabled">
-            <i class="fa-brands fa-google"></i>&nbsp;Sign In with Google
-          </Link>
+            <input type="submit" :disabled="form.processing" value="Login" class="btn btn-primary w-100">
         </form>
       </div>
     </div>
