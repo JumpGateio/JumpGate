@@ -156,7 +156,7 @@ class SetUp extends Command
 
         // TODO: substr version may not work 100%.  Test the str_replace version.
         // $npmrc = substr($npmrc, 0, -2) . $key;
-        $npmrc = str_replace('=\r\n', '='. $key, $npmrc);
+        $npmrc = str_replace('FONT_AWESOME_KEY', $key, $npmrc);
 
         $this->files->put(base_path('.npmrc'), $npmrc);
 
