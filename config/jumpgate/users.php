@@ -124,5 +124,5 @@ return [
     |
     */
 
-    'social_auth_only' => false,
+    'social_auth_only' => true,
 ];

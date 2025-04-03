@@ -48,12 +48,13 @@ class Menu
         if (auth()->guest()) {
             $rightMenu->link('login', function (Link $link) {
                 $socialOnly = config('jumpgate.users.social_auth_only');
-                $route      = route('auth.login');
-                $inertia    = true;
 
                 if ($socialOnly) {
                     $route     = route('auth.social.login', config('jumpgate.users.providers.0.driver'));
                     $inertia   = false;
+                } else {
+                    $route      = route('auth.login');
+                    $inertia    = true;
                 }
 
                 $link->name    = 'Login';

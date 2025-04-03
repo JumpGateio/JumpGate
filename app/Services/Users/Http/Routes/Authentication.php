@@ -26,6 +26,10 @@ class Authentication extends BaseRoute implements Routes
         if (config('jumpgate.users.enable_social') == true) {
             $this->socialAuth($router);
         }
+
+        $router->get('blocked')
+            ->name('auth.blocked')
+            ->uses('Authentication@blocked');
     }
 
     private function standardAuth(Router $router)
@@ -37,10 +41,6 @@ class Authentication extends BaseRoute implements Routes
         $router->post('login')
             ->name('auth.login')
             ->uses('Authentication@handle');
-
-        $router->get('blocked')
-            ->name('auth.blocked')
-            ->uses('Authentication@blocked');
     }
 
     private function socialAuth(Router $router)
