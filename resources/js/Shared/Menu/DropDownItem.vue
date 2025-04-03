@@ -5,9 +5,8 @@
 </template>
 
 <script lang="ts">
-
-import {defineComponent} from "vue";
 import {Link} from '@inertiajs/vue3'
+import {defineComponent} from "vue";
 
 export default defineComponent({
   name: 'Menu-DropDown-Item',
@@ -17,7 +16,5 @@ export default defineComponent({
   components: {
     Link: Link,
   },
-
-  components: [Link]
 })
 </script>
