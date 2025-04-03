@@ -2,11 +2,12 @@
 
 namespace App\Services\Users\Managers;
 
-use App\Services\JumpGate\Core\Collections\SupportCollection;
+
 use App\Services\Users\Events\UserLoggedIn;
 use App\Services\Users\Events\UserLoggingIn;
 use App\Services\Users\Models\Social\Provider;
 use App\Services\Users\Models\User;
+use JumpGate\Database\Collections\SupportCollection;
 use Laravel\Socialite\AbstractUser;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -38,7 +39,7 @@ class SocialLogin
      */
     public function redirect(?string $provider): mixed
     {
-        $this->getProviderDetails($provider);
+        $this->setProviderDetails($provider);
 
         return Socialite::driver($this->provider->driver)
             ->scopes($this->provider->scopes)
@@ -56,7 +57,7 @@ class SocialLogin
      */
     public function loginUser(string $provider): array
     {
-        $this->getProviderDetails($provider);
+        $this->setProviderDetails($provider);
 
         $socialUser = $this->getSocialUser();
 
@@ -90,7 +91,7 @@ class SocialLogin
      */
     public function socialUpdate(string $provider, User $user): ?AbstractUser
     {
-        $this->getProviderDetails($provider);
+        $this->setProviderDetails($provider);
 
         // Get the users.
         $socialUser = $this->getSocialUser();
@@ -159,19 +160,16 @@ class SocialLogin
      *
      * @param string|null $provider The name of the provider.
      *
-     * @return Provider|null
      * @throws \Exception
      * @throws \InvalidArgumentException
      */
-    public function getProviderDetails(?string $provider): ?Provider
+    public function setProviderDetails(?string $provider): void
     {
-        $this->checkProviders();
+        $this->validateProviders();
 
-        $this->getProvider($provider);
+        $this->setProvider($provider);
 
-        $this->checkDriver($provider);
-
-        return $this->provider;
+        $this->validateDriver();
     }
 
     /**
@@ -179,7 +177,7 @@ class SocialLogin
      *
      * @throws \Exception
      */
-    private function checkProviders()
+    private function validateProviders(): void
     {
         if (empty($this->providers)) {
             throw new \Exception('No Providers have been set in users config.');
@@ -193,13 +191,13 @@ class SocialLogin
      *
      * @return Provider
      */
-    private function getProvider(?string $providerName): Provider
+    private function setProvider(?string $providerName): void
     {
         $provider = is_null($providerName)
             ? $this->providers->first()
             : $this->providers->get($providerName);
 
-        return $this->provider = new Provider($provider);
+        $this->provider = new Provider($provider);
     }
 
     /**
@@ -207,7 +205,7 @@ class SocialLogin
      *
      * @throws \InvalidArgumentException
      */
-    private function checkDriver()
+    private function validateDriver(): void
     {
         if (is_null($this->provider->driver)) {
             throw new \InvalidArgumentException('You must set a social driver to use the social authenticating features.');

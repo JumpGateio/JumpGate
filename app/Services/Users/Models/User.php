@@ -3,6 +3,11 @@
 namespace App\Services\Users\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use JumpGate\Database\Collections\SupportCollection;
 use App\Services\Users\Managers\GetActions;
 use App\Services\Users\Models\User\Detail;
@@ -20,7 +25,9 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Laratrust\Contracts\LaratrustUser;
 use Laratrust\Traits\HasRolesAndPermissions;
+use Illuminate\Auth\Passwords\CanResetPassword as LaravelCanResetPassword;
 
 /**
  * Class User
@@ -47,7 +54,10 @@ use Laratrust\Traits\HasRolesAndPermissions;
  * @property \App\Services\Users\Models\User\Detail    $details
  * @property \App\Services\Users\Models\User\Timestamp $actionTimestamps
  */
-class User extends BaseModel implements \Illuminate\Contracts\Auth\Authenticatable
+class User extends BaseModel implements LaratrustUser,
+    AuthenticatableContract,
+    AuthorizableContract,
+    CanResetPasswordContract
 {
     /**
      * Use this model for authentication.
@@ -55,6 +65,11 @@ class User extends BaseModel implements \Illuminate\Contracts\Auth\Authenticatab
      * @see \Illuminate\Auth\Authenticatable
      */
     use Authenticatable;
+
+    /**
+     * Allow the model to be used for Gate authorization
+     */
+    use Authorizable;
 
     /**
      * Allow this model to handle being activated.
@@ -79,7 +94,7 @@ class User extends BaseModel implements \Illuminate\Contracts\Auth\Authenticatab
     /**
      * Allow this model to reset its password.
      */
-    use CanResetPassword;
+    use CanResetPassword, LaravelCanResetPassword;
 
     /**
      * Used for when social login is enabled.  If it is disabled, comment this or remove it.

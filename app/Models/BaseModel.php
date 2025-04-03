@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Services\JumpGate\Core\Collections\EloquentCollection;
 use App\Traits\Model\ActiveScopes;
 use App\Traits\Model\OrderByScopes;
 use Illuminate\Database\Eloquent\Model;
+use JumpGate\Database\Collections\EloquentCollection;
 
 /**
  * Class BaseModel

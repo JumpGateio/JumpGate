@@ -12,25 +12,27 @@ trait HasSocials
      *
      * @param AbstractUser $socialUser
      * @param              $provider
+     *
+     * @return mixed
      */
-    public function addSocial(AbstractUser $socialUser, $provider)
+    public function addSocial(AbstractUser $socialUser, $provider): mixed
     {
         $refreshToken = isset($socialUser->refreshToken) && $socialUser->refreshToken
             ? $socialUser->refreshToken
             : null;
-        
+
         $token = is_null($socialUser->token)
             ? $provider
             : $socialUser->token;
 
-        $this->socials()->create([
+        return $this->socials()->create([
             'provider'      => $provider,
             'social_id'     => $socialUser->getId(),
             'email'         => $socialUser->getEmail(),
             'avatar'        => $socialUser->getAvatar(),
             'token'         => $token,
             'refresh_token' => $refreshToken,
-            'expires_in'    => isset($socialUser->expiresIn) ? $socialUser->expiresIn : null,
+            'expires_in'    => $socialUser->expiresIn ?? null,
         ]);
     }
 
