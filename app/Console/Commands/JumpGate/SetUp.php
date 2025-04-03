@@ -56,9 +56,9 @@ class SetUp extends Command
         $this->buildFiles();
         $this->discover();
 
-        // Add in request to update config/jumpgate/users.php and .env files
-        // Finish set up
-            // Migrate, seed, etc
+        $this->comment('You are now set up.');
+        $this->comment('Please update your .env and config/jumpgate/users.php files.');
+        $this->comment('Once done, run php artisan jumpgate:database');
 
         $this->info('Finished!');
     }
@@ -154,8 +154,6 @@ class SetUp extends Command
             dir_style([base_path(), 'app', 'Console', 'Commands', 'JumpGate', 'resources', '.npmrc'])
         );
 
-        // TODO: substr version may not work 100%.  Test the str_replace version.
-        // $npmrc = substr($npmrc, 0, -2) . $key;
         $npmrc = str_replace('FONT_AWESOME_KEY', $key, $npmrc);
 
         $this->files->put(base_path('.npmrc'), $npmrc);
