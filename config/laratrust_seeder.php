@@ -11,7 +11,7 @@ return [
      */
     'truncate_tables' => true,
 
-    'role_structure' => [
+    'roles_structure' => [
         'developer' => [
             'users'   => 'c,r,u,d',
             'acl'     => 'c,r,u,d',
