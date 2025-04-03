@@ -47,12 +47,18 @@ class Menu
 
         if (auth()->guest()) {
             $rightMenu->link('login', function (Link $link) {
+                $socialOnly = config('jumpgate.users.social_auth_only');
+                $route      = route('auth.login');
+                $inertia    = true;
+
+                if ($socialOnly) {
+                    $route     = route('auth.social.login', config('jumpgate.users.providers.0.driver'));
+                    $inertia   = false;
+                }
+
                 $link->name    = 'Login';
-                $link->url     = route(
-                    config('jumpgate.users.default_route.name'),
-                    config('jumpgate.users.default_route.options')
-                );
-                $link->inertia = config('jumpgate.users.default_route.inertia');
+                $link->url     = $route;
+                $link->inertia = $inertia;
             });
 
             // Don't show a link if we don't allow registration.

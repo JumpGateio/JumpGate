@@ -78,23 +78,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Routing
-    |--------------------------------------------------------------------------
-    |
-    | When redirecting a user to login, we don't know which route to send
-    | them to.  This lets us know what route to aim for.  If using
-    | social auth, set this to auth.social.login.
-    |
-    */
-
-    'default_route' => [
-        'name'    => 'auth.social.login',
-        'options' => [],
-        'inertia' => false,
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Social Authentication Details
     |--------------------------------------------------------------------------
     |
@@ -102,12 +85,16 @@ return [
     | can also specify any additional scopes or extras you need here.
     | Setting the enable_social flag to true will add social routes.
     |
-    | Note: You must have at least one provider or you will get an exception.
+    | NOTE: You must have at least one provider or you will get an exception.
     |
     */
 
     'enable_social' => true,
 
+    /**
+     * Your first provider is used for the social auth link when social only is true.
+     * @see app/Http/Composers/Menu.php
+     */
     'providers' => [
         [
             'driver' => 'google',
@@ -130,12 +117,12 @@ return [
     | allow social to be the only authentication, or exist alongside standard
     | auth.  Set the following to true to force only social logins.
     |
-    | Once you set this to true, make sure to remove any routes pointing to
-    | the non-social versions (ie auth.login and auth.register)
+    | By default, the login link will use your first provider.  If you want to
+    | use a different one, update the Menu composer.
     |
     | NOTE: Setting this to true does not disable registration.
     |
     */
 
-    'social_auth_only' => true,
+    'social_auth_only' => false,
 ];
