@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="offset-2 col-8">
+      <div class="offset-2 col-8 mt-4">
         <div class="card">
           <div class="card-header">
             <strong>Reset Password</strong>
@@ -47,10 +47,14 @@
   </div>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import {defineComponent} from "vue";
+  import Layout from "@/Shared/Layout.vue";
+
+  export default defineComponent({
     name:     'Auth-Password-Reset',
-    metaInfo: {title: 'Reset Password'},
+
+    layout: Layout,
 
     props: {
       pageTitle: String,
@@ -73,5 +77,5 @@
         this.form.post(this.route('auth.password.reset'))
       }
     }
-  }
+  })
 </script>

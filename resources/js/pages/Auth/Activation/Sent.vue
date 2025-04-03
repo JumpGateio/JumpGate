@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="offset-lg-3 col-lg-6">
+      <div class="offset-lg-3 col-lg-6 mt-4">
         <div class="card">
           <div class="card-header">
             <strong>Please verify your email</strong>
@@ -15,13 +15,17 @@
   </div>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import {defineComponent} from "vue";
+  import Layout from "@/Shared/Layout.vue";
+
+  export default defineComponent({
     name:     'Auth-Activation-Sent',
-    metaInfo: {title: 'Activation'},
+
+    layout: Layout,
 
     props: {
       pageTitle: String,
     }
-  }
+  })
 </script>

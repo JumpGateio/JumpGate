@@ -68,11 +68,10 @@ class Invitation extends Base
      */
     public function sent(): \Inertia\Response
     {
-        $pageTitle = 'Email sent';
+        $this->setPageTitle('Email sent');
 
         return $this->response(
-            compact('pageTitle'),
-            'auth.invitation.sent'
+            page: 'auth.invitation.sent'
         );
     }
 
@@ -83,12 +82,12 @@ class Invitation extends Base
      */
     public function inactive(): \Inertia\Response
     {
-        $pageTitle = 'Inactive account';
+        $this->setPageTitle('Inactive account');
 
         $token = $this->invitation->findTokenByEmail(session('inactive_email'));
 
         return $this->response(
-            compact('pageTitle', 'token'),
+            compact('token'),
             'auth.invitation.inactive'
         );
     }
@@ -102,12 +101,12 @@ class Invitation extends Base
      */
     public function failed(string $tokenString): \Inertia\Response
     {
-        $pageTitle = 'Invite failed';
+        $this->setPageTitle('Invite failed');
 
         $token = $this->invitation->findToken($tokenString);
 
         return $this->response(
-            compact('pageTitle', 'token'),
+            compact('token'),
             'auth.invitation.failed'
         );
     }

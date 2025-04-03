@@ -34,7 +34,7 @@ class Invitation extends BaseRoute implements Routes
             ->name('auth.invitation.sent')
             ->uses('Invitation@sent');
 
-        $router->get('generate/{user_id}')
+        $router->get('generate/{userId}')
             ->name('auth.invitation.generate')
             ->uses('Invitation@generate');
 
@@ -42,15 +42,15 @@ class Invitation extends BaseRoute implements Routes
             ->name('auth.invitation.inactive')
             ->uses('Invitation@inactive');
 
-        $router->get('re-send/{token}')
+        $router->get('re-send/{tokenString}')
             ->name('auth.invitation.resend')
             ->uses('Invitation@resend');
 
-        $router->get('failed/{token}')
+        $router->get('failed/{tokenString}')
             ->name('auth.invitation.failed')
             ->uses('Invitation@failed');
 
-        $router->get('{token}')
+        $router->get('{tokenString}')
             ->name('auth.invitation.activate')
             ->uses('Invitation@activate');
     }
