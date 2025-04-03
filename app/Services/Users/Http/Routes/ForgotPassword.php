@@ -38,16 +38,16 @@ class ForgotPassword extends BaseRoute implements Routes
                ->uses('ForgotPassword@reset');
 
         $router->post('reset')
-               ->name('auth.password.reset')
+               ->name('auth.password.sendEmail')
                ->uses('ForgotPassword@sendEmail');
 
         // Finish resetting.
-        $router->get('confirm/{token}')
+        $router->get('confirm/{tokenString}')
                ->name('auth.password.confirm')
                ->uses('ForgotPassword@confirm');
 
-        $router->post('confirm/{token}')
-               ->name('auth.password.confirm')
+        $router->post('confirm/{tokenString}')
+               ->name('auth.password.handle')
                ->uses('ForgotPassword@handle');
     }
 }

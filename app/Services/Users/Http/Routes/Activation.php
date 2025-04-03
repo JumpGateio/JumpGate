@@ -32,7 +32,7 @@ class Activation extends BaseRoute implements Routes
                ->name('auth.activation.sent')
                ->uses('Activation@sent');
 
-        $router->get('generate/{user_id}')
+        $router->get('generate/{userId}')
                ->name('auth.activation.generate')
                ->uses('Activation@generate');
 
@@ -40,15 +40,15 @@ class Activation extends BaseRoute implements Routes
                ->name('auth.activation.inactive')
                ->uses('Activation@inactive');
 
-        $router->get('re-send/{token}')
+        $router->get('re-send/{tokenString}')
                ->name('auth.activation.resend')
                ->uses('Activation@resend');
 
-        $router->get('failed/{token}')
+        $router->get('failed/{tokenString}')
                ->name('auth.activation.failed')
                ->uses('Activation@failed');
 
-        $router->get('{token}')
+        $router->get('{tokenString}')
                ->name('auth.activation.activate')
                ->uses('Activation@activate');
     }

@@ -23,9 +23,5 @@
     name:     'Auth-Password-Sent',
 
     layout: Layout,
-
-    props: {
-      pageTitle: String,
-    }
   })
 </script>

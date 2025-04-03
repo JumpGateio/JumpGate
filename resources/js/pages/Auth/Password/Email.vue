@@ -31,20 +31,17 @@
 <script lang="ts">
   import {defineComponent} from "vue";
   import Layout from "@/Shared/Layout.vue";
+  import {useForm} from "@inertiajs/vue3";
 
   export default defineComponent({
     name:     'Auth-Password-Forgot',
 
     layout: Layout,
 
-    props: {
-      pageTitle: String,
-    },
-
     data()
     {
       return {
-        form: this.$inertia.form({
+        form: useForm({
           email: null,
         })
       }
@@ -53,7 +50,7 @@
     methods: {
       submit()
       {
-        this.form.post(this.route('auth.password.email'))
+        this.form.post(this.route('auth.password.sendEmail'))
       }
     }
   })

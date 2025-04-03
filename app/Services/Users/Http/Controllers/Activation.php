@@ -68,11 +68,10 @@ class Activation extends Base
      */
     public function sent(): \Inertia\Response
     {
-        $pageTitle = 'Email sent';
+        $this->setPageTitle('Email sent');
 
         return $this->response(
-            compact('pageTitle'),
-            'auth.activation.sent'
+            page: 'auth.activation.sent'
         );
     }
 
@@ -83,12 +82,12 @@ class Activation extends Base
      */
     public function inactive(): \Inertia\Response
     {
-        $pageTitle = 'Inactive account';
+        $this->setPageTitle('Inactive account');
 
         $token = $this->activation->findTokenByEmail(session('inactive_email'));
 
         return $this->response(
-            compact('pageTitle', 'token'),
+            compact('token'),
             'auth.activation.inactive'
         );
     }
@@ -102,12 +101,12 @@ class Activation extends Base
      */
     public function failed(string $tokenString): \Inertia\Response
     {
-        $pageTitle = 'Activation failed';
+        $this->setPageTitle('Activation failed');
 
         $token = $this->activation->findToken($tokenString);
 
         return $this->response(
-            compact('pageTitle', 'token'),
+            compact('token'),
             'auth.activation.failed'
         );
     }

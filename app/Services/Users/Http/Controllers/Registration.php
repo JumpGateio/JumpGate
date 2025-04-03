@@ -24,6 +24,7 @@ class Registration extends Base
      */
     public function index(): \Inertia\Response
     {
+        $this->setPageTitle('Registration');
         $socialEnabled = (bool)config('jumpgate.users.enable_social');
 
         return $this->response(

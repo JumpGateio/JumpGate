@@ -50,6 +50,7 @@
 <script lang="ts">
   import {defineComponent} from "vue";
   import Layout from "@/Shared/Layout.vue";
+  import {useForm} from "@inertiajs/vue3";
 
   export default defineComponent({
     name:     'Auth-Password-Reset',
@@ -57,13 +58,13 @@
     layout: Layout,
 
     props: {
-      pageTitle: String,
+      tokenString: String,
     },
 
     data()
     {
       return {
-        form: this.$inertia.form({
+        form: useForm({
           email:                 null,
           password:              null,
           password_confirmation: null,
@@ -74,7 +75,7 @@
     methods: {
       submit()
       {
-        this.form.post(this.route('auth.password.reset'))
+        this.form.post(this.route('auth.password.handle', this.tokenString))
       }
     }
   })

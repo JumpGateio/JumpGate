@@ -24,11 +24,10 @@ class ForgotPassword extends Base
      */
     public function reset(): \Inertia\Response
     {
-        $pageTitle = 'Password Reset';
+        $this->setPageTitle('Password Reset');
 
         return $this->response(
-            compact('pageTitle'),
-            'auth.password.email'
+            page: 'auth.password.email'
         );
     }
 
@@ -54,11 +53,10 @@ class ForgotPassword extends Base
      */
     public function sent(): \Inertia\Response
     {
-        $pageTitle = 'Email sent';
+        $this->setPageTitle('Email sent');
 
         return $this->response(
-            compact('pageTitle'),
-            'auth.password.sent'
+            page: 'auth.password.sent'
         );
     }
 
@@ -71,10 +69,10 @@ class ForgotPassword extends Base
      */
     public function confirm(string $tokenString): \Inertia\Response
     {
-        $pageTitle = 'Set your new password';
+        $this->setPageTitle('Set your new password');
 
         return $this->response(
-            compact('pageTitle', 'tokenString'),
+            compact('tokenString'),
             'auth.password.reset'
         );
     }
