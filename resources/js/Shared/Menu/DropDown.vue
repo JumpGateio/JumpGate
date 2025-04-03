@@ -1,6 +1,6 @@
 <template>
   <li class="nav-item dropdown" :class="{ active:  item.active }">
-    <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"
+    <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"
        :id="item.name">
       {{ item.name }}<b class="caret"></b>
     </a>

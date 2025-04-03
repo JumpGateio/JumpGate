@@ -41,9 +41,10 @@ class DefaultUsers extends Base
                 }
 
                 $roleIds = Role::whereIn('name', $user['roles'])->get()->id->toArray();
-                (new User)->generateActiveUser($user['email'], $roleIds);
+                $user = (new User)->generateActiveUser($user['email'], $roleIds);
+                $user->update(['password' => 'test']);
 
-                return $user['email'];
+                return $user->email;
             })
             ->filter()
             ->implode(',');
