@@ -9,14 +9,14 @@
       Users
     </Link>
     <div class="side-menu-heading">Tools</div>
-    <Link :href="route('admin.index')" class="side-menu-item">
+    <a :href="route('pulse')" class="side-menu-item">
       <i class="fa fa-fw fa-radar"></i>&nbsp;
       Pulse
-    </Link>
-    <Link :href="route('admin.index')" class="side-menu-item">
+    </a>
+    <a :href="route('telescope')" class="side-menu-item">
       <i class="fa fa-fw fa-telescope"></i>&nbsp;
       Telescope
-    </Link>
+    </a>
   </div>
 </template>
 
