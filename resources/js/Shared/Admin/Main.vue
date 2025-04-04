@@ -12,14 +12,15 @@
   </div>
 </template>
 
-<script>
-  import Item from '@/Shared/Admin/Item'
+<script lang="ts">
+  import Item from '@/Shared/Admin/Item.vue'
+  import {defineComponent} from "vue";
 
-  export default {
+  export default defineComponent({
     name: 'Admin-Menu-Main',
 
     components: {
       'admin-item': Item,
     },
-  }
+  })
 </script>

@@ -6,8 +6,10 @@
   </div>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import {defineComponent} from "vue";
+
+  export default defineComponent({
     name: 'Admin-Tile',
 
     props: {
@@ -68,5 +70,5 @@
         return classes.join(' ')
       }
     }
-  }
+  })
 </script>

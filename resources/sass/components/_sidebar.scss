@@ -9,6 +9,7 @@
   width:            300px;
   height:           100%;
   color:            #e1ffff;
+
   .brand {
     background-color: #23282e;
     line-height:      50px;
@@ -16,9 +17,11 @@
     text-align:       center;
     font-size:        14px;
   }
+
   .toggle-btn {
     display: none;
   }
+
   ul, li {
     list-style:  none;
     padding:     0px;
@@ -39,6 +42,7 @@
        }
   */
   }
+
   ul :not(collapsed) .arrow:before, li :not(collapsed) .arrow:before {
     font-family:    FontAwesome;
     content:        "\f078";
@@ -48,13 +52,16 @@
     vertical-align: middle;
     float:          right;
   }
+
   ul .active, li .active {
     border-left:      3px solid #d19b3d;
     background-color: #4f5b69;
   }
+
   ul .sub-menu li.active, li .sub-menu li.active, ul .sub-menu li.active a, li .sub-menu li.active a {
     color: #d19b3d;
   }
+
   ul .sub-menu li, li .sub-menu li {
     background-color: #181c20;
     border:           none;
@@ -62,9 +69,11 @@
     border-bottom:    1px solid #23282e;
     margin-left:      0px;
   }
+
   ul .sub-menu li:hover, li .sub-menu li:hover {
     background-color: #020203;
   }
+
   ul .sub-menu li:before {
     font-family:    FontAwesome;
     content:        "\f105";
@@ -73,6 +82,7 @@
     padding-right:  10px;
     vertical-align: middle;
   }
+
   li {
     .sub-menu li:before {
       font-family:    FontAwesome;
@@ -82,19 +92,23 @@
       padding-right:  10px;
       vertical-align: middle;
     }
+
     padding-left:  0px;
     border-left:   3px solid $gray-dark;
     border-bottom: 1px solid #23282e;
+
     a {
       text-decoration: none;
       color:           #e1ffff;
       display:         block;
+
       i {
         padding-left:  10px;
         width:         20px;
         padding-right: 20px;
       }
     }
+
     &:hover {
       border-left:        3px solid #d19b3d;
       background-color:   #4f5b69;
@@ -112,6 +126,7 @@
     position:      relative;
     width:         100%;
     margin-bottom: 10px;
+
     .toggle-btn {
       display:          block;
       cursor:           pointer;

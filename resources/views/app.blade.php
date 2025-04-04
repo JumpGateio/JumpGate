@@ -40,7 +40,7 @@
   @vite(['resources/sass/app.scss', 'resources/js/app.ts'])
   @inertiaHead
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased{{ isset($bodyClass) ? ' ' . $bodyClass : null }}">
 @inertia
 </body>
 </html>

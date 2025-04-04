@@ -13,10 +13,11 @@
   </div>
 </template>
 
-<script>
-  import Popper from 'popper.js'
+<script lang="ts">
+  import Popper from '@popperjs/core'
+  import {defineComponent} from "vue";
 
-  export default {
+  export default defineComponent({
     props: {
       btnClass:  {
         type:    String,
@@ -78,5 +79,5 @@
         })
       }
     }
-  }
+  })
 </script>

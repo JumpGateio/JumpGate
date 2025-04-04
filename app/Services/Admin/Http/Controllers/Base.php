@@ -10,7 +10,7 @@ class Base extends BaseController
 {
     public function __construct()
     {
-        $this->setViewLayout('layouts.admin');
+        $this->setViewLayout('app');
         $this->setViewData('bodyClass', 'admin');
     }
 }

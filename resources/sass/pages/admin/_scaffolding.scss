@@ -13,7 +13,6 @@
 
     #content {
       display:               grid;
-      grid-template-columns: 300px auto;
       grid-template-rows:    58px auto;
       overflow-x:            hidden;
 
@@ -54,19 +53,39 @@
         }
       }
 
-      .nav-side-menu {
+      .admin-content {
         grid-row:       2;
-        grid-column:    1;
-        margin-top:     58px;
-        padding-bottom: 78px;
-      }
+        display:        flex;
+        flex-direction: row;
+        min-height:     calc(100vh - 58px);
 
-      .admin-body {
-        grid-row:    2;
-        grid-column: 2;
-        overflow-x:  scroll;
-        position:    relative;
-        //height:      calc(100vh - 58px);
+        .nav-side-menu {
+          overflow:       hidden;
+          max-width:      300px;
+          position:       fixed;
+          max-height:     calc(100vh - 58px);
+          padding-bottom: 13px;
+          overflow-y:     auto;
+          overflow-x:     hidden;
+
+          &.collapsing {
+            position: relative !important;
+          }
+
+          &.show + .admin-body {
+            width:       calc(100vw - 300px) !important;
+            margin-left: 300px;
+            padding:     .5rem 0 0 1rem;
+          }
+        }
+
+        .admin-body {
+          overflow:   auto;
+          position:   relative;
+          min-height: calc(100vh - 58px);
+          padding:    .5rem 0 0 1.5rem;
+          width:      100vw;
+        }
       }
     }
   }

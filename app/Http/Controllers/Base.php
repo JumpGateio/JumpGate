@@ -58,4 +58,9 @@ abstract class Base extends Controller
     {
         View::share('theme', $string);
     }
+
+    public function setViewData(string $key, mixed $data): void
+    {
+        View::share($key, $data);
+    }
 }

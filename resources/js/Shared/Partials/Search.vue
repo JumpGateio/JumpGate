@@ -16,10 +16,11 @@
   </div>
 </template>
 
-<script>
-  import Dropdown from '@/Shared/Partials/Dropdown'
+<script lang="ts">
+  import Dropdown from '@/Shared/Partials/Dropdown.vue'
+  import {defineComponent} from "vue";
 
-  export default {
+  export default defineComponent({
     name: 'Search',
 
     components: {
@@ -48,5 +49,5 @@
     mounted() {
       $('#admin_search').focus()
     }
-  }
+  })
 </script>

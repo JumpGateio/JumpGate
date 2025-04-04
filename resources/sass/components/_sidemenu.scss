@@ -1,0 +1,43 @@
+.side-menu {
+  width:          300px;
+  display:        flex;
+  flex-direction: column;
+  height:         100%;
+
+  .side-menu-item {
+    flex-shrink:     1;
+    height:          2.65rem;
+    padding:         .75rem;
+    border-bottom:   1px solid $black;
+    font-size:       1.15rem;
+    line-height:     1.15rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+
+    i {
+      flex-shrink: 1;
+    }
+
+    &:hover {
+      background-color: $primary;
+      color:            $black;
+    }
+  }
+
+  .side-menu-heading {
+    flex-shrink:      1;
+    height:           1.65rem;
+    padding:          .25rem;
+    border-bottom:    1px solid $black;
+    font-size:        1.15rem;
+    line-height:      1.15rem;
+    text-decoration:  none;
+    background-color: rgba($black, .2);
+  }
+
+  .side-menu-blank {
+    flex-grow:     5;
+    border-bottom: 1px solid $black;
+  }
+}
