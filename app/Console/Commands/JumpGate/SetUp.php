@@ -174,6 +174,9 @@ class SetUp extends Command
             ->run('npm run build', function ($type, $output) {
                 echo $output;
             });
+
+        $this->comment('Installing telescope...');
+        $this->call('telescope:install');
     }
 
     /**

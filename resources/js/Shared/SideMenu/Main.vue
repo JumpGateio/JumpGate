@@ -14,7 +14,7 @@
       Pulse
     </a>
     <a :href="route('telescope')" class="side-menu-item">
-      <i class="fa fa-fw fa-telescope"></i>&nbsp;
+      <i class="fa fa-fw fa-bug"></i>&nbsp;
       Telescope
     </a>
   </div>

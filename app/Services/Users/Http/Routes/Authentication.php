@@ -19,11 +19,12 @@ class Authentication extends BaseRoute implements Routes
 
     public function routes(Router $router)
     {
-        if (config('jumpgate.users.social_auth_only') == false) {
+        if (!config('jumpgate.users.social_auth_only')) {
             $this->standardAuth($router);
+        } else {
         }
 
-        if (config('jumpgate.users.enable_social') == true) {
+        if (config('jumpgate.users.enable_social')) {
             $this->socialAuth($router);
         }
 
@@ -39,7 +40,7 @@ class Authentication extends BaseRoute implements Routes
             ->uses('Authentication@index')
             ->middleware('active:login');
         $router->post('login')
-            ->name('auth.login')
+            ->name('auth.handle')
             ->uses('Authentication@handle');
     }
 
