@@ -17,7 +17,7 @@
 
     <livewire:pulse.slow-outgoing-requests cols="6" />
 
-    <livewire:reverb.connections cols="full" />
+    <livewire:reverb.connections cols="6" />
 
-    <livewire:reverb.messages cols="full" />
+    <livewire:reverb.messages cols="6" />
 </x-pulse>

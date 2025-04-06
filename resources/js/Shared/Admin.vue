@@ -4,7 +4,7 @@
       <div id="content">
         <div class="admin-header">
           <div class="admin-title" v-text="fullTitle"></div>
-          <portal-target name="admin-header-buttons"/>
+<!--          <portal-target name="admin-header-buttons"/>-->
           <a data-bs-target="#sidebar" data-bs-toggle="collapse" class="d-block d-md-none btn btn-outline-primary btn-sm">Menu</a>
           <Link :href="route('home')" class="btn btn-outline-primary btn-sm">
             Back to site
@@ -15,7 +15,7 @@
             <admin-menu></admin-menu>
           </div>
           <div class="admin-body col-sm col">
-            <slot/>
+            <slot></slot>
           </div>
         </div>
       </div>

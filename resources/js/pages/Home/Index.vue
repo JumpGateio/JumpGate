@@ -42,7 +42,8 @@
               <span class="text-jumpgate">__</span>
               Organization
             </a>
-            <a class="list-group-item list-group-item-action" target="_blank" href="https://github.com/jumpgateio/jumpgate">
+            <a class="list-group-item list-group-item-action" target="_blank"
+               href="https://github.com/jumpgateio/jumpgate">
               <span class="text-jumpgate">__</span>
               WebApp
             </a>
@@ -60,7 +61,8 @@
             </div>
           </div>
           <ul class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action" target="_blank" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">
+            <a class="list-group-item list-group-item-action" target="_blank"
+               href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">
               <span class="text-pale-green">__</span>
               Bootstrap 5
             </a>
@@ -86,11 +88,13 @@
               <span class="text-pink">__</span>
               Lodash
             </a>
-            <a class="list-group-item list-group-item-action" target="_blank" href="https://laratrust.santigarcor.me/docs/8.x/">
+            <a class="list-group-item list-group-item-action" target="_blank"
+               href="https://laratrust.santigarcor.me/docs/8.x/">
               <span class="text-pink">__</span>
               Laratrust
             </a>
-            <a class="list-group-item list-group-item-action" target="_blank" href="https://console.developers.google.com/apis/credentials?pli">
+            <a class="list-group-item list-group-item-action" target="_blank"
+               href="https://console.developers.google.com/apis/credentials?pli">
               <span class="text-pink">__</span>
               Google Api Console
             </a>
@@ -101,27 +105,14 @@
   </div>
 </template>
 
-<script lang="ts">
-import {defineComponent} from "vue"
+<script setup>
 import Layout from "@/Shared/Layout.vue"
 
-export default defineComponent({
-  name: 'Home-Index',
+const name = 'Home-Index';
 
-  layout: Layout,
+defineOptions({layout: Layout})
 
-  props: {
-    loggedIn: Boolean,
-  },
-
-  data() {
-    return {
-      //
-    }
-  },
-
-  methods: {
-    //
-  }
-})
+const props = defineProps({
+  loggedIn: Boolean,
+});
 </script>

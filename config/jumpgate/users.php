@@ -40,7 +40,7 @@ return [
         'allow_registration'       => false,
         // This will give you the option in the admin dashboard to send
         // user an invitation to the site through email.
-        'allow_invitations'        => false,
+        'allow_invitations'        => true,
 
         // Tells the User seeder to create the default users.  These are defined in DefaultUsers::class.
         'create_default_users'     => true,
@@ -124,5 +124,5 @@ return [
     |
     */
 
-    'social_auth_only' => true,
+    'social_auth_only' => env('AUTH_SOCIAL_ONLY'),
 ];

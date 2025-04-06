@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Tightenco\Ziggy\Ziggy;
 
 class Home extends Base
 {
