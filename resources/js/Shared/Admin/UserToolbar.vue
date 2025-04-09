@@ -1,71 +1,65 @@
 <template>
   <div class="btn-toolbar float-right" role="toolbar">
     <template v-if="isTrashed">
-      <inertia-link :href="route('admin.users.confirm', [user.id, 'delete', 0])" class="btn btn-sm btn-outline-danger">
+      <Link :href="route('admin.users.confirm', [user.id, 'delete', 0])" class="btn btn-sm btn-outline-danger">
         Restore
-      </inertia-link>
+      </Link>
     </template>
     <template v-else>
-      <user-actions :user="user" :iconOnly="iconOnly"></user-actions>
+      <UserActions :user="user" :iconOnly="iconOnly"></UserActions>
       <div class="btn-group">
-        <inertia-link :href="route('admin.users.show', [user.id])" class="btn btn-sm btn-outline-purple"
-                      v-html="text.show"
-        ></inertia-link>
-        <inertia-link :href="route('admin.users.edit', [user.id])" class="btn btn-sm btn-outline-purple"
-                      v-html="text.edit"
-        ></inertia-link>
-        <inertia-link :href="route('admin.users.confirm', [user.id, 'delete', 1])"
-                      class="btn btn-sm btn-outline-danger"
-                      v-html="text.delete"
-        ></inertia-link>
+        <Link :href="route('admin.users.show', [user.id])" class="btn btn-sm btn-outline-purple"
+              v-html="text.show"
+        ></Link>
+        <Link :href="route('admin.users.edit', [user.id])" class="btn btn-sm btn-outline-purple"
+              v-html="text.edit"
+        ></Link>
+        <Link :href="route('admin.users.confirm', [user.id, 'delete', 1])"
+              class="btn btn-sm btn-outline-danger"
+              v-html="text.delete"
+        ></Link>
       </div>
     </template>
   </div>
 
 </template>
 
-<script>
-  import UserActions from '@/Shared/Admin/UserActions'
+<script setup>
+import UserActions from '@/Shared/Admin/UserActions.vue'
+import {Link} from "@inertiajs/vue3";
+import {computed} from "vue";
 
-  export default {
-    name: 'User-Toolbar',
+defineOptions({
+  name: 'User-Toolbar',
+});
 
-    props: {
-      user:     Object,
-      iconOnly: {
-        type:    Boolean,
-        default: false,
-      }
-    },
-
-    components: {
-      'user-actions': UserActions,
-    },
-
-    computed: {
-      isTrashed()
-      {
-        return this.user.deleted_at !== null
-      },
-
-      text()
-      {
-        let text = {
-          show:    'Show',
-          edit:    'Edit',
-          delete:  'Delete',
-        }
-
-        if (this.iconOnly === true) {
-          text = {
-            show:    '<span class="fa fa-eye"></span>',
-            edit:    '<span class="fa fa-pencil"></span>',
-            delete:  '<span class="fa fa-trash"></span>',
-          }
-        }
-
-        return text
-      },
-    },
+const props = defineProps({
+  user:     Object,
+  iconOnly: {
+    type:    Boolean,
+    default: false,
   }
+});
+
+const isTrashed = computed(() => {
+  return props.user.deleted_at !== null;
+});
+
+const text = computed(() => {
+  let text = {
+    show:   'Show',
+    edit:   'Edit',
+    delete: 'Delete',
+  };
+
+  if (props.iconOnly === true) {
+    text = {
+      show:   '<span class="fa fa-eye"></span>',
+      edit:   '<span class="fa fa-pencil"></span>',
+      delete: '<span class="fa fa-trash"></span>',
+    };
+  }
+
+  return text;
+});
 </script>

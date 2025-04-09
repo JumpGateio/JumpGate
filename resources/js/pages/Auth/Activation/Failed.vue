@@ -8,8 +8,8 @@
           </div>
           <div class="card-body" v-if="token != null && token.isExpired">
             Your token has expired. Please click the relevant link below to generate a new one.
-            <br />
-            <br />
+            <br/>
+            <br/>
             <div class="btn-toolbar">
               <div class="btn-group mr-2">
                 <inertia-link :href="route('auth.password.reset')" class="btn btn-sm btn-primary">
@@ -32,18 +32,16 @@
   </div>
 </template>
 
-<script lang="ts">
-  import {defineComponent} from "vue";
-  import Layout from "@/Shared/Layout.vue";
+<script setup>
+import Layout from "@/Shared/Layout.vue";
 
-  export default defineComponent({
-    name:     'Auth-Activation-Failed',
+defineOptions({
+  name:   'Auth-Activation-Failed',
+  layout: Layout,
+});
 
-    layout: Layout,
-
-    props: {
-      pageTitle: String,
-      token:     String,
-    }
-  })
+const props = defineProps({
+  pageTitle: String,
+  token:     String,
+});
 </script>

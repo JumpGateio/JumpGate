@@ -2,82 +2,75 @@
   <div class="dropdown" @click="show = !show">
     <button class="btn" :class="btnClass" type="button" id="dropdownMenuButton"
             aria-haspopup="true" aria-expanded="false">
-      <slot />
+      <slot/>
     </button>
     <div v-if="show">
-      <div class="screen" @click="hideDropdown()" />
+      <div class="screen" @click="hideDropdown()"/>
       <div class="dropdown-menu" ref="dropdown" @click.stop="show = autoClose ? false : true">
-        <slot name="dropdown" />
+        <slot name="dropdown"/>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-  import Popper from '@popperjs/core'
-  import {defineComponent} from "vue";
+<script setup>
+import Popper from '@popperjs/core'
+import {watch, onMounted, reactive} from "vue";
 
-  export default defineComponent({
-    props: {
-      btnClass:  {
-        type:    String,
-        default: 'btn-light',
-      },
-      placement: {
-        type:    String,
-        default: 'bottom-end',
-      },
-      boundary:  {
-        type:    String,
-        default: 'scrollParent',
-      },
-      autoClose: {
-        type:    Boolean,
-        default: true,
-      },
-    },
-    data()
-    {
-      return {
-        show: false,
-      }
-    },
+defineOptions({
+  name: 'DropDown',
+});
 
-    watch: {
-      show(show)
-      {
-        if (show) {
-          this.$nextTick(() => {
-            $('.dropdown-menu').addClass('show')
-            this.popper = new Popper(this.$el, this.$refs.dropdown, {
-              placement: this.placement,
-              modifiers: {
-                preventOverflow: {boundariesElement: this.boundary},
-              },
-            })
-          })
-        } else if (this.popper) {
-          $('.dropdown-menu').removeClass('show')
-          setTimeout(() => this.popper.destroy(), 100)
-        }
-      },
-    },
-    mounted()
-    {
-      document.addEventListener('keydown', e => {
-        if (e.keyCode === 27) {
-          this.show = false
-        }
+const props = defineProps({
+  btnClass:  {
+    type:    String,
+    default: 'btn-light',
+  },
+  placement: {
+    type:    String,
+    default: 'bottom-end',
+  },
+  boundary:  {
+    type:    String,
+    default: 'scrollParent',
+  },
+  autoClose: {
+    type:    Boolean,
+    default: true,
+  },
+});
+
+const show = reactive(false);
+const popper = reactive(null);
+
+watch('show', (show) => {
+  if (show) {
+    this.$nextTick(() => {
+      $('.dropdown-menu').addClass('show')
+      popper = new Popper(this.$el, this.$refs.dropdown, {
+        placement: this.placement,
+        modifiers: {
+          preventOverflow: {boundariesElement: this.boundary},
+        },
       })
-    },
+    })
+  } else if (popper) {
+    $('.dropdown-menu').removeClass('show')
+    setTimeout(() => popper.destroy(), 100)
+  }
+});
 
-    methods: {
-      hideDropdown()
-      {
-        this.$nextTick(() => {
-          this.show = false
-        })
-      }
+onMounted(() => {
+  document.addEventListener('keydown', e => {
+    if (e.keyCode === 27) {
+      show = false
     }
   })
+});
+
+function hideDropdown() {
+  nextTick(() => {
+    show = false
+  })
+}
 </script>

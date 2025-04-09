@@ -5,10 +5,10 @@
   </a>
 </template>
 
-<script lang="ts">
-import {defineComponent} from "vue"
+<script setup>
+defineOptions({
+  name: 'Logout',
+});
 
-export default defineComponent({
-  props: ['item']
-})
+const props = defineProps(['item'])
 </script>

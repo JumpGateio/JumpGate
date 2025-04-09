@@ -3,20 +3,22 @@
     <ul class="pagination">
       <template v-for="(link, key) in links">
         <li class="page-item" :class="{ active: link.active }">
-          <div v-if="link.url === null" class="page-link" :key="key +'_nonLink'" v-html="link.label" />
-          <inertia-link v-else class="page-link" :key="key" :href="link.url" v-html="link.label" />
+          <div v-if="link.url === null" class="page-link" :key="key +'_nonLink'" v-html="link.label"/>
+          <Link v-else class="page-link" :key="key" :href="link.url" v-html="link.label"/>
         </li>
       </template>
     </ul>
   </nav>
 </template>
 
-<script>
-  export default {
-    name: 'Pagination',
+<script setup>
+import {Link} from '@inertiajs/vue3'
 
-    props: {
-      links: Array,
-    }
-  }
+defineOptions({
+  name: 'Pagination',
+});
+
+const props = defineProps({
+  links: Array,
+});
 </script>

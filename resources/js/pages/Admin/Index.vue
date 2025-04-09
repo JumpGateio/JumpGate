@@ -1,6 +1,6 @@
 <template>
   <div class="tiles">
-    <!--    <user-index :users="tiles.users.data" :count="tiles.users.count" v-if="hasTile('users')"></user-index>-->
+    <UserIndex :users="tiles.users.data" :count="tiles.users.count" v-if="hasTile('users')"></UserIndex>
     <div class="tile-group">
       <div class="loading-bars">
         <div></div>
@@ -13,25 +13,21 @@
 
 <script setup>
 import Admin from '@/Shared/Admin.vue';
-import {onMounted, ref} from "vue";
-// import UserIndex from '@/Pages/Admin/Index/User.vue'
+import {onMounted, reactive} from "vue";
+import UserIndex from '@/pages/Admin/Index/User.vue'
 
-const name = 'Admin-Index';
-
-defineOptions({layout: Admin})
+defineOptions({
+  name:   'Admin-Index',
+  layout: Admin,
+});
 
 const props = defineProps({
   routes: Object
-})
+});
 
-const tiles = ref({});
+const tiles = reactive({});
 
 onMounted(() => {
-  Echo.channel(`testing`)
-    .listen('TestBroadcasting', (e) => {
-      console.log('got event');
-      console.log(e);
-    });
   _.forEach(props.routes, (route, title) => {
     getData(route, title)
   })

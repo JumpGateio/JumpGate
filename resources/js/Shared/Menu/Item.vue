@@ -5,23 +5,17 @@
   </li>
 </template>
 
-<script lang="ts">
-import {defineComponent} from "vue"
+<script setup>
 import {Link} from '@inertiajs/vue3'
+import {computed} from "vue";
 
-export default defineComponent({
+defineOptions({
   name: 'Menu-Item',
+});
 
-  props: ['item'],
+const props = defineProps(['item'])
 
-  components: {
-    Link: Link,
-  },
-
-  computed: {
-    isInertia() {
-      return !this.item.hasOwnProperty('inertia') || this.item.inertia == true
-    }
-  }
-})
+const isInertia = computed(() => {
+  return !props.item.hasOwnProperty('inertia') || props.item.inertia == true
+});
 </script>

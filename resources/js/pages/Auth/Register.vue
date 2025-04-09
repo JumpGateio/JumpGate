@@ -53,15 +53,16 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import {Head, Link, useForm} from "@inertiajs/vue3"
 import Layout from "@/Shared/Layout.vue";
 
-declare const name: 'Auth-Register';
+defineOptions({
+  name:   'Auth-Register',
+  layout: Layout,
+});
 
-defineOptions({layout: Layout})
-
-defineProps({
+const props = defineProps({
   socialEnabled: Boolean,
 })
 

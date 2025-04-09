@@ -11,14 +11,16 @@
               <div class="form-group row" :class="{ 'has-error': form.errors.email != null }">
                 <label for="email" class="col-3 col-form-label">E-Mail Address</label>
                 <div class="col-9">
-                  <input id="email" type="email" class="form-control" name="email" v-model="form.email" required autofocus>
+                  <input id="email" type="email" class="form-control" name="email" v-model="form.email" required
+                         autofocus>
                   <small class="form-text text-danger" v-if="form.errors.email">{{ form.errors.email }}</small>
                 </div>
 
                 <div class="form-group row" :class="{ 'has-error': form.errors.password != null }">
                   <label for="password" class="col-3 col-form-label">Password</label>\
                   <div class="col-9">
-                    <input id="password" type="password" class="form-control" name="password" v-model="form.password" required>
+                    <input id="password" type="password" class="form-control" name="password" v-model="form.password"
+                           required>
                     <small class="form-text text-danger" v-if="form.errors.password">{{ form.errors.password }}</small>
                   </div>
                 </div>
@@ -47,36 +49,26 @@
   </div>
 </template>
 
-<script lang="ts">
-  import {defineComponent} from "vue";
-  import Layout from "@/Shared/Layout.vue";
-  import {useForm} from "@inertiajs/vue3";
+<script setup>
+import Layout from "@/Shared/Layout.vue";
+import {useForm} from "@inertiajs/vue3";
 
-  export default defineComponent({
-    name:     'Auth-Password-Reset',
+defineOptions({
+  name:   'Auth-Password-Reset',
+  layout: Layout,
+});
 
-    layout: Layout,
+const props = defineProps({
+  tokenString: String,
+});
 
-    props: {
-      tokenString: String,
-    },
+const form = useForm({
+  email:                 null,
+  password:              null,
+  password_confirmation: null,
+});
 
-    data()
-    {
-      return {
-        form: useForm({
-          email:                 null,
-          password:              null,
-          password_confirmation: null,
-        })
-      }
-    },
-
-    methods: {
-      submit()
-      {
-        this.form.post(this.route('auth.password.handle', this.tokenString))
-      }
-    }
-  })
+function submit() {
+  form.post(route('auth.password.handle', tokenString))
+}
 </script>

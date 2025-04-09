@@ -1,16 +1,14 @@
 <template>
-  <inertia-link :href="item.url" class="nav-link" :class="{ active:  item.active }">
+  <Link :href="item.url" class="nav-link" :class="{ active:  item.active }">
     {{ item.name }}
-  </inertia-link>
+  </Link>
 
 </template>
 
-<script>
-  export default {
-    name: 'Admin-Menu-Item',
+<script setup>
+import {Link, usePage} from "@inertiajs/vue3";
 
-    props: {
-      item: Object,
-    },
-  }
+const props = defineProps({
+  item: Object,
+})
 </script>

@@ -30,45 +30,33 @@
             <input type="password" id="password" class="form-control" v-model="form.password" required>
             <small class="form-text text-danger" v-if="form.errors.password">{{ form.errors.password }}</small>
           </div>
-            <input type="submit" :disabled="form.processing" value="Login" class="btn btn-primary w-100">
+          <input type="submit" :disabled="form.processing" value="Login" class="btn btn-primary w-100">
         </form>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import {defineComponent} from "vue";
+<script setup>
 import {useForm} from "@inertiajs/vue3";
 import Layout from "@/Shared/Layout.vue";
 import {Link} from "@inertiajs/vue3"
 
-export default defineComponent({
-  name: 'Auth-Login',
-
+defineOptions({
+  name:   'Auth-Login',
   layout: Layout,
+});
 
-  components: {
-    Link: Link,
-  },
+const props = defineProps({
+  socialEnabled: Boolean,
+});
 
-  props: {
-    socialEnabled: Boolean,
-  },
+const form = useForm({
+  email:    null,
+  password: null,
+});
 
-  data() {
-    return {
-      form: useForm({
-        email:    null,
-        password: null,
-      })
-    }
-  },
-
-  methods: {
-    submit() {
-      this.form.post(this.route('auth.login'))
-    }
-  }
-})
+function submit() {
+  form.post(route('auth.login'))
+}
 </script>

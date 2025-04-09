@@ -10,9 +10,6 @@ class Home extends Base
     {
         $loggedIn = auth()->check();
 
-        // Test Broadcasting
-        broadcast(new TestBroadcasting());
-
         return $this->response(
             compact('loggedIn'),
             'Home/Index'

@@ -27,10 +27,10 @@ class Index extends Base
             ->get()
             ->transform(function ($user) {
                 return [
-                    'id'         => $user->id,
-                    'email'      => $user->email,
-                    'status'     => $user->status->label,
-                    'deleted_at' => $user->deleted_at,
+                    'id'            => $user->id,
+                    'email'         => $user->email,
+                    'status'        => $user->status->label,
+                    'deleted_at'    => $user->deleted_at,
                 ];
             });
 

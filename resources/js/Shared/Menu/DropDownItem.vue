@@ -4,17 +4,12 @@
   </Link>
 </template>
 
-<script lang="ts">
+<script setup>
 import {Link} from '@inertiajs/vue3'
-import {defineComponent} from "vue";
 
-export default defineComponent({
+defineOptions({
   name: 'Menu-DropDown-Item',
+});
 
-  props: ['item'],
-
-  components: {
-    Link: Link,
-  },
-})
+const props = defineProps(['item']);
 </script>

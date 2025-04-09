@@ -20,15 +20,10 @@
   </div>
 </template>
 
-<script lang="ts">
-import {defineComponent} from "vue";
+<script setup>
 import {Link} from "@inertiajs/vue3";
 
-export default defineComponent({
+defineOptions({
   name: 'Sidebar-Main',
-
-  components: {
-    Link: Link,
-  }
-})
+});
 </script>

@@ -4,7 +4,7 @@
       <div id="content">
         <div class="admin-header">
           <div class="admin-title" v-text="fullTitle"></div>
-<!--          <portal-target name="admin-header-buttons"/>-->
+          <slot name="admin-header-buttons"></slot>
           <a data-bs-target="#sidebar" data-bs-toggle="collapse" class="d-block d-md-none btn btn-outline-primary btn-sm">Menu</a>
           <Link :href="route('home')" class="btn btn-outline-primary btn-sm">
             Back to site
@@ -12,7 +12,7 @@
         </div>
         <div class="admin-content row">
           <div class="col-sm-2 col-auto nav-side-menu collapse collapse-horizontal show" id="sidebar">
-            <admin-menu></admin-menu>
+            <SideMenu></SideMenu>
           </div>
           <div class="admin-body col-sm col">
             <slot></slot>
@@ -23,55 +23,30 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup>
 import SideMenu from '@/Shared/SideMenu/Main.vue'
-// import Search from '@/Shared/Partials/Search.vue'
-import {defineComponent} from "vue";
 import {Link, usePage} from "@inertiajs/vue3";
-import _ from "lodash";
+import {computed} from "vue";
 
-export default defineComponent({
-  name: 'Admin',
+defineOptions({
+  name: 'Admin-Layout',
+});
 
-  components: {
-    'admin-menu': SideMenu,
-    // 'search':     Search,
-    Link: Link,
-  },
+const page = usePage();
 
-  computed: {
-    fullTitle() {
-      let title = [
-        this.page.props.title
-      ]
+const props = defineProps({
+  title: String,
+});
 
-      return _.filter(title).join(' ')
-    }
-  },
+const fullTitle = computed(() => {
+  let title = [
+    props.title
+  ];
 
-  data() {
-    return {
-      page: usePage(),
-    }
-  },
+  return _.filter(title).join(' ');
+});
 
-  watch: {
-    'page.props.flash': {
-      handler(val, oldVal) {
-        if (val.success !== null) {
-          // this.bootbox('success', val.success)
-        } else if (val.error !== null) {
-          // this.bootbox('danger', val.error)
-        }
-      },
-      deep: true,
-    }
-  },
-
-  methods: {
-    clearSearch() {
-      this.page.search = null
-    }
-  }
-})
+function clearSearch() {
+  page.props.search = null
+}
 </script>

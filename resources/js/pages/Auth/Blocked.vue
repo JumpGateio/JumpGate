@@ -1,5 +1,4 @@
 <template>
-  <Head title="Blocked" />
   <div class="container-fluid mt-5 auth">
     <div class="combo-box">
       <div class="site-image">
@@ -16,11 +15,11 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+<script setup>
 import Layout from "@/Shared/Layout.vue";
 
-declare const name: 'Auth-Blocked';
-
-defineOptions({ layout: Layout })
+defineOptions({
+  name:   'Auth-Blocked',
+  layout: Layout,
+});
 </script>

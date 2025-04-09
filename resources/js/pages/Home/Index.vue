@@ -108,9 +108,10 @@
 <script setup>
 import Layout from "@/Shared/Layout.vue"
 
-const name = 'Home-Index';
-
-defineOptions({layout: Layout})
+defineOptions({
+  name: 'Home-Index',
+  layout: Layout,
+});
 
 const props = defineProps({
   loggedIn: Boolean,

@@ -6,69 +6,60 @@
   </div>
 </template>
 
-<script lang="ts">
-  import {defineComponent} from "vue";
+<script setup>
+import {computed} from "vue";
 
-  export default defineComponent({
-    name: 'Admin-Tile',
+defineOptions({
+  name: 'Admin-Tile',
+});
 
-    props: {
-      color:      String,
-      textColor:  String,
-      icon:       String,
-      content:    String,
-      subContent: {
-        type:    String,
-        default: null,
-      }
-    },
+const props = defineProps({
+  color:      String,
+  textColor:  String,
+  icon:       String,
+  content:    String,
+  subContent: {
+    type:    String,
+    default: null,
+  }
+});
 
-    computed: {
-      iconHtml()
-      {
-        let html = '<i class="' + this.icon + '"></i>'
+const iconHtml = computed(() => {
+  let html = '<i class="' + props.icon + '"></i>';
 
-        if (!_.startsWith(this.icon, 'fa')) {
-          html = '<img src="' + this.icon + '" />'
-        }
+  if (!_.startsWith(props.icon, 'fa')) {
+    html = '<img src="' + props.icon + '" />';
+  }
 
-        return html
-      },
+  return html;
+});
+const padding = computed(() => {
+  let padding = 'p-5';
 
-      padding()
-      {
-        let padding = 'p-5'
+  if (props.subContent !== null) {
+    padding = 'px-5 pt-4 pb-5';
+  }
 
-        if (this.subContent !== null) {
-          padding = 'px-5 pt-4 pb-5'
-        }
+  return padding;
+});
+const subHtml = computed(() => {
+  let html = null;
 
-        return padding
-      },
+  if (props.subContent !== null) {
+    html = '<p style="margin-bottom: -20px;">' + props.subContent + '</p>';
+  }
 
-      subHtml()
-      {
-        let html = null
+  return html;
+});
+const divClasses = computed(() => {
+  let classes = [
+    'tile',
+    'tile-icon',
+    props.color,
+    props.textColor,
+    padding
+  ];
 
-        if (this.subContent !== null) {
-          html = '<p style="margin-bottom: -20px;">' + this.subContent + '</p>'
-        }
-
-        return html
-      },
-
-      divClasses()
-      {
-        let classes = [
-          'tile',
-          'tile-icon',
-          this.color,
-          this.textColor,
-          this.padding
-        ]
-
-        return classes.join(' ')
-      }
-    }
-  })
+  return classes.join(' ');
+});
 </script>

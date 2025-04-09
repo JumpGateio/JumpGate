@@ -2,7 +2,7 @@
   <div :class="bodyClass">
     <div class="container-fluid" id="container">
       <div class="row">
-        <top-menu></top-menu>
+        <Menu></Menu>
       </div>
       <div id="content">
         <slot></slot>
@@ -13,50 +13,27 @@
   </div>
 </template>
 
-<script lang="ts">
-  import Menu from '@/Shared/Menu/Main.vue'
-  import {defineComponent} from "vue"
+<script setup>
+import Menu from '@/Shared/Menu/Main.vue'
+import {computed} from "vue";
 
-  export default defineComponent({
-    name: 'Layout',
+defineOptions({
+  name: 'Layout',
+});
 
-    components: {
-      'top-menu': Menu,
-    },
+const props = defineProps({
+  title:     String,
+  bodyClass: {
+    default: null,
+    type:    String,
+  },
+});
 
-    props: {
-      title:     String,
-      bodyClass: {
-        default: null,
-        type:    String,
-      },
-    },
+const fullTitle = computed(() => {
+  let title = [
+    props.title
+  ];
 
-    watch: {
-      '$page.props.flash':       {
-        handler(val, oldVal)
-        {
-          if (val.success !== null) {
-            this.bootbox('success', val.success)
-          } else if (val.error !== null) {
-            this.bootbox('danger', val.error)
-          }
-        },
-        deep: true,
-      }
-    },
-
-    computed: {
-      fullTitle()
-      {
-        let title = this.title == null ? '' : this.title
-
-        if (this.$page.title != null) {
-          return title + ' ' + this.$page.title
-        }
-
-        return title
-      }
-    },
-  })
+  return _.filter(title).join(' ');
+});
 </script>

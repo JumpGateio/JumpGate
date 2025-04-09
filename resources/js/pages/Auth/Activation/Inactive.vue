@@ -18,18 +18,16 @@
   </div>
 </template>
 
-<script lang="ts">
-  import {defineComponent} from "vue";
-  import Layout from "@/Shared/Layout.vue";
+<script setup>
+import Layout from "@/Shared/Layout.vue";
 
-  export default defineComponent({
-    name:     'Auth-Activation-Inactive',
+defineOptions({
+  name:   'Auth-Activation-Inactive',
+  layout: Layout,
+});
 
-    layout: Layout,
-
-    props: {
-      pageTitle: String,
-      token:     String,
-    }
-  })
+const props = defineProps({
+  pageTitle: String,
+  token:     String,
+});
 </script>

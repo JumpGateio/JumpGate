@@ -1,49 +1,44 @@
 <template>
   <div>
     <slot></slot>
-    <pagination class="ml-2" :data="$page.props.searchResults" :show-disabled="true"
-                @pagination-change-page="getResults"></pagination>
+    <Pagination class="ml-2" :data="page.props.searchResults" :show-disabled="true"
+                @pagination-change-page="getResults"></Pagination>
   </div>
 </template>
 
-<script>
-  import Pagination from 'laravel-vue-pagination'
+<script setup>
+import Pagination from 'laravel-vue-pagination'
+import {usePage} from "@inertiajs/vue3";
+import {watch} from "vue";
 
-  export default {
-    name: 'Admin-Search',
+defineOptions({
+  name: 'Admin-Search',
+});
 
-    components: {
-      'pagination': Pagination,
-    },
+const page = usePage();
+const props = defineProps({
+  url: String,
+});
 
-    props: {
-      url: String,
-    },
+watch('page.props.search', (newValue, oldValue) => {
+  _.throttle(function () {
+    getResults()
+  }, 500);
+}, {
+  deep:      true,
+  immediate: true,
+});
 
-    watch: {
-      '$page.props.search': {
-        handler:   _.throttle(function () {
-          this.getResults()
-        }, 500),
-        deep:      true,
-        immediate: true,
-      },
-    },
+function getResults(page = 1) {
+  let query = {}
 
-    methods: {
-      getResults(page = 1)
-      {
-        let query = {}
-
-        if (this.$page.props.search != null) {
-          query = {term: this.$page.props.search}
-        }
-
-        axios.get(this.route(this.url, query) + '?page=' + page)
-             .then((response) => {
-               this.$page.props.searchResults = response.data.data
-             })
-      }
-    }
+  if (page.props.search != null) {
+    query = {term: page.props.search}
   }
+
+  axios.get(route(props.url, query) + '?page=' + page)
+    .then((response) => {
+      page.props.searchResults = response.data.data
+    })
+}
 </script>

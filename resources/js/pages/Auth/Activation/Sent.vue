@@ -15,17 +15,15 @@
   </div>
 </template>
 
-<script lang="ts">
-  import {defineComponent} from "vue";
-  import Layout from "@/Shared/Layout.vue";
+<script setup>
+import Layout from "@/Shared/Layout.vue";
 
-  export default defineComponent({
-    name:     'Auth-Activation-Sent',
+defineOptions({
+  name:   'Auth-Activation-Sent',
+  layout: Layout,
+});
 
-    layout: Layout,
-
-    props: {
-      pageTitle: String,
-    }
-  })
+const props = defineProps({
+  pageTitle: String,
+});
 </script>

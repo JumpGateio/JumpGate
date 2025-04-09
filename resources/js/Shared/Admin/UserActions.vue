@@ -6,55 +6,48 @@
     ></button>
     <div class="dropdown-menu dropdown-menu-right">
       <Link :href="action.route" class="dropdown-item p-2" v-for="action in user.admin_actions"
-                    :key="action.text">
+            :key="action.text">
         <span class="fa text-500" :class="action.icon"></span>&nbsp;&nbsp;{{ action.text }}
       </Link>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-  import {defineComponent} from "vue";
-  import {Link} from "@inertiajs/vue3";
+<script setup>
+import {Link} from "@inertiajs/vue3";
+import {computed} from "vue";
 
-  export default defineComponent({
-    name: 'User-Actions',
+defineOptions({
+  name: 'User-Actions',
+});
 
-    components: {
-      Link: Link,
-    },
+const props = defineProps({
+  user:     Object,
+  iconOnly: {
+    type:    Boolean,
+    default: false,
+  },
+  btnSize:  {
+    type:    String,
+    default: 'btn-sm',
+  },
+  btnColor: {
+    type:    String,
+    default: 'btn-outline-dark',
+  },
+})
 
-    props: {
-      user:     Object,
-      iconOnly: {
-        type:    Boolean,
-        default: false,
-      },
-      btnSize: {
-        type:    String,
-        default: 'btn-sm',
-      },
-      btnColor: {
-        type:    String,
-        default: 'btn-outline-dark',
-      },
-    },
+const text = computed(() => {
+  let text = {
+    actions: 'Actions',
+  };
 
-    computed: {
-      text()
-      {
-        let text = {
-          actions: 'Actions',
-        }
+  if (props.iconOnly === true) {
+    text = {
+      actions: '<span class="fa fa-cog"></span>',
+    };
+  }
 
-        if (this.iconOnly === true) {
-          text = {
-            actions: '<span class="fa fa-cog"></span>',
-          }
-        }
-
-        return text
-      },
-    },
-  })
+  return text;
+});
 </script>

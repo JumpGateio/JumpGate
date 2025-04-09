@@ -14,12 +14,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav">
-            <link-menu v-for="(item, index) in $page.props.leftMenu" :key="item.slug + '.' + index"
-                       :item="item"></link-menu>
+            <Menu v-for="(item, index) in page.props.leftMenu" :key="item.slug + '.' + index"
+                       :item="item"></Menu>
           </ul>
           <ul class="navbar-nav ms-auto">
-            <link-menu v-for="(item, index) in $page.props.rightMenu" :key="item.slug + '.' + index"
-                       :item="item"></link-menu>
+            <Menu v-for="(item, index) in page.props.rightMenu" :key="item.slug + '.' + index"
+                       :item="item"></Menu>
           </ul>
         </div>
       </div>
@@ -28,17 +28,13 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup>
 import Menu from '@/Shared/Menu/Menu.vue'
-import {Link} from '@inertiajs/vue3'
-import {defineComponent} from "vue"
+import {Link, usePage} from '@inertiajs/vue3'
 
-export default defineComponent({
+defineOptions({
   name: 'Menu-Main',
+});
 
-  components: {
-    'link-menu': Menu,
-    Link: Link,
-  },
-})
+const page = usePage();
 </script>

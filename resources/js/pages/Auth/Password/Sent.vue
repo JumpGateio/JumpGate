@@ -7,7 +7,7 @@
             <strong>Password reset email sent</strong>
           </div>
           <div class="card-body">
-            An email has been sent to your account.  Please follow the link in that email to reset your password.
+            An email has been sent to your account. Please follow the link in that email to reset your password.
           </div>
         </div>
       </div>
@@ -15,13 +15,11 @@
   </div>
 </template>
 
-<script lang="ts">
-  import {defineComponent} from "vue";
-  import Layout from "@/Shared/Layout.vue";
+<script setup>
+import Layout from "@/Shared/Layout.vue";
 
-  export default defineComponent({
-    name:     'Auth-Password-Sent',
-
-    layout: Layout,
-  })
+defineOptions({
+  name:   'Auth-Password-Sent',
+  layout: Layout,
+});
 </script>
