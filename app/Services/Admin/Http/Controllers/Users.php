@@ -41,7 +41,9 @@ class Users extends Base
                 ];
             });
 
-        return $this->response(compact('title', 'filters', 'users'));
+        return $this->response(
+            compact('title', 'filters', 'users')
+        );
     }
 
     public function show(User $user): \Inertia\Response

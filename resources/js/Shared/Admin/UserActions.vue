@@ -2,7 +2,7 @@
   <div class="btn-group mr-2" v-if="user.admin_actions && user.admin_actions.length > 0">
     <button type="button" class="btn dropdown-toggle" :class="[btnSize, btnColor]"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-            v-html="text.actions"
+            data-bs-toggle="dropdown" v-html="text.actions"
     ></button>
     <div class="dropdown-menu dropdown-menu-right">
       <Link :href="action.route" class="dropdown-item p-2" v-for="action in user.admin_actions"
@@ -33,7 +33,7 @@ const props = defineProps({
   },
   btnColor: {
     type:    String,
-    default: 'btn-outline-dark',
+    default: 'btn-outline',
   },
 })
 

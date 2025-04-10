@@ -7,11 +7,11 @@ use JumpGate\Core\Services\Response;
 
 class UserActions
 {
-    public User $user;
+    public User   $user;
 
     public string $status;
 
-    public int $action;
+    public int    $action;
 
     public string $method;
 

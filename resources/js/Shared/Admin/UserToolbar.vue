@@ -1,5 +1,5 @@
 <template>
-  <div class="btn-toolbar float-right" role="toolbar">
+  <div class="btn-toolbar justify-content-end" role="toolbar">
     <template v-if="isTrashed">
       <Link :href="route('admin.users.confirm', [user.id, 'delete', 0])" class="btn btn-sm btn-outline-danger">
         Restore

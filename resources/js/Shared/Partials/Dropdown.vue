@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import Popper from '@popperjs/core'
+import {createPopper} from "@popperjs/core";
 import {watch, onMounted, reactive} from "vue";
 
 defineOptions({
@@ -43,14 +43,14 @@ const props = defineProps({
 const show = reactive(false);
 const popper = reactive(null);
 
-watch('show', (show) => {
-  if (show) {
+watch(show, (newValue, oldValue) => {
+  if (newValue) {
     this.$nextTick(() => {
       $('.dropdown-menu').addClass('show')
-      popper = new Popper(this.$el, this.$refs.dropdown, {
-        placement: this.placement,
+      popper = createPopper(el, refs.dropdown, {
+        placement: props.placement,
         modifiers: {
-          preventOverflow: {boundariesElement: this.boundary},
+          preventOverflow: {boundariesElement: props.boundary},
         },
       })
     })
