@@ -1,5 +1,10 @@
 <template>
   <div>
+    <Teleport defer to="#headerButtons">
+      <Link :href="route('admin.users.create')" class="btn btn-sm btn-success mr-2">
+        Create User
+      </Link>
+    </Teleport>
     <div class="admin-search">
       <Search v-model="form.search" @reset="reset()">
         <label class="block text-gray-200">Trashed:</label>
@@ -49,7 +54,7 @@ import UserToolbar from '@/Shared/Admin/UserToolbar.vue';
 import Pagination from '@/Shared/Partials/Pagination.vue';
 import Search from '@/Shared/Partials/Search.vue';
 import {watch} from "vue";
-import {router, useForm} from "@inertiajs/vue3";
+import {Link, router, useForm} from "@inertiajs/vue3";
 
 defineOptions({
   name:   'Admin-Users-Index',
