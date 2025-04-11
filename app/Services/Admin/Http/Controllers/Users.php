@@ -51,11 +51,15 @@ class Users extends Base
         $title = $user->details->display_name ?? 'User Details';
         $user->load('tokens');
         $user->load('actionTimestamps');
+        $user->load('roles.permissions');
         $user->admin_actions = $user->getAttribute('admin_actions');
+        $user->load('socials');
 
-        if (config('jumpgate.users.settings.enable_social_auth')) {
-            $user->load('socials');
-        }
+        $user->roles->transform(function ($role) {
+            $role->permission_list = implode(', ', $role->permissions->name->toArray());
+
+            return $role;
+        });
 
         return $this->response(compact('title', 'user'), 'Admin/Users/Show');
     }
@@ -153,7 +157,7 @@ class Users extends Base
             default         => $status,
         };
 
-        if (! is_null($action) && (int)$action === 0) {
+        if (!is_null($action) && (int)$action === 0) {
             $event = 'un-' . $event;
         }
 

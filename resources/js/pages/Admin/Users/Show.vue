@@ -1,15 +1,15 @@
 <template>
   <div class="user-profile">
-    <portal to="admin-header-buttons">
-      <user-actions :user="user" btnColor="btn-dark"></user-actions>
-      <inertia-link :href="route('admin.users.edit', user.id)" class="btn btn-sm btn-primary mr-2">
+    <Teleport defer to="#headerButtons">
+      <UserActions :user="user" btnColor="btn-dark"></UserActions>
+      <Link :href="route('admin.users.edit', user.id)" class="btn btn-sm btn-primary mr-2">
         Edit
-      </inertia-link>
-      <inertia-link :href="route('admin.users.confirm', [user.id, 'delete', 1])" class="btn btn-sm btn-danger mr-2">
+      </Link>
+      <Link :href="route('admin.users.confirm', [user.id, 'delete', 1])" class="btn btn-sm btn-danger mr-2">
         Delete
-      </inertia-link>
-    </portal>
-    <div class="details">
+      </Link>
+    </Teleport>
+    <div class="details user-profile-box shadow">
       <div class="title">Details</div>
       <div class="user-data">
         <div class="d-flex flex-row w-100">
@@ -42,27 +42,27 @@
         </div>
       </div>
     </div>
-    <div class="tokens">
+    <div class="tokens user-profile-box">
       <div class="title">Tokens</div>
       <div class="user-data">
         <table class="table" v-if="user.tokens.length > 0">
           <thead>
-            <tr>
-              <th>Type</th>
-              <th class="token">token</th>
-              <th>Created</th>
-              <th>Expires</th>
-            </tr>
+          <tr>
+            <th>Type</th>
+            <th class="token">token</th>
+            <th>Created</th>
+            <th>Expires</th>
+          </tr>
           </thead>
           <tbody>
-            <tr v-for="token in user.tokens">
-              <td>{{ token.type }}</td>
-              <td class="token d-inline-block text-truncate" :title="token.token">
-                {{ token.token }}
-              </td>
-              <td>{{ getTime(token, 'created_at') }}</td>
-              <td>{{ getTime(token, 'expires_at') }}</td>
-            </tr>
+          <tr v-for="token in user.tokens">
+            <td>{{ token.type }}</td>
+            <td class="token d-inline-block text-truncate" :title="token.token">
+              {{ token.token }}
+            </td>
+            <td>{{ getTime(token, 'created_at') }}</td>
+            <td>{{ getTime(token, 'expires_at') }}</td>
+          </tr>
           </tbody>
         </table>
         <div v-if="user.tokens.length == 0" class="p-2">
@@ -70,7 +70,7 @@
         </div>
       </div>
     </div>
-    <div class="timestamps">
+    <div class="timestamps user-profile-box">
       <div class="title">Timestamps</div>
       <div class="user-data">
         <dl class="row">
@@ -95,7 +95,7 @@
         </dl>
       </div>
     </div>
-    <div class="socials">
+    <div class="socials user-profile-box">
       <div class="title">Authentication</div>
       <div class="user-data">
         <dl class="row">
@@ -118,54 +118,54 @@
         </dl>
       </div>
     </div>
+    <div class="permissions user-profile-box">
+      <div class="title">Roles & Permissions</div>
+      <div class="user-data">
+        <dl class="row">
+          <dt class="col-sm-4 bb-300">Roles</dt>
+          <dt class="col-sm-8 bb-300">Permissions</dt>
+          <template v-for="role in user.roles">
+            <dt class="col-sm-4">{{ role.name }}</dt>
+            <dd class="col-sm-8">{{ role.permission_list }}</dd>
+          </template>
+        </dl>
+      </div>
+    </div>
   </div>
 </template>
 
-<style scoped>
+<script setup>
+import Admin from '@/Shared/Admin.vue'
+import UserActions from '@/Shared/Admin/UserActions.vue'
+import {Link} from "@inertiajs/vue3";
+import moment from 'moment'
 
-</style>
+defineOptions({
+  name:   'Admin-User-Show',
+  layout: Admin,
+});
 
-<script>
-  import Admin from '@/Shared/Admin'
-  import UserActions from '@/Shared/Admin/UserActions'
-  import moment from 'moment'
+const props = defineProps({
+  user: Object,
+});
 
-  export default {
-    name:     'User-Show',
-    metaInfo: {title: 'User Details'},
+function getText(object, property) {
+  let text = _.get(object, property, 'None')
 
-    layout: Admin,
-
-    props: {
-      user: Object,
-    },
-
-    components: {
-      'user-actions': UserActions,
-    },
-
-    methods: {
-      getText(object, property)
-      {
-        let text = _.get(object, property, 'None')
-
-        if (text == null) {
-          text = 'None'
-        }
-
-        return text
-      },
-
-      getTime(object, property)
-      {
-        let time = _.get(object, property)
-
-        if (time == null) {
-          return 'Never'
-        }
-
-        return moment(time).format('MMM Do YYYY hh:mma')
-      }
-    }
+  if (text == null) {
+    text = 'None'
   }
+
+  return text
+}
+
+function getTime(object, property) {
+  let time = _.get(object, property)
+
+  if (time == null) {
+    return 'Never'
+  }
+
+  return moment(time).format('MMM Do YYYY hh:mma')
+}
 </script>

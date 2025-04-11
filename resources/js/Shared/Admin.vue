@@ -4,9 +4,9 @@
       <div id="content">
         <div class="admin-header">
           <div class="admin-title" v-text="fullTitle"></div>
-          <slot name="admin-header-buttons"></slot>
-          <a data-bs-target="#sidebar" data-bs-toggle="collapse" class="d-block d-md-none btn btn-outline-primary btn-sm">Menu</a>
-          <Link :href="route('home')" class="btn btn-outline-primary btn-sm">
+          <div id="headerButtons" class="btn-group"></div>
+          <a data-bs-target="#sidebar" data-bs-toggle="collapse" class="d-block d-md-none btn btn-outline-primary btn-sm ms-2">Menu</a>
+          <Link :href="route('home')" class="btn btn-outline-primary btn-sm ms-2">
             Back to site
           </Link>
         </div>

@@ -2,16 +2,23 @@
   .user-profile {
     display:               grid;
     grid-template-columns: minmax(50px, auto) minmax(50px, auto);
-    grid-template-rows:    minmax(50px, auto) minmax(50px, auto);
+    grid-template-rows:    minmax(25px, auto) minmax(25px, auto) minmax(50px, auto);
     grid-column-gap:       1rem;
     grid-row-gap:          1rem;
 
+    .user-profile-box {
+      background-color: $gray-700;
+    }
+
     > div {
       .title {
-        background-color: $gray-700;
+        background-color: $gray-800;
         color:            $gray-200;
         padding:          .5rem;
         border-bottom:    1px solid $black;
+        font-weight:      bold;
+        font-size:        1.25rem;
+        letter-spacing:   .25rem;
       }
 
       .user-data {
@@ -20,15 +27,18 @@
     }
 
     .details {
-      grid-row:         1;
-      grid-column:      1;
-      background-color: $gray-400;
+      grid-row:    1 / span 1;
+      grid-column: 1;
+    }
+
+    .permissions {
+      grid-row:    2 / span 2;
+      grid-column: 1;
     }
 
     .tokens {
-      grid-row:         1;
-      grid-column:      2;
-      background-color: $gray-200;
+      grid-row:    2;
+      grid-column: 2;
 
       .user-data {
         padding: 0;
@@ -43,15 +53,13 @@
     }
 
     .timestamps {
-      grid-row:         2;
-      grid-column:      2;
-      background-color: $gray-200;
+      grid-row:    1;
+      grid-column: 2;
     }
 
     .socials {
-      grid-row:         2;
-      grid-column:      1;
-      background-color: $gray-400;
+      grid-row:    3;
+      grid-column: 2;
     }
   }
 }
