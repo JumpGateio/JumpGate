@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="admin-search">
-      <Search v-model="form.search" @reset="form.reset()">
+      <Search v-model="form.search" @reset="reset()">
         <label class="block text-gray-200">Trashed:</label>
         <select v-model="form.trashed" class="mt-1 w-full form-select">
           <option :value="null"/>
@@ -78,6 +78,6 @@ watch(() => form.trashed,
     }, {deep: true});
 
 function reset() {
-  form.reset();
+  router.get(route('admin.users.index'));
 }
 </script>
