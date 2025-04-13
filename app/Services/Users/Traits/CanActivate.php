@@ -23,13 +23,16 @@ trait CanActivate
      *
      * @param string                      $email
      * @param int|array|string|collection $roles
+     * @param int|array|string|collection $permissions
      *
      * @return User
      */
-    public function sendNewUserActivation(string $email, collection|int|array|string $roles): User
+    public function sendNewUserActivation(string $email, collection|int|array|string $roles,
+                                          collection|int|array|string $permissions = []): User
     {
         $user = static::firstOrCreate(compact('email'));
-        $user->attachRole($roles);
+        $user->roles()->attach($roles);
+        $user->permissions()->attach($permissions);
 
         /** @var Activation $invites */
         $invites = app(Activation::class);

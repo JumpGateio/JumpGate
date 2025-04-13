@@ -29,13 +29,16 @@ trait CanInvite
      *
      * @param string                      $email
      * @param int|array|string|collection $roles
+     * @param int|array|string|collection $permissions
      *
      * @return User
      */
-    public function inviteNewUser(string $email, collection|int|array|string $roles): User
+    public function inviteNewUser(string $email, collection|int|array|string $roles,
+                                  collection|int|array|string $permissions = []): User
     {
         $user = static::firstOrCreate(compact('email'));
-        $user->attachRole($roles);
+        $user->roles()->attach($roles);
+        $user->permissions()->attach($permissions);
 
         /** @var Invitation $invites */
         $invites = app(Invitation::class);

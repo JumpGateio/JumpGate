@@ -235,15 +235,18 @@ class User extends BaseModel implements LaratrustUser,
      *
      * @param string                      $email
      * @param int|array|string|collection $roles
+     * @param int|array|string|collection $permissions
      *
      * @return User
      */
-    public function generateActiveUser(string $email, collection|int|array|string $roles): User
+    public function generateActiveUser(string $email, collection|int|array|string $roles,
+                                       collection|int|array|string $permissions = []): User
     {
         $user = static::firstOrCreate(compact('email'));
 
         $user->setStatus(Status::ACTIVE);
         $user->roles()->attach($roles);
+        $user->permissions()->attach($permissions);
         $user->trackTime('invited_at');
 
         Detail::firstOrCreate([
@@ -275,11 +278,11 @@ class User extends BaseModel implements LaratrustUser,
      */
     public function getDisplayNameAttribute(): string
     {
-        if (! is_null($this->details->display_name)) {
+        if (!is_null($this->details->display_name)) {
             return $this->details->display_name;
         }
 
-        if (! is_null($this->details->full_name)) {
+        if (!is_null($this->details->full_name)) {
             return $this->details->full_name;
         }
 

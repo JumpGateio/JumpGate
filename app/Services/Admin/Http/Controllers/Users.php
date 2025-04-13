@@ -104,6 +104,7 @@ class Users extends Base
     {
         $email        = request('email');
         $roles        = request('roles');
+        $permissions  = request('permissions');
         $inviteMethod = request('invite');
 
         Validator::make(request()->all(), [
@@ -116,7 +117,7 @@ class Users extends Base
         ])->validate();
 
         try {
-            $this->users->{$inviteMethod}($email, $roles);
+            $this->users->{$inviteMethod}($email, $roles, $permissions);
         } catch (\Exception $exception) {
             return redirect()
                 ->route('admin.users.create')
@@ -130,14 +131,21 @@ class Users extends Base
 
     public function edit(User $user): \Inertia\Response
     {
-        $statusOptions = Status::orderByNameAsc()->get()->pluck('label', 'id');
-        $roleOptions   = Role::orderBy('name', 'asc')->get()->pluck('name', 'id');
-        $title         = $user->email;
+        $statusOptions     = Status::orderByNameAsc()->get()->pluck('label', 'id');
+        $roleOptions       = Role::orderBy('display_name', 'asc')->get()->pluck('display_name', 'id');
+        $permissionOptions = Permission::orderBy('display_name', 'asc')->get()->pluck('display_name', 'id');
+        $title             = $user->email;
 
         $user = $user->frontEndDetails();
 
         return $this->response(
-            compact('user', 'statusOptions', 'roleOptions', 'title')
+            compact(
+                'user',
+                'statusOptions',
+                'roleOptions',
+                'permissionOptions',
+                'title'
+            )
         );
     }
 
@@ -148,6 +156,7 @@ class Users extends Base
         $user->setFailedLoginAttempts(request('failed_login_attempts'));
         $user->details->update(request('details'));
         $user->roles()->sync(request('roles'));
+        $user->permissions()->sync(request('permissions'));
 
         return redirect()
             ->route('admin.users.index')
