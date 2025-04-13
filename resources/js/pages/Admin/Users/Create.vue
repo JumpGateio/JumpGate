@@ -1,9 +1,9 @@
 <template>
   <div class="card-body pl-2 pt-2 pb-3">
     <form @submit.prevent="submit" class="form-horizontal">
-      <div class="form-group">
-        <label for="email">Email Address</label>
+      <div class="form-floating mb-3">
         <input type="text" id="email" v-model="form.email" class="form-control" placeholder="Email">
+        <label for="email">Email Address</label>
         <small class="form-text text-danger" v-if="form.errors.email">{{ form.errors.email }}</small>
       </div>
       <div class="form-group">
@@ -26,43 +26,34 @@
       </div>
       <div class="form-group">
         <input type="submit" class="btn btn-primary" :disabled="form.processing" value="Save">
-        <inertia-link :href="route('admin.users.index')" class="btn btn-link">Cancel</inertia-link>
+        <Link :href="route('admin.users.index')" class="btn btn-link">Cancel</Link>
       </div>
     </form>
   </div>
 </template>
 
-<script>
-  import Admin from '@/Shared/Admin'
+<script setup>
+import Admin from '@/Shared/Admin.vue'
+import {Link, useForm} from "@inertiajs/vue3";
 
-  export default {
-    name:     'Admin-Users-Create',
-    metaInfo: {title: 'User Create'},
+defineOptions({
+  name:   'Admin-Users-Create',
+  layout: Admin,
+});
 
-    layout: Admin,
+const props = defineProps({
+  roleOptions:       Object,
+  invitationOptions: Object,
+  selected:          Number,
+});
 
-    props: {
-      roleOptions:       Object,
-      invitationOptions: Object,
-      selected:          Number,
-    },
+const form = useForm({
+  email:  null,
+  roles:  [],
+  invite: props.selected,
+});
 
-    data()
-    {
-      return {
-        form: this.$inertia.form({
-          email:  null,
-          roles:  [],
-          invite: this.selected,
-        })
-      }
-    },
-
-    methods: {
-      submit()
-      {
-        this.form.post(this.route('admin.users.store'))
-      },
-    }
-  }
+function submit() {
+  form.post(route('admin.users.store'));
+}
 </script>

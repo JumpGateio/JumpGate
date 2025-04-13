@@ -1,6 +1,9 @@
 <template>
   <div>
     <Teleport defer to="#headerButtons">
+      <button class="btn btn-sm btn-warning" data-bs-toggle="collapse" data-bs-target="#infobox">
+        <i class="fa fa-fw fa-question-circle"></i>
+      </button>
       <Link :href="route('admin.users.status.create')" class="btn btn-sm btn-success btn-create mr-2">
         Create Status
       </Link>
@@ -8,12 +11,22 @@
     <div class="admin-search">
       <Search v-model="form.search" @reset="reset"></Search>
     </div>
+    <div class="row mx-1">
+      <div class="col-12">
+        <div class="collapse" id="infobox">
+          <div class="card card-body b-warning">
+            Only certain statuses have built in uses in the code.  Blocked will stop
+            the user from viewing ANY page.  Other than that, it is only there for tracking.
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="table-responsive table-admin">
       <table class="table table-striped table-hover">
         <thead>
         <tr>
           <th>ID</th>
-          <th>name</th>
+          <th>Name</th>
           <th>Label</th>
           <th>&nbsp;</th>
         </tr>

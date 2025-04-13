@@ -67,7 +67,7 @@ class Users extends Base
     public function create(): \Inertia\Response
     {
         $title       = 'Create a new user';
-        $roleOptions = Role::orderBy('name', 'asc')->get()->pluck('name', 'id');
+        $roleOptions = Role::orderBy('display_name', 'asc')->get()->pluck('display_name', 'id');
         $settings    = config('jumpgate.users.settings');
 
         $invitationOptions = supportCollector([
