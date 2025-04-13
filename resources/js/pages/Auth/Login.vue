@@ -20,14 +20,15 @@
           <div class="text-circle">OR</div>
         </div>
         <form @submit.prevent="submit">
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="text" id="email" class="form-control" v-model="form.email" required>
+          <div class="form-floating mb-3">
+            <input type="text" id="email" class="form-control" v-model="form.email" placeholder="Email" required>
+            <label for="email">Email</label>
             <small class="form-text text-danger" v-if="form.errors.email">{{ form.errors.email }}</small>
           </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" id="password" class="form-control" v-model="form.password" required>
+          <div class="form-floating mb-3">
+            <input type="password" id="password" class="form-control" v-model="form.password" placeholder="Password"
+                   required>
+            <label for="password">Password</label>
             <small class="form-text text-danger" v-if="form.errors.password">{{ form.errors.password }}</small>
           </div>
           <input type="submit" :disabled="form.processing" value="Login" class="btn btn-primary w-100">

@@ -1,10 +1,16 @@
 <template>
-  <div class="card-body pl-2 pt-2 pb-3">
+  <div class="card-body ps-2 pe-3 pt-2 pb-3">
     <form @submit.prevent="submit" class="form-horizontal">
       <div class="form-floating mb-3">
         <input type="text" id="email" v-model="form.email" class="form-control" placeholder="Email">
         <label for="email">Email Address</label>
         <small class="form-text text-danger" v-if="form.errors.email">{{ form.errors.email }}</small>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" id="display_name" v-model="form.display_name" class="form-control"
+               placeholder="Display Name">
+        <label for="display_name">Display Name</label>
+        <small class="form-text text-danger" v-if="form.errors.display_name">{{ form.errors.display_name }}</small>
       </div>
       <div class="form-group">
         <label for="roles">Select Roles</label>
@@ -12,6 +18,13 @@
           <option :value="parseInt(id)" v-for="(text, id) in roleOptions" v-text="text"></option>
         </select>
         <small class="form-text text-danger" v-if="form.errors.roles">{{ form.errors.roles }}</small>
+      </div>
+      <div class="form-group" v-if="permissionOptions.length > 0">
+        <label for="permissions">Select Individual Permissions</label>
+        <select id="permissions" v-model="form.permissions" class="form-control" multiple>
+          <option :value="parseInt(id)" v-for="(text, id) in permissionOptions" v-text="text"></option>
+        </select>
+        <small class="form-text text-danger" v-if="form.errors.permissions">{{ form.errors.roles }}</small>
       </div>
       <div class="form-group">
         <label for="invite">How should we add the user?</label>
@@ -43,14 +56,17 @@ defineOptions({
 
 const props = defineProps({
   roleOptions:       Object,
+  permissionOptions: Object | Array,
   invitationOptions: Object,
   selected:          Number,
 });
 
 const form = useForm({
-  email:  null,
-  roles:  [],
-  invite: props.selected,
+  email:        null,
+  display_name: null,
+  roles:        [],
+  permissions:  [],
+  invite:       props.selected,
 });
 
 function submit() {

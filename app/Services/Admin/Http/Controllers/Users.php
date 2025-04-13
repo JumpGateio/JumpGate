@@ -2,6 +2,7 @@
 
 namespace App\Services\Admin\Http\Controllers;
 
+use App\Services\Users\Models\Permission;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Services\Users\Managers\UserActions;
@@ -66,9 +67,10 @@ class Users extends Base
 
     public function create(): \Inertia\Response
     {
-        $title       = 'Create a new user';
-        $roleOptions = Role::orderBy('display_name', 'asc')->get()->pluck('display_name', 'id');
-        $settings    = config('jumpgate.users.settings');
+        $title             = 'Create a new user';
+        $roleOptions       = Role::orderBy('display_name', 'asc')->get()->pluck('display_name', 'id');
+        $permissionOptions = Permission::orderBy('display_name', 'asc')->get()->pluck('display_name', 'id');
+        $settings          = config('jumpgate.users.settings');
 
         $invitationOptions = supportCollector([
             'none'               => 'Select one',
@@ -88,7 +90,13 @@ class Users extends Base
         }
 
         return $this->response(
-            compact('title', 'roleOptions', 'invitationOptions', 'selected')
+            compact(
+                'title',
+                'roleOptions',
+                'permissionOptions',
+                'invitationOptions',
+                'selected'
+            )
         );
     }
 

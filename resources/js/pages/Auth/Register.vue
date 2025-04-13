@@ -12,7 +12,7 @@
         </h3>
         <div class="social-box" v-if="socialEnabled">
           <Link :href="route('auth.social.login', 'google')" class="btn btn-google w-100 text-white mb-3"
-                >
+          >
             <i class="fa-brands fa-google"></i>&nbsp;Google
           </Link>
         </div>
@@ -21,27 +21,29 @@
           <div class="text-circle">OR</div>
         </div>
         <form @submit.prevent="submit">
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="text" id="email" class="form-control" v-model="form.email" required>
+          <div class="form-floating mb-3">
+            <input type="text" id="email" class="form-control" v-model="form.email" placeholder="Email" required>
+            <label for="email">Email</label>
             <small class="form-text text-danger" v-if="form.errors.email">{{ form.errors.email }}</small>
           </div>
-          <div class="mb-3">
-            <label for="display_name" class="form-label">Display Name</label>
-            <input type="display_name" id="display_name" class="form-control" v-model="form.display_name" required>
+          <div class="form-floating mb-3">
+            <input type="display_name" id="display_name" class="form-control" v-model="form.display_name"
+                   placeholder="Display Name" required>
+            <label for="display_name">Display Name</label>
             <small class="form-text text-danger" v-if="form.errors.display_name">
               {{ form.errors.display_name }}
             </small>
           </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" id="password" class="form-control" v-model="form.password" required>
+          <div class="form-floating mb-3">
+            <input type="password" placeholder="Password" id="password" class="form-control"
+                   v-model="form.password" required>
+            <label for="password">Password</label>
             <small class="form-text text-danger" v-if="form.errors.password">{{ form.errors.password }}</small>
           </div>
-          <div class="mb-3">
-            <label for="password_confirmation" class="form-label">Confirm Password</label>
-            <input type="password" id="password_confirmation" class="form-control"
+          <div class="form-floating mb-3">
+            <input type="password" id="password_confirmation" class="form-control" placeholder="Confirm Password"
                    v-model="form.password_confirmation" required>
+            <label for="password_confirmation">Confirm Password</label>
             <small class="form-text text-danger" v-if="form.errors.password_confirmation">
               {{ form.errors.password_confirmation }}
             </small>

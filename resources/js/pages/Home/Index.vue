@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-center position-ref full-height" data-bs-theme="dark" id="home">
+  <div class="flex-center position-ref full-height mt-3" data-bs-theme="dark" id="home">
     <div class="content">
       <div class="title m-b-md">
         Laravel <span class="numbers">12</span>
