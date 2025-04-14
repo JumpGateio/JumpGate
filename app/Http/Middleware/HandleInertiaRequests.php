@@ -59,7 +59,6 @@ class HandleInertiaRequests extends Middleware
         Menu::getMenus();
         AdminSidebar::getMenus();
 
-
         return array_merge(parent::share($request), [
             'ziggy' => [
                 ...(new Ziggy)->toArray(),

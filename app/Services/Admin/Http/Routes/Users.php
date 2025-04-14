@@ -44,7 +44,7 @@ class Users extends BaseRoute implements Routes
         $router->get('create')
             ->name('admin.users.create')
             ->uses('Users@create')
-            ->middleware('active:admin.users.index');
+            ->middleware('active:admin.users.create');
         $router->post('create')
             ->name('admin.users.store')
             ->uses('Users@store');

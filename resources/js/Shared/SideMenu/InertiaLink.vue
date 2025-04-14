@@ -1,5 +1,5 @@
 <template>
-  <Link :href="item.url" class="side-menu-item">
+  <Link :href="item.url" class="side-menu-item" :class="{'active': item.active}">
     <i class="fa fa-fw" :class="item.icon"></i>&nbsp;
     {{ item.name }}
   </Link>
