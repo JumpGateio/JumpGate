@@ -39,6 +39,9 @@
 This concludes the basic set up for JumpGate.  At this point you should be able to go to your site in the browser and
 see the default JumpGate landing page.
 
+> [info]
+> Change the `public/img/site_logo.png` to your site image.  This is used in the auth files next to the form.
+
 <a name="windows-dev"></a>
 ## Windows Development
 

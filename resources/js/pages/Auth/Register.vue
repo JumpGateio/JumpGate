@@ -3,7 +3,7 @@
   <div class="container-fluid vh-100 mt-5 registration auth">
     <div class="combo-box">
       <div class="site-image">
-        <img src="https://place-hold.it/300x300" alt="Site Logo">
+        <img src="/img/site_logo.png" alt="Site Logo">
       </div>
       <div class="vr"></div>
       <div class="auth-form">

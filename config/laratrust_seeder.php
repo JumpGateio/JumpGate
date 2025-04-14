@@ -22,5 +22,7 @@ return [
         'r' => 'read',
         'u' => 'update',
         'd' => 'delete',
+        'm' => 'manage',
+        'a' => 'access',
     ],
 ];
