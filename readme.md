@@ -53,14 +53,17 @@ see the default JumpGate landing page.
 <a name="optional-packages"></a>
 ## Reverb, Telescope, and Pulse
 
-| Adding the Package               | Documentation                                             | Config File            | Description                              |
-|----------------------------------|-----------------------------------------------------------|------------------------|------------------------------------------|
-| `php artisan jumpgate:reverb`    | [Reverb Docs](https://laravel.com/docs/12.x/reverb)       | `config/reverb.php`    | Broadcasting Events                      |
-| `php artisan jumpgate:telescope` | [Telescope Docs](https://laravel.com/docs/12.x/telescope) | `config/telescope.php` | Detailed insights on application actions |
-| `php artisan jumpgate:pulse`     | [Pulse Docs](https://laravel.com/docs/12.x/pulse)         | `config/pulse.php`     | Performance insights                     |
+These packages are included by default with jumpgate and are ready to go.
+
+* [Reverb Docs](https://laravel.com/docs/12.x/reverb)
+* [Telescope Docs](https://laravel.com/docs/12.x/telescope)
+* [Pulse Docs](https://laravel.com/docs/12.x/pulse)
+
+> [!IMPORTANT]
+> Pulse does not work fully unless using MySQL/MariaDB.  Some parts will work on other drivers, but not all.
 
 We have default values in the config files that will work great with JumpGate.  You can make any changes you want or
 remove these included config files if you don't want to use some of these packages.
 
-We also have build in links for these in the menu bar.  `app/Http/Composers/Menu.php@generateRightMenu()` has these links
+We also have built in links for these in the menu bar.  `app/Http/Composers/Menu.php@generateRightMenu()` has these links
 included by default.  Feel free to delete them if you are not using the packages.
