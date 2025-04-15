@@ -43,11 +43,11 @@ class Status extends BaseRoute implements Routes
             ->uses('Status@store')
             ->middleware('permission:create-status');
 
-        $router->get('edit/{statusObject}')
+        $router->get('edit/{status}')
             ->name('admin.users.status.edit')
             ->uses('Status@edit')
             ->middleware(['active:admin.users.status.index','permission:update-status']);
-        $router->post('edit/{statusObject}')
+        $router->post('edit/{status}')
             ->name('admin.users.status.update')
             ->uses('Status@update')
             ->middleware('permission:update-status');
