@@ -12,14 +12,14 @@
         <label for="display_name">Display Name</label>
         <small class="form-text text-danger" v-if="form.errors.display_name">{{ form.errors.display_name }}</small>
       </div>
-      <div class="form-group">
+      <div class="form-group mb-3">
         <label for="roles">Select Roles</label>
         <select id="roles" v-model="form.roles" class="form-control" multiple>
           <option :value="parseInt(id)" v-for="(text, id) in roleOptions" v-text="text"></option>
         </select>
         <small class="form-text text-danger" v-if="form.errors.roles">{{ form.errors.roles }}</small>
       </div>
-      <div class="form-group" v-if="permissionOptions.length > 0">
+      <div class="form-group mb-3" v-if="Object.keys(permissionOptions).length > 0">
         <label for="permissions">Select Individual Permissions</label>
         <select id="permissions" v-model="form.permissions" class="form-control" multiple>
           <option :value="parseInt(id)" v-for="(text, id) in permissionOptions" v-text="text"></option>
@@ -58,7 +58,7 @@ const props = defineProps({
   roleOptions:       Object,
   permissionOptions: Object | Array,
   invitationOptions: Object,
-  selected:          Number,
+  selected:          String,
 });
 
 const form = useForm({

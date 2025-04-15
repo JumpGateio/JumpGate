@@ -19,7 +19,7 @@ class Index extends BaseRoute implements Routes
     public $middleware = [
         'web',
         'auth',
-        'role:admin|developer',
+        'permission:access-admin',
     ];
 
     public function routes(Router $router)

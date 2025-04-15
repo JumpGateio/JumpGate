@@ -172,15 +172,17 @@ class User extends BaseModel implements LaratrustUser,
     public function frontEndDetails(): array
     {
         return [
-            'id'            => $this->id,
-            'email'         => $this->email,
-            'status'        => $this->status->label,
-            'status_id'     => $this->status_id,
-            'roles'         => $this->roles->display_name->implode(', '),
-            'role_ids'      => $this->roles->id,
-            'admin_actions' => $this->admin_actions,
-            'deleted_at'    => $this->deleted_at,
-            'details'       => $this->details ? [
+            'id'             => $this->id,
+            'email'          => $this->email,
+            'status'         => $this->status->label,
+            'status_id'      => $this->status_id,
+            'roles'          => $this->roles->display_name->implode(', '),
+            'role_ids'       => $this->roles->id,
+            'permissions'    => $this->permissions->display_name->implode(', '),
+            'permission_ids' => $this->permissions->id,
+            'admin_actions'  => $this->admin_actions,
+            'deleted_at'     => $this->deleted_at,
+            'details'        => $this->details ? [
                 'first_name'   => $this->details->first_name,
                 'middle_name'  => $this->details->middle_name,
                 'last_name'    => $this->details->last_name,
@@ -239,14 +241,15 @@ class User extends BaseModel implements LaratrustUser,
      *
      * @return User
      */
-    public function generateActiveUser(string $email, collection|int|array|string $roles,
+    public function generateActiveUser(string                      $email, collection|int|array|string $roles,
                                        collection|int|array|string $permissions = []): User
     {
+        /** @var $user User */
         $user = static::firstOrCreate(compact('email'));
 
         $user->setStatus(Status::ACTIVE);
-        $user->roles()->attach($roles);
-        $user->permissions()->attach($permissions);
+        $user->addRoles($roles);
+        $user->givePermissions($permissions);
         $user->trackTime('invited_at');
 
         Detail::firstOrCreate([

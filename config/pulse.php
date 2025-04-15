@@ -124,7 +124,7 @@ return [
 
     'middleware' => [
         'web',
-        'role:admin|developer',
+        'permission:access-pulse',
     ],
 
     /*

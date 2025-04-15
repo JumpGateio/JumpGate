@@ -94,7 +94,7 @@ return [
 
     'middleware' => [
         'web',
-        'role:admin|developer',
+        'permission:access-telescope',
     ],
 
     /*

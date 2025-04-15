@@ -37,8 +37,8 @@ trait CanInvite
                                   collection|int|array|string $permissions = []): User
     {
         $user = static::firstOrCreate(compact('email'));
-        $user->roles()->attach($roles);
-        $user->permissions()->attach($permissions);
+        $user->addRoles($roles);
+        $user->givePermissions($permissions);
 
         /** @var Invitation $invites */
         $invites = app(Invitation::class);

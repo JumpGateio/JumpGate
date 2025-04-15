@@ -38,6 +38,12 @@ return new class extends Migration {
             'roles'        => ['developer', 'admin'],
         ],
         [
+            'name'         => 'delete-user',
+            'display_name' => 'Delete Users',
+            'description'  => 'Delete users in the admin area.',
+            'roles'        => ['developer', 'admin'],
+        ],
+        [
             'name'         => 'create-status',
             'display_name' => 'Create New User Status',
             'description'  => 'Create user statuses in the admin area.',
@@ -47,6 +53,12 @@ return new class extends Migration {
             'name'         => 'update-status',
             'display_name' => 'Update User Status',
             'description'  => 'Update user statuses in the admin area.',
+            'roles'        => ['developer', 'admin'],
+        ],
+        [
+            'name'         => 'delete-status',
+            'display_name' => 'Delete User Status',
+            'description'  => 'Delete user statuses in the admin area.',
             'roles'        => ['developer', 'admin'],
         ],
     ];

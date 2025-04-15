@@ -1,48 +1,39 @@
 <template>
   <div class="card-body pl-2 pt-2 pb-3">
     <form @submit.prevent="submit" class="form-horizontal">
-      <div class="form-group">
-        <label for="name">Name</label>
+      <div class="form-floating mb-3">
         <input type="text" id="name" v-model="form.name" class="form-control" placeholder="Name">
+        <label for="name">Name</label>
         <small class="form-text text-danger" v-if="form.errors.name">{{ form.errors.name }}</small>
       </div>
-      <div class="form-group">
-        <label for="name">Label</label>
+      <div class="form-floating mb-3">
         <input type="text" id="label" v-model="form.label" class="form-control" placeholder="Label">
+        <label for="name">Label</label>
         <small class="form-text text-danger" v-if="form.errors.label">{{ form.errors.label }}</small>
       </div>
       <div class="form-group">
         <input type="submit" class="btn btn-primary" :disabled="form.processing" value="Save">
-        <inertia-link :href="route('admin.users.status.index')" class="btn btn-link">Cancel</inertia-link>
+        <Link :href="route('admin.users.status.index')" class="btn btn-link">Cancel</Link>
       </div>
     </form>
   </div>
 </template>
 
-<script>
-  import Admin from '@/Shared/Admin'
+<script setup>
+import Admin from '@/Shared/Admin.vue'
+import {Link, useForm} from "@inertiajs/vue3";
 
-  export default {
-    name:     'Admin-Users-Status-Create',
-    metaInfo: {title: 'Status Create'},
+defineOptions({
+  name:   'Admin-Users-Status-Create',
+  layout: Admin,
+});
 
-    layout: Admin,
+const form = useForm({
+  name:  null,
+  label: null,
+});
 
-    data()
-    {
-      return {
-        form: this.$inertia.form({
-          name:  null,
-          label:  null,
-        })
-      }
-    },
-
-    methods: {
-      submit()
-      {
-        this.form.post(this.route('admin.users.status.store'))
-      },
-    }
-  }
+function submit() {
+  form.post(route('admin.users.status.store'))
+}
 </script>

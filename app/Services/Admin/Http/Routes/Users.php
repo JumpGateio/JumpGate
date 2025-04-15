@@ -9,18 +9,18 @@ use Illuminate\Routing\Router;
 
 class Users extends BaseRoute implements Routes
 {
-    public $namespace = 'App\Services\Admin\Http\Controllers';
+    public $namespace  = 'App\Services\Admin\Http\Controllers';
 
-    public $context = 'default';
+    public $context    = 'default';
 
-    public $prefix = 'admin/users';
+    public $prefix     = 'admin/users';
 
-    public $role = 'admin';
+    public $role       = 'admin';
 
     public $middleware = [
         'web',
         'auth',
-        'role:admin|developer',
+        'permission:access-admin',
     ];
 
     public function routes(Router $router)
@@ -44,25 +44,28 @@ class Users extends BaseRoute implements Routes
         $router->get('create')
             ->name('admin.users.create')
             ->uses('Users@create')
-            ->middleware('active:admin.users.create');
+            ->middleware(['active:admin.users.create','permission:create-user']);
         $router->post('create')
             ->name('admin.users.store')
-            ->uses('Users@store');
+            ->uses('Users@store')
+            ->middleware('permission:create-user');
 
         $router->get('edit/{user}')
             ->name('admin.users.edit')
             ->uses('Users@edit')
-            ->middleware('active:admin.users.index');
+            ->middleware(['active:admin.users.index','permission:update-user']);
         $router->post('edit/{user}')
             ->name('admin.users.update')
-            ->uses('Users@update');
+            ->uses('Users@update')
+            ->middleware('permission:update-user');
 
         $router->get('confirm/{id}/{status}/{action?}')
             ->name('admin.users.confirm')
             ->uses('Users@confirm')
-            ->middleware('active:admin.users.index');
+            ->middleware(['active:admin.users.index','permission:delete-user']);
         $router->post('confirm/{id}/{status?}/{action?}')
             ->name('admin.users.confirmed')
-            ->uses('Users@confirmed');
+            ->uses('Users@confirmed')
+            ->middleware('permission:delete-user');
     }
 }

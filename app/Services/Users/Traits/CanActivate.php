@@ -31,8 +31,8 @@ trait CanActivate
                                           collection|int|array|string $permissions = []): User
     {
         $user = static::firstOrCreate(compact('email'));
-        $user->roles()->attach($roles);
-        $user->permissions()->attach($permissions);
+        $user->addRoles($roles);
+        $user->givePermissions($permissions);
 
         /** @var Activation $invites */
         $invites = app(Activation::class);
