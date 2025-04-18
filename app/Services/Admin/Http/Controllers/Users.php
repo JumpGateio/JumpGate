@@ -23,9 +23,14 @@ class Users extends Base
 
     public function index(): \Inertia\Response
     {
-        $title   = 'User List';
-        $filters = request()->all('search', 'trashed');
-        $users   = $this->users
+        $title       = 'User List';
+        $permissions = [
+            'create' => auth()->user()->hasPermission('create-user'),
+            'update' => auth()->user()->hasPermission('update-user'),
+            'delete' => auth()->user()->hasPermission('delete-user'),
+        ];
+        $filters     = request()->all('search', 'trashed');
+        $users       = $this->users
             ->with(['status', 'details'])
             ->orderByNameAsc()
             ->filter(request()->only('search', 'trashed'))
@@ -43,17 +48,24 @@ class Users extends Base
             });
 
         return $this->response(
-            compact('title', 'filters', 'users')
+            compact('title', 'permissions', 'filters', 'users')
         );
     }
 
     public function show(User $user): \Inertia\Response
     {
-        $title = $user->details->display_name ?? 'User Details';
+        $title       = $user->details->display_name ?? 'User Details';
+        $permissions = [
+            'create' => auth()->user()->hasPermission('create-user'),
+            'update' => auth()->user()->hasPermission('update-user'),
+            'delete' => auth()->user()->hasPermission('delete-user'),
+        ];
         $user->load('tokens');
         $user->load('actionTimestamps');
         $user->load('roles.permissions');
-        $user->admin_actions = $user->getAttribute('admin_actions');
+        $user->load('permissions');
+        $user->permission_list = implode(', ', $user->permissions->name->toArray());
+        $user->admin_actions   = $user->getAttribute('admin_actions');
         $user->load('socials');
 
         $user->roles->transform(function ($role) {
@@ -62,7 +74,7 @@ class Users extends Base
             return $role;
         });
 
-        return $this->response(compact('title', 'user'), 'Admin/Users/Show');
+        return $this->response(compact('title', 'permissions', 'user'), 'Admin/Users/Show');
     }
 
     public function create(): \Inertia\Response

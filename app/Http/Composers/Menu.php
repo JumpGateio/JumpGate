@@ -73,22 +73,11 @@ class Menu
 
         if (auth()->check()) {
             $rightMenu->dropdown('user', auth()->user()->display_name, function (DropDown $dropDown) {
-                if (auth()->user()->hasRole(['developer', 'admin'])) {
+                if (auth()->user()->hasPermission(['access-admin'])) {
                     $dropDown->link('user_admin', function (Link $link) {
                         $link->name = 'Admin';
                         $link->url  = route('admin.index');
                     });
-                    // TODO: Uncomment if using events.  Remove if not.
-                    // $dropDown->link('user_websockets', function (Link $link) {
-                    //     $link->name = 'Websockets Dashboard';
-                    //     $link->url  = route('home') . '/laravel-websockets';
-                    // });
-                    // TODO: Uncomment if using telescope.  Remove if not.
-                    // $dropDown->link('user_telescope', function (Link $link) {
-                    //     $link->name    = 'Telescope';
-                    //     $link->url     = route('telescope');
-                    //     $link->inertia = false;
-                    // });
                 }
                 $dropDown->link('user_logout', function (Link $link) {
                     $link->name = 'Logout';

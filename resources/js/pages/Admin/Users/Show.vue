@@ -2,10 +2,12 @@
   <div class="user-profile">
     <Teleport defer to="#headerButtons">
       <UserActions :user="user" btnColor="btn-dark"></UserActions>
-      <Link :href="route('admin.users.edit', user.id)" class="btn btn-sm btn-primary mr-2">
+      <Link :href="route('admin.users.edit', user.id)" class="btn btn-sm btn-primary mr-2"
+            v-if="permissions.update">
         Edit
       </Link>
-      <Link :href="route('admin.users.confirm', [user.id, 'delete', 1])" class="btn btn-sm btn-danger mr-2">
+      <Link :href="route('admin.users.confirm', [user.id, 'delete', 1])" class="btn btn-sm btn-danger mr-2"
+            v-if="permissions.delete">
         Delete
       </Link>
     </Teleport>
@@ -128,6 +130,10 @@
             <dt class="col-sm-4">{{ role.name }}</dt>
             <dd class="col-sm-8">{{ role.permission_list }}</dd>
           </template>
+          <template v-if="user.permissions.length > 0">
+            <dt class="col-sm-4">No Role</dt>
+            <dd class="col-sm-8">{{ user.permission_list }}</dd>
+          </template>
         </dl>
       </div>
     </div>
@@ -146,7 +152,8 @@ defineOptions({
 });
 
 const props = defineProps({
-  user: Object,
+  user:        Object,
+  permissions: Object,
 });
 
 function getText(object, property) {

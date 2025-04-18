@@ -40,31 +40,44 @@ class AdminSidebar
                 $link->icon = 'fa-users';
                 $link->url  = route('admin.users.index');
             });
-            $dropDown->link('admin.users.create', function (Link $link) {
-                $link->name = 'Add User';
-                $link->icon = 'fa-user-plus';
-                $link->url  = route('admin.users.create');
-            });
+            if (auth()->user()->hasPermission(['create-user'])) {
+                $dropDown->link('admin.users.create', function (Link $link) {
+                    $link->name = 'Add User';
+                    $link->icon = 'fa-user-plus';
+                    $link->url  = route('admin.users.create');
+                });
+            }
             $dropDown->link('admin.users.status.index', function (Link $link) {
                 $link->name = 'List Statuses';
                 $link->icon = 'fa-user-lock';
                 $link->url  = route('admin.users.status.index');
             });
         });
-        $menu->dropDown('admin.tools', 'Tools', function (DropDown $dropDown) {
-            $dropDown->link('admin.tools.pulse', function (Link $link) {
-                $link->name    = 'Pulse';
-                $link->icon    = 'fa-radar';
-                $link->url     = route('pulse');
-                $link->inertia = false;
+
+        $telescope = auth()->user()->hasPermission('access-telescope');
+        $pulse     = auth()->user()->hasPermission('access-pulse');
+
+        if ($telescope || $pulse) {
+            $menu->dropDown('admin.tools', 'Tools', function (DropDown $dropDown) use ($pulse, $telescope) {
+                if ($pulse) {
+                    $dropDown->link('admin.tools.pulse', function (Link $link) {
+                        $link->name    = 'Pulse';
+                        $link->icon    = 'fa-radar';
+                        $link->url     = route('pulse');
+                        $link->inertia = false;
+                    });
+                }
+
+                if ($telescope) {
+                    $dropDown->link('admin.tools.telescope', function (Link $link) {
+                        $link->name    = 'Telescope';
+                        $link->icon    = 'fa-bug';
+                        $link->url     = route('telescope');
+                        $link->inertia = false;
+                    });
+                }
             });
-            $dropDown->link('admin.tools.telescope', function (Link $link) {
-                $link->name    = 'Telescope';
-                $link->icon    = 'fa-bug';
-                $link->url     = route('telescope');
-                $link->inertia = false;
-            });
-        });
+        }
 
         return $menu;
     }

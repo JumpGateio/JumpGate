@@ -22,9 +22,14 @@ class Status extends Base
 
     public function index()
     {
-        $title    = 'Status List';
-        $filters  = request()->all('search');
-        $statuses = $this->statuses
+        $title       = 'Status List';
+        $permissions = [
+            'create' => auth()->user()->hasPermission('create-status'),
+            'update' => auth()->user()->hasPermission('update-status'),
+            'delete' => auth()->user()->hasPermission('delete-status'),
+        ];
+        $filters     = request()->all('search');
+        $statuses    = $this->statuses
             ->orderByNameAsc()
             ->filter(request()->only('search'))
             ->paginate(10)
@@ -37,7 +42,10 @@ class Status extends Base
                 ];
             });
 
-        return $this->response(compact('title', 'filters', 'statuses'), 'Admin/Users/Status/Index');
+        return $this->response(
+            compact('title', 'permissions', 'filters', 'statuses'),
+            'Admin/Users/Status/Index'
+        );
     }
 
     public function create()
@@ -52,12 +60,12 @@ class Status extends Base
 
     public function store()
     {
-        $name        = request('name');
-        $label        = request('label');
+        $name  = request('name');
+        $label = request('label');
 
         Validator::make(request()->all(), [
             'name'  => 'required|unique:user_statuses,name',
-            'label'  => 'required',
+            'label' => 'required',
         ])->validate();
 
         try {
@@ -75,7 +83,7 @@ class Status extends Base
 
     public function edit(StatusModel $status)
     {
-        $title = 'Edit: '. $status->label;
+        $title = 'Edit: ' . $status->label;
 
         return $this->response(
             compact('title', 'status'),
@@ -94,10 +102,10 @@ class Status extends Base
 
     public function confirm($id, $status, $action = null)
     {
-        $event = $status;
+        $event  = $status;
         $status = $this->statuses->find($id);
 
-        if (! is_null($action) && (int)$action === 0) {
+        if (!is_null($action) && (int)$action === 0) {
             $event = 'un-' . $event;
         }
 

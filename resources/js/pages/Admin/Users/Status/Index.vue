@@ -4,7 +4,8 @@
       <button class="btn btn-sm btn-warning" data-bs-toggle="collapse" data-bs-target="#infobox">
         <i class="fa fa-fw fa-question-circle"></i>
       </button>
-      <Link :href="route('admin.users.status.create')" class="btn btn-sm btn-success btn-create mr-2">
+      <Link :href="route('admin.users.status.create')" class="btn btn-sm btn-success btn-create mr-2"
+      v-if="permissions.create">
         Create Status
       </Link>
     </Teleport>
@@ -15,8 +16,8 @@
       <div class="col-12">
         <div class="collapse" id="infobox">
           <div class="card card-body b-warning">
-            Only certain statuses have built in uses in the code.  Blocked will stop
-            the user from viewing ANY page.  Other than that, it is only there for tracking.
+            Only certain statuses have built in uses in the code. Blocked will stop
+            the user from viewing ANY page. Other than that, it is only there for tracking.
           </div>
         </div>
       </div>
@@ -41,11 +42,11 @@
               <div class="btn-toolbar justify-content-end" role="toolbar">
                 <div class="btn-group">
                   <Link :href="route('admin.users.status.edit', [status.id])"
-                        class="btn btn-sm btn-outline-purple">
+                        class="btn btn-sm btn-outline-purple" v-if="permissions.update">
                     Edit
                   </Link>
                   <Link :href="route('admin.users.status.confirm', [status.id, 'delete', 1])"
-                        class="btn btn-sm btn-outline-danger">
+                        class="btn btn-sm btn-outline-danger" v-if="permissions.delete">
                     Delete
                   </Link>
                 </div>
@@ -76,8 +77,9 @@ defineOptions({
 });
 
 const props = defineProps({
-  statuses: Object,
-  filters:  Object,
+  statuses:    Object,
+  permissions: Object,
+  filters:     Object,
 });
 
 const form = useForm({

@@ -9,15 +9,11 @@
       <UserActions :user="user" :iconOnly="iconOnly"></UserActions>
       <div class="btn-group">
         <Link :href="route('admin.users.show', [user.id])" class="btn btn-sm btn-outline-purple"
-              v-html="text.show"
-        ></Link>
+              v-html="text.show"></Link>
         <Link :href="route('admin.users.edit', [user.id])" class="btn btn-sm btn-outline-purple"
-              v-html="text.edit"
-        ></Link>
+              v-html="text.edit" v-if="permissions.update"></Link>
         <Link :href="route('admin.users.confirm', [user.id, 'delete', 1])"
-              class="btn btn-sm btn-outline-danger"
-              v-html="text.delete"
-        ></Link>
+              class="btn btn-sm btn-outline-danger" v-html="text.delete" v-if="permissions.delete"></Link>
       </div>
     </template>
   </div>
@@ -34,8 +30,13 @@ defineOptions({
 });
 
 const props = defineProps({
-  user:     Object,
-  iconOnly: {
+  user:        Object,
+  permissions: {
+    type:     Object,
+    required: false,
+    default:  {},
+  },
+  iconOnly:    {
     type:    Boolean,
     default: false,
   }

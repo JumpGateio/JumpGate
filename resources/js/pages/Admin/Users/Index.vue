@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Teleport defer to="#headerButtons">
+    <Teleport defer to="#headerButtons" v-if="permissions.create">
       <Link :href="route('admin.users.create')" class="btn btn-sm btn-success mr-2">
         Create User
       </Link>
@@ -34,7 +34,7 @@
             <td>{{ user.status }}</td>
             <td>{{ user.roles }}</td>
             <td class="text-end">
-              <UserToolbar :user="user"></UserToolbar>
+              <UserToolbar :user="user" :permissions="permissions"></UserToolbar>
             </td>
           </tr>
         </template>
@@ -62,8 +62,9 @@ defineOptions({
 });
 
 const props = defineProps({
-  users:   Object,
-  filters: Object,
+  users:       Object,
+  permissions: Object,
+  filters:     Object,
 });
 
 const form = useForm({
@@ -72,15 +73,15 @@ const form = useForm({
 });
 
 watch(() => form.search,
-    _.throttle(() => {
-      let url = route('admin.users.index', _.pickBy(form.data()));
+  _.throttle(() => {
+    let url = route('admin.users.index', _.pickBy(form.data()));
 
-      router.get(url);
-    }, 150), {deep: true});
+    router.get(url);
+  }, 150), {deep: true});
 watch(() => form.trashed,
-    () => {
-      router.get(route('admin.users.index', _.pickBy(form.data())))
-    }, {deep: true});
+  () => {
+    router.get(route('admin.users.index', _.pickBy(form.data())))
+  }, {deep: true});
 
 function reset() {
   router.get(route('admin.users.index'));
