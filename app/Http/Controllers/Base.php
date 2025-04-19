@@ -38,8 +38,12 @@ abstract class Base extends Controller
         $menus = [
             'leftMenu'  => app('menu')->render('leftMenu')->links,
             'rightMenu' => app('menu')->render('rightMenu')->links,
-            'adminMenu' => app('menu')->render('adminMenu')->links,
         ];
+
+        if (auth()->check() && auth()->user()->hasPermission('access-admin')) {
+            $menus['adminMenu'] = app('menu')->render('adminMenu')->links;
+        }
+        
         $flash = [
             'flash' => [
                 'success' => session('success'),
