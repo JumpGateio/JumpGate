@@ -57,7 +57,10 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         Menu::getMenus();
-        AdminSidebar::getMenus();
+        
+        if (auth()->check() && auth()->user()->hasPermission('access-admin')) {
+            AdminSidebar::getMenus();
+        }
 
         return array_merge(parent::share($request), [
             'ziggy' => [
