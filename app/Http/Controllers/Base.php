@@ -35,15 +35,16 @@ abstract class Base extends Controller
     public function response(array $data = [], ?string $page = null, ?string $layout = null): \Inertia\Response
     {
         $this->setTheme('dark');
-        $menus = [
-            'leftMenu'  => app('menu')->render('leftMenu')->links,
-            'rightMenu' => app('menu')->render('rightMenu')->links,
-        ];
 
-        if (auth()->check() && auth()->user()->hasPermission('access-admin')) {
+        if (routeIs('admin')) {
             $menus['adminMenu'] = app('menu')->render('adminMenu')->links;
+        } else {
+            $menus = [
+                'leftMenu'  => app('menu')->render('leftMenu')->links,
+                'rightMenu' => app('menu')->render('rightMenu')->links,
+            ];
         }
-        
+
         $flash = [
             'flash' => [
                 'success' => session('success'),

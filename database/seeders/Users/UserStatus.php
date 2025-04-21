@@ -24,6 +24,6 @@ class UserStatus extends Base
         ];
 
         // Add any data to the table.
-        $this->seed('user_statuses', $statuses);
+        $this->freshSeed('user_statuses', $statuses);
     }
 }

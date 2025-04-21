@@ -2,15 +2,14 @@
 
 namespace Database\Seeders;
 
-use Database\Seeders\Users\DefaultUsers;
-use Database\Seeders\Users\LaratrustSeeder;
-use Database\Seeders\Users\UserStatus;
+use Database\Seeders\RBAC\Permissions;
+use Database\Seeders\RBAC\Roles;
 
-class UserDatabaseSeeder extends Base
+class RBACDatabaseSeeder extends Base
 {
     protected array $seeders = [
-        UserStatus::class,
-        DefaultUsers::class,
+        Roles::class,
+        Permissions::class,
     ];
 
     /**
