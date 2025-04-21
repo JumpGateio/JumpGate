@@ -82,6 +82,7 @@ class Database extends Command
         $this->info('Running seeders...');
 
         $this->call('db:seed');
+        $this->call('db:seed', ['--class' => '\Database\Seeders\RBACDatabaseSeeder']);
 
         if (!$noUsersFlag) {
             $this->call('db:seed', ['--class' => '\Database\Seeders\UserDatabaseSeeder']);
