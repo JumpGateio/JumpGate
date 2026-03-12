@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+# Check if Sail exists and is executable
+if [ -f "./vendor/bin/sail" ]; then
+    RUNNER="./vendor/bin/sail php"
+else
+    RUNNER="php"
+fi
+
+php ./vendor/bin/pint --parallel
