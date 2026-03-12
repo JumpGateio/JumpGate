@@ -10,6 +10,8 @@
     "type": "project",
     "require": {
         "php": "^8.2",
+        "achyutn/filament-log-viewer": "^2.1",
+        "filament/filament": "^5.0",
         "inertiajs/inertia-laravel": "^2.0",
         "jumpgate/core": "^4.0",
         "jumpgate/menu": "^2.0",
@@ -56,7 +58,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"

@@ -170,7 +170,17 @@ class RouteServiceProvider extends ServiceProvider
         }
 
         if (!is_null($provider->getPermissions())) {
-            $attributes['can'] = $provider->getPermissions();
+            $permissions = $provider->getPermissions();
+
+            // The JumpGate package returns permissions as a comma-separated
+            // string, but Laravel 12 expects 'can' to be an array of
+            // [ability, params] arrays.
+            if (is_string($permissions)) {
+                $permissions = array_map(
+                    fn ($p) => [trim($p)],
+                    array_filter(explode(',', $permissions))
+                );
+            }
         }
 
         $router->patterns($provider->getPatterns());

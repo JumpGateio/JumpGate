@@ -1,13 +1,9 @@
 <?php
 
-use App\Providers\AppServiceProvider;
-use App\Providers\RouteServiceProvider;
-use App\Providers\TelescopeServiceProvider;
-use JumpGate\Menu\MenuServiceProvider;
-
 return [
-    AppServiceProvider::class,
-    RouteServiceProvider::class,
-    TelescopeServiceProvider::class,
-    MenuServiceProvider::class,
+    App\Providers\AppServiceProvider::class,
+    App\Providers\Filament\AdminPanelProvider::class,
+    App\Providers\RouteServiceProvider::class,
+    App\Providers\TelescopeServiceProvider::class,
+    JumpGate\Menu\MenuServiceProvider::class,
 ];
