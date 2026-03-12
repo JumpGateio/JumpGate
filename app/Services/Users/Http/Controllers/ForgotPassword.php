@@ -4,6 +4,8 @@ namespace App\Services\Users\Http\Controllers;
 
 use App\Http\Controllers\Base;
 use App\Services\Users\Managers\ForgotPassword as ForgotPasswordManager;
+use Illuminate\Http\RedirectResponse;
+use Inertia\Response;
 
 class ForgotPassword extends Base
 {
@@ -20,9 +22,9 @@ class ForgotPassword extends Base
     /**
      * Display the form to request a password reset link.
      *
-     * @return \Inertia\Response
+     * @return Response
      */
-    public function reset(): \Inertia\Response
+    public function reset(): Response
     {
         $this->setPageTitle('Password Reset');
 
@@ -34,9 +36,9 @@ class ForgotPassword extends Base
     /**
      * Generate the token for the user to reset their password.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function sendEmail(): \Illuminate\Http\RedirectResponse
+    public function sendEmail(): RedirectResponse
     {
         $this->validate(request(), ['email' => 'required|email']);
 
@@ -49,9 +51,9 @@ class ForgotPassword extends Base
     /**
      * Display the sent email message.
      *
-     * @return \Inertia\Response
+     * @return Response
      */
-    public function sent(): \Inertia\Response
+    public function sent(): Response
     {
         $this->setPageTitle('Email sent');
 
@@ -65,9 +67,9 @@ class ForgotPassword extends Base
      *
      * @param string $tokenString The password reset token for the user
      *
-     * @return \Inertia\Response
+     * @return Response
      */
-    public function confirm(string $tokenString): \Inertia\Response
+    public function confirm(string $tokenString): Response
     {
         $this->setPageTitle('Set your new password');
 
@@ -80,9 +82,9 @@ class ForgotPassword extends Base
     /**
      * Update the user's password.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function handle(): \Illuminate\Http\RedirectResponse
+    public function handle(): RedirectResponse
     {
         // Make sure we have everything we need from the form.
         $this->validate(request(), $this->rules());

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Users;
 
-use App\Services\Users\Models\User;
 use App\Services\Users\Models\Role;
+use App\Services\Users\Models\User;
 use Database\Seeders\Base;
 
 class DefaultUsers extends Base
@@ -41,7 +41,7 @@ class DefaultUsers extends Base
                 }
 
                 $roleIds = Role::whereIn('name', $user['roles'])->get()->id->toArray();
-                $user = (new User)->generateActiveUser($user['email'], $roleIds);
+                $user    = (new User)->generateActiveUser($user['email'], $roleIds);
                 $user->update(['password' => 'test']);
 
                 return $user->email;

@@ -2,9 +2,9 @@
 
 namespace App\Services\Users\Managers;
 
-use JumpGate\Database\Collections\SupportCollection;
 use App\Services\Users\Models\User;
 use App\Services\Users\Models\User\Status;
+use JumpGate\Database\Collections\SupportCollection;
 
 class GetActions
 {
@@ -95,7 +95,7 @@ class GetActions
      *
      * @return string
      */
-    protected function makeRoute(string $status, int $action = null): string
+    protected function makeRoute(string $status, ?int $action = null): string
     {
         $route = 'admin.users.confirm';
 
@@ -113,7 +113,7 @@ class GetActions
      */
     protected function addAction(string $label, string $icon, string $route): bool
     {
-        $action = (object)[
+        $action = (object) [
             'route' => $route,
             'icon'  => 'fa-' . $icon,
             'text'  => $label,

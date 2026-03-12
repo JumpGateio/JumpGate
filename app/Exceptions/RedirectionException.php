@@ -8,7 +8,7 @@ class RedirectionException extends HttpException implements RedirectionException
 {
     private $url;
 
-    public function __construct($statusCode, $message, $url, \Exception $previous = null, array $headers = [], $code = 0)
+    public function __construct($statusCode, $message, $url, ?\Exception $previous = null, array $headers = [], $code = 0)
     {
         parent::__construct($statusCode, $message, $previous, $headers, $code);
 

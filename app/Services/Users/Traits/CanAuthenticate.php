@@ -9,7 +9,7 @@ trait CanAuthenticate
      *
      * @param string|null $type The way they tried to log in.
      */
-    public function updateLogin(string $type = null)
+    public function updateLogin(?string $type = null)
     {
         $this->authenticated_as      = $type;
         $this->authenticated_at      = setTime('now');

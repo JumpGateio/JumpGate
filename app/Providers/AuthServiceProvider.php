@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use App\Services\Users\Models\Role;
 use BinaryTorch\LaRecipe\DocumentationRepository;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class AuthServiceProvider extends ServiceProvider
@@ -44,7 +45,7 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
 
-            $roles = \App\Services\Users\Models\Role::all();
+            $roles = Role::all();
 
             foreach ($lockedAreas as $lockedArea) {
                 // Make sure we get the full role for validation.

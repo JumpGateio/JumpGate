@@ -4,6 +4,7 @@ namespace App\Services\Users\Http\Controllers;
 
 use App\Http\Controllers\Base;
 use App\Services\Users\Managers\SocialLogin;
+use Illuminate\Http\RedirectResponse;
 
 class SocialAuthentication extends Base
 {
@@ -22,11 +23,11 @@ class SocialAuthentication extends Base
     /**
      * Redirect the user to the social providers auth page.
      *
-     * @param null|string $provider
+     * @param string|null $provider
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function login(string $provider = null): \Illuminate\Http\RedirectResponse
+    public function login(?string $provider = null): RedirectResponse
     {
         return $this->login->redirect($provider);
     }
@@ -34,11 +35,11 @@ class SocialAuthentication extends Base
     /**
      * Use the returned user to register (if needed) and login.
      *
-     * @param null|string $provider
+     * @param string|null $provider
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function callback(string $provider = null): \Illuminate\Http\RedirectResponse
+    public function callback(?string $provider = null): RedirectResponse
     {
         $this->login->loginUser($provider);
 

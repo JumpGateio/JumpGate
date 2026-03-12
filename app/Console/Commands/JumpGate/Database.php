@@ -3,8 +3,6 @@
 namespace App\Console\Commands\JumpGate;
 
 use Illuminate\Console\Command;
-use Illuminate\Filesystem\Filesystem;
-use Symfony\Component\Process\Process;
 
 class Database extends Command
 {
@@ -71,7 +69,7 @@ class Database extends Command
     private function runSeeders()
     {
         $noSeedersFlag = $this->option('no-seed');
-        $noUsersFlag     = $this->option('no-users');
+        $noUsersFlag   = $this->option('no-users');
 
         if ($noSeedersFlag) {
             $this->info('No-seed flag added.  Skipping seeders.');

@@ -3,12 +3,6 @@
 namespace App\Services\Users\Models;
 
 use App\Models\BaseModel;
-use Illuminate\Auth\MustVerifyEmail;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use JumpGate\Database\Collections\SupportCollection;
 use App\Services\Users\Managers\GetActions;
 use App\Services\Users\Models\User\Detail;
 use App\Services\Users\Models\User\Status;
@@ -21,48 +15,51 @@ use App\Services\Users\Traits\CanResetPassword;
 use App\Services\Users\Traits\HasGravatar;
 use App\Services\Users\Traits\HasSocials;
 use App\Services\Users\Traits\HasTokens;
+use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword as LaravelCanResetPassword;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
+use JumpGate\Database\Collections\SupportCollection;
 use Laratrust\Contracts\LaratrustUser;
 use Laratrust\Traits\HasRolesAndPermissions;
-use Illuminate\Auth\Passwords\CanResetPassword as LaravelCanResetPassword;
 
 /**
  * Class User
  *
- * @package App\Services\Users\Models
  *
- * @property int                                       $id
- * @property string                                    $email
- * @property string                                    $password
- * @property int                                       $status_id
- * @property int                                       $failed_login_attempts
- * @property string                                    $authenticated_as
- * @property \Carbon\Carbon                            $authenticated_at
- * @property \Carbon\Carbon                            $activated_at
- * @property \Carbon\Carbon                            $blocked_at
- * @property \Carbon\Carbon                            $password_updated_at
- * @property string                                    $remember_token
- * @property \Carbon\Carbon                            $created_at
- * @property \Carbon\Carbon                            $updated_at
- * @property \Carbon\Carbon                            $deleted_at
- *
- * @property \App\Services\Users\Models\Role[]         $roles
- * @property \App\Services\Users\Models\Permission[]   $permissions
- * @property \App\Services\Users\Models\User\Detail    $details
- * @property \App\Services\Users\Models\User\Timestamp $actionTimestamps
+ * @property int          $id
+ * @property string       $email
+ * @property string       $password
+ * @property int          $status_id
+ * @property int          $failed_login_attempts
+ * @property string       $authenticated_as
+ * @property Carbon       $authenticated_at
+ * @property Carbon       $activated_at
+ * @property Carbon       $blocked_at
+ * @property Carbon       $password_updated_at
+ * @property string       $remember_token
+ * @property Carbon       $created_at
+ * @property Carbon       $updated_at
+ * @property Carbon       $deleted_at
+ * @property Role[]       $roles
+ * @property Permission[] $permissions
+ * @property Detail       $details
+ * @property Timestamp    $actionTimestamps
  */
-class User extends BaseModel implements LaratrustUser,
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract
+class User extends BaseModel implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, LaratrustUser
 {
     /**
      * Use this model for authentication.
      *
-     * @see \Illuminate\Auth\Authenticatable
+     * @see Authenticatable
      */
     use Authenticatable;
 
@@ -77,11 +74,6 @@ class User extends BaseModel implements LaratrustUser,
     use CanActivate;
 
     /**
-     * Allow this model to handle invites.
-     */
-    use CanInvite;
-
-    /**
      * Allow this model to handle logging in.
      */
     use CanAuthenticate;
@@ -92,9 +84,22 @@ class User extends BaseModel implements LaratrustUser,
     use CanBlock;
 
     /**
+     * Allow this model to handle invites.
+     */
+    use CanInvite;
+
+    /**
      * Allow this model to reset its password.
      */
-    use CanResetPassword, LaravelCanResetPassword;
+    use CanResetPassword; /**
+     * Allow this model to display a gravatar avatar.
+     */
+    use HasGravatar;
+
+    /**
+     * Allow this model to have roles and permissions.
+     */
+    use HasRolesAndPermissions;
 
     /**
      * Used for when social login is enabled.  If it is disabled, comment this or remove it.
@@ -106,15 +111,7 @@ class User extends BaseModel implements LaratrustUser,
      */
     use HasTokens;
 
-    /**
-     * Allow this model to display a gravatar avatar.
-     */
-    use HasGravatar;
-
-    /**
-     * Allow this model to have roles and permissions.
-     */
-    use HasRolesAndPermissions;
+    use LaravelCanResetPassword;
 
     /**
      * Allow this model to receive notifications.
@@ -208,7 +205,7 @@ class User extends BaseModel implements LaratrustUser,
     /**
      * A scope to help easily search users by a term.
      *
-     * @param Builder $query The current query to append to
+     * @param Builder $query   The current query to append to
      * @param array   $filters
      */
     public function scopeFilter(Builder $query, array $filters)
@@ -236,14 +233,16 @@ class User extends BaseModel implements LaratrustUser,
      * Create a user to allow access.
      *
      * @param string                      $email
-     * @param int|array|string|collection $roles
-     * @param int|array|string|collection $permissions
+     * @param array|collection|int|string $roles
+     * @param array|collection|int|string $permissions
      *
      * @return User
      */
-    public function generateActiveUser(string                      $email, collection|int|array|string $roles,
-                                       collection|int|array|string $permissions = []): User
-    {
+    public function generateActiveUser(
+        string $email,
+        collection|int|array|string $roles,
+        collection|int|array|string $permissions = []
+    ): User {
         /** @var $user User */
         $user = static::firstOrCreate(compact('email'));
 
@@ -328,10 +327,10 @@ class User extends BaseModel implements LaratrustUser,
     /**
      * Track when something important happened.
      *
-     * @param string              $column The column being updated.
-     * @param null|\Carbon\Carbon $time   The time to set the token for.
+     * @param string      $column The column being updated.
+     * @param Carbon|null $time   The time to set the token for.
      */
-    public function trackTime(string $column, ?\Carbon\Carbon $time = null)
+    public function trackTime(string $column, ?Carbon $time = null)
     {
         $search = [
             'user_id' => $this->id,
@@ -347,9 +346,9 @@ class User extends BaseModel implements LaratrustUser,
     /**
      * Extra details for a user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
-    public function details(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function details(): HasOne
     {
         return $this->hasOne(Detail::class, 'user_id');
     }
@@ -357,9 +356,9 @@ class User extends BaseModel implements LaratrustUser,
     /**
      * Important timestamps for a user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
-    public function actionTimestamps(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function actionTimestamps(): HasOne
     {
         return $this->hasOne(Timestamp::class, 'user_id');
     }
@@ -367,9 +366,9 @@ class User extends BaseModel implements LaratrustUser,
     /**
      * Status for a user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function status(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
     }

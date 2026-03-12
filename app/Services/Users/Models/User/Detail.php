@@ -4,6 +4,7 @@ namespace App\Services\Users\Models\User;
 
 use App\Models\BaseModel;
 use App\Services\Users\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Detail extends BaseModel
@@ -65,9 +66,9 @@ class Detail extends BaseModel
     /**
      * All details belong to a user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }

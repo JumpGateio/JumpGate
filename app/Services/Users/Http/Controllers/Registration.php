@@ -3,9 +3,11 @@
 namespace App\Services\Users\Http\Controllers;
 
 use App\Http\Controllers\Base;
-use Illuminate\Support\Facades\DB;
 use App\Services\Users\Http\Requests\Registration as RegistrationRequest;
 use App\Services\Users\Managers\Registration as RegistrationManager;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
+use Inertia\Response;
 
 class Registration extends Base
 {
@@ -22,10 +24,10 @@ class Registration extends Base
     /**
      * Display the registration form.
      */
-    public function index(): \Inertia\Response
+    public function index(): Response
     {
         $this->setPageTitle('Registration');
-        $socialEnabled = (bool)config('jumpgate.users.enable_social');
+        $socialEnabled = (bool) config('jumpgate.users.enable_social');
 
         return $this->response(
             compact('socialEnabled'),
@@ -36,11 +38,11 @@ class Registration extends Base
     /**
      * Handle validating the registration.
      *
-     * @param \App\Services\Users\Http\Requests\Registration $request
+     * @param RegistrationRequest $request
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function handle(RegistrationRequest $request): \Illuminate\Http\RedirectResponse
+    public function handle(RegistrationRequest $request): RedirectResponse
     {
         DB::beginTransaction();
 

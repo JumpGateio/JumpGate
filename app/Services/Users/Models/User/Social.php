@@ -4,6 +4,7 @@ namespace App\Services\Users\Models\User;
 
 use App\Models\BaseModel;
 use App\Services\Users\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Socialite\AbstractUser;
 
 class Social extends BaseModel
@@ -36,7 +37,7 @@ class Social extends BaseModel
         $refreshToken = isset($socialUser->refreshToken) && $socialUser->refreshToken
             ? $socialUser->refreshToken
             : null;
-        
+
         $token = is_null($socialUser->token)
             ? $provider
             : $socialUser->token;
@@ -98,9 +99,9 @@ class Social extends BaseModel
     /**
      * Social details are for a specific user.
      *
-     * @return  \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }

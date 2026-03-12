@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\HandleAppearance;
 use App\Http\Middleware\HandleInertiaRequests;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -17,9 +18,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         if (env('AUTH_SOCIAL_ONLY')) {
-            $middleware->redirectGuestsTo(fn() => route('auth.social.login'));
+            $middleware->redirectGuestsTo(fn () => route('auth.social.login'));
         } else {
-            $middleware->redirectGuestsTo(fn() => route('auth.login'));
+            $middleware->redirectGuestsTo(fn () => route('auth.login'));
         }
 
         $middleware->encryptCookies(except: ['appearance']);
@@ -34,6 +35,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'active' => MenuMiddleware::class,
         ]);
+    })
+    ->withSchedule(function (Schedule $schedule) {
+        $schedule->command('telescope:prune --hours=48')->daily();
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

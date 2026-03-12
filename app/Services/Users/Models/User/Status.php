@@ -40,7 +40,7 @@ class Status extends BaseModel
     /**
      * A scope to help easily search statuses by a term.
      *
-     * @param Builder $query The current query to append to
+     * @param Builder $query   The current query to append to
      * @param array   $filters
      */
     public function scopeFilter(Builder $query, array $filters)

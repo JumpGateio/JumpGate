@@ -4,25 +4,28 @@ namespace App\Models;
 
 use App\Traits\Model\ActiveScopes;
 use App\Traits\Model\OrderByScopes;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use JumpGate\Database\Collections\EloquentCollection;
 
 /**
  * Class BaseModel
  *
- * @mixin \Illuminate\Database\Eloquent\Model
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin Model
+ * @mixin Builder
  * @mixin \Illuminate\Database\Query\Builder
  */
 abstract class BaseModel extends Model
 {
-    use ActiveScopes, OrderByScopes;
+    use ActiveScopes;
+    use OrderByScopes;
 
     /**
      * Whether the model should return App\Collection or
      * Illuminate\Database\Eloquent\Collection.
      *
-     * @var boolean
+     * @var bool
      */
     public $jumpGateCollections = true;
 
@@ -38,7 +41,7 @@ abstract class BaseModel extends Model
      *
      * @param array $models An array of models to turn into a collection.
      *
-     * @return \Illuminate\Database\Eloquent\Collection OR \App\Collections\EloquentCollection
+     * @return Collection OR \App\Collections\EloquentCollection
      */
     public function newCollection(array $models = [])
     {

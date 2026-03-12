@@ -60,25 +60,25 @@ trait Searching
     private function determineMagicWhereDetails($whereStatement)
     {
         $finalOperator = $whereStatement->intersect(['in', 'between', 'like', 'null', '='])
-                                        ->pipe(function ($collection) {
-                                            return $collection->count() ? $collection->first() : '=';
-                                        });
+            ->pipe(function ($collection) {
+                return $collection->count() ? $collection->first() : '=';
+            });
 
         $position = $whereStatement->intersect(['first', 'last'])
-                                   ->pipe(function ($collection) {
-                                       return $collection->count() ? $collection->first() : null;
-                                   });
+            ->pipe(function ($collection) {
+                return $collection->count() ? $collection->first() : null;
+            });
 
         $not = $whereStatement->intersect(['not'])
-                              ->pipe(function ($collection) {
-                                  return $collection->count() ? $collection->first() : false;
-                              });
+            ->pipe(function ($collection) {
+                return $collection->count() ? $collection->first() : false;
+            });
 
         return [$finalOperator, $position, $not];
 
         // This is not working at the moment
         // todo riddles - fix this
-        //if ($finalOperator == 'many') {
+        // if ($finalOperator == 'many') {
         //    $where = null;
         //    foreach ($args[0] as $column => $value) {
         //        $where = $this->getWhere(
@@ -91,19 +91,19 @@ trait Searching
         //    }
         //
         //    return $where;
-        //}
+        // }
     }
 
     /**
      * Search a collection for the value specified.
      *
-     * @param  string  $column   The column to search.
-     * @param  string  $operator The operation to use during search.
-     * @param  mixed   $value    The value to search for.
-     * @param  boolean $inverse  Invert the results.
-     * @param  string  $position Return the first or last object in the collection.
+     * @param string $column   The column to search.
+     * @param string $operator The operation to use during search.
+     * @param mixed  $value    The value to search for.
+     * @param bool   $inverse  Invert the results.
+     * @param string $position Return the first or last object in the collection.
      *
-     * @return self              Return the filtered collection.
+     * @return self Return the filtered collection.
      */
     protected function performGetWhere($column, $operator, $value = null, $inverse = false, $position = null)
     {
@@ -148,13 +148,13 @@ trait Searching
     /**
      * Compare the object and column passed with the value using the operator
      *
-     * @param  object  $object   The object we are searching.
-     * @param  string  $column   The column to compare.
-     * @param  string  $operator What type of comparison operation to perform.
-     * @param  mixed   $value    The value to search for.
-     * @param  boolean $inverse  Invert the results.
+     * @param object $object   The object we are searching.
+     * @param string $column   The column to compare.
+     * @param string $operator What type of comparison operation to perform.
+     * @param mixed  $value    The value to search for.
+     * @param bool   $inverse  Invert the results.
      *
-     * @return boolean           Return true if the object should be removed from the collection.
+     * @return bool Return true if the object should be removed from the collection.
      */
     private function whereObject($object, $column, $operator, $value = null, $inverse = false)
     {
@@ -188,11 +188,11 @@ trait Searching
 
     private function getWhereBetween($object, $column, $value, $inverse)
     {
-        if (($object->$column < $value[0] || $object->$column > $value[1]) && $inverse == false) {
+        if (($value[0] > $object->$column || $value[1] < $object->$column) && $inverse == false) {
             return true;
         }
 
-        if (($object->$column >= $value[0] && $object->$column <= $value[1]) && $inverse == true) {
+        if (($value[0] <= $object->$column && $value[1] >= $object->$column) && $inverse == true) {
             return true;
         }
 
@@ -227,11 +227,11 @@ trait Searching
 
     private function getWhereDefault($object, $column, $value, $inverse)
     {
-        if ($object->$column != $value && $inverse == false) {
+        if ($value != $object->$column && $inverse == false) {
             return true;
         }
 
-        if ($object->$column == $value && $inverse == true) {
+        if ($value == $object->$column && $inverse == true) {
             return true;
         }
 

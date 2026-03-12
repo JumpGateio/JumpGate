@@ -2,15 +2,15 @@
 
 namespace App\Services\Users\Http\Routes;
 
-use JumpGate\Core\Http\Routes\BaseRoute;
-use JumpGate\Core\Contracts\Routes;
 use Illuminate\Routing\Router;
+use JumpGate\Core\Contracts\Routes;
+use JumpGate\Core\Http\Routes\BaseRoute;
 
 class Registration extends BaseRoute implements Routes
 {
-    public $namespace  = 'App\Services\Users\Http\Controllers';
+    public $namespace = 'App\Services\Users\Http\Controllers';
 
-    public $context    = 'default';
+    public $context = 'default';
 
     public $middleware = [
         'web',

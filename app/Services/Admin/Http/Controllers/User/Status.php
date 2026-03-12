@@ -3,13 +3,13 @@
 namespace App\Services\Admin\Http\Controllers\User;
 
 use App\Services\Admin\Http\Controllers\Base;
-use Illuminate\Support\Facades\Validator;
 use App\Services\Users\Models\User\Status as StatusModel;
+use Illuminate\Support\Facades\Validator;
 
 class Status extends Base
 {
     /**
-     * @var \App\Services\Users\Models\User\Status
+     * @var StatusModel
      */
     public $statuses;
 
@@ -28,8 +28,8 @@ class Status extends Base
             'update' => auth()->user()->hasPermission('update-status'),
             'delete' => auth()->user()->hasPermission('delete-status'),
         ];
-        $filters     = request()->all('search');
-        $statuses    = $this->statuses
+        $filters  = request()->all('search');
+        $statuses = $this->statuses
             ->orderByNameAsc()
             ->filter(request()->only('search'))
             ->paginate(10)
@@ -105,7 +105,7 @@ class Status extends Base
         $event  = $status;
         $status = $this->statuses->find($id);
 
-        if (!is_null($action) && (int)$action === 0) {
+        if (!is_null($action) && (int) $action === 0) {
             $event = 'un-' . $event;
         }
 

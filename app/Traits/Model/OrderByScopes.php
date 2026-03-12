@@ -23,6 +23,7 @@ trait OrderByScopes
     {
         return $query->orderBy('created_at', 'asc');
     }
+
     /**
      * Order by created_at descending scope.
      *

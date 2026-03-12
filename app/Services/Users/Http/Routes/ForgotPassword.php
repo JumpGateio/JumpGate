@@ -2,9 +2,9 @@
 
 namespace App\Services\Users\Http\Routes;
 
-use JumpGate\Core\Http\Routes\BaseRoute;
-use JumpGate\Core\Contracts\Routes;
 use Illuminate\Routing\Router;
+use JumpGate\Core\Contracts\Routes;
+use JumpGate\Core\Http\Routes\BaseRoute;
 
 class ForgotPassword extends BaseRoute implements Routes
 {
@@ -29,25 +29,25 @@ class ForgotPassword extends BaseRoute implements Routes
     private function standardAuth(Router $router)
     {
         $router->get('sent')
-               ->name('auth.password.sent')
-               ->uses('ForgotPassword@sent');
+            ->name('auth.password.sent')
+            ->uses('ForgotPassword@sent');
 
         // Trigger reset.
         $router->get('reset')
-               ->name('auth.password.reset')
-               ->uses('ForgotPassword@reset');
+            ->name('auth.password.reset')
+            ->uses('ForgotPassword@reset');
 
         $router->post('reset')
-               ->name('auth.password.sendEmail')
-               ->uses('ForgotPassword@sendEmail');
+            ->name('auth.password.sendEmail')
+            ->uses('ForgotPassword@sendEmail');
 
         // Finish resetting.
         $router->get('confirm/{tokenString}')
-               ->name('auth.password.confirm')
-               ->uses('ForgotPassword@confirm');
+            ->name('auth.password.confirm')
+            ->uses('ForgotPassword@confirm');
 
         $router->post('confirm/{tokenString}')
-               ->name('auth.password.handle')
-               ->uses('ForgotPassword@handle');
+            ->name('auth.password.handle')
+            ->uses('ForgotPassword@handle');
     }
 }

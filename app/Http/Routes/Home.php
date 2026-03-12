@@ -2,9 +2,9 @@
 
 namespace App\Http\Routes;
 
-use JumpGate\Core\Http\Routes\BaseRoute;
-use JumpGate\Core\Contracts\Routes;
 use Illuminate\Routing\Router;
+use JumpGate\Core\Contracts\Routes;
+use JumpGate\Core\Http\Routes\BaseRoute;
 
 class Home extends BaseRoute implements Routes
 {
@@ -15,7 +15,7 @@ class Home extends BaseRoute implements Routes
     public function routes(Router $router): void
     {
         $router->get('/')
-               ->name('home')
-               ->uses('Home@index');
+            ->name('home')
+            ->uses('Home@index');
     }
 }

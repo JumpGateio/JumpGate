@@ -2,7 +2,6 @@
 
 namespace App\Services\Users\Managers;
 
-
 use App\Services\Users\Events\UserLoggedIn;
 use App\Services\Users\Events\UserLoggingIn;
 use App\Services\Users\Models\Social\Provider;
@@ -35,6 +34,7 @@ class SocialLogin
      * @param string|null $provider The provider being logged in through.
      *
      * @return mixed
+     *
      * @throws \Exception
      */
     public function redirect(?string $provider): mixed
@@ -53,6 +53,7 @@ class SocialLogin
      * @param string $provider The provider being logged in through.
      *
      * @return array
+     *
      * @throws \Exception
      */
     public function loginUser(string $provider): array
@@ -87,6 +88,7 @@ class SocialLogin
      * @param User   $user     The user these details are for.
      *
      * @return AbstractUser|null
+     *
      * @throws \Exception
      */
     public function socialUpdate(string $provider, User $user): ?AbstractUser

@@ -3,6 +3,7 @@
 namespace App\Services\Users\Traits;
 
 use App\Services\Users\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder;
 
 trait HasUser
@@ -21,9 +22,9 @@ trait HasUser
     /**
      * Get the user this record is associated with.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }

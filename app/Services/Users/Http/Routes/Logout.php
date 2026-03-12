@@ -2,9 +2,9 @@
 
 namespace App\Services\Users\Http\Routes;
 
-use JumpGate\Core\Http\Routes\BaseRoute;
-use JumpGate\Core\Contracts\Routes;
 use Illuminate\Routing\Router;
+use JumpGate\Core\Contracts\Routes;
+use JumpGate\Core\Http\Routes\BaseRoute;
 
 class Logout extends BaseRoute implements Routes
 {
@@ -20,7 +20,7 @@ class Logout extends BaseRoute implements Routes
     public function routes(Router $router)
     {
         $router->get('logout')
-               ->name('auth.logout')
-               ->uses('Authentication@logout');
+            ->name('auth.logout')
+            ->uses('Authentication@logout');
     }
 }

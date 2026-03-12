@@ -2,17 +2,20 @@
 
 namespace App\Traits\Console;
 
+use Illuminate\Console\OutputStyle;
+use Symfony\Component\Console\Helper\ProgressBar;
+
 /**
  * Class ProgressBarTrait
  *
- * @property \Illuminate\Console\OutputStyle $output
+ * @property OutputStyle $output
  */
 trait ProgressBarTrait
 {
     /**
      * The active progress bar.
      *
-     * @var \Symfony\Component\Console\Helper\ProgressBar
+     * @var ProgressBar
      */
     protected $bar = null;
 
@@ -94,7 +97,7 @@ trait ProgressBarTrait
         $tabs = '';
 
         foreach ($range as $item) {
-            $tabs .= " ";
+            $tabs .= ' ';
         }
 
         return $tabs;

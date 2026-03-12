@@ -2,8 +2,10 @@
 
 namespace App\Traits;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\View;
 use Inertia\Inertia;
+use Inertia\Response;
 
 trait UsesInertia
 {
@@ -37,7 +39,7 @@ trait UsesInertia
      * @param string $vue
      * @param array  $data
      *
-     * @return \Inertia\Response
+     * @return Response
      */
     public function render($vue, $data = [])
     {
@@ -50,7 +52,7 @@ trait UsesInertia
      * @param callable $callback
      * @param array    $extras
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function ajaxResponse(callable $callback, $extras = [])
     {
@@ -66,10 +68,10 @@ trait UsesInertia
     /**
      * Return an error response for ajax calls.
      *
-     * @param string|\Exception $message
+     * @param \Exception|string $message
      * @param int               $code
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function error($message, $code = 400)
     {
@@ -101,7 +103,7 @@ trait UsesInertia
      * @param string $message
      * @param array  $extras
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function success($message, $extras = [])
     {

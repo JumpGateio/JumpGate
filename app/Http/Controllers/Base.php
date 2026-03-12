@@ -9,30 +9,31 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 use Inertia\Inertia;
+use Inertia\Response;
 use JumpGate\ViewResolution\Traits\AutoResolvesViews;
 
 abstract class Base extends Controller
 {
-    use AuthorizesRequests,
-        AutoResolvesViews,
-        UsesInertia,
-        DispatchesJobs,
-        ValidatesRequests;
+    use AuthorizesRequests;
+    use AutoResolvesViews;
+    use DispatchesJobs;
+    use UsesInertia;
+    use ValidatesRequests;
 
     /**
      * Use this method to quickly switch your GET responses
      * between blade and view.
      *
      * @param array       $data
-     * @param null|string $page
-     * @param null|string $layout
+     * @param string|null $page
+     * @param string|null $layout
      *
-     * @return \Inertia\Response
+     * @return Response
+     *
      * @see AutoResolvesViews::view()
      * @see AutoResolvesViews::inertia()
-     *
      */
-    public function response(array $data = [], ?string $page = null, ?string $layout = null): \Inertia\Response
+    public function response(array $data = [], ?string $page = null, ?string $layout = null): Response
     {
         $this->setTheme('dark');
 

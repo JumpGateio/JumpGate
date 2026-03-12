@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'docs' => [
+    'docs'       => [
         'route'      => '/docs',
         'path'       => '/resources/docs',
         'landing'    => env('DOC_LANDING', 'overview'),
@@ -33,7 +33,7 @@ return [
     |
     */
 
-    'versions' => [
+    'versions'   => [
         'default'   => env('DOC_VERSION', '1.0'),
         'published' => [
             '1.0',
@@ -56,7 +56,7 @@ return [
     |
     */
 
-    'settings' => [
+    'settings'   => [
         'auth'       => false,
         'auth_links' => [
             [
@@ -67,7 +67,7 @@ return [
         'ga_id'      => '',
         'middleware' => [
             'web',
-        ]
+        ],
     ],
 
     /*
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'cache' => [
+    'cache'      => [
         'enabled' => false,
         'period'  => 5,
     ],
@@ -101,7 +101,7 @@ return [
     |
     */
 
-    'search' => [
+    'search'     => [
         'enabled' => false,
         'default' => 'algolia',
         'engines' => [
@@ -145,7 +145,7 @@ return [
     |
     */
 
-    'ui' => [
+    'ui'         => [
         'show_app_name'  => true,
         'logo'           => null, // e.g.: /images/logo.svg
         'fav'            => '', // e.g.: /fav.png
@@ -160,10 +160,10 @@ return [
         ],
         'theme_order'    => null, // ['LaRecipeDarkTheme', 'customTheme']
         'additional_css' => [
-            //'css/custom.css',
+            // 'css/custom.css',
         ],
         'additional_js'  => [
-            //'js/custom.js',
+            // 'js/custom.js',
         ],
     ],
 
@@ -179,7 +179,7 @@ return [
     |
     */
 
-    'seo' => [
+    'seo'        => [
         'author'      => '',
         'description' => '',
         'keywords'    => '',
@@ -205,7 +205,7 @@ return [
     |
     */
 
-    'forum' => [
+    'forum'      => [
         'enabled'  => false,
         'default'  => 'disqus',
         'services' => [
@@ -227,7 +227,7 @@ return [
     |
     */
 
-    'packages' => [
+    'packages'   => [
         'path' => 'larecipe-components',
     ],
 ];

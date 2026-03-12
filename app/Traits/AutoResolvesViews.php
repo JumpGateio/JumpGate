@@ -2,21 +2,22 @@
 
 namespace App\Traits;
 
+use Illuminate\View\View;
 use Inertia\Inertia;
 use Inertia\Response;
 
 trait AutoResolvesViews
 {
     /**
-     * @var null|\Illuminate\View\View
+     * @var View|null
      */
     protected $layout;
 
     /**
      * Find the view for the called method.
      *
-     * @param null|string $view
-     * @param null|string $layout
+     * @param string|null $view
+     * @param string|null $layout
      *
      * @return $this
      */
@@ -33,11 +34,11 @@ trait AutoResolvesViews
      * Find the component for an inertia response.
      *
      * @param array       $data
-     * @param null|string $page
+     * @param string|null $page
      *
      * @return Response
      */
-    public function inertia(array $data = [], ?string $page): Response
+    public function inertia(array $data, ?string $page): Response
     {
         $viewModel = inertiaResolver()->setUp($page);
 
@@ -47,7 +48,7 @@ trait AutoResolvesViews
     /**
      * Get an array of layout options if available.
      *
-     * @param null|string $layout
+     * @param string|null $layout
      *
      * @return array|null
      */
@@ -80,7 +81,7 @@ trait AutoResolvesViews
         $this->layoutOptions = [
             'default' => $layout,
             'ajax'    => $layout,
-        ];;
+        ];
     }
 
     /**
@@ -100,8 +101,8 @@ trait AutoResolvesViews
      * Overloading this method to make sure our layout is
      * always used.
      *
-     * @param  string $method
-     * @param  array  $parameters
+     * @param string $method
+     * @param array  $parameters
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -140,7 +141,7 @@ trait AutoResolvesViews
      */
     public function __call($method, $parameters)
     {
-        $parameters = array_merge((array)$method, $parameters);
+        $parameters = array_merge((array) $method, $parameters);
 
         return $this->missingMethod($parameters);
     }

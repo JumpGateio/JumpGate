@@ -2,20 +2,20 @@
 
 namespace App\Services\Admin\Http\Routes\User;
 
-use JumpGate\Core\Http\Routes\BaseRoute;
-use JumpGate\Core\Contracts\Routes;
 use App\Services\Users\Models\User\Status as StatusModel;
 use Illuminate\Routing\Router;
+use JumpGate\Core\Contracts\Routes;
+use JumpGate\Core\Http\Routes\BaseRoute;
 
 class Status extends BaseRoute implements Routes
 {
-    public $namespace  = 'App\Services\Admin\Http\Controllers\User';
+    public $namespace = 'App\Services\Admin\Http\Controllers\User';
 
-    public $context    = 'default';
+    public $context = 'default';
 
-    public $prefix     = 'admin/users/status';
+    public $prefix = 'admin/users/status';
 
-    public $role       = 'admin';
+    public $role = 'admin';
 
     public $middleware = [
         'web',
@@ -37,7 +37,7 @@ class Status extends BaseRoute implements Routes
         $router->get('create')
             ->name('admin.users.status.create')
             ->uses('Status@create')
-            ->middleware(['active:admin.users.status.index','permission:create-status']);
+            ->middleware(['active:admin.users.status.index', 'permission:create-status']);
         $router->post('create')
             ->name('admin.users.status.store')
             ->uses('Status@store')
@@ -46,7 +46,7 @@ class Status extends BaseRoute implements Routes
         $router->get('edit/{status}')
             ->name('admin.users.status.edit')
             ->uses('Status@edit')
-            ->middleware(['active:admin.users.status.index','permission:update-status']);
+            ->middleware(['active:admin.users.status.index', 'permission:update-status']);
         $router->post('edit/{status}')
             ->name('admin.users.status.update')
             ->uses('Status@update')
@@ -55,7 +55,7 @@ class Status extends BaseRoute implements Routes
         $router->get('confirm/{id}/{status}/{action?}')
             ->name('admin.users.status.confirm')
             ->uses('Status@confirm')
-            ->middleware(['active:admin.users.status.index','permission:delete-status']);
+            ->middleware(['active:admin.users.status.index', 'permission:delete-status']);
         $router->post('confirm/{id}/{status?}/{action?}')
             ->name('admin.users.status.confirmed')
             ->uses('Status@confirmed')

@@ -6,6 +6,8 @@ use App\Http\Controllers\Base;
 use App\Services\Users\Events\UserLoggedOut;
 use App\Services\Users\Http\Requests\Login;
 use App\Services\Users\Managers\Login as LoginManager;
+use Illuminate\Http\RedirectResponse;
+use Inertia\Response;
 
 class Authentication extends Base
 {
@@ -22,10 +24,10 @@ class Authentication extends Base
     /**
      * Display the login form.
      */
-    public function index(): \Inertia\Response
+    public function index(): Response
     {
         $this->setPageTitle('Login');
-        $socialEnabled = (bool)config('jumpgate.users.enable_social');
+        $socialEnabled = (bool) config('jumpgate.users.enable_social');
 
         return $this->response(
             compact('socialEnabled'),
@@ -36,7 +38,7 @@ class Authentication extends Base
     /**
      * Display the blocked page.
      */
-    public function blocked(): \Inertia\Response
+    public function blocked(): Response
     {
         $this->setPageTitle('Blocked');
 
@@ -48,11 +50,11 @@ class Authentication extends Base
     /**
      * Handle validating the login details.
      *
-     * @param \App\Services\Users\Http\Requests\Login $request
+     * @param Login $request
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function handle(Login $request): \Illuminate\Http\RedirectResponse
+    public function handle(Login $request): RedirectResponse
     {
         // Set up the auth data
         $userData = [
@@ -69,9 +71,9 @@ class Authentication extends Base
     /**
      * Log the user out.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function logout(): \Illuminate\Http\RedirectResponse
+    public function logout(): RedirectResponse
     {
         $user = auth()->user();
         auth()->logout();

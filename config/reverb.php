@@ -67,11 +67,11 @@ return [
     |
     */
 
-    'apps' => [
+    'apps'    => [
 
         'provider' => 'config',
 
-        'apps' => [
+        'apps'     => [
             [
                 'key'              => env('REVERB_APP_KEY'),
                 'secret'           => env('REVERB_APP_SECRET'),

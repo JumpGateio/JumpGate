@@ -1,11 +1,12 @@
 <?php
 
+use App\Services\Users\Models\User;
+
 /**
  * This file is part of Laratrust,
  * a role & permission management solution for Laravel.
  *
  * @license MIT
- * @package Laratrust
  */
 
 return [
@@ -19,7 +20,7 @@ return [
     |
     */
 
-    'use_morph_map' => false,
+    'use_morph_map'                => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -35,7 +36,7 @@ return [
     |
      */
 
-    'checker' => 'default',
+    'checker'                      => 'default',
 
     /*
     |--------------------------------------------------------------------------
@@ -47,7 +48,7 @@ return [
     |
     */
 
-    'cache' => [
+    'cache'                        => [
 
         /*
         |--------------------------------------------------------------------------
@@ -59,7 +60,7 @@ return [
         |
         */
 
-        'enabled' => env('LARATRUST_ENABLE_CACHE', env('APP_ENV') === 'production'),
+        'enabled'         => env('LARATRUST_ENABLE_CACHE', env('APP_ENV') === 'production'),
 
         /*
         |--------------------------------------------------------------------------
@@ -87,8 +88,8 @@ return [
     |
     */
 
-    'user_models' => [
-        'users' => \App\Services\Users\Models\User::class,
+    'user_models'                  => [
+        'users' => User::class,
     ],
 
     /*
@@ -102,7 +103,7 @@ return [
     |
     */
 
-    'models' => [
+    'models'                       => [
         'role'       => 'App\Services\Users\Models\Role',
         'permission' => 'App\Services\Users\Models\Permission',
         'team'       => 'App\Team',
@@ -117,7 +118,7 @@ return [
     |
     */
 
-    'tables' => [
+    'tables'                       => [
         'roles'           => 'rbac_roles',
         'permissions'     => 'rbac_permissions',
         'teams'           => 'rbac_teams',
@@ -148,7 +149,7 @@ return [
     |
     */
 
-    'foreign_keys' => [
+    'foreign_keys'                 => [
         /**
          * User foreign key on Laratrust's role_user and permission_user tables.
          */
@@ -180,7 +181,7 @@ return [
     |
     */
 
-    'middleware' => [
+    'middleware'                   => [
         /**
          * Define if the laratrust middleware are registered automatically in the service provider
          */
@@ -220,7 +221,7 @@ return [
         ],
     ],
 
-    'teams' => [
+    'teams'                        => [
         /*
         |--------------------------------------------------------------------------
         | Use teams feature in the package
@@ -231,7 +232,7 @@ return [
         |
         */
 
-        'enabled' => false,
+        'enabled'      => false,
 
         /*
         |--------------------------------------------------------------------------
@@ -269,7 +270,7 @@ return [
     |
     */
 
-    'permissions_as_gates' => false,
+    'permissions_as_gates'         => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -280,7 +281,7 @@ return [
     |
     */
 
-    'panel' => [
+    'panel'                        => [
         /*
         |--------------------------------------------------------------------------
         | Laratrust Panel Register
@@ -291,7 +292,7 @@ return [
         |
         */
 
-        'register' => false,
+        'register'                   => false,
 
         /*
         |--------------------------------------------------------------------------
@@ -303,7 +304,7 @@ return [
         |
         */
 
-        'path' => 'laratrust',
+        'path'                       => 'laratrust',
 
         /*
         |--------------------------------------------------------------------------
@@ -314,7 +315,7 @@ return [
         |
         */
 
-        'go_back_route' => '/',
+        'go_back_route'              => '/',
 
         /*
         |--------------------------------------------------------------------------
@@ -325,7 +326,7 @@ return [
         |
         */
 
-        'middleware' => ['web'],
+        'middleware'                 => ['web'],
 
         /*
         |--------------------------------------------------------------------------
@@ -358,7 +359,7 @@ return [
         |
         */
 
-        'roles_restrictions' => [
+        'roles_restrictions'         => [
             // The user won't be able to remove roles already assigned to users.
             'not_removable' => [],
 

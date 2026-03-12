@@ -7,11 +7,11 @@ trait Helpers
     /**
      * Turn a collection into a drop down for an html select element.
      *
-     * @param  string $firstOptionText Text for the first object in the select array.
-     * @param  string $key             The column to use for the key column in the option element.
-     * @param  string $value           The column to use for the name column in the option element.
+     * @param string $firstOptionText Text for the first object in the select array.
+     * @param string $key             The column to use for the key column in the option element.
+     * @param string $value           The column to use for the name column in the option element.
      *
-     * @return array                    The new select element array.
+     * @return array The new select element array.
      */
     public function toSelectArray($firstOptionText = 'Select one', $key = 'id', $value = 'name')
     {
@@ -49,7 +49,7 @@ trait Helpers
      * Strings are assumed to be delimiter separated and are converted to arrays.
      *
      * @param mixed        $items     The values to include as items in the collection
-     * @param string|array $delimiter (optional) for array parsing
+     * @param array|string $delimiter (optional) for array parsing
      *
      * @return $this
      */

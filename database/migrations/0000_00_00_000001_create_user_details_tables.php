@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateUserDetailsTables extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -27,9 +26,9 @@ class CreateUserDetailsTables extends Migration
             $table->softDeletes();
 
             $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade');
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

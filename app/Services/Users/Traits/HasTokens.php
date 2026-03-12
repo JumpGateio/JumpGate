@@ -7,13 +7,13 @@ use App\Services\Users\Notifications\PasswordReset;
 use App\Services\Users\Notifications\UserActivation;
 use App\Services\Users\Notifications\UserCreated;
 use App\Services\Users\Notifications\UserInvitation;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class HasTokens
  *
- * @package App\Services\Users\Traits
  *
- * @property \App\Services\Users\Models\User\Token[] $tokens
+ * @property Token[] $tokens
  */
 trait HasTokens
 {
@@ -24,7 +24,7 @@ trait HasTokens
      *
      * @return Token
      */
-    public function generateActivationToken(int $hours = null): Token
+    public function generateActivationToken(?int $hours = null): Token
     {
         $token = app(Token::class)->generate(Token::TYPE_ACTIVATION, $this, $hours);
 
@@ -40,7 +40,7 @@ trait HasTokens
      *
      * @return Token
      */
-    public function generateInvitationToken(int $hours = null): Token
+    public function generateInvitationToken(?int $hours = null): Token
     {
         $token = app(Token::class)->generate(Token::TYPE_INVITATION, $this, $hours);
 
@@ -56,7 +56,7 @@ trait HasTokens
      *
      * @return Token
      */
-    public function generatePasswordResetToken(int $hours = null): Token
+    public function generatePasswordResetToken(?int $hours = null): Token
     {
         $token = app(Token::class)->generate(Token::TYPE_PASSWORD_RESET, $this, $hours);
 
@@ -72,7 +72,7 @@ trait HasTokens
      *
      * @return Token
      */
-    public function generateNewUserPasswordResetToken(int $hours = null): Token
+    public function generateNewUserPasswordResetToken(?int $hours = null): Token
     {
         $token = app(Token::class)->generate(Token::TYPE_PASSWORD_RESET, $this, $hours);
 
@@ -114,9 +114,9 @@ trait HasTokens
     /**
      * Any tokens generated for a user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function tokens(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function tokens(): HasMany
     {
         return $this->hasMany(Token::class, 'user_id');
     }

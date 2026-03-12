@@ -5,6 +5,7 @@ namespace App\Console\Commands\JumpGate;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Process;
+
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\text;
 
@@ -22,13 +23,13 @@ class SetUp extends Command
      *
      * @var string
      */
-    protected          $description  = 'Do all the initial steps to set up your jumpgate app.';
+    protected $description = 'Do all the initial steps to set up your jumpgate app.';
 
     private Filesystem $files;
 
-    private bool       $generatedEnv = true;
+    private bool $generatedEnv = true;
 
-    private string     $command;
+    private string $command;
 
     public function __construct(Filesystem $files)
     {
@@ -42,7 +43,7 @@ class SetUp extends Command
      */
     public function handle(): void
     {
-        $hasYarn       = (int)Process::run('yarn -v')->output() > 0;
+        $hasYarn       = (int) Process::run('yarn -v')->output() > 0;
         $this->command = 'npm';
 
         if ($hasYarn) {
@@ -126,6 +127,7 @@ class SetUp extends Command
         // Add the pro version after getting the api key.
         if ($fontAwesome == 'Pro') {
             $this->installFontAwesomePro($command);
+
             return;
         }
 

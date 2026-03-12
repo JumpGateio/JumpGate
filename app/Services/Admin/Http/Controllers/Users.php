@@ -2,13 +2,15 @@
 
 namespace App\Services\Admin\Http\Controllers;
 
-use App\Services\Users\Models\Permission;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use App\Services\Users\Managers\UserActions;
+use App\Services\Users\Models\Permission;
 use App\Services\Users\Models\Role;
 use App\Services\Users\Models\User;
 use App\Services\Users\Models\User\Status;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Inertia\Response;
 
 class Users extends Base
 {
@@ -21,7 +23,7 @@ class Users extends Base
         $this->users = $users;
     }
 
-    public function index(): \Inertia\Response
+    public function index(): Response
     {
         $title       = 'User List';
         $permissions = [
@@ -29,8 +31,8 @@ class Users extends Base
             'update' => auth()->user()->hasPermission('update-user'),
             'delete' => auth()->user()->hasPermission('delete-user'),
         ];
-        $filters     = request()->all('search', 'trashed');
-        $users       = $this->users
+        $filters = request()->all('search', 'trashed');
+        $users   = $this->users
             ->with(['status', 'details'])
             ->orderByNameAsc()
             ->filter(request()->only('search', 'trashed'))
@@ -52,7 +54,7 @@ class Users extends Base
         );
     }
 
-    public function show(User $user): \Inertia\Response
+    public function show(User $user): Response
     {
         $title       = $user->details->display_name ?? 'User Details';
         $permissions = [
@@ -77,7 +79,7 @@ class Users extends Base
         return $this->response(compact('title', 'permissions', 'user'), 'Admin/Users/Show');
     }
 
-    public function create(): \Inertia\Response
+    public function create(): Response
     {
         $title             = 'Create a new user';
         $roleOptions       = Role::orderBy('display_name', 'asc')->get()->pluck('display_name', 'id');
@@ -112,7 +114,7 @@ class Users extends Base
         );
     }
 
-    public function store(): \Illuminate\Http\RedirectResponse
+    public function store(): RedirectResponse
     {
         $email        = request('email');
         $roles        = request('roles');
@@ -141,7 +143,7 @@ class Users extends Base
             ->with('success', 'User added!');
     }
 
-    public function edit(User $user): \Inertia\Response
+    public function edit(User $user): Response
     {
         $statusOptions     = Status::orderByNameAsc()->get()->pluck('label', 'id');
         $roleOptions       = Role::orderBy('display_name', 'asc')->get()->pluck('display_name', 'id');
@@ -161,7 +163,7 @@ class Users extends Base
         );
     }
 
-    public function update(User $user): \Illuminate\Http\RedirectResponse
+    public function update(User $user): RedirectResponse
     {
         $user->update(request('user'));
         $user->setStatus(request('status_id'));
@@ -175,7 +177,7 @@ class Users extends Base
             ->with('message', 'User updated!');
     }
 
-    public function confirm($id, $status, $action = null): \Inertia\Response
+    public function confirm($id, $status, $action = null): Response
     {
         $user = $this->users->withTrashed()->find($id);
 
@@ -186,7 +188,7 @@ class Users extends Base
             default         => $status,
         };
 
-        if (!is_null($action) && (int)$action === 0) {
+        if (!is_null($action) && (int) $action === 0) {
             $event = 'un-' . $event;
         }
 
@@ -197,7 +199,7 @@ class Users extends Base
         return $this->response(compact('message', 'proceed', 'cancel'), 'Admin/Confirm');
     }
 
-    public function confirmed($id, $status, $action = null): \Illuminate\Http\RedirectResponse
+    public function confirmed($id, $status, $action = null): RedirectResponse
     {
         $user = $this->users->withTrashed()->find($id);
 

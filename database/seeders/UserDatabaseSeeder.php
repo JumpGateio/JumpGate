@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Database\Seeders\Users\DefaultUsers;
-use Database\Seeders\Users\LaratrustSeeder;
 use Database\Seeders\Users\UserStatus;
 
 class UserDatabaseSeeder extends Base

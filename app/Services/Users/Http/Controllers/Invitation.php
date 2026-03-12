@@ -4,6 +4,8 @@ namespace App\Services\Users\Http\Controllers;
 
 use App\Http\Controllers\Base;
 use App\Services\Users\Managers\Invitation as InvitationManager;
+use Illuminate\Http\RedirectResponse;
+use Inertia\Response;
 
 class Invitation extends Base
 {
@@ -22,9 +24,9 @@ class Invitation extends Base
      *
      * @param int $userId The ID of the user getting the token.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function generate(int $userId): \Illuminate\Http\RedirectResponse
+    public function generate(int $userId): RedirectResponse
     {
         $this->invitation->generateToken($userId);
 
@@ -37,9 +39,9 @@ class Invitation extends Base
      *
      * @param string $tokenString The user's invitation token.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function resend(string $tokenString): \Illuminate\Http\RedirectResponse
+    public function resend(string $tokenString): RedirectResponse
     {
         $this->invitation->resend($tokenString);
 
@@ -51,10 +53,11 @@ class Invitation extends Base
      *
      * @param string $tokenString The user's invitation token.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
+     *
      * @throws \Exception
      */
-    public function activate(string $tokenString): \Illuminate\Http\RedirectResponse
+    public function activate(string $tokenString): RedirectResponse
     {
         return $this->invitation
             ->activate($tokenString)
@@ -64,9 +67,9 @@ class Invitation extends Base
     /**
      * Display the sent email message.
      *
-     * @return \Inertia\Response
+     * @return Response
      */
-    public function sent(): \Inertia\Response
+    public function sent(): Response
     {
         $this->setPageTitle('Email sent');
 
@@ -78,9 +81,9 @@ class Invitation extends Base
     /**
      * Display the account inactive page.
      *
-     * @return \Inertia\Response
+     * @return Response
      */
-    public function inactive(): \Inertia\Response
+    public function inactive(): Response
     {
         $this->setPageTitle('Inactive account');
 
@@ -97,9 +100,9 @@ class Invitation extends Base
      *
      * @param string $tokenString The user's invitation token.
      *
-     * @return \Inertia\Response
+     * @return Response
      */
-    public function failed(string $tokenString): \Inertia\Response
+    public function failed(string $tokenString): Response
     {
         $this->setPageTitle('Invite failed');
 

@@ -2,17 +2,18 @@
 
 namespace App\Services\Users\Traits;
 
-use App\Services\Users\Models\Permission;
 use App\Services\Users\Models\Group;
+use App\Services\Users\Models\Permission;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait HasGroups
 {
     /**
      * A user may have multiple groups.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
-    public function groups(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function groups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class, 'rbac_group_user');
     }
@@ -23,6 +24,7 @@ trait HasGroups
      * @param string $group
      *
      * @return mixed
+     *
      * @throws \Exception
      */
     public function assignGroup(string $group): mixed
@@ -49,7 +51,7 @@ trait HasGroups
             return $this->groups->contains('name', $group);
         }
 
-        return ! ! $group->intersect($this->groups)->count();
+        return (bool) $group->intersect($this->groups)->count();
     }
 
     /**

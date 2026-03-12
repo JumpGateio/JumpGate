@@ -7,11 +7,11 @@ use JumpGate\Core\Services\Response;
 
 class UserActions
 {
-    public User   $user;
+    public User $user;
 
     public string $status;
 
-    public int    $action;
+    public int $action;
 
     public string $method;
 
@@ -19,7 +19,7 @@ class UserActions
     {
         $this->user   = $user;
         $this->status = $status;
-        $this->action = (int)$action;
+        $this->action = (int) $action;
     }
 
     /**
@@ -64,11 +64,11 @@ class UserActions
     protected function getMessage(): string
     {
         return match ($this->method) {
-            'resendInvite'     => 'Invite resent.',
-            'revokeInvite'     => 'Invite revoked.',
-            'resetPassword'    => 'Password reset.',
+            'resendInvite'  => 'Invite resent.',
+            'revokeInvite'  => 'Invite revoked.',
+            'resetPassword' => 'Password reset.',
             'block', 'unblock' => 'User ' . $this->method . 'ed.',
-            default            => 'User ' . $this->method . 'd.',
+            default         => 'User ' . $this->method . 'd.',
         };
     }
 }

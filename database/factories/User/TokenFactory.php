@@ -27,7 +27,7 @@ class TokenFactory extends Factory
             'type'    => $this->faker->randomElement([
                 Token::TYPE_INVITATION,
                 Token::TYPE_ACTIVATION,
-                TOKEN::TYPE_PASSWORD_RESET,
+                Token::TYPE_PASSWORD_RESET,
             ]),
             'token'   => Token::makeToken('testing'),
         ];

@@ -5,6 +5,7 @@ namespace App\Services\Users\Http\Controllers;
 use App\Http\Controllers\Base;
 use App\Services\Users\Managers\Activation as ActivationManager;
 use Illuminate\Http\RedirectResponse;
+use Inertia\Response;
 
 class Activation extends Base
 {
@@ -23,7 +24,7 @@ class Activation extends Base
      *
      * @param int $userId The ID of the user getting the token.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function generate(int $userId): RedirectResponse
     {
@@ -38,7 +39,7 @@ class Activation extends Base
      *
      * @param string $tokenString The user's activation token.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function resend(string $tokenString): RedirectResponse
     {
@@ -52,7 +53,7 @@ class Activation extends Base
      *
      * @param string $tokenString The user's activation token.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function activate(string $tokenString): RedirectResponse
     {
@@ -64,9 +65,9 @@ class Activation extends Base
     /**
      * Display the sent email message.
      *
-     * @return \Inertia\Response
+     * @return Response
      */
-    public function sent(): \Inertia\Response
+    public function sent(): Response
     {
         $this->setPageTitle('Email sent');
 
@@ -78,9 +79,9 @@ class Activation extends Base
     /**
      * Display the account inactive page.
      *
-     * @return \Inertia\Response
+     * @return Response
      */
-    public function inactive(): \Inertia\Response
+    public function inactive(): Response
     {
         $this->setPageTitle('Inactive account');
 
@@ -97,9 +98,9 @@ class Activation extends Base
      *
      * @param string $tokenString The user's activation token.
      *
-     * @return \Inertia\Response
+     * @return Response
      */
-    public function failed(string $tokenString): \Inertia\Response
+    public function failed(string $tokenString): Response
     {
         $this->setPageTitle('Activation failed');
 

@@ -7,13 +7,13 @@ trait Chaining
     /**
      * Dynamically retrieve attributes on the model.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @return mixed
      */
     public function chainingGetMethod($key)
     {
-        $newCollection = new self();
+        $newCollection = new self;
 
         foreach ($this->items as $item) {
             // This item is a collection
@@ -64,7 +64,7 @@ trait Chaining
      */
     private function handleMultiTap($item, $column, $value, $operator, $inverse)
     {
-        list($objectToSearch, $columnToSearch) = $this->tapThroughObjects($column, $item);
+        [$objectToSearch, $columnToSearch] = $this->tapThroughObjects($column, $item);
 
         if ($objectToSearch instanceof self) {
             foreach ($objectToSearch as $subObject) {
@@ -76,7 +76,6 @@ trait Chaining
             return $this->whereObject($objectToSearch, $columnToSearch, $operator, $value, $inverse);
         }
     }
-
 
     /**
      * @param $column

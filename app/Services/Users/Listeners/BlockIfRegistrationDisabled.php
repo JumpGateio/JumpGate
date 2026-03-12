@@ -15,7 +15,8 @@ class BlockIfRegistrationDisabled
      * @param UserLoggingIn|UserRegistering $event
      *
      * @return bool
-     * @throws \App\Exceptions\RedirectionException
+     *
+     * @throws RedirectionException
      */
     public function handle(UserLoggingIn|UserRegistering $event): bool
     {

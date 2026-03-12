@@ -16,9 +16,9 @@ abstract class Base extends Seeder
     }
 
     /**
-     * @param string         $table
-     * @param mixed          $data
-     * @param boolean|string $columnCheck
+     * @param string      $table
+     * @param mixed       $data
+     * @param bool|string $columnCheck
      *
      * @return void
      */
@@ -36,7 +36,7 @@ abstract class Base extends Seeder
             ->all();
 
         // Filter out existing ones
-        $newData = array_filter($data, fn($item) => !in_array($item[$columnCheck], $existingRecords));
+        $newData = array_filter($data, fn ($item) => !in_array($item[$columnCheck], $existingRecords));
 
         // Insert only the new ones
         $this->db->table($table)->insert($newData);

@@ -2,8 +2,8 @@
 
 namespace App\Services\Users\Traits;
 
-use JumpGate\Database\Collections\EloquentCollection;
 use Illuminate\Database\Eloquent\Collection;
+use JumpGate\Database\Collections\EloquentCollection;
 
 trait ConvertsToCollection
 {

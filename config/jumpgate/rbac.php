@@ -1,15 +1,18 @@
 <?php
 
+use Database\Seeders\RBAC\Permissions;
+use Database\Seeders\RBAC\Roles;
+
 /**
  * All the entries in this file are used when seeding the RBAC tables.
  *
- * @see Database\Seeders\RBAC\Roles
- * @see Database\Seeders\RBAC\Permissions
+ * @see Roles
+ * @see Permissions
  *
  * @run php artisan rbac to add new details to DB
  */
 return [
-    'roles' => [
+    'roles'       => [
         [
             'name'         => 'developer',
             'display_name' => 'Developer',
@@ -61,7 +64,7 @@ return [
             'description'  => 'Delete users in the admin area.',
             'roles'        => ['developer', 'director'],
         ],
-        //RBAC CONTROL
+        // RBAC CONTROL
         [
             'name'         => 'manage-roles',
             'display_name' => 'Manage Roles',
@@ -87,5 +90,5 @@ return [
             'description'  => 'Delete user statuses in the admin area.',
             'roles'        => ['developer', 'director'],
         ],
-    ]
+    ],
 ];

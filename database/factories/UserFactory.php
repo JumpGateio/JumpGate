@@ -36,7 +36,7 @@ class UserFactory extends Factory
     /**
      * Create an inactive user.
      *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     * @return Factory
      */
     public function inactive()
     {
@@ -50,7 +50,7 @@ class UserFactory extends Factory
     /**
      * Create a blocked user.
      *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     * @return Factory
      */
     public function blocked()
     {

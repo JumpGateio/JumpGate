@@ -15,6 +15,7 @@ class HandleInertiaRequests extends Middleware
      * The root template that's loaded on the first page visit.
      *
      * @see https://inertiajs.com/server-side-setup#root-template
+     *
      * @var string
      */
     protected $rootView = 'app';
@@ -25,18 +26,17 @@ class HandleInertiaRequests extends Middleware
             $debugbar = app('debugbar');
 
             if ($debugbar->shouldCollect('inertia')) {
-                $debugbar->addCollector(new InertiaCollector());
+                $debugbar->addCollector(new InertiaCollector);
             }
         }
     }
-
 
     /**
      * Determines the current asset version.
      *
      * @see https://inertiajs.com/asset-versioning
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
      * @return string|null
      */
@@ -50,14 +50,14 @@ class HandleInertiaRequests extends Middleware
      *
      * @see https://inertiajs.com/shared-data
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
      * @return array
      */
     public function share(Request $request)
     {
         Menu::getMenus();
-        
+
         if (auth()->check() && auth()->user()->hasPermission('access-admin')) {
             AdminSidebar::getMenus();
         }

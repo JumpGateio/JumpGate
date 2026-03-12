@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'driver'     => env('USER_DRIVER', 'inertia'),
-    'load_files' => true,
+    'driver'           => env('USER_DRIVER', 'inertia'),
+    'load_files'       => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'settings' => [
+    'settings'         => [
         // This will send out an email for the user to activate.
         'require_email_activation' => false,
 
@@ -60,7 +60,7 @@ return [
     |
     */
 
-    'blocking' => [
+    'blocking'         => [
         'failed_login_attempts' => 10,
     ],
 
@@ -74,7 +74,7 @@ return [
     |
     */
 
-    'default_role' => 'user',
+    'default_role'     => 'user',
 
     /*
     |--------------------------------------------------------------------------
@@ -89,13 +89,14 @@ return [
     |
     */
 
-    'enable_social' => true,
+    'enable_social'    => true,
 
     /**
      * Your first provider is used for the social auth link when social only is true.
+     *
      * @see app/Http/Composers/Menu.php
      */
-    'providers' => [
+    'providers'        => [
         [
             'driver' => 'google',
             'scopes' => [

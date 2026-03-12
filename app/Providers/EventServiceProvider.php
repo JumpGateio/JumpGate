@@ -2,6 +2,15 @@
 
 namespace App\Providers;
 
+use App\Services\Users\Events\UserCreated;
+use App\Services\Users\Events\UserCreating;
+use App\Services\Users\Events\UserFailedLogin;
+use App\Services\Users\Events\UserLoggedIn;
+use App\Services\Users\Events\UserLoggedOut;
+use App\Services\Users\Events\UserLoggingIn;
+use App\Services\Users\Events\UserRegistered;
+use App\Services\Users\Events\UserRegistering;
+use App\Services\Users\Listeners\BlockIfRegistrationDisabled;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -12,21 +21,21 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        //Registered::class => [
+        // Registered::class => [
         //    SendEmailVerificationNotification::class,
-        //],
-        \App\Services\Users\Events\UserCreating::class    => [],
-        \App\Services\Users\Events\UserCreated::class     => [],
-        \App\Services\Users\Events\UserFailedLogin::class => [],
-        \App\Services\Users\Events\UserLoggingIn::class   => [
-            \App\Services\Users\Listeners\BlockIfRegistrationDisabled::class,
+        // ],
+        UserCreating::class    => [],
+        UserCreated::class     => [],
+        UserFailedLogin::class => [],
+        UserLoggingIn::class   => [
+            BlockIfRegistrationDisabled::class,
         ],
-        \App\Services\Users\Events\UserLoggedIn::class    => [],
-        \App\Services\Users\Events\UserRegistering::class => [
-            \App\Services\Users\Listeners\BlockIfRegistrationDisabled::class,
+        UserLoggedIn::class    => [],
+        UserRegistering::class => [
+            BlockIfRegistrationDisabled::class,
         ],
-        \App\Services\Users\Events\UserRegistered::class  => [],
-        \App\Services\Users\Events\UserLoggedOut::class  => [],
+        UserRegistered::class  => [],
+        UserLoggedOut::class   => [],
     ];
 
     /**

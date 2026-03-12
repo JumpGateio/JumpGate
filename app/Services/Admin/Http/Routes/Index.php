@@ -2,9 +2,9 @@
 
 namespace App\Services\Admin\Http\Routes;
 
-use JumpGate\Core\Http\Routes\BaseRoute;
-use JumpGate\Core\Contracts\Routes;
 use Illuminate\Routing\Router;
+use JumpGate\Core\Contracts\Routes;
+use JumpGate\Core\Http\Routes\BaseRoute;
 
 class Index extends BaseRoute implements Routes
 {

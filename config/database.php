@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'sqlite'),
+    'default'     => env('DB_CONNECTION', 'sqlite'),
 
     /*
     |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ return [
 
     'connections' => [
 
-        'sqlite' => [
+        'sqlite'  => [
             'driver'                  => 'sqlite',
             'url'                     => env('DB_URL'),
             'database'                => env('DB_DATABASE', database_path('database.sqlite')),
@@ -41,7 +41,7 @@ return [
             'synchronous'             => null,
         ],
 
-        'mysql' => [
+        'mysql'   => [
             'driver'         => 'mysql',
             'url'            => env('DB_URL'),
             'host'           => env('DB_HOST', '127.0.0.1'),
@@ -81,7 +81,7 @@ return [
             ]) : [],
         ],
 
-        'pgsql' => [
+        'pgsql'   => [
             'driver'         => 'pgsql',
             'url'            => env('DB_URL'),
             'host'           => env('DB_HOST', '127.0.0.1'),
@@ -96,7 +96,7 @@ return [
             'sslmode'        => 'prefer',
         ],
 
-        'sqlsrv' => [
+        'sqlsrv'  => [
             'driver'         => 'sqlsrv',
             'url'            => env('DB_URL'),
             'host'           => env('DB_HOST', 'localhost'),
@@ -124,7 +124,7 @@ return [
     |
     */
 
-    'migrations' => [
+    'migrations'  => [
         'table'                  => 'migrations',
         'update_date_on_publish' => true,
     ],
@@ -140,9 +140,9 @@ return [
     |
     */
 
-    'redis' => [
+    'redis'       => [
 
-        'client' => env('REDIS_CLIENT', 'phpredis'),
+        'client'  => env('REDIS_CLIENT', 'phpredis'),
 
         'options' => [
             'cluster'    => env('REDIS_CLUSTER', 'redis'),
@@ -159,7 +159,7 @@ return [
             'database' => env('REDIS_DB', '0'),
         ],
 
-        'cache' => [
+        'cache'   => [
             'url'      => env('REDIS_URL'),
             'host'     => env('REDIS_HOST', '127.0.0.1'),
             'username' => env('REDIS_USERNAME'),

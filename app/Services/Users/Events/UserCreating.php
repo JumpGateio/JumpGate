@@ -2,8 +2,8 @@
 
 namespace App\Services\Users\Events;
 
-use Illuminate\Queue\SerializesModels;
 use App\Services\Users\Models\User;
+use Illuminate\Queue\SerializesModels;
 
 class UserCreating
 {

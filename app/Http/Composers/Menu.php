@@ -50,11 +50,11 @@ class Menu
                 $socialOnly = config('jumpgate.users.social_auth_only');
 
                 if ($socialOnly) {
-                    $route     = route('auth.social.login', config('jumpgate.users.providers.0.driver'));
-                    $inertia   = false;
+                    $route   = route('auth.social.login', config('jumpgate.users.providers.0.driver'));
+                    $inertia = false;
                 } else {
-                    $route      = route('auth.login');
-                    $inertia    = true;
+                    $route   = route('auth.login');
+                    $inertia = true;
                 }
 
                 $link->name    = 'Login';

@@ -3,8 +3,8 @@
 namespace App\Services\Users\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class UserInvitation extends Notification
 {

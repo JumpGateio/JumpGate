@@ -2,8 +2,8 @@
 
 namespace App\Services\Users\Traits;
 
-use Laravel\Socialite\AbstractUser;
 use App\Services\Users\Models\User\Social;
+use Laravel\Socialite\AbstractUser;
 
 trait HasSocials
 {

@@ -2,11 +2,11 @@
 
 namespace App\Services\Users\Managers;
 
-use JumpGate\Core\Services\Response;
 use App\Services\Users\Events\UserFailedLogin;
 use App\Services\Users\Events\UserLoggedIn;
 use App\Services\Users\Models\User;
 use App\Services\Users\Models\User\Status;
+use JumpGate\Core\Services\Response;
 
 class Login
 {

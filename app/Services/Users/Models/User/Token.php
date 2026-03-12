@@ -8,20 +8,20 @@ use App\Services\Users\Notifications\PasswordReset;
 use App\Services\Users\Notifications\UserActivation;
 use App\Services\Users\Notifications\UserInvitation;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder;
 
 /**
  * Class Token
  *
- * @package App\Services\Users\Models\User
  *
- * @property int            $user_id
- * @property string         $type
- * @property string         $token
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property \Carbon\Carbon $expires_at
- * @property User           $user
+ * @property int    $user_id
+ * @property string $type
+ * @property string $token
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $expires_at
+ * @property User   $user
  */
 class Token extends BaseModel
 {
@@ -92,7 +92,7 @@ class Token extends BaseModel
      *
      * @return $this
      */
-    public function generate(string $type, User $user, int $hours = null): static
+    public function generate(string $type, User $user, ?int $hours = null): static
     {
         $hours = is_null($hours) ? 24 : $hours;
 
@@ -120,7 +120,7 @@ class Token extends BaseModel
     /**
      * Returns true if token is expired.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsExpiredAttribute(): bool
     {
@@ -130,7 +130,7 @@ class Token extends BaseModel
     /**
      * Returns true if token is expired.
      *
-     * @return boolean
+     * @return bool
      */
     public function isExpired(): bool
     {
@@ -156,7 +156,7 @@ class Token extends BaseModel
      *
      * @param int|null $hours
      */
-    public function extend(int $hours = null)
+    public function extend(?int $hours = null)
     {
         $hours = is_null($hours) ? 24 : $hours;
 
@@ -180,7 +180,7 @@ class Token extends BaseModel
      *
      * @param string $token
      *
-     * @return null|Token
+     * @return Token|null
      */
     public function findByToken($token): ?Token
     {
@@ -192,7 +192,8 @@ class Token extends BaseModel
      *
      * @param string $token
      *
-     * @return null|Token
+     * @return Token|null
+     *
      * @throws \Exception
      */
     public function deleteByToken(string $token): ?Token
@@ -204,7 +205,7 @@ class Token extends BaseModel
      * Extend the expiration of a token.
      *
      * @param string   $token
-     * @param null|int $hours
+     * @param int|null $hours
      */
     public function extendByToken(string $token, ?int $hours = null)
     {
@@ -235,12 +236,12 @@ class Token extends BaseModel
      * @param Builder      $query
      * @param array|string $types of tokens
      *
-     * @return \Illuminate\Database\Query\Builder
+     * @return Builder
      */
     public function scopeOfType(Builder $query, array|string $types): Builder
     {
         // Convert types string to array
-        $types = (array)$types;
+        $types = (array) $types;
 
         // Query the tokens table for matching types
         return $query->whereIn('type', $types);
@@ -249,9 +250,9 @@ class Token extends BaseModel
     /**
      * Every token belongs to a user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }

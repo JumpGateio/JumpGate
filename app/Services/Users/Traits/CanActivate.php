@@ -2,8 +2,8 @@
 
 namespace App\Services\Users\Traits;
 
-use App\Services\Users\Models\User\Status;
 use App\Services\Users\Managers\Activation;
+use App\Services\Users\Models\User\Status;
 
 trait CanActivate
 {
@@ -22,14 +22,16 @@ trait CanActivate
      * Invite a user.
      *
      * @param string                      $email
-     * @param int|array|string|collection $roles
-     * @param int|array|string|collection $permissions
+     * @param array|collection|int|string $roles
+     * @param array|collection|int|string $permissions
      *
      * @return User
      */
-    public function sendNewUserActivation(string $email, collection|int|array|string $roles,
-                                          collection|int|array|string $permissions = []): User
-    {
+    public function sendNewUserActivation(
+        string $email,
+        collection|int|array|string $roles,
+        collection|int|array|string $permissions = []
+    ): User {
         $user = static::firstOrCreate(compact('email'));
         $user->addRoles($roles);
         $user->givePermissions($permissions);

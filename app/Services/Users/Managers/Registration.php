@@ -2,7 +2,6 @@
 
 namespace App\Services\Users\Managers;
 
-use Illuminate\Support\Str;
 use App\Services\Users\Events\UserCreated;
 use App\Services\Users\Events\UserCreating;
 use App\Services\Users\Events\UserRegistered;
@@ -10,6 +9,7 @@ use App\Services\Users\Events\UserRegistering;
 use App\Services\Users\Models\User;
 use App\Services\Users\Models\User\Detail;
 use App\Services\Users\Models\User\Status;
+use Illuminate\Support\Str;
 
 class Registration
 {
@@ -31,7 +31,7 @@ class Registration
     /**
      * Register a new user.
      *
-     * @return User|boolean|null
+     * @return bool|User|null
      */
     public function registerUser(): User|bool|null
     {
@@ -69,7 +69,7 @@ class Registration
      * @param object $socialUser
      * @param string $provider
      *
-     * @return User|bool|null
+     * @return bool|User|null
      */
     public function registerSocialUser(object $socialUser, string $provider): User|bool|null
     {
@@ -110,7 +110,7 @@ class Registration
      * @param array $user
      * @param array $roles
      *
-     * @return User|bool|null
+     * @return bool|User|null
      */
     public function createUser(array $user, array $roles = []): User|bool|null
     {

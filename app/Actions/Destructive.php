@@ -20,7 +20,7 @@ class Destructive
     {
         $this->model     = $model;
         $this->status    = $status;
-        $this->action    = (int)$action;
+        $this->action    = (int) $action;
         $this->returnUrl = $returnUrl;
     }
 

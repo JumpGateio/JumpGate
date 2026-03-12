@@ -29,7 +29,7 @@ class ViewServiceProvider extends ServiceProvider
             $debugbar = $this->app['debugbar'];
 
             if ($debugbar->shouldCollect('auto_views')) {
-                $debugbar->addCollector(new AutoViewCollector());
+                $debugbar->addCollector(new AutoViewCollector);
             }
         }
     }

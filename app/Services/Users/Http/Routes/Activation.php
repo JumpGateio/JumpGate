@@ -2,9 +2,9 @@
 
 namespace App\Services\Users\Http\Routes;
 
-use JumpGate\Core\Http\Routes\BaseRoute;
-use JumpGate\Core\Contracts\Routes;
 use Illuminate\Routing\Router;
+use JumpGate\Core\Contracts\Routes;
+use JumpGate\Core\Http\Routes\BaseRoute;
 
 class Activation extends BaseRoute implements Routes
 {
@@ -29,27 +29,27 @@ class Activation extends BaseRoute implements Routes
     private function standardAuth(Router $router)
     {
         $router->get('sent')
-               ->name('auth.activation.sent')
-               ->uses('Activation@sent');
+            ->name('auth.activation.sent')
+            ->uses('Activation@sent');
 
         $router->get('generate/{userId}')
-               ->name('auth.activation.generate')
-               ->uses('Activation@generate');
+            ->name('auth.activation.generate')
+            ->uses('Activation@generate');
 
         $router->get('inactive')
-               ->name('auth.activation.inactive')
-               ->uses('Activation@inactive');
+            ->name('auth.activation.inactive')
+            ->uses('Activation@inactive');
 
         $router->get('re-send/{tokenString}')
-               ->name('auth.activation.resend')
-               ->uses('Activation@resend');
+            ->name('auth.activation.resend')
+            ->uses('Activation@resend');
 
         $router->get('failed/{tokenString}')
-               ->name('auth.activation.failed')
-               ->uses('Activation@failed');
+            ->name('auth.activation.failed')
+            ->uses('Activation@failed');
 
         $router->get('{tokenString}')
-               ->name('auth.activation.activate')
-               ->uses('Activation@activate');
+            ->name('auth.activation.activate')
+            ->uses('Activation@activate');
     }
 }

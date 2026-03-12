@@ -2,10 +2,10 @@
 
 namespace App\Services\Users\Managers;
 
-use JumpGate\Core\Services\Response;
 use App\Services\Users\Models\User;
 use App\Services\Users\Models\User\Status;
 use App\Services\Users\Models\User\Token;
+use JumpGate\Core\Services\Response;
 
 class Invitation
 {
