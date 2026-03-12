@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\UserStatuses\Pages;
 
 use App\Filament\Resources\UserStatuses\UserStatusResource;
-use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListUserStatuses extends ListRecords
